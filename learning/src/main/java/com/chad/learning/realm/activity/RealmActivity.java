@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.learning.R;
-import com.chad.learning.base.BaseAppCompatActivity;
+import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.adapter.RealmDataAdapter;
 import com.chad.learning.realm.bean.Person;
 

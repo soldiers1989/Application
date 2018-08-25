@@ -1,4 +1,4 @@
-package com.chad.learning.base;
+package com.chad.learning.parent.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,12 +23,12 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (mUnbinder != null) {
             // 奶油刀解绑
             mUnbinder.unbind();
             mUnbinder = null;
         }
+        super.onDestroy();
     }
 
     public abstract int getLayoutId();

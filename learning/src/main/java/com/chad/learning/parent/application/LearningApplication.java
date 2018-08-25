@@ -1,11 +1,11 @@
-package com.chad.learning.realm.application;
+package com.chad.learning.parent.application;
 
 import android.app.Application;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class RealmApplication extends Application {
+public class LearningApplication extends Application {
 
     @Override
     public void onCreate() {

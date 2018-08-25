@@ -20,21 +20,21 @@
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:text="Add"
         app:layout_constraintTop_toBottomOf="@+id/edit_age" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_modify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MODIFY"
+        android:text="Modify"
         app:layout_constraintTop_toBottomOf="@+id/btn_add" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_delete_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DELETE ALL"
+        android:text="Delete All"
         app:layout_constraintTop_toBottomOf="@+id/btn_modify" />
 
     <android.support.v7.widget.RecyclerView

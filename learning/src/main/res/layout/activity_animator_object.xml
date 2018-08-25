@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_animator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/pic_animator_object" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rotate"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_alpha_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alpha Scale"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_rotate" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_scale_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scale Alpha"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_alpha_scale" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_alpha_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alpha Remove"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_scale_alpha" />
+</android.support.constraint.ConstraintLayout>

@@ -2,17 +2,22 @@
     package="com.chad.learning">
 
     <application
-        android:name=".realm.application.RealmApplication"
+        android:name=".parent.application.LearningApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".realm.activity.RealmActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".parent.activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".realm.activity.RealmActivity" />
+        <activity android:name=".animator.AnimatorActivity" />
+        <activity android:name=".animator.ObjectAnimatorActivity" />
+        <activity android:name=".animator.ValueAnimatorActivity" />
+        <activity android:name=".animator.AnimatorSetActivity" />
     </application>
 </manifest>
