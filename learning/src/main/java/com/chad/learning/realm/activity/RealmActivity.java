@@ -19,7 +19,9 @@ import butterknife.BindView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class RealmActivity extends BaseAppCompatActivity implements View.OnClickListener, RealmDataAdapter.OnItemClickListener, RealmDataAdapter.OnItemLongClickListener {
+public class RealmActivity extends BaseAppCompatActivity
+        implements View.OnClickListener, RealmDataAdapter.OnItemClickListener,
+        RealmDataAdapter.OnItemLongClickListener {
 
     @BindView(R.id.edit_name)
     AppCompatEditText mEditName;
