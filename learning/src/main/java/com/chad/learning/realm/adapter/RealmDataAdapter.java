@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.chad.learning.R;
 import com.chad.learning.realm.bean.Person;
+import com.chad.learning.realm.interfaces.OnItemClickListener;
+import com.chad.learning.realm.interfaces.OnItemLongClickListener;
 
 import io.realm.RealmResults;
 
@@ -103,11 +105,4 @@ public class RealmDataAdapter extends RecyclerView.Adapter<RealmDataAdapter.Data
         }
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(int position, Person person);
-    }
-
-    public interface OnItemLongClickListener {
-        void onItemLongClick(int position, Person person);
-    }
 }

@@ -12,6 +12,8 @@ import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.adapter.RealmDataAdapter;
 import com.chad.learning.realm.bean.Person;
+import com.chad.learning.realm.interfaces.OnItemClickListener;
+import com.chad.learning.realm.interfaces.OnItemLongClickListener;
 
 import java.util.UUID;
 
@@ -20,8 +22,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class RealmActivity extends BaseAppCompatActivity
-        implements View.OnClickListener, RealmDataAdapter.OnItemClickListener,
-        RealmDataAdapter.OnItemLongClickListener {
+        implements View.OnClickListener, OnItemClickListener, OnItemLongClickListener {
 
     @BindView(R.id.edit_name)
     AppCompatEditText mEditName;
