@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simulate network requests"
+        app:layout_constraintBottom_toTopOf="@id/btn_request_success"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_request_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request(Success)"
+        app:layout_constraintBottom_toTopOf="@id/btn_request_fail" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_request_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request(Fail)"
+        app:layout_constraintBottom_toTopOf="@id/btn_request_error" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_request_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request(Error)"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

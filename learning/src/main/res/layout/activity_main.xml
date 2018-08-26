@@ -17,4 +17,11 @@
         android:text="Realm"
         app:layout_constraintTop_toBottomOf="@+id/btn_animator" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_mvp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MVP"
+        app:layout_constraintTop_toBottomOf="@+id/btn_realm" />
+
 </android.support.constraint.ConstraintLayout>

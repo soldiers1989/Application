@@ -2,6 +2,9 @@ package com.chad.learning.dagger;
 
 public class Notes {
     /**
+     * Dagger2是一个依赖注入框架，依赖注入是面向对象编程的一种设计模式，
+     * 其目的是为了降低程序耦合，这个耦合就是类之间的依赖引起的。
+     *
      * Dagger2的基本概念：通过@Inject使用具体的某个对象，这个对象是由@Providers注解提供，
      * 但是@Providers只能在固定的模块中，也就是@Module注解，我们查找的时候，不是直接去找
      * 模块，而是去找@Component
@@ -24,7 +27,7 @@ public class Notes {
      *
      * 注解@Subcomponent：系统提供的一个Component，使用Subcomponent默认会依赖Component
      *
-     * 注意：1.Provider如果是单例模式，对应的Component也要是单例模式
+     * 注意：1.Provide如果是单例模式，对应的Component也要是单例模式
      *       2.inject(Activity activity)不能放父类
      *       3.即使使用了单例模式，在不同的Activity中对象是不一样的
      *       4.依赖Component，Component之间的Scoped不能相同
@@ -33,6 +36,6 @@ public class Notes {
      *       6.多个Module之间不能提供相同的对象实例
      *       7.Module中使用了自定义的Scoped，那么对应的Component使用同样的Scoped
      *
-     *       https://blog.csdn.net/u012131888/article/details/78579787
+     * https://blog.csdn.net/u012131888/article/details/78579787
      */
 }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.animator.AnimatorActivity;
+import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 
@@ -17,6 +18,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     AppCompatButton mBtnAnimator;
     @BindView(R.id.btn_realm)
     AppCompatButton mBtnRealm;
+    @BindView(R.id.btn_mvp)
+    AppCompatButton mBtnMvp;
 
     @Override
     public int getLayoutId() {
@@ -27,6 +30,7 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     public void initViews() {
         mBtnAnimator.setOnClickListener(this);
         mBtnRealm.setOnClickListener(this);
+        mBtnMvp.setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +47,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
             case R.id.btn_realm:
                 onRealmClick();
                 break;
+            case R.id.btn_mvp:
+                onMvpClick();
+                break;
+                default:
+                    break;
         }
     }
 
@@ -53,6 +62,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void onRealmClick() {
         Intent intent = new Intent(MainActivity.this, RealmActivity.class);
+        startActivity(intent);
+    }
+
+    private void onMvpClick() {
+        Intent intent = new Intent(MainActivity.this, MvpActivity.class);
         startActivity(intent);
     }
 }
