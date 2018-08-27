@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_margin_bottom_message">20dp</dimen>
+    <dimen name="main_text_toolbar">22sp</dimen>
+</resources>
