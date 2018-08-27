@@ -1,9 +1,9 @@
-package com.chad.learning.mvp.view;
+package com.chad.learning.dagger.mvp.view;
 
 /**
  * View层来通知Activity或Fragment刷新UI
  */
-public interface View {
+public interface IView {
 
     void showLoading();
 

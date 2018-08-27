@@ -24,4 +24,11 @@
         android:text="MVP"
         app:layout_constraintTop_toBottomOf="@+id/btn_realm" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_dagger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DAGGER"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mvp" />
+
 </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.animator.AnimatorActivity;
+import com.chad.learning.dagger.activity.DaggerActivity;
 import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
@@ -20,6 +21,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     AppCompatButton mBtnRealm;
     @BindView(R.id.btn_mvp)
     AppCompatButton mBtnMvp;
+    @BindView(R.id.btn_dagger)
+    AppCompatButton mBtnDagger;
 
     @Override
     public int getLayoutId() {
@@ -31,6 +34,7 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
         mBtnAnimator.setOnClickListener(this);
         mBtnRealm.setOnClickListener(this);
         mBtnMvp.setOnClickListener(this);
+        mBtnDagger.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +54,9 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
             case R.id.btn_mvp:
                 onMvpClick();
                 break;
+            case R.id.btn_dagger:
+                onDaggerClick();
+                break;
                 default:
                     break;
         }
@@ -67,6 +74,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void onMvpClick() {
         Intent intent = new Intent(MainActivity.this, MvpActivity.class);
+        startActivity(intent);
+    }
+
+    private void onDaggerClick() {
+        Intent intent = new Intent(MainActivity.this, DaggerActivity.class);
         startActivity(intent);
     }
 }

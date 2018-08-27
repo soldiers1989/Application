@@ -1,11 +1,13 @@
-package com.chad.learning.mvp.presenter;
+package com.chad.learning.dagger.mvp.presenter;
 
 import android.os.Handler;
 import android.os.Message;
 
+import com.chad.learning.dagger.mvp.Contract;
 import com.chad.learning.mvp.callback.Callback;
 import com.chad.learning.mvp.model.Model;
-import com.chad.learning.mvp.view.View;
+
+import javax.inject.Inject;
 
 /**
  * Presenter层主要做逻辑处理，Model执行完通知Presenter，Presenter告知View
@@ -15,9 +17,11 @@ public class Presenter implements Handler.Callback {
     private Handler mHandler = null;
     private Model mModel = null;
     private ModelCallback mModelCallback = null;
-    private View mView = null;
+    private Contract.View mView = null;
 
-    public Presenter(View view) {
+    // @Inject 带有此注解的属性或构造方法将参与到依赖注入中，Dagger2会实例化有此注解的类
+    @Inject
+    public Presenter(Contract.View view) {
         mHandler = new Handler(this);
         mView = view;
     }

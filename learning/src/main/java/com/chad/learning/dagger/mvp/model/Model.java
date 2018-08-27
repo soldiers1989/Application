@@ -1,4 +1,4 @@
-package com.chad.learning.mvp.model;
+package com.chad.learning.dagger.mvp.model;
 
 import com.chad.learning.mvp.callback.Callback;
 

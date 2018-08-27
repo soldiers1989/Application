@@ -20,5 +20,6 @@
         <activity android:name=".animator.ValueAnimatorActivity" />
         <activity android:name=".animator.AnimatorSetActivity" />
         <activity android:name=".mvp.activity.MvpActivity" />
+        <activity android:name=".dagger.activity.DaggerActivity" />
     </application>
 </manifest>
