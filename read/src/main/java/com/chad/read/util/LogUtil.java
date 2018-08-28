@@ -2,6 +2,9 @@ package com.chad.read.util;
 
 import android.util.Log;
 
+/**
+ * Log工具
+ */
 public class LogUtil {
 
     private static final boolean isShowLog = true;
