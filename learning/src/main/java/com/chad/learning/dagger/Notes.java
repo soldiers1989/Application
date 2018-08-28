@@ -19,7 +19,8 @@ public class Notes {
      *
      * 注解@Singleton：单例模式，在想要单例化的对象@Providers上添加即可
      *
-     * 注解@Scope：
+     * 注解@Scope：字面意思是范围，标志一个注入器/对象的使用范围,
+     *             scope可以给我们带来“局部单例”，生命周期取决于scope自己。
      *
      * 注解@Documented：标记在文档
      *

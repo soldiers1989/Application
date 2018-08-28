@@ -21,5 +21,8 @@
         <activity android:name=".animator.AnimatorSetActivity" />
         <activity android:name=".mvp.activity.MvpActivity" />
         <activity android:name=".dagger.activity.DaggerActivity" />
+        <activity android:name=".lambda.activity.LambdaActivity" />
+        <activity android:name=".icepick.activity.IcepickActivity" />
+        <activity android:name=".butterknife.activity.ButterKnifeActivity" />
     </application>
 </manifest>

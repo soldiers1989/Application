@@ -39,6 +39,7 @@ public class MvpActivity extends BaseAppCompatActivity implements View.OnClickLi
 
     @Override
     public void initData() {
+        // 初始化Presenter
         mPresenterView = new PresenterView();
         mPresenter = new Presenter(mPresenterView);
     }
@@ -81,6 +82,9 @@ public class MvpActivity extends BaseAppCompatActivity implements View.OnClickLi
         mPresenter.reauestData(Model.TYPE_ERROR);
     }
 
+    /**
+     * View接口内部类，通过Presenter调用
+     */
     private class PresenterView implements com.chad.learning.mvp.view.View {
 
         @Override

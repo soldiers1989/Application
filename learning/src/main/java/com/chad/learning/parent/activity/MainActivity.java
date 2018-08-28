@@ -2,16 +2,21 @@ package com.chad.learning.parent.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.animator.AnimatorActivity;
+import com.chad.learning.butterknife.activity.ButterKnifeActivity;
 import com.chad.learning.dagger.activity.DaggerActivity;
+import com.chad.learning.icepick.activity.IcepickActivity;
+import com.chad.learning.lambda.activity.LambdaActivity;
 import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseAppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +28,12 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     AppCompatButton mBtnMvp;
     @BindView(R.id.btn_dagger)
     AppCompatButton mBtnDagger;
+    @BindView(R.id.btn_lambda)
+    AppCompatButton mBtnLambda;
+    @BindView(R.id.btn_icepick)
+    AppCompatButton mBtnIcepick;
+    @BindView(R.id.btn_butter_knife)
+    AppCompatButton mBtnButterKnife;
 
     @Override
     public int getLayoutId() {
@@ -31,10 +42,7 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     @Override
     public void initViews() {
-        mBtnAnimator.setOnClickListener(this);
-        mBtnRealm.setOnClickListener(this);
-        mBtnMvp.setOnClickListener(this);
-        mBtnDagger.setOnClickListener(this);
+
     }
 
     @Override
@@ -42,6 +50,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     }
 
+    @OnClick({R.id.btn_animator, R.id.btn_realm, R.id.btn_mvp, R.id.btn_dagger,
+            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -56,6 +66,15 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
                 break;
             case R.id.btn_dagger:
                 onDaggerClick();
+                break;
+            case R.id.btn_lambda:
+                onLambdaClick();
+                break;
+            case R.id.btn_icepick:
+                onIcepickClick();
+                break;
+            case R.id.btn_butter_knife:
+                onButterKnifeClick();
                 break;
                 default:
                     break;
@@ -81,4 +100,20 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
         Intent intent = new Intent(MainActivity.this, DaggerActivity.class);
         startActivity(intent);
     }
+
+    private void onLambdaClick() {
+        Intent intent = new Intent(MainActivity.this, LambdaActivity.class);
+        startActivity(intent);
+    }
+
+    private void onIcepickClick() {
+        Intent intent = new Intent(MainActivity.this, IcepickActivity.class);
+        startActivity(intent);
+    }
+
+    private void onButterKnifeClick() {
+        Intent intent = new Intent(MainActivity.this, ButterKnifeActivity.class);
+        startActivity(intent);
+    }
+
 }

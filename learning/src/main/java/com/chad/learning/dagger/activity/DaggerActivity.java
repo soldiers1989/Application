@@ -45,10 +45,11 @@ public class DaggerActivity extends BaseAppCompatActivity implements View.OnClic
 
     @Override
     public void initData() {
+        // 初始化
         DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
+                .appModule(new AppModule(this)) // 创建AppModule用于注入时的参数
                 .build()
-                .inject(this);
+                .inject(this); // 将本类带有@Inject注解的实例注入
     }
 
     @Override

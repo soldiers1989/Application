@@ -211,6 +211,7 @@ public class RealmActivity extends BaseAppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // 关掉Realm
         if (mRealm != null) {
             if (!mRealm.isClosed()) {
                 mRealm.close();

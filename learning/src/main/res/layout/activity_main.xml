@@ -31,4 +31,25 @@
         android:text="DAGGER"
         app:layout_constraintTop_toBottomOf="@+id/btn_mvp" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_lambda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lambda"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dagger" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_icepick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Icepick"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lambda" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_butter_knife"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ButterKnife"
+        app:layout_constraintTop_toBottomOf="@+id/btn_icepick" />
+
 </android.support.constraint.ConstraintLayout>
