@@ -7,7 +7,7 @@ public class YDTranslation {
     private String type;
     private int errorCode;
     private long elapsedTime;
-    private List<List<TranslationResultBean>> lists;
+    private List<List<TranslateResultBean>> translateResult;
 
     public void setType(String type) {
         this.type = type;
@@ -33,15 +33,15 @@ public class YDTranslation {
         return elapsedTime;
     }
 
-    public void setLists(List<List<TranslationResultBean>> lists) {
-        this.lists = lists;
+    public void setTranslateResult(List<List<TranslateResultBean>> translateResult) {
+        this.translateResult = translateResult;
     }
 
-    public List<List<TranslationResultBean>> getLists() {
-        return lists;
+    public List<List<TranslateResultBean>> getTranslateResult() {
+        return translateResult;
     }
 
-    public static class TranslationResultBean {
+    public static class TranslateResultBean {
 
         private String src;
         private String tgt;

@@ -11,6 +11,8 @@ import com.chad.learning.retrofit.entity.JSTranslation;
 import com.chad.learning.retrofit.entity.YDTranslation;
 import com.chad.learning.retrofit.interfaces.IRequest;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -107,12 +109,12 @@ public class RetrofitActivity extends BaseAppCompatActivity implements View.OnCl
             @Override
             public void onResponse(Call<YDTranslation> call, Response<YDTranslation> response) {
                 YDTranslation ydTranslation = response.body();
-//                List<YDTranslation.TranslationResultBean> list = ydTranslation.getLists().get(0);
+                List<YDTranslation.TranslateResultBean> list = ydTranslation.getTranslateResult().get(0);
                 mTextTo.setText(ydTranslation.getType() + "\n"
                         + ydTranslation.getErrorCode() + "\n"
-                        + ydTranslation.getElapsedTime() + "\n");
-//                        + list.get(0).getSrc() + "\n"
-//                        + list.get(0).getTgt());
+                        + ydTranslation.getElapsedTime() + "\n"
+                        + list.get(0).getSrc() + "\n"
+                        + list.get(0).getTgt());
             }
 
             @Override
