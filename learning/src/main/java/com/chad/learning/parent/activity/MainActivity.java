@@ -2,7 +2,6 @@ package com.chad.learning.parent.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.chad.learning.R;
@@ -14,6 +13,7 @@ import com.chad.learning.lambda.activity.LambdaActivity;
 import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
+import com.chad.learning.retrofit.activity.RetrofitActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,6 +34,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     AppCompatButton mBtnIcepick;
     @BindView(R.id.btn_butter_knife)
     AppCompatButton mBtnButterKnife;
+    @BindView(R.id.btn_retrofit)
+    AppCompatButton mBtnRetrofit;
 
     @Override
     public int getLayoutId() {
@@ -51,7 +53,7 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     }
 
     @OnClick({R.id.btn_animator, R.id.btn_realm, R.id.btn_mvp, R.id.btn_dagger,
-            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife})
+            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife, R.id.btn_retrofit})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -75,6 +77,9 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
                 break;
             case R.id.btn_butter_knife:
                 onButterKnifeClick();
+                break;
+            case R.id.btn_retrofit:
+                onRetrofitClick();
                 break;
                 default:
                     break;
@@ -113,6 +118,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void onButterKnifeClick() {
         Intent intent = new Intent(MainActivity.this, ButterKnifeActivity.class);
+        startActivity(intent);
+    }
+
+    private void onRetrofitClick() {
+        Intent intent = new Intent(MainActivity.this, RetrofitActivity.class);
         startActivity(intent);
     }
 

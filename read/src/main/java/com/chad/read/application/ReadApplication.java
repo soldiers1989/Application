@@ -3,9 +3,6 @@ package com.chad.read.application;
 import android.app.Application;
 
 import com.chad.read.R;
-import com.chad.read.app.AppComponent;
-import com.chad.read.app.AppModule;
-import com.chad.read.app.DaggerAppComponent;
 import com.chad.read.util.LogUtil;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;

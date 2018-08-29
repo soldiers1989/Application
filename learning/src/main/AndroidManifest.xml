@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chad.learning">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".parent.application.LearningApplication"
         android:allowBackup="true"
@@ -24,5 +26,6 @@
         <activity android:name=".lambda.activity.LambdaActivity" />
         <activity android:name=".icepick.activity.IcepickActivity" />
         <activity android:name=".butterknife.activity.ButterKnifeActivity" />
+        <activity android:name=".retrofit.activity.RetrofitActivity" />
     </application>
 </manifest>

@@ -1,9 +1,7 @@
 package com.chad.learning.icepick.activity;
 
 import android.os.Bundle;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 
@@ -19,7 +17,7 @@ public class IcepickActivity extends BaseAppCompatActivity {
     AppCompatTextView mTextContent;
     @BindView(R.id.btn_add)
     AppCompatButton mBtnAdd;
-    
+
     int mResult = 0;
 
     @Override

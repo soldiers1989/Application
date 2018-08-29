@@ -31,11 +31,11 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
-    // 奶油刀
+    // ButterKnife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     // Dagger2
@@ -44,4 +44,10 @@ dependencies {
     // icepick配置，用来保存和恢复状态
     implementation 'com.github.frankiesardo:icepick:2.3.6'
     annotationProcessor 'com.github.frankiesardo:icepick-processor:2.3.6'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    // OkHttp （Retrofit基于OkHttp）
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    // Retrofit 数据解析器
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 }

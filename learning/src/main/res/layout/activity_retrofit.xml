@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_translate_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Translate By Get" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_translate_get" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_translate_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Translate By Post"
+        app:layout_constraintTop_toBottomOf="@+id/edit_from" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_translate_post" />
+
+</android.support.constraint.ConstraintLayout>
