@@ -14,6 +14,7 @@ import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 import com.chad.learning.retrofit.activity.RetrofitActivity;
+import com.chad.learning.rxjava.activity.RxJavaActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,6 +37,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     AppCompatButton mBtnButterKnife;
     @BindView(R.id.btn_retrofit)
     AppCompatButton mBtnRetrofit;
+    @BindView(R.id.btn_rx_java)
+    AppCompatButton mBtnRxJava;
 
     @Override
     public int getLayoutId() {
@@ -53,7 +56,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     }
 
     @OnClick({R.id.btn_animator, R.id.btn_realm, R.id.btn_mvp, R.id.btn_dagger,
-            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife, R.id.btn_retrofit})
+            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife, R.id.btn_retrofit,
+            R.id.btn_rx_java})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -81,8 +85,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
             case R.id.btn_retrofit:
                 onRetrofitClick();
                 break;
-                default:
-                    break;
+            case R.id.btn_rx_java:
+                onRxJavaClick();
+                break;
+            default:
+                break;
         }
     }
 
@@ -123,6 +130,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void onRetrofitClick() {
         Intent intent = new Intent(MainActivity.this, RetrofitActivity.class);
+        startActivity(intent);
+    }
+
+    private void onRxJavaClick() {
+        Intent intent = new Intent(MainActivity.this, RxJavaActivity.class);
         startActivity(intent);
     }
 

@@ -27,5 +27,8 @@
         <activity android:name=".icepick.activity.IcepickActivity" />
         <activity android:name=".butterknife.activity.ButterKnifeActivity" />
         <activity android:name=".retrofit.activity.RetrofitActivity" />
+        <activity android:name=".rxjava.activity.RxJavaActivity" />
+        <activity android:name=".rxjava.entrylevel.EntryLevelActivity" />
+        <activity android:name=".rxjava.operator.OperatorActivity" />
     </application>
 </manifest>
