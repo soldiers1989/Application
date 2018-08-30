@@ -30,5 +30,6 @@
         <activity android:name=".rxjava.activity.RxJavaActivity" />
         <activity android:name=".rxjava.entrylevel.EntryLevelActivity" />
         <activity android:name=".rxjava.operator.OperatorActivity" />
+        <activity android:name=".rxjava.networkpolling.activity.PollingActivity" />
     </application>
 </manifest>

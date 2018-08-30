@@ -17,4 +17,11 @@
         android:text="Operator"
         app:layout_constraintTop_toBottomOf="@id/btn_entry_level" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_network_polling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Network Polling"
+        app:layout_constraintTop_toBottomOf="@id/btn_operator" />
+
 </android.support.constraint.ConstraintLayout>

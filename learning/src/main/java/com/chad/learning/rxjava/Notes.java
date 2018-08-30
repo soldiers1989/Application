@@ -10,11 +10,11 @@ public class Notes {
      *  更重要的是随着程序逻辑的复杂度提高，它依然能够保持简洁&优雅
      *
      *  原理：RxJava基于一种扩展的观察者模式
-     *  RxJava的扩展观察者模式中有四个角色：
-     *  Observable 被观察者 产生事件
-     *  Observer    观察者 接受事件，并给出响应动作
-     *  Subscribe   订阅  连接被观察者&观察者
-     *  Event   事件  被观察者和观察者沟通的载体
+     *       RxJava的扩展观察者模式中有四个角色：
+     *       Observable 被观察者 产生事件
+     *       Observer    观察者 接受事件，并给出响应动作
+     *       Subscribe   订阅  连接被观察者&观察者
+     *       Event   事件  被观察者和观察者沟通的载体
      *  RxJava的原理可总结为：被观察者（Observable）通过订阅（Subscribe）按顺序发送事件给观察者
      *  （Observer），观察者（Observer）按顺序接收事件并作出对应的响应动作
      *
