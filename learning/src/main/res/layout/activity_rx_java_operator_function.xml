@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_subscribe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subscribe" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_delay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delay"
+        app:layout_constraintTop_toBottomOf="@+id/btn_subscribe" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_do"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do"
+        app:layout_constraintTop_toBottomOf="@+id/btn_delay" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_error_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Error Return"
+        app:layout_constraintTop_toBottomOf="@+id/btn_do" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_error_resume_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Error Resume Next"
+        app:layout_constraintTop_toBottomOf="@+id/btn_error_return" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_exception_resume_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exception Resume Next"
+        app:layout_constraintTop_toBottomOf="@+id/btn_error_resume_next" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retry"
+        app:layout_constraintTop_toBottomOf="@+id/btn_exception_resume_next" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_retry" />
+
+</android.support.constraint.ConstraintLayout>

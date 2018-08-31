@@ -30,7 +30,7 @@ public class RealmDataAdapter extends RecyclerView.Adapter<RealmDataAdapter.Data
     @NonNull
     @Override
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.realm_data_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_realm_data, parent, false);
         DataViewHolder dataViewHolder = new DataViewHolder(view);
         return dataViewHolder;
     }

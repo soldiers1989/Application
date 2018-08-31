@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.entrylevel;
+package com.chad.learning.rxjava.entrylevel.activity;
 
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;

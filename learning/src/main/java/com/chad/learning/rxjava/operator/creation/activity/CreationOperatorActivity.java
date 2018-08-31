@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.operator;
+package com.chad.learning.rxjava.operator.creation.activity;
 
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -23,9 +23,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 /**
- * RxJava中的各种操作符
+ * 创建操作符
  */
-public class OperatorActivity extends BaseAppCompatActivity implements View.OnClickListener {
+public class CreationOperatorActivity extends BaseAppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.btn_create)
     AppCompatButton mBtnCreate;
@@ -56,7 +56,7 @@ public class OperatorActivity extends BaseAppCompatActivity implements View.OnCl
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_rx_java_operator;
+        return R.layout.activity_rx_java_operator_creation;
     }
 
     @Override
@@ -72,6 +72,7 @@ public class OperatorActivity extends BaseAppCompatActivity implements View.OnCl
     @OnClick({R.id.btn_create, R.id.btn_just, R.id.btn_from_array, R.id.btn_from_iterable,
             R.id.btn_defer, R.id.btn_timer, R.id.btn_interval, R.id.btn_interval_range,
             R.id.btn_range, R.id.btn_range_long})
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

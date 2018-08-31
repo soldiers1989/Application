@@ -41,6 +41,8 @@ public class Notes {
      *                                          发送的事件序列从0开始无限的递增1的整数序列，
      *                                          作用类似于range()，区别在于支持Long数据类型
      *
+     *  功能性操作符：辅助被观察者（Observable）在发送事件时实现一些功能性的需求，如错误处理，线程调度等
+     *
      *
      *
      *  https://blog.csdn.net/carson_ho/article/details/78179340

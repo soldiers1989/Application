@@ -6,9 +6,10 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
-import com.chad.learning.rxjava.entrylevel.EntryLevelActivity;
+import com.chad.learning.rxjava.entrylevel.activity.EntryLevelActivity;
 import com.chad.learning.rxjava.networkpolling.activity.PollingActivity;
-import com.chad.learning.rxjava.operator.OperatorActivity;
+import com.chad.learning.rxjava.operator.creation.activity.CreationOperatorActivity;
+import com.chad.learning.rxjava.operator.function.activity.FunctionOperatorActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,8 +18,10 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     @BindView(R.id.btn_entry_level)
     AppCompatButton mBtnEntryLevel;
-    @BindView(R.id.btn_operator)
-    AppCompatButton mBtnOperator;
+    @BindView(R.id.btn_operator_creation)
+    AppCompatButton mBtnCreationOperator;
+    @BindView(R.id.btn_operator_function)
+    AppCompatButton mBtnFunctionOperator;
     @BindView(R.id.btn_network_polling)
     AppCompatButton mBtnNetworkPolling;
 
@@ -37,15 +40,19 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     }
 
-    @OnClick({R.id.btn_entry_level, R.id.btn_operator, R.id.btn_network_polling})
+    @OnClick({R.id.btn_entry_level, R.id.btn_operator_creation, R.id.btn_operator_function,
+            R.id.btn_network_polling})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_entry_level:
                 onEntryLevelClick();
                 break;
-            case R.id.btn_operator:
-                onOperatorClick();
+            case R.id.btn_operator_creation:
+                onCreationOperatorClick();
+                break;
+            case R.id.btn_operator_function:
+                onFunctionOperatorClick();
                 break;
             case R.id.btn_network_polling:
                 onNetworkPolling();
@@ -60,8 +67,13 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
-    private void onOperatorClick() {
-        Intent intent = new Intent(RxJavaActivity.this, OperatorActivity.class);
+    private void onCreationOperatorClick() {
+        Intent intent = new Intent(RxJavaActivity.this, CreationOperatorActivity.class);
+        startActivity(intent);
+    }
+
+    private void onFunctionOperatorClick() {
+        Intent intent = new Intent(RxJavaActivity.this, FunctionOperatorActivity.class);
         startActivity(intent);
     }
 

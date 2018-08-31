@@ -28,8 +28,10 @@
         <activity android:name=".butterknife.activity.ButterKnifeActivity" />
         <activity android:name=".retrofit.activity.RetrofitActivity" />
         <activity android:name=".rxjava.activity.RxJavaActivity" />
-        <activity android:name=".rxjava.entrylevel.EntryLevelActivity" />
-        <activity android:name=".rxjava.operator.OperatorActivity" />
+        <activity android:name=".rxjava.entrylevel.activity.EntryLevelActivity" />
+        <activity android:name=".rxjava.operator.creation.activity.CreationOperatorActivity" />
+        <activity android:name=".rxjava.operator.function.activity.FunctionOperatorActivity" />
+        <activity android:name=".rxjava.operator.function.activity.RetryActivity" />
         <activity android:name=".rxjava.networkpolling.activity.PollingActivity" />
     </application>
 </manifest>
