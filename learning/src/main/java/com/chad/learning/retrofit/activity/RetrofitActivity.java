@@ -28,7 +28,7 @@ public class RetrofitActivity extends BaseAppCompatActivity implements View.OnCl
     @BindView(R.id.btn_translate_get)
     AppCompatButton mBtnTranslateGet;
     @BindView(R.id.btn_translate_post)
-    AppCompatButton getmBtnTranslatePost;
+    AppCompatButton mBtnTranslatePost;
     @BindView(R.id.text_to)
     AppCompatTextView mTextTo;
 
