@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">阅世界</string>
-    <string name="splash_message">欢迎来到阅世界，开阔眼界</string>
-    <string name="main_navigation_selection">精选</string>
-    <string name="main_navigation_find">发现</string>
-    <string name="main_navigation_column">专栏</string>
-    <string name="main_navigation_mine">我的</string>
-</resources>

@@ -38,10 +38,17 @@
         android:text="Retry(long, Predicate)"
         app:layout_constraintTop_toBottomOf="@+id/btn_retry_bi_predicate" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_retry_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RetryWhen"
+        app:layout_constraintTop_toBottomOf="@+id/btn_retry_long_predicate" />
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/text_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btn_retry_long_predicate" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_retry_when" />
 
 </android.support.constraint.ConstraintLayout>

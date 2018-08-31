@@ -1,1 +1,1 @@
-include ':learning', ':read'
+include ':learning'

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="splash_margin_bottom_message">20dp</dimen>
-    <dimen name="main_text_toolbar">22sp</dimen>
-    <dimen name="loading_progress_width">55dp</dimen>
-    <dimen name="loading_progress_height">55dp</dimen>
-    <dimen name="circle_progress_width_bar">5dp</dimen>
-</resources>

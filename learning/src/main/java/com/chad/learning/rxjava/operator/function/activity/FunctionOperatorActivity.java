@@ -43,6 +43,8 @@ public class FunctionOperatorActivity extends BaseAppCompatActivity implements V
     AppCompatButton mBtnExceptionResumeNext;
     @BindView(R.id.btn_retry)
     AppCompatButton mBtnRetry;
+    @BindView(R.id.btn_repeat)
+    AppCompatButton mBtnRepeat;
     @BindView(R.id.text_content)
     AppCompatTextView mTextContent;
 
@@ -64,7 +66,8 @@ public class FunctionOperatorActivity extends BaseAppCompatActivity implements V
     }
 
     @OnClick({R.id.btn_subscribe, R.id.btn_delay, R.id.btn_do, R.id.btn_error_return
-            , R.id.btn_error_resume_next, R.id.btn_exception_resume_next, R.id.btn_retry})
+            , R.id.btn_error_resume_next, R.id.btn_exception_resume_next, R.id.btn_retry
+            , R.id.btn_repeat})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -88,6 +91,9 @@ public class FunctionOperatorActivity extends BaseAppCompatActivity implements V
                 break;
             case R.id.btn_retry:
                 onRetryClick();
+                break;
+            case R.id.btn_repeat:
+                onRepeatClick();
                 break;
             default:
                 break;
@@ -413,6 +419,12 @@ public class FunctionOperatorActivity extends BaseAppCompatActivity implements V
     // retry()处理错误操作符，重试作用，当出现错误时，让Observable重新发送数据
     private void onRetryClick() {
         Intent intent = new Intent(FunctionOperatorActivity.this, RetryActivity.class);
+        startActivity(intent);
+    }
+
+    // repeat()重复发送操作符，重复不断地发送被观察者事件
+    private void onRepeatClick() {
+        Intent intent = new Intent(FunctionOperatorActivity.this, RepeatActivity.class);
         startActivity(intent);
     }
 }
