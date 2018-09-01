@@ -33,6 +33,7 @@
         <activity android:name=".rxjava.operator.function.activity.FunctionOperatorActivity" />
         <activity android:name=".rxjava.operator.function.activity.RetryActivity" />
         <activity android:name=".rxjava.operator.function.activity.RepeatActivity" />
+        <activity android:name=".rxjava.operator.filter.activity.FilterOperatorActivity" />
         <activity android:name=".rxjava.networkpolling.activity.PollingActivity" />
     </application>
 </manifest>

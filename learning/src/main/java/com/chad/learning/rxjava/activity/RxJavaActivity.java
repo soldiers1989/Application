@@ -9,6 +9,7 @@ import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.rxjava.entrylevel.activity.EntryLevelActivity;
 import com.chad.learning.rxjava.networkpolling.activity.PollingActivity;
 import com.chad.learning.rxjava.operator.creation.activity.CreationOperatorActivity;
+import com.chad.learning.rxjava.operator.filter.activity.FilterOperatorActivity;
 import com.chad.learning.rxjava.operator.function.activity.FunctionOperatorActivity;
 
 import butterknife.BindView;
@@ -22,6 +23,8 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
     AppCompatButton mBtnCreationOperator;
     @BindView(R.id.btn_operator_function)
     AppCompatButton mBtnFunctionOperator;
+    @BindView(R.id.btn_operator_filter)
+    AppCompatButton mBtnFilterOperator;
     @BindView(R.id.btn_network_polling)
     AppCompatButton mBtnNetworkPolling;
 
@@ -41,7 +44,7 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
     }
 
     @OnClick({R.id.btn_entry_level, R.id.btn_operator_creation, R.id.btn_operator_function,
-            R.id.btn_network_polling})
+            R.id.btn_operator_filter, R.id.btn_network_polling})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -53,6 +56,9 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_operator_function:
                 onFunctionOperatorClick();
+                break;
+            case R.id.btn_operator_filter:
+                onFilterOperatorClick();
                 break;
             case R.id.btn_network_polling:
                 onNetworkPolling();
@@ -74,6 +80,11 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     private void onFunctionOperatorClick() {
         Intent intent = new Intent(RxJavaActivity.this, FunctionOperatorActivity.class);
+        startActivity(intent);
+    }
+
+    private void onFilterOperatorClick() {
+        Intent intent = new Intent(RxJavaActivity.this, FilterOperatorActivity.class);
         startActivity(intent);
     }
 
