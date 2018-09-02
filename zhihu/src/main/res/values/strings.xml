@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">阅知乎</string>
+    <string name="splash_text">欢迎来到阅知乎，开启世界</string>
+    <string name="main_navigation_home">首页</string>
+    <string name="main_navigation_daily">日报</string>
+    <string name="main_navigation_column">专栏</string>
+    <string name="main_navigation_mine">我的</string>
+</resources>
