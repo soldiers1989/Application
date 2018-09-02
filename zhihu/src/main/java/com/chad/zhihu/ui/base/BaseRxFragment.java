@@ -24,7 +24,7 @@ public abstract class BaseRxFragment extends RxFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        unbinder = ButterKnife.bind(view);
+        unbinder = ButterKnife.bind(this, view);
         super.onViewCreated(view, savedInstanceState);
     }
 

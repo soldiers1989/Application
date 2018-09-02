@@ -112,8 +112,8 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             // 初始化Point
             View point = new View(getContext());
             point.setBackgroundResource(normalPointResourceId);
-            int height = DisplayUtil.dp2px(getContext(), 5);
-            int width = DisplayUtil.dp2px(getContext(), 5);
+            int height = DisplayUtil.dpToPx(getContext(), 5);
+            int width = DisplayUtil.dpToPx(getContext(), 5);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
             layoutParams.leftMargin = 10;
             point.setLayoutParams(layoutParams);
@@ -151,7 +151,6 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         }
         isStartScroll = false;
     }
-
 
     @Override
     public void onPageScrolled(int i, float v, int i1) {
