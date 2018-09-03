@@ -1,28 +1,37 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
+import com.chad.zhihu.entity.LatestDailyInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
 
     private static final String TAG = RetrofitHelper.class.getSimpleName();
 
+    private static final String BASE_URL_DAILY = "http://news-at.zhihu.com/api/4/";
+
     private static OkHttpClient okHttpClient = null;
+    private static IZhiHuApi iZhiHuApi = null;
 
     static {
         initOkHttpClient();
+        initIZhiHuApi();
     }
 
     private static void initOkHttpClient() {
@@ -41,6 +50,20 @@ public class RetrofitHelper {
             }
         }
         LogUtil.d(TAG, "initOkHttpClient");
+    }
+
+    private static void initIZhiHuApi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL_DAILY)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        iZhiHuApi = retrofit.create(IZhiHuApi.class);
+    }
+
+    public static Observable<LatestDailyInfo> getLatestDailyInfo() {
+        return iZhiHuApi.getLatestDailyInfo();
     }
 
     /**

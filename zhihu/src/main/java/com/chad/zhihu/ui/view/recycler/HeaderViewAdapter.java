@@ -97,12 +97,18 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return mWrappedAdapterClass.get(wrappedAdapter.getClass());
     }
 
-    public void setHeaderViews(List<View> headerViews) {
-        this.mHeaderViews = headerViews;
+    public void setHeaderViews(View headerViews) {
+        if (mHeaderViews == null) {
+            return;
+        }
+        mHeaderViews.add(headerViews);
     }
 
-    public void setFooterViews(List<View> footerViews) {
-        this.mFooterViews = footerViews;
+    public void setFooterViews(View footerViews) {
+        if (mFooterViews == null) {
+
+        }
+        mFooterViews.add(footerViews);
     }
 
     public void setAdapter(RecyclerView.Adapter adapter) {

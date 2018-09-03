@@ -7,6 +7,9 @@ import android.support.v7.widget.Toolbar;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.chad.zhihu.R;
+import com.chad.zhihu.ZhiHuApplication;
+import com.chad.zhihu.dagger.activity.ActivityComponent;
+import com.chad.zhihu.dagger.activity.DaggerActivityComponent;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
@@ -30,6 +33,8 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     @BindView(R.id.navigation_bottom)
     AHBottomNavigation mAhBottomNavigation;
 
+    private ActivityComponent activityComponent;
+
     private List<Fragment> fragmentList = null;
 
     private int selectedPosition = 0;
@@ -49,6 +54,9 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
 
     @Override
     protected void initData() {
+        activityComponent = DaggerActivityComponent.builder()
+                .appComponent(ZhiHuApplication.getAppComponent())
+                .build();
         initFragmentList();
         LogUtil.d(TAG, "initData");
     }
@@ -122,6 +130,10 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         fragmentTransaction.commit();
         selectedPosition = position;
         return true;
+    }
+
+    public ActivityComponent getActivityComponent() {
+        return activityComponent;
     }
 
     @Override
