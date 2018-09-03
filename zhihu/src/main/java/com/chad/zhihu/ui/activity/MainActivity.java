@@ -119,6 +119,7 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
             fragmentTransaction.add(R.id.content_fragment, fragmentList.get(position));
         }
         fragmentTransaction.show(fragmentList.get(position));
+        fragmentTransaction.commit();
         selectedPosition = position;
         return true;
     }

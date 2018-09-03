@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -27,10 +28,7 @@ public class BannerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-       if (imageViewList == null) {
-           return 0;
-       }
-       return imageViewList.size();
+       return Integer.MAX_VALUE;
     }
 
     @Override
@@ -44,9 +42,21 @@ public class BannerAdapter extends PagerAdapter {
         if (imageViewList == null) {
             return null;
         }
+        // 对ViewPager页号求模取出View列表中要显示的项
+        position %= imageViewList.size();
+        if (position < 0) {
+            position += imageViewList.size();
+        }
         currentPosition = position;
         AppCompatImageView imageView = imageViewList.get(position);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
+        // 如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException
+        ViewParent viewParent = imageView.getParent();
+        if (viewParent != null) {
+            ViewGroup viewGroup = (ViewGroup) viewParent;
+            viewGroup.removeView(imageView);
+        }
+        // 设置点击事件
         imageView.setOnClickListener(v -> {
             if (onItemClickListener != null) {
                 onItemClickListener.onItemClick(currentPosition);
@@ -58,10 +68,7 @@ public class BannerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        if (imageViewList == null) {
-            return;
-        }
-        container.removeView(imageViewList.get(position));
+
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

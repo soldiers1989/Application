@@ -43,7 +43,7 @@ public class Notes {
      *
      *  功能性操作符：辅助被观察者（Observable）在发送事件时实现一些功能性的需求，如错误处理，线程调度等
      *
-     *
+     *  过滤操作符：过滤/筛选被观察者（Observable）发送的事件
      *
      *  https://blog.csdn.net/carson_ho/article/details/78179340
      */
