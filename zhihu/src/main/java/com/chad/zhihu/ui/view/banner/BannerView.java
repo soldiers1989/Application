@@ -6,13 +6,17 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
-import com.chad.zhihu.hepler.GlideHelper;
+import com.chad.zhihu.hepler.glide.GlideApp;
 import com.chad.zhihu.util.DisplayUtil;
 
 import java.util.ArrayList;
@@ -116,8 +120,15 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             mPointsLayout.addView(point);
             // 初始化ImageView
             AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
-            GlideHelper.loadBannerImage(bannerList.get(i).getImage(), appCompatImageView);
-            appCompatImageView.setImageResource(R.drawable.pic_splash);
+            String image = bannerList.get(i).getImage();
+            if (!TextUtils.isEmpty(image)) {
+                GlideApp.with(getContext())
+                        .load(image)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontAnimate()
+                        .into(appCompatImageView);
+            }
             imageViewList.add(appCompatImageView);
         }
 

@@ -37,9 +37,9 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         if (viewType < START_HEADERS + getHeaderItemCount()) {
-            return new ViewHolder(mHeaderViews.get(viewType - getHeaderItemCount()));
+            return new ViewHolder(mHeaderViews.get(viewType - START_HEADERS));
         } else if (viewType < START_FOOTERS + getFooterItemCount()) {
-            return new ViewHolder(mFooterViews.get(viewType - getFooterItemCount()));
+            return new ViewHolder(mFooterViews.get(viewType - START_FOOTERS));
         } else {
             return wrappedAdapter.onCreateViewHolder(viewGroup, viewType - getWrappedAdapterOffset());
         }
@@ -71,10 +71,10 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     private void setWrappedAdapter(RecyclerView.Adapter adapter) {
-        wrappedAdapter = adapter;
         if (wrappedAdapter != null) {
             wrappedAdapter.unregisterAdapterDataObserver(headerAdapterDataObserver);
         }
+        wrappedAdapter = adapter;
         Class adapterClass = wrappedAdapter.getClass();
         if (mWrappedAdapterClass != null && !mWrappedAdapterClass.containsKey(adapterClass)) {
             putWrappedAdapterClass(adapterClass);
@@ -97,18 +97,18 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return mWrappedAdapterClass.get(wrappedAdapter.getClass());
     }
 
-    public void setHeaderViews(View headerViews) {
+    public void addHeaderView(View headerView) {
         if (mHeaderViews == null) {
             return;
         }
-        mHeaderViews.add(headerViews);
+        mHeaderViews.add(headerView);
     }
 
-    public void setFooterViews(View footerViews) {
+    public void addFooterView(View footerView) {
         if (mFooterViews == null) {
 
         }
-        mFooterViews.add(footerViews);
+        mFooterViews.add(footerView);
     }
 
     public void setAdapter(RecyclerView.Adapter adapter) {

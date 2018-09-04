@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.LatestInfo;
+import com.chad.zhihu.hepler.glide.GlideApp;
+import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.DateUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.util.WeekUtil;
@@ -79,7 +82,33 @@ public class LatestAdapter extends RecyclerView.Adapter<LatestAdapter.ContentIte
             return;
         }
         itemViewHolder.textTitle.setText(stories.getTitle());
-        // TODO: 2018/9/4  
+        List<String> images = stories.getImages();
+        if (images != null && images.size() > 0) {
+            GlideApp.with(context)
+                    .load(images.get(0))
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.pic_default_item)
+                    .into(itemViewHolder.imageDisplay);
+        }
+        if (stories.isLoad()) {
+            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextRead));
+        } else {
+            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextNormal));
+        }
+        if (stories.isMultiPic()) {
+            itemViewHolder.multiPic.setVisibility(View.VISIBLE);
+        } else {
+            itemViewHolder.multiPic.setVisibility(View.GONE);
+        }
+
+        itemViewHolder.itemView.setOnClickListener(v -> {
+            if (!stories.isLoad()) {
+                itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextRead));
+                stories.setLoad(true);
+            }
+            // TODO: 2018/9/4 点击跳转
+        });
     }
 
     @Override
