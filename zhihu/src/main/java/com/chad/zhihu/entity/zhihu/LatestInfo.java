@@ -1,4 +1,4 @@
-package com.chad.zhihu.entity;
+package com.chad.zhihu.entity.zhihu;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LatestDailyInfo implements Parcelable {
+public class LatestInfo implements Parcelable {
     /**
      * date : 20161214
      * stories : [{"images":["http://pic3.zhimg.com/afab44d4ef0758d1940eaccbe622cf9a.jpg"],"type":0,"id":9065007,"ga_prefix":"121415","title":"三国杀的战术和专利竞争"},{"images":["http://pic4.zhimg.com/76197937faa9a8b1005b716b12612a53.jpg"],"type":0,"id":9063416,"ga_prefix":"121414","title":"如何巧妙地达到沟通目的？"},{"images":["http://pic4.zhimg.com/ec1e27a350b31f700d866a600be2354f.jpg"],"type":0,"id":9064857,"ga_prefix":"121413","title":"苹果的
@@ -24,7 +24,7 @@ public class LatestDailyInfo implements Parcelable {
     private List<Stories> stories;
     private List<TopStories> top_stories;
 
-    protected LatestDailyInfo(Parcel parcel) {
+    protected LatestInfo(Parcel parcel) {
         date = parcel.readString();
         stories = new ArrayList<>();
         parcel.readList(stories, Stories.class.getClassLoader());
@@ -68,16 +68,16 @@ public class LatestDailyInfo implements Parcelable {
         dest.writeList(top_stories);
     }
 
-    public static final Creator<LatestDailyInfo> CREATOR = new Creator<LatestDailyInfo>() {
+    public static final Creator<LatestInfo> CREATOR = new Creator<LatestInfo>() {
 
         @Override
-        public LatestDailyInfo createFromParcel(Parcel source) {
-            return new LatestDailyInfo(source);
+        public LatestInfo createFromParcel(Parcel source) {
+            return new LatestInfo(source);
         }
 
         @Override
-        public LatestDailyInfo[] newArray(int size) {
-            return new LatestDailyInfo[size];
+        public LatestInfo[] newArray(int size) {
+            return new LatestInfo[size];
         }
     };
 

@@ -1,7 +1,7 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
-import com.chad.zhihu.entity.LatestDailyInfo;
+import com.chad.zhihu.entity.zhihu.LatestInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -17,14 +17,15 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitHelper {
+public class ZhiHuRetrofitHelper {
 
-    private static final String TAG = RetrofitHelper.class.getSimpleName();
+    private static final String TAG = ZhiHuRetrofitHelper.class.getSimpleName();
 
-    private static final String BASE_URL_DAILY = "http://news-at.zhihu.com/api/4/";
+    private static final String BASE_URL_ZHIHU_DAILY = "http://news-at.zhihu.com/api/4/";
 
     private static OkHttpClient okHttpClient = null;
     private static IZhiHuApi iZhiHuApi = null;
@@ -36,13 +37,16 @@ public class RetrofitHelper {
 
     private static void initOkHttpClient() {
         if (okHttpClient == null) {
-            synchronized (RetrofitHelper.class) {
-                File cacheDir = ZhiHuApplication.getAppComponent().context().getCacheDir(); // 缓存文件目录
+            synchronized (ZhiHuRetrofitHelper.class) {
+                File cacheDir = ZhiHuApplication.getZhiHuApplication().getCacheDir(); // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
                 int cacheMaxSize = 1024 * 1024 *100; // 缓存大小为100M
                 Cache cache = new Cache(cacheFile, cacheMaxSize); // 创建缓存文件
+                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+                httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 okHttpClient = new OkHttpClient.Builder()
                         .cache(cache) // 配置缓存文件
+                        .addInterceptor(httpLoggingInterceptor) // 添加消息拦截器
                         .addNetworkInterceptor(new HttpCacheInterceptor())  // 添加网络拦截器
                         .retryOnConnectionFailure(true) // 连接失败后重试
                         .connectTimeout(10, TimeUnit.SECONDS)   // 连接超时为10秒
@@ -54,7 +58,7 @@ public class RetrofitHelper {
 
     private static void initIZhiHuApi() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL_DAILY)
+                .baseUrl(BASE_URL_ZHIHU_DAILY)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -62,8 +66,12 @@ public class RetrofitHelper {
         iZhiHuApi = retrofit.create(IZhiHuApi.class);
     }
 
-    public static Observable<LatestDailyInfo> getLatestDailyInfo() {
-        return iZhiHuApi.getLatestDailyInfo();
+    /**
+     * 获取最新的首页信息
+     * @return
+     */
+    public static Observable<LatestInfo> getLatestInfo() {
+        return iZhiHuApi.getLatestInfo();
     }
 
     /**

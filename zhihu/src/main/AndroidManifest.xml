@@ -2,6 +2,7 @@
     package="com.chad.zhihu">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".ZhiHuApplication"
@@ -12,8 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:theme="@style/SplashTheme">
-        </activity>
+            android:theme="@style/SplashTheme"></activity>
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"

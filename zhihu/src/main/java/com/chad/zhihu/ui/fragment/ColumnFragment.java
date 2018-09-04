@@ -1,6 +1,7 @@
 package com.chad.zhihu.ui.fragment;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.ui.base.BaseRxFragment;
 
 public class ColumnFragment extends BaseRxFragment {
@@ -13,6 +14,11 @@ public class ColumnFragment extends BaseRxFragment {
     }
 
     @Override
+    protected BasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
     protected void initViews() {
 
     }
@@ -21,4 +27,5 @@ public class ColumnFragment extends BaseRxFragment {
     protected void initData() {
 
     }
+
 }

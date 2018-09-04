@@ -23,12 +23,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class BannerView extends ConstraintLayout implements ViewPager.OnPageChangeListener, BannerAdapter.OnItemClickListener {
+public class BannerView extends ConstraintLayout implements ViewPager.OnPageChangeListener,
+        BannerAdapter.OnItemClickListener {
 
     @BindView(R.id.pager_image)
     ViewPager mImagePager;
@@ -135,6 +135,10 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         }
 
         startScroll();
+    }
+
+    public void stop() {
+        stopScroll();
     }
 
     private void startScroll() {
