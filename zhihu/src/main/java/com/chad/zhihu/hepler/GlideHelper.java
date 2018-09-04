@@ -10,7 +10,7 @@ public class GlideHelper {
 
     private static final String TAG = GlideHelper.class.getSimpleName();
 
-    public static void loadBannerImage(String url, AppCompatImageView imageView) {
+    public static void loadImage(String url, AppCompatImageView imageView) {
         if (TextUtils.isEmpty(url) || imageView == null) {
             return;
         }

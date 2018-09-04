@@ -9,4 +9,20 @@
     <dimen name="banner_points_margin_bottom">10dp</dimen>
     <dimen name="banner_point_padding_left">5dp</dimen>
     <dimen name="banner_point_padding_right">5dp</dimen>
+    <dimen name="item_latest_content_height">100dp</dimen>
+    <dimen name="item_latest_content_margin_top">10dp</dimen>
+    <dimen name="item_latest_content_margin_bottom">10dp</dimen>
+    <dimen name="item_latest_content_padding">10dp</dimen>
+    <dimen name="item_latest_content_title_padding">2dp</dimen>
+    <dimen name="item_latest_content_title_margin_end">10dp</dimen>
+    <dimen name="item_latest_content_title_line_spacing_extra">2dp</dimen>
+    <dimen name="item_latest_content_title_size">18sp</dimen>
+    <dimen name="item_latest_content_card_corner_radius">0dp</dimen>
+    <dimen name="item_latest_content_card_elevation">2dp</dimen>
+    <dimen name="item_latest_content_image_width">80dp</dimen>
+    <dimen name="item_latest_content_image_height">80dp</dimen>
+    <dimen name="item_latest_date_text_padding_top">16dp</dimen>
+    <dimen name="item_latest_date_text_padding_bottom">8dp</dimen>
+    <dimen name="item_latest_date_text_padding_left">10dp</dimen>
+    <dimen name="item_latest_date_text_size">18sp</dimen>
 </resources>
