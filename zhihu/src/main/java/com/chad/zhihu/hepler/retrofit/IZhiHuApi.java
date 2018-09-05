@@ -5,6 +5,9 @@ import com.chad.zhihu.entity.zhihu.LatestInfo;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
+/**
+ * 提供给Retrofit的网络请求接口
+ */
 public interface IZhiHuApi {
 
     /**

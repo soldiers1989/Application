@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 首页最新消息实体类
+ */
 public class LatestInfo implements Parcelable {
     /**
      * date : 20161214

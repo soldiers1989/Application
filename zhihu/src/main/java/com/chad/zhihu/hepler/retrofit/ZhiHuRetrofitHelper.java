@@ -21,6 +21,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Retrofit的具体操作
+ */
 public class ZhiHuRetrofitHelper {
 
     private static final String TAG = ZhiHuRetrofitHelper.class.getSimpleName();
@@ -36,12 +39,14 @@ public class ZhiHuRetrofitHelper {
     }
 
     private static void initOkHttpClient() {
+        LogUtil.d(TAG, "initOkHttpClient : okHttpClient = " + okHttpClient);
         if (okHttpClient == null) {
             synchronized (ZhiHuRetrofitHelper.class) {
                 File cacheDir = ZhiHuApplication.getZhiHuApplication().getCacheDir(); // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
                 int cacheMaxSize = 1024 * 1024 *100; // 缓存大小为100M
                 Cache cache = new Cache(cacheFile, cacheMaxSize); // 创建缓存文件
+                // 将请求体打印出来，控制台可查看
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 okHttpClient = new OkHttpClient.Builder()
@@ -53,10 +58,10 @@ public class ZhiHuRetrofitHelper {
                         .build();
             }
         }
-        LogUtil.d(TAG, "initOkHttpClient");
     }
 
     private static void initIZhiHuApi() {
+        LogUtil.d(TAG, "initIZhiHuApi");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL_ZHIHU_DAILY)
                 .client(okHttpClient)

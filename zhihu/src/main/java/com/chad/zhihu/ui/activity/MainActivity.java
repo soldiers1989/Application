@@ -41,19 +41,20 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
 
     @Override
     protected void initViews() {
+        LogUtil.d(TAG, "initViews");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         initBottomNavigation();
-        LogUtil.d(TAG, "initViews");
     }
 
     @Override
     protected void initData() {
-        initFragmentList();
         LogUtil.d(TAG, "initData");
+        initFragmentList();
     }
 
     private void initBottomNavigation() {
+        LogUtil.d(TAG, "initBottomNavigation");
         AHBottomNavigationItem ahBottomNavigationItemHome = new AHBottomNavigationItem(
                 StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_home),
                 R.drawable.ic_navigation_home_selected);
@@ -90,10 +91,10 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         mAhBottomNavigation.setCurrentItem(0);
         // 设置Tab选中监听器
         mAhBottomNavigation.setOnTabSelectedListener(this);
-        LogUtil.d(TAG, "initBottomNavigation");
     }
 
     private void initFragmentList() {
+        LogUtil.d(TAG, "initFragmentList");
         fragmentList = new ArrayList<>();
         fragmentList.add(new HomeFragment());
         fragmentList.add(new DailyFragment());
@@ -103,7 +104,6 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_fragment, fragmentList.get(0));
         fragmentTransaction.commit();
-        LogUtil.d(TAG, "initFragmentList");
     }
 
     @Override
@@ -126,11 +126,11 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
 
     @Override
     protected void onDestroy() {
+        LogUtil.d(TAG, "onDestroy");
         if (fragmentList != null) {
             fragmentList.clear();
             fragmentList = null;
         }
-        LogUtil.d(TAG, "onDestroy");
         super.onDestroy();
     }
 }

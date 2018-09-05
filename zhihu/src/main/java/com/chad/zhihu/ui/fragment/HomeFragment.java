@@ -9,7 +9,7 @@ import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.LatestInfo;
 import com.chad.zhihu.mvp.zhihu.presenter.HomePresenter;
 import com.chad.zhihu.mvp.zhihu.view.IHomeView;
-import com.chad.zhihu.ui.adapter.LatestAdapter;
+import com.chad.zhihu.ui.adapter.HomeAdapter;
 import com.chad.zhihu.ui.base.BaseRxFragment;
 import com.chad.zhihu.ui.view.banner.Banner;
 import com.chad.zhihu.ui.view.banner.BannerView;
@@ -36,7 +36,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
 
     private LinearLayoutManager linearLayoutManager = null;
     private OnRecyclerLoadScrollListener onRecyclerLoadScrollListener = null;
-    private LatestAdapter latestAdapter = null;
+    private HomeAdapter homeAdapter = null;
     private HeaderViewAdapter headerViewAdapter = null;
     private LatestInfo latestInfo = null;
 
@@ -75,8 +75,8 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     private void initHomeRecycler() {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         onRecyclerLoadScrollListener = new OnRecyclerLoadScrollListener();
-        latestAdapter = new LatestAdapter(getActivity());
-        headerViewAdapter = new HeaderViewAdapter(latestAdapter);
+        homeAdapter = new HomeAdapter(getActivity());
+        headerViewAdapter = new HeaderViewAdapter(homeAdapter);
         mBannerView = new BannerView(getActivity());
         headerViewAdapter.addHeaderView(mBannerView);
 
@@ -101,7 +101,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
                 });
         mBannerView.setBannerList(bannerList);
         mBannerView.start();
-        latestAdapter.setStoriesList(latestInfo.getStories());
+        homeAdapter.setStoriesList(latestInfo.getStories());
     }
 
     @Override

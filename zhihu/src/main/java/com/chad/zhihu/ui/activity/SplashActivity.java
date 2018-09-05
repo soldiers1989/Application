@@ -39,14 +39,15 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
 
     @Override
     protected void initData() {
+        LogUtil.d(TAG, "initData");
         Observable.timer(2000, TimeUnit.MILLISECONDS) // 被观察者延迟两秒发送事件
                 .compose(bindToLifecycle()) //自动取消订阅
                 .observeOn(AndroidSchedulers.mainThread()) // 观察者在mainThread处理事件
                 .subscribe(aLong -> startAnimator());   // 订阅
-        LogUtil.d(TAG, "initData");
     }
 
     private void startAnimator() {
+        LogUtil.d(TAG, "startAnimator");
         objectAnimatorX = ObjectAnimator.ofFloat(mImageSplash, "scaleX", 1f, 1.3f);
         objectAnimatorY = ObjectAnimator.ofFloat(mImageSplash, "scaleY", 1f, 1.3f);
         animatorSet = new AnimatorSet();
@@ -54,7 +55,6 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
         animatorSet.play(objectAnimatorX).with(objectAnimatorY);
         animatorSet.addListener(this);
         animatorSet.start();
-        LogUtil.d(TAG, "startAnimator");
     }
 
     @Override
@@ -64,9 +64,9 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
 
     @Override
     public void onAnimationEnd(Animator animation) {
+        LogUtil.d(TAG, "onAnimationEnd");
         ActivityHelper.startMainActivity(this);
         finish();
-        LogUtil.d(TAG, "onAnimationEnd");
     }
 
     @Override
@@ -81,17 +81,17 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
 
     @Override
     protected void onPause() {
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         LogUtil.d(TAG, "onPause");
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
+        LogUtil.d(TAG, "onDestroy");
         animatorSet = null;
         objectAnimatorX = null;
         objectAnimatorY = null;
-        LogUtil.d(TAG, "onDestroy");
         super.onDestroy();
     }
 }

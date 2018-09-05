@@ -4,6 +4,9 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * RxJava的IO线程和AndroidMainThread切换
+ */
 public class RxSchedulersHelper {
 
     public static <T> ObservableTransformer<T, T> bindToMainThread() {
