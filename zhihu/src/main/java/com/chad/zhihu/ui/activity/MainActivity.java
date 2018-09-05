@@ -30,9 +30,9 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     @BindView(R.id.navigation_bottom)
     AHBottomNavigation mAhBottomNavigation;
 
-    private List<Fragment> fragmentList = null;
+    private List<Fragment> mFragmentList = null;
 
-    private int selectedPosition = 0;
+    private int mSelectedPosition = 0;
 
     @Override
     protected int getLayoutId() {
@@ -95,41 +95,41 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
 
     private void initFragmentList() {
         LogUtil.d(TAG, "initFragmentList");
-        fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new DailyFragment());
-        fragmentList.add(new ColumnFragment());
-        fragmentList.add(new MineFragment());
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(new HomeFragment());
+        mFragmentList.add(new DailyFragment());
+        mFragmentList.add(new ColumnFragment());
+        mFragmentList.add(new MineFragment());
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, fragmentList.get(0));
+        fragmentTransaction.replace(R.id.content_fragment, mFragmentList.get(0));
         fragmentTransaction.commit();
     }
 
     @Override
     public boolean onTabSelected(int position, boolean wasSelected) {
         LogUtil.d(TAG, "onTabSelected : position = " + position
-                + " , selectedPosition = " + selectedPosition + " , wasSelected = " + wasSelected);
-        if (fragmentList == null || fragmentList.size() < 4 || selectedPosition == position) {
+                + " , mSelectedPosition = " + mSelectedPosition + " , wasSelected = " + wasSelected);
+        if (mFragmentList == null || mFragmentList.size() < 4 || mSelectedPosition == position) {
             return false;
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.hide(fragmentList.get(selectedPosition));
-        if (!fragmentList.get(position).isAdded()) {
-            fragmentTransaction.add(R.id.content_fragment, fragmentList.get(position));
+        fragmentTransaction.hide(mFragmentList.get(mSelectedPosition));
+        if (!mFragmentList.get(position).isAdded()) {
+            fragmentTransaction.add(R.id.content_fragment, mFragmentList.get(position));
         }
-        fragmentTransaction.show(fragmentList.get(position));
+        fragmentTransaction.show(mFragmentList.get(position));
         fragmentTransaction.commit();
-        selectedPosition = position;
+        mSelectedPosition = position;
         return true;
     }
 
     @Override
     protected void onDestroy() {
         LogUtil.d(TAG, "onDestroy");
-        if (fragmentList != null) {
-            fragmentList.clear();
-            fragmentList = null;
+        if (mFragmentList != null) {
+            mFragmentList.clear();
+            mFragmentList = null;
         }
         super.onDestroy();
     }

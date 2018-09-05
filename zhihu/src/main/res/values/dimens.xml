@@ -25,4 +25,5 @@
     <dimen name="item_latest_date_text_padding_bottom">8dp</dimen>
     <dimen name="item_latest_date_text_padding_left">10dp</dimen>
     <dimen name="item_latest_date_text_size">18sp</dimen>
+    <dimen name="home_detail_bottom_bar_height">60dp</dimen>
 </resources>

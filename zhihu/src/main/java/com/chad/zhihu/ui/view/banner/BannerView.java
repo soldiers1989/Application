@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
 import com.chad.zhihu.hepler.glide.GlideApp;
@@ -42,22 +40,22 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
     LinearLayout mPointsLayout;
 
     private Unbinder unbinder = null;
-    private BannerAdapter bannerAdapter = null;
-    private OnItemClickListener onItemClickListener = null;
-    private Disposable disposable = null;
+    private BannerAdapter mBannerAdapter = null;
+    private OnBannerItemClickListener mOnBannerItemClickListener = null;
+    private Disposable mDisposable = null;
 
-    private List<Banner> bannerList = null;
-    private List<AppCompatImageView> imageViewList = null;
+    private List<Banner> mBannerList = null;
+    private List<AppCompatImageView> mImageViewList = null;
 
     private int normalPointResourceId = R.drawable.ic_banner_point_normal; // 未选中指示器
     private int selectedPointResourceId = R.drawable.ic_banner_point_selected;  // 选中指示器
-    private int time = 5; // 轮播时间
-    private int currentIndex = 0; // 当前轮播位置
+    private int mDelayTime = 10; // 轮播时间
+    private int mCurrentIndex = 0; // 当前轮播位置
 
     private boolean isStartScroll = false;
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
+    public interface OnBannerItemClickListener {
+        void onBannerItemClick(int id);
     }
 
     public BannerView(Context context) {
@@ -78,34 +76,36 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         unbinder = ButterKnife.bind(this);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnBannerItemClickListener(OnBannerItemClickListener listener) {
         if (listener == null) {
             return;
         }
-        onItemClickListener = listener;
+        mOnBannerItemClickListener = listener;
     }
 
     public void setBannerList(List<Banner> bannerList) {
-        if (this.bannerList == null) {
-            this.bannerList = new ArrayList<>();
+        if (mBannerList == null) {
+            mBannerList = new ArrayList<>();
+        } else {
+            mBannerList.clear();
         }
-        this.bannerList.addAll(bannerList);
+        mBannerList.addAll(bannerList);
     }
 
     public void start() {
-        if (bannerList == null || bannerList.size() == 0) {
+        if (mBannerList == null || mBannerList.size() == 0) {
             setVisibility(GONE);
             return;
         }
 
-        int size = bannerList.size();
+        int size = mBannerList.size();
         if (mPointsLayout.getChildCount() > 0) {
             mPointsLayout.removeAllViewsInLayout();
         }
-        if (imageViewList == null) {
-            imageViewList = new ArrayList<>();
+        if (mImageViewList == null) {
+            mImageViewList = new ArrayList<>();
         } else {
-            imageViewList.clear();
+            mImageViewList.clear();
         }
         for (int i = 0; i < size; i++) {
             // 初始化Point
@@ -120,7 +120,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             mPointsLayout.addView(point);
             // 初始化ImageView
             AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
-            String image = bannerList.get(i).getImage();
+            String image = mBannerList.get(i).getImage();
             if (!TextUtils.isEmpty(image)) {
                 GlideApp.with(getContext())
                         .load(image)
@@ -129,20 +129,20 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
                         .dontAnimate()
                         .into(appCompatImageView);
             }
-            imageViewList.add(appCompatImageView);
+            mImageViewList.add(appCompatImageView);
         }
 
         mPointsLayout.getChildAt(0).setBackgroundResource(selectedPointResourceId);
-        mTextTitle.setText(bannerList.get(0).getTitle());
+        mTextTitle.setText(mBannerList.get(0).getTitle());
 
         mImagePager.clearOnPageChangeListeners();
         mImagePager.addOnPageChangeListener(this);
-        if (bannerAdapter == null) {
-            bannerAdapter = new BannerAdapter(imageViewList);
-            bannerAdapter.setOnItemClickListener(this);
-            mImagePager.setAdapter(bannerAdapter);
+        if (mBannerAdapter == null) {
+            mBannerAdapter = new BannerAdapter(mImageViewList);
+            mBannerAdapter.setOnItemClickListener(this);
+            mImagePager.setAdapter(mBannerAdapter);
         } else {
-            bannerAdapter.setImageViewList(imageViewList);
+            mBannerAdapter.setImageViewList(mImageViewList);
         }
 
         startScroll();
@@ -157,7 +157,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             return;
         }
         isStartScroll = true;
-        disposable = Observable.timer(time, TimeUnit.SECONDS)
+        mDisposable = Observable.timer(mDelayTime, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(aLong -> {
@@ -174,8 +174,8 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             return;
         }
         isStartScroll = false;
-        if (disposable != null && !disposable.isDisposed()) {
-            disposable.dispose();
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            mDisposable.dispose();
         }
     }
 
@@ -187,11 +187,11 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
     @Override
     public void onPageSelected(int position) {
         position = position % mPointsLayout.getChildCount();
-        currentIndex = position;
+        mCurrentIndex = position;
         for (int i = 0; i < mPointsLayout.getChildCount(); i++) {
-            if (currentIndex == i) {
+            if (mCurrentIndex == i) {
                 mPointsLayout.getChildAt(i).setBackgroundResource(selectedPointResourceId);
-                mTextTitle.setText(bannerList.get(i).getTitle());
+                mTextTitle.setText(mBannerList.get(i).getTitle());
             } else {
                 mPointsLayout.getChildAt(i).setBackgroundResource(normalPointResourceId);
             }
@@ -218,8 +218,8 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
 
     @Override
     public void onItemClick(int position) {
-        if (onItemClickListener != null) {
-            onItemClickListener.onItemClick(currentIndex);
+        if (mOnBannerItemClickListener != null && mBannerList != null) {
+            mOnBannerItemClickListener.onBannerItemClick(mBannerList.get(mCurrentIndex).getId());
         }
     }
 }

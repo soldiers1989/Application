@@ -12,9 +12,9 @@ import java.util.List;
 
 public class BannerAdapter extends PagerAdapter {
 
-    private OnItemClickListener onItemClickListener = null;
+    private OnItemClickListener mOnItemClickListener = null;
 
-    private List<AppCompatImageView> imageViewList;
+    private List<AppCompatImageView> mImageViewList;
 
     private int currentPosition = 0;
 
@@ -23,7 +23,7 @@ public class BannerAdapter extends PagerAdapter {
     }
 
     public BannerAdapter(List<AppCompatImageView> imageViewList) {
-        this.imageViewList = imageViewList;
+        mImageViewList = imageViewList;
     }
 
     @Override
@@ -39,16 +39,16 @@ public class BannerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        if (imageViewList == null) {
+        if (mImageViewList == null) {
             return null;
         }
         // 对ViewPager页号求模取出View列表中要显示的项
-        position %= imageViewList.size();
+        position %= mImageViewList.size();
         if (position < 0) {
-            position += imageViewList.size();
+            position += mImageViewList.size();
         }
         currentPosition = position;
-        AppCompatImageView imageView = imageViewList.get(position);
+        AppCompatImageView imageView = mImageViewList.get(position);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         // 如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException
         ViewParent viewParent = imageView.getParent();
@@ -58,8 +58,8 @@ public class BannerAdapter extends PagerAdapter {
         }
         // 设置点击事件
         imageView.setOnClickListener(v -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(currentPosition);
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(currentPosition);
             }
         });
         container.addView(imageView);
@@ -75,11 +75,11 @@ public class BannerAdapter extends PagerAdapter {
         if (listener == null) {
             return;
         }
-        onItemClickListener = listener;
+        mOnItemClickListener = listener;
     }
 
     public void setImageViewList(List<AppCompatImageView> imageViewList) {
-        this.imageViewList = imageViewList;
+        mImageViewList = imageViewList;
         notifyDataSetChanged();
     }
 }

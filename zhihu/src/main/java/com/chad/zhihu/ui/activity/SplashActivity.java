@@ -23,9 +23,9 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
     @BindView(R.id.image_splash)
     AppCompatImageView mImageSplash;
 
-    private ObjectAnimator objectAnimatorX = null;
-    private ObjectAnimator objectAnimatorY = null;
-    private AnimatorSet animatorSet = null;
+    private ObjectAnimator mObjectAnimatorX = null;
+    private ObjectAnimator mObjectAnimatorY = null;
+    private AnimatorSet mAnimatorSet = null;
 
     @Override
     protected int getLayoutId() {
@@ -48,13 +48,13 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
 
     private void startAnimator() {
         LogUtil.d(TAG, "startAnimator");
-        objectAnimatorX = ObjectAnimator.ofFloat(mImageSplash, "scaleX", 1f, 1.3f);
-        objectAnimatorY = ObjectAnimator.ofFloat(mImageSplash, "scaleY", 1f, 1.3f);
-        animatorSet = new AnimatorSet();
-        animatorSet.setDuration(3000);
-        animatorSet.play(objectAnimatorX).with(objectAnimatorY);
-        animatorSet.addListener(this);
-        animatorSet.start();
+        mObjectAnimatorX = ObjectAnimator.ofFloat(mImageSplash, "scaleX", 1f, 1.3f);
+        mObjectAnimatorY = ObjectAnimator.ofFloat(mImageSplash, "scaleY", 1f, 1.3f);
+        mAnimatorSet = new AnimatorSet();
+        mAnimatorSet.setDuration(3000);
+        mAnimatorSet.play(mObjectAnimatorX).with(mObjectAnimatorY);
+        mAnimatorSet.addListener(this);
+        mAnimatorSet.start();
     }
 
     @Override
@@ -89,9 +89,9 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
     @Override
     protected void onDestroy() {
         LogUtil.d(TAG, "onDestroy");
-        animatorSet = null;
-        objectAnimatorX = null;
-        objectAnimatorY = null;
+        mAnimatorSet = null;
+        mObjectAnimatorX = null;
+        mObjectAnimatorY = null;
         super.onDestroy();
     }
 }

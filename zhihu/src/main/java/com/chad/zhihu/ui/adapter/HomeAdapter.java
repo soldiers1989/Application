@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.LatestInfo;
+import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.glide.GlideApp;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.DateUtil;
@@ -32,11 +32,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
     private static final int TYPE_ITEM_DATE = 0;
     private static final int TYPE_ITEM_CONTENT = 1;
 
-    private Context context;
-    private List<LatestInfo.Stories> storiesList = null;
+    private Context mContext;
+    private OnItemClickListener mOnItemClickListener = null;
+    private List<HomeInfo.Stories> mStoriesList = null;
+
+    public interface OnItemClickListener {
+        void onItemClick(int id);
+    }
 
     public HomeAdapter(Context context) {
-        this.context = context;
+        mContext = context;
     }
 
     @NonNull
@@ -45,11 +50,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         LogUtil.d(TAG, "onCreateViewHolder : type = " + type);
         switch (type) {
             case TYPE_ITEM_DATE:
-                View dateItemView = LayoutInflater.from(context).inflate(R.layout.item_latest_date,
+                View dateItemView = LayoutInflater.from(mContext).inflate(R.layout.item_latest_date,
                         viewGroup, false);
                 return new DateItemViewHolder(dateItemView);
             case TYPE_ITEM_CONTENT:
-                View contentItemView = LayoutInflater.from(context).inflate(R.layout.item_latest_content,
+                View contentItemView = LayoutInflater.from(mContext).inflate(R.layout.item_latest_content,
                         viewGroup, false);
                 return new ContentItemViewHolder(contentItemView);
             default:
@@ -60,7 +65,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
     @Override
     public void onBindViewHolder(@NonNull ContentItemViewHolder contentItemViewHolder, int position) {
-        LatestInfo.Stories stories = storiesList.get(position);
+        HomeInfo.Stories stories = mStoriesList.get(position);
         if (stories == null) {
             return;
         }
@@ -68,10 +73,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         if (contentItemViewHolder instanceof DateItemViewHolder) {
             String date;
             if (position == 0) {
-                date = StringUtil.findStringById(context, R.string.item_latest_date_today);
+                date = StringUtil.findStringById(mContext, R.string.item_latest_date_today);
             } else {
-                date = DateUtil.formatDate(context, stories.getDate()) + "  "
-                        + WeekUtil.formatWeek(context, stories.getDate());
+                date = DateUtil.formatDate(mContext, stories.getDate()) + "  "
+                        + WeekUtil.formatWeek(mContext, stories.getDate());
             }
             LogUtil.d(TAG, "onBindViewHolder : date = " + date);
             ((DateItemViewHolder) contentItemViewHolder).textDate.setText(date);
@@ -79,7 +84,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         setItemStories(contentItemViewHolder, stories);
     }
 
-    private void setItemStories(ContentItemViewHolder itemViewHolder, LatestInfo.Stories stories) {
+    private void setItemStories(ContentItemViewHolder itemViewHolder, HomeInfo.Stories stories) {
         LogUtil.d(TAG, "setItemStories : itemViewHolder = " + itemViewHolder
                 + " , stories = " + stories);
         if (itemViewHolder == null || stories == null) {
@@ -90,7 +95,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         // 加载图片
         List<String> images = stories.getImages();
         if (images != null && images.size() > 0) {
-            GlideApp.with(context)
+            GlideApp.with(mContext)
                     .load(images.get(0)) // 设置URL
                     .centerCrop()   // 设置scaleType
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // 缓存
@@ -99,9 +104,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         }
         // 如果用户读过这条新闻，就改变颜色
         if (stories.isLoad()) {
-            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextRead));
+            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextRead));
         } else {
-            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextNormal));
+            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextNormal));
         }
         // 如果是多图，就将多图图片显示出来
         if (stories.isMultiPic()) {
@@ -112,10 +117,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
         itemViewHolder.itemView.setOnClickListener(v -> {
             if (!stories.isLoad()) {
-                itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(context, R.color.colorItemTextRead));
+                itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextRead));
                 stories.setLoad(true);
             }
-            // TODO: 2018/9/4 点击跳转
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(stories.getId());
+            }
         });
     }
 
@@ -125,8 +132,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
         if (position == 0) {
             return TYPE_ITEM_DATE;
         }
-        String lastDate = storiesList.get(position - 1).getDate();
-        String currentDate = storiesList.get(position).getDate();
+        String lastDate = mStoriesList.get(position - 1).getDate();
+        String currentDate = mStoriesList.get(position).getDate();
         LogUtil.d(TAG, "getItemViewType : lastDate = " + lastDate
                 + " , currentDate = " + currentDate);
         return !lastDate.equals(currentDate) ? TYPE_ITEM_DATE : TYPE_ITEM_CONTENT;
@@ -134,14 +141,26 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
     @Override
     public int getItemCount() {
-        return storiesList == null ? 0 : storiesList.size();
+        return mStoriesList == null ? 0 : mStoriesList.size();
     }
 
-    public void setStoriesList(List<LatestInfo.Stories> storiesList) {
-        if (this.storiesList == null) {
-            this.storiesList = new ArrayList<>();
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        if (listener == null) {
+            return;
         }
-        this.storiesList.addAll(storiesList);
+        mOnItemClickListener = listener;
+    }
+
+    public void setStoriesList(List<HomeInfo.Stories> storiesList) {
+        mStoriesList = storiesList;
+        notifyDataSetChanged();
+    }
+
+    public void addStoriesList(List<HomeInfo.Stories> storiesList) {
+        if (mStoriesList == null) {
+            mStoriesList = new ArrayList<>();
+        }
+        mStoriesList.addAll(storiesList);
         notifyDataSetChanged();
     }
 
@@ -152,6 +171,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
         public DateItemViewHolder(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

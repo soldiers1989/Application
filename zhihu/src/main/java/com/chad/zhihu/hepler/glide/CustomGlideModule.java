@@ -9,5 +9,5 @@ import com.bumptech.glide.module.AppGlideModule;
 @GlideModule
 public class CustomGlideModule extends AppGlideModule {
 
-    private CustomGlideModule() {}
+    public CustomGlideModule() {}
 }

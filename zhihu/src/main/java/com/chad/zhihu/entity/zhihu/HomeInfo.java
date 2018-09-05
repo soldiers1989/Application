@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 首页最新消息实体类
  */
-public class LatestInfo implements Parcelable {
+public class HomeInfo implements Parcelable {
     /**
      * date : 20161214
      * stories : [{"images":["http://pic3.zhimg.com/afab44d4ef0758d1940eaccbe622cf9a.jpg"],"type":0,"id":9065007,"ga_prefix":"121415","title":"三国杀的战术和专利竞争"},{"images":["http://pic4.zhimg.com/76197937faa9a8b1005b716b12612a53.jpg"],"type":0,"id":9063416,"ga_prefix":"121414","title":"如何巧妙地达到沟通目的？"},{"images":["http://pic4.zhimg.com/ec1e27a350b31f700d866a600be2354f.jpg"],"type":0,"id":9064857,"ga_prefix":"121413","title":"苹果的
@@ -27,7 +27,7 @@ public class LatestInfo implements Parcelable {
     private List<Stories> stories;
     private List<TopStories> top_stories;
 
-    protected LatestInfo(Parcel parcel) {
+    protected HomeInfo(Parcel parcel) {
         date = parcel.readString();
         stories = new ArrayList<>();
         parcel.readList(stories, Stories.class.getClassLoader());
@@ -71,16 +71,16 @@ public class LatestInfo implements Parcelable {
         dest.writeList(top_stories);
     }
 
-    public static final Creator<LatestInfo> CREATOR = new Creator<LatestInfo>() {
+    public static final Creator<HomeInfo> CREATOR = new Creator<HomeInfo>() {
 
         @Override
-        public LatestInfo createFromParcel(Parcel source) {
-            return new LatestInfo(source);
+        public HomeInfo createFromParcel(Parcel source) {
+            return new HomeInfo(source);
         }
 
         @Override
-        public LatestInfo[] newArray(int size) {
-            return new LatestInfo[size];
+        public HomeInfo[] newArray(int size) {
+            return new HomeInfo[size];
         }
     };
 

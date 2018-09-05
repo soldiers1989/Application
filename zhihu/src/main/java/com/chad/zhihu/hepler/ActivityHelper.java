@@ -3,6 +3,8 @@ package com.chad.zhihu.hepler;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.chad.zhihu.app.Constant;
+import com.chad.zhihu.ui.activity.HomeDetailActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
 import com.chad.zhihu.util.LogUtil;
 
@@ -16,6 +18,16 @@ public class ActivityHelper {
             return;
         }
         Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void startHomeDetailActivity(Activity activity, int id) {
+        LogUtil.d(TAG, "startDetailActivity : activity = " + activity + " , id = "+ id);
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, HomeDetailActivity.class);
+        intent.putExtra(Constant.EXTRA_ID, id);
         activity.startActivity(intent);
     }
 }

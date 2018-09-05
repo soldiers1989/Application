@@ -1,7 +1,7 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
-import com.chad.zhihu.entity.zhihu.LatestInfo;
+import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -44,7 +44,7 @@ public class ZhiHuRetrofitHelper {
             synchronized (ZhiHuRetrofitHelper.class) {
                 File cacheDir = ZhiHuApplication.getZhiHuApplication().getCacheDir(); // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
-                int cacheMaxSize = 1024 * 1024 *100; // 缓存大小为100M
+                int cacheMaxSize = 1024 * 1024 * 100; // 缓存大小为100M
                 Cache cache = new Cache(cacheFile, cacheMaxSize); // 创建缓存文件
                 // 将请求体打印出来，控制台可查看
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -72,15 +72,26 @@ public class ZhiHuRetrofitHelper {
     }
 
     /**
-     * 获取最新的首页信息
+     * 获取最新的日报
+     *
      * @return
      */
-    public static Observable<LatestInfo> getLatestInfo() {
-        return iZhiHuApi.getLatestInfo();
+    public static Observable<HomeInfo> getLatestHomeInfo() {
+        return iZhiHuApi.getLatestHomeInfo();
     }
 
     /**
-     *  自定义OkHttp缓存拦截器
+     * 根据日期获取对应的日报
+     *
+     * @param date
+     * @return
+     */
+    public static Observable<HomeInfo> getMoreHomeInfo(String date) {
+        return iZhiHuApi.getMoreHomeInfo(date);
+    }
+
+    /**
+     * 自定义OkHttp缓存拦截器
      */
     private static class HttpCacheInterceptor implements Interceptor {
 

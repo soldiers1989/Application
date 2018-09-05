@@ -47,9 +47,9 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (wrappedAdapter != null && position > getHeaderItemCount()
+        if (wrappedAdapter != null && position >= getHeaderItemCount()
                 && position < getHeaderItemCount() + getWrappedAdapterItemCount()) {
-            wrappedAdapter.onBindViewHolder(viewHolder, position);
+            wrappedAdapter.onBindViewHolder(viewHolder, position - getHeaderItemCount());
         }
     }
 
@@ -86,8 +86,7 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (mWrappedAdapterClass == null) {
             return;
         }
-        mWrappedAdapterClass.put(adapterClass, mWrappedAdapterClass.size() * TYPES_MAX_ADAPTER +
-                START_ITEMS);
+        mWrappedAdapterClass.put(adapterClass, START_ITEMS + mWrappedAdapterClass.size() * TYPES_MAX_ADAPTER);
     }
 
     private int getWrappedAdapterOffset() {
