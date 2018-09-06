@@ -1,5 +1,6 @@
 package com.chad.zhihu.hepler.retrofit;
 
+import com.chad.zhihu.entity.zhihu.DetailInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 
 import io.reactivex.Observable;
@@ -24,4 +25,12 @@ public interface IZhiHuApi {
      */
     @GET("stories/before/{date}")
     Observable<HomeInfo> getMoreHomeInfo(@Path("date")String date);
+
+    /**
+     * 根据ID获取日报的详细信息
+     * @param id
+     * @return
+     */
+    @GET("story/{id}")
+    Observable<DetailInfo> getDetailInfo(@Path("id")int id);
 }

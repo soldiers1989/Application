@@ -26,6 +26,7 @@ public class HomeInfo implements Parcelable {
     private String date;
     private List<Stories> stories;
     private List<TopStories> top_stories;
+    private List<Integer> storiesIds;
 
     protected HomeInfo(Parcel parcel) {
         date = parcel.readString();
@@ -33,6 +34,8 @@ public class HomeInfo implements Parcelable {
         parcel.readList(stories, Stories.class.getClassLoader());
         top_stories = new ArrayList<>();
         parcel.readList(top_stories, Stories.class.getClassLoader());
+        storiesIds = new ArrayList<>();
+        parcel.readList(storiesIds, Integer.class.getClassLoader());
     }
 
     public void setDate(String date) {
@@ -59,6 +62,14 @@ public class HomeInfo implements Parcelable {
         return top_stories;
     }
 
+    public void setStoriesIds(List<Integer> storiesIds) {
+        this.storiesIds = storiesIds;
+    }
+
+    public List<Integer> getStoriesIds() {
+        return storiesIds;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -69,6 +80,7 @@ public class HomeInfo implements Parcelable {
         dest.writeString(date);
         dest.writeList(stories);
         dest.writeList(top_stories);
+        dest.writeList(storiesIds);
     }
 
     public static final Creator<HomeInfo> CREATOR = new Creator<HomeInfo>() {

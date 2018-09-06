@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.chad.zhihu.R;
+import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
@@ -42,8 +43,7 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
-        mToolbar.setTitle("");
-        setSupportActionBar(mToolbar);
+        initToolbar();
         initBottomNavigation();
     }
 
@@ -51,6 +51,12 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     protected void initData() {
         LogUtil.d(TAG, "initData");
         initFragmentList();
+    }
+
+    private void initToolbar() {
+        LogUtil.d(TAG, "initToolbar");
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
     }
 
     private void initBottomNavigation() {
@@ -80,13 +86,13 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         mAhBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         // 设置Tab选中颜色
         mAhBottomNavigation.setAccentColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorTabAccent));
+                R.color.colorBottomTabAccent));
         // 设置Tab未选中颜色
         mAhBottomNavigation.setInactiveColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorTabInactive));
+                R.color.colorBottomTabInactive));
         // 设置默认的背景颜色
         mAhBottomNavigation.setDefaultBackgroundColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorTabBarBackground));
+                R.color.colorBottomTabBackground));
         // 设置当前选中Tab
         mAhBottomNavigation.setCurrentItem(0);
         // 设置Tab选中监听器

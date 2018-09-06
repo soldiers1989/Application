@@ -99,7 +99,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
                     .load(images.get(0)) // 设置URL
                     .centerCrop()   // 设置scaleType
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // 缓存
-                    .placeholder(R.drawable.pic_default_item) // 设置默认占位图
+                    .placeholder(R.drawable.pic_default_placeholder) // 设置默认占位图
                     .into(itemViewHolder.imagePreview);
         }
         // 如果用户读过这条新闻，就改变颜色

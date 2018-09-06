@@ -5,6 +5,6 @@
     <solid android:color="@color/colorPointSelected" />
 
     <padding
-        android:left="@dimen/banner_point_padding_left"
-        android:right="@dimen/banner_point_padding_right" />
+        android:left="@dimen/chad_5dp"
+        android:right="@dimen/chad_5dp" />
 </shape>

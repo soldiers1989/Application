@@ -24,8 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.Observable;
 
-public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> implements
-        IHomeView, SwipeRefreshLayout.OnRefreshListener, BannerView.OnBannerItemClickListener, HomeAdapter.OnItemClickListener {
+public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> implements IHomeView {
 
     private static final String TAG = HomeFragment.class.getSimpleName();
 
@@ -42,6 +41,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     private HomeInfo mHomeInfo = null;
 
     private List<Banner> mBannerList = null;
+    private ArrayList<Integer> mStoriesIds = null;
 
     @Override
     protected int getLayoutId() {
@@ -64,9 +64,10 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     protected void initData() {
         LogUtil.d(TAG, "initData");
         mBannerList = new ArrayList<>();
+        mStoriesIds = new ArrayList<>();
         mSwipeRefresh.post(() -> {
             mSwipeRefresh.setRefreshing(true);
-            onRefresh();
+            presenter.getLatestHomeInfo(bindToLifecycle());
         });
 
     }
@@ -74,7 +75,12 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     private void initSwipeRefresh() {
         LogUtil.d(TAG, "initSwipeRefresh");
         mSwipeRefresh.setColorSchemeResources(R.color.colorProgress);
-        mSwipeRefresh.setOnRefreshListener(this);
+        mSwipeRefresh.setOnRefreshListener(() -> {
+            if (mBannerList != null) {
+                mBannerList.clear();
+            }
+            presenter.getLatestHomeInfo(bindToLifecycle());
+        });
     }
 
     private void initHomeRecycler() {
@@ -84,15 +90,15 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
         mLoadMoreScrollListener = new LoadMoreScrollListener();
         mLoadMoreScrollListener.setLinearLayoutManager(mLinearLayoutManager);
 
-        mBannerView = new BannerView(getActivity());
-        mBannerView.setOnBannerItemClickListener(this);
-
         mHomeAdapter = new HomeAdapter(getActivity());
-        mHomeAdapter.setOnItemClickListener(this);
+        mHomeAdapter.setOnItemClickListener(id ->
+                ActivityHelper.startDetailActivity(getActivity(), mStoriesIds, id));
+
+        mBannerView = new BannerView(getActivity());
+        mBannerView.setOnBannerItemClickListener(id ->
+                ActivityHelper.startDetailActivity(getActivity(), mStoriesIds, id));
 
         mHeaderViewAdapter = new HeaderViewAdapter(mHomeAdapter);
-        mBannerView = new BannerView(getActivity());
-
         mHeaderViewAdapter.addHeaderView(mBannerView);
 
         mHomeRecycler.setHasFixedSize(true);
@@ -108,7 +114,9 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
             return;
         }
         mHomeInfo = homeInfo;
+        mStoriesIds.addAll(mHomeInfo.getStoriesIds());
         mSwipeRefresh.setRefreshing(false);
+        mLoadMoreScrollListener.setLoading(false);
         Observable.fromIterable(homeInfo.getTop_stories())
                 .forEach(topStories ->
                         mBannerList.add(new Banner(topStories.getId(), topStories.getTitle(),
@@ -125,6 +133,8 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
             return;
         }
         mHomeInfo = homeInfo;
+        mStoriesIds.addAll(mHomeInfo.getStoriesIds());
+        mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         mHomeAdapter.addStoriesList(homeInfo.getStories());
     }
@@ -132,32 +142,9 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     @Override
     public void onFail() {
         LogUtil.d(TAG, "onFail");
+        mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
-    }
-
-    @Override
-    public void onRefresh() {
-        LogUtil.d(TAG, "onRefresh : mBannerList = " + mBannerList
-                + " , presenter = " + presenter);
-        if (mBannerList != null) {
-            mBannerList.clear();
-        }
-        if (presenter == null) {
-            return;
-        }
-        presenter.getLatestHomeInfo(bindToLifecycle());
-    }
-
-    @Override
-    public void onBannerItemClick(int id) {
-        LogUtil.d(TAG, "onBannerItemClick : id = " + id);
-        ActivityHelper.startHomeDetailActivity(getActivity(), id);
-    }
-
-    @Override
-    public void onItemClick(int id) {
-        LogUtil.d(TAG, "onItemClick : id = " + id);
-        ActivityHelper.startHomeDetailActivity(getActivity(), id);
+        // TODO: 2018/9/6
     }
 
     @Override

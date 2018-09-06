@@ -1,6 +1,7 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
+import com.chad.zhihu.entity.zhihu.DetailInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
@@ -88,6 +89,15 @@ public class ZhiHuRetrofitHelper {
      */
     public static Observable<HomeInfo> getMoreHomeInfo(String date) {
         return iZhiHuApi.getMoreHomeInfo(date);
+    }
+
+    /**
+     * 根据ID获取日报的详细信息
+     * @param id
+     * @return
+     */
+    public static Observable<DetailInfo> getDetailInfo(int id) {
+        return iZhiHuApi.getDetailInfo(id);
     }
 
     /**

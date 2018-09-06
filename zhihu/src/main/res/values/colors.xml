@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#010101</color>
-    <color name="colorAccent">#010101</color>
-    <color name="colorTabBarBackground">#FEFEFE</color>
-    <color name="colorTabAccent">#000000</color>
-    <color name="colorTabInactive">#9E9E9E</color>
+    <color name="colorPrimary">#4E9AFB</color>
+    <color name="colorPrimaryDark">#00000000</color>
+    <color name="colorAccent">#00000000</color>
+
+    <color name="colorBottomTabBackground">#F4F4F4</color>
+    <color name="colorBottomTabAccent">#4E9AFB</color>
+    <color name="colorBottomTabInactive">#555555</color>
+
     <color name="colorPointNormal">#9E9E9E</color>
     <color name="colorPointSelected">#FFFFFF</color>
-    <color name="colorProgress">#000000</color>
+
+    <color name="colorProgress">#4E9AFB</color>
+
     <color name="colorItemTextNormal">#000000</color>
     <color name="colorItemTextPressed">#9E9E9E</color>
     <color name="colorItemTextExtra">#555555</color>

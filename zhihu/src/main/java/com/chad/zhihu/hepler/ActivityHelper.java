@@ -8,6 +8,8 @@ import com.chad.zhihu.ui.activity.DetailActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
 import com.chad.zhihu.util.LogUtil;
 
+import java.util.ArrayList;
+
 public class ActivityHelper {
 
     private static final String TAG = ActivityHelper.class.getSimpleName();
@@ -21,12 +23,14 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startHomeDetailActivity(Activity activity, int id) {
-        LogUtil.d(TAG, "startDetailActivity : activity = " + activity + " , id = "+ id);
+    public static void startDetailActivity(Activity activity, ArrayList<Integer> storiesIds, int id) {
+        LogUtil.d(TAG, "startDetailActivity : activity = " + activity
+                        +  " , storiesIds.size = " + storiesIds.size() + " , id = " + id);
         if (activity == null) {
             return;
         }
         Intent intent = new Intent(activity, DetailActivity.class);
+        intent.putIntegerArrayListExtra(Constant.EXTRA_ID_LIST, storiesIds);
         intent.putExtra(Constant.EXTRA_ID, id);
         activity.startActivity(intent);
     }

@@ -135,8 +135,6 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         mPointsLayout.getChildAt(0).setBackgroundResource(selectedPointResourceId);
         mTextTitle.setText(mBannerList.get(0).getTitle());
 
-        mImagePager.clearOnPageChangeListeners();
-        mImagePager.addOnPageChangeListener(this);
         if (mBannerAdapter == null) {
             mBannerAdapter = new BannerAdapter(mImageViewList);
             mBannerAdapter.setOnItemClickListener(this);
@@ -144,6 +142,9 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         } else {
             mBannerAdapter.setImageViewList(mImageViewList);
         }
+
+        mImagePager.clearOnPageChangeListeners();
+        mImagePager.addOnPageChangeListener(this);
 
         startScroll();
     }
