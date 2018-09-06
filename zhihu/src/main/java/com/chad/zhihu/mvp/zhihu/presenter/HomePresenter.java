@@ -44,6 +44,9 @@ public class HomePresenter extends BasePresenter<IHomeView> {
         LogUtil.d(TAG, "setStoriesDate : homeInfo.getDate() = " + homeInfo.getDate());
         for (HomeInfo.Stories stories : homeInfo.getStories()) {
             stories.setDate(homeInfo.getDate());
+            if (stories.getImages() != null && stories.getImages().size() > 1) {
+                stories.setMultiPic(true);
+            }
         }
         return homeInfo;
     }

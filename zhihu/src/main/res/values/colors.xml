@@ -3,15 +3,13 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#010101</color>
     <color name="colorAccent">#010101</color>
-    <color name="colorToolbarText">#DD000000</color>
-    <color name="colorNavigationBackground">#FEFEFE</color>
-    <color name="colorNavigationAccent">#DD000000</color>
-    <color name="colorNavigationInactive">#D3D3D3</color>
-    <color name="colorBannerPointNormal">#9E9E9E</color>
-    <color name="colorBannerPointSelected">#FFFFFF</color>
-    <color name="colorSwipeRefreshScheme">#DD000000</color>
+    <color name="colorTabBarBackground">#FEFEFE</color>
+    <color name="colorTabAccent">#000000</color>
+    <color name="colorTabInactive">#9E9E9E</color>
+    <color name="colorPointNormal">#9E9E9E</color>
+    <color name="colorPointSelected">#FFFFFF</color>
+    <color name="colorProgress">#000000</color>
     <color name="colorItemTextNormal">#000000</color>
-    <color name="colorItemTextRead">#9E9E9E</color>
-    <color name="colorItemText">#555555</color>
-    <color name="colorHomeDetailBottomBarBackground">#FEFEFE</color>
+    <color name="colorItemTextPressed">#9E9E9E</color>
+    <color name="colorItemTextExtra">#555555</color>
 </resources>

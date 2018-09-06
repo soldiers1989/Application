@@ -100,14 +100,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
                     .centerCrop()   // 设置scaleType
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // 缓存
                     .placeholder(R.drawable.pic_default_item) // 设置默认占位图
-                    .into(itemViewHolder.imageDisplay);
+                    .into(itemViewHolder.imagePreview);
         }
         // 如果用户读过这条新闻，就改变颜色
         if (stories.isLoad()) {
-            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextRead));
+            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextPressed));
         } else {
             itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextNormal));
         }
+
         // 如果是多图，就将多图图片显示出来
         if (stories.isMultiPic()) {
             itemViewHolder.multiPic.setVisibility(View.VISIBLE);
@@ -117,7 +118,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
         itemViewHolder.itemView.setOnClickListener(v -> {
             if (!stories.isLoad()) {
-                itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextRead));
+                itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextPressed));
                 stories.setLoad(true);
             }
             if (mOnItemClickListener != null) {
@@ -179,8 +180,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ContentItemVie
 
         @BindView(R.id.text_title)
         AppCompatTextView textTitle;
-        @BindView(R.id.image_display)
-        AppCompatImageView imageDisplay;
+        @BindView(R.id.image_preview)
+        AppCompatImageView imagePreview;
         @BindView(R.id.image_multi)
         AppCompatImageView multiPic;
 

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/item_latest_content_title_margin_end"
-            android:layout_toStartOf="@id/image_display"
+            android:layout_toStartOf="@id/image_preview"
             android:lineSpacingExtra="@dimen/item_latest_content_title_line_spacing_extra"
             android:maxLines="3"
             android:padding="@dimen/item_latest_content_title_padding"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/item_latest_content_title_size" />
 
         <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/image_display"
+            android:id="@+id/image_preview"
             android:layout_width="@dimen/item_latest_content_image_width"
             android:layout_height="@dimen/item_latest_content_image_height"
             android:layout_alignParentRight="true"

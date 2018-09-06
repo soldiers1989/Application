@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.ui.activity.HomeDetailActivity;
+import com.chad.zhihu.ui.activity.DetailActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
 import com.chad.zhihu.util.LogUtil;
 
@@ -26,7 +26,7 @@ public class ActivityHelper {
         if (activity == null) {
             return;
         }
-        Intent intent = new Intent(activity, HomeDetailActivity.class);
+        Intent intent = new Intent(activity, DetailActivity.class);
         intent.putExtra(Constant.EXTRA_ID, id);
         activity.startActivity(intent);
     }

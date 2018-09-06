@@ -3,13 +3,13 @@ package com.chad.zhihu.ui.activity;
 import com.chad.zhihu.R;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
 
-public class HomeDetailActivity extends BaseRxAppCompatActivity {
+public class DetailActivity extends BaseRxAppCompatActivity {
 
-    private static final String TAG = HomeDetailActivity.class.getSimpleName();
+    private static final String TAG = DetailActivity.class.getSimpleName();
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_home_detail;
+        return R.layout.activity_detail;
     }
 
     @Override

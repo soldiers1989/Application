@@ -73,7 +73,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
 
     private void initSwipeRefresh() {
         LogUtil.d(TAG, "initSwipeRefresh");
-        mSwipeRefresh.setColorSchemeResources(R.color.colorSwipeRefreshScheme);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorProgress);
         mSwipeRefresh.setOnRefreshListener(this);
     }
 

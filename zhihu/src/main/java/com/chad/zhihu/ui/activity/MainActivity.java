@@ -80,13 +80,13 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         mAhBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         // 设置Tab选中颜色
         mAhBottomNavigation.setAccentColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorNavigationAccent));
+                R.color.colorTabAccent));
         // 设置Tab未选中颜色
         mAhBottomNavigation.setInactiveColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorNavigationInactive));
+                R.color.colorTabInactive));
         // 设置默认的背景颜色
         mAhBottomNavigation.setDefaultBackgroundColor(ColorUtil.findRgbById(getApplicationContext(),
-                R.color.colorNavigationBackground));
+                R.color.colorTabBarBackground));
         // 设置当前选中Tab
         mAhBottomNavigation.setCurrentItem(0);
         // 设置Tab选中监听器
