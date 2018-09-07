@@ -1,10 +1,9 @@
-package com.chad.zhihu.mvp.zhihu.presenter;
+package com.chad.zhihu.mvp.zhihu.model.home;
 
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
-import com.chad.zhihu.mvp.base.BasePresenter;
-import com.chad.zhihu.mvp.zhihu.view.IHomeView;
+import com.chad.zhihu.mvp.zhihu.presenter.home.IHomePresenter;
 import com.chad.zhihu.util.LogUtil;
 
 import java.util.ArrayList;
@@ -13,29 +12,44 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.ObservableTransformer;
 
-public class HomePresenter extends BasePresenter<IHomeView> {
+public class HomeModel implements IHomeModel {
 
-    private static final String TAG = HomePresenter.class.getSimpleName();
+    private static final String TAG = HomeModel.class.getSimpleName();
 
-    public void getLatestHomeInfo(ObservableTransformer transformer) {
+    private static volatile  HomeModel homeModel = null;
+
+    public static HomeModel getInstance() {
+        synchronized (HomeModel.class) {
+            if (homeModel == null) {
+                homeModel = new HomeModel();
+            }
+        }
+        return homeModel;
+    }
+
+    private HomeModel() {}
+
+    @Override
+    public void getLatestHomeInfo(ObservableTransformer transformer, IHomePresenter presenter) {
         LogUtil.d(TAG, "getLatestHomeInfo");
         ZhiHuRetrofitHelper.getLatestHomeInfo()
                 .compose(transformer) // 与RxLifecycle绑定
                 .delay(1, TimeUnit.SECONDS) // 延迟一秒执行
                 .map(o -> initStories((HomeInfo) o)) // map转换符，此处主要是给stories设置个日期
                 .compose(RxSchedulersHelper.bindToMainThread()) // 线程切换
-                .subscribe(o -> getView().onLatestHomeInfo((HomeInfo) o),
-                        throwable -> getView().onFail());
+                .subscribe(o -> presenter.onLatestHomeInfo((HomeInfo) o),
+                        throwable -> presenter.onError());
     }
 
-    public void getMoreHomeInfo(ObservableTransformer transformer, String date) {
-        LogUtil.d(TAG, "getLatestHomeInfo : date = "+ date);
+    @Override
+    public void getMoreHomeInfo(ObservableTransformer transformer, String date, IHomePresenter presenter) {
+        LogUtil.d(TAG, "getLatestHomeInfo : date = " + date);
         ZhiHuRetrofitHelper.getMoreHomeInfo(date)
                 .compose(transformer)
                 .map(o -> initStories((HomeInfo) o))
                 .compose(RxSchedulersHelper.bindToMainThread())
-                .subscribe(o -> getView().onMoreHomeInfo((HomeInfo) o),
-                        throwable -> getView().onFail());
+                .subscribe(o -> presenter.onMoreHomeInfo((HomeInfo) o),
+                        throwable -> presenter.onError());
     }
 
     private HomeInfo initStories(HomeInfo homeInfo) {

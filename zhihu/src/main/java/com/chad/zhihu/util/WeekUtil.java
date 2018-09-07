@@ -10,7 +10,7 @@ import java.util.Calendar;
 public class WeekUtil {
 
     public static String formatWeek(Context context, String date) {
-        if (TextUtils.isEmpty(date)) {
+        if (context == null || TextUtils.isEmpty(date)) {
             return null;
         }
         String year = date.substring(0, 4);

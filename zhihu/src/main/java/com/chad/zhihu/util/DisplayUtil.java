@@ -11,4 +11,12 @@ public class DisplayUtil {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dip * scale + 0.5f);
     }
+
+    public static float dip2px(Context context, float dp) {
+        if (context == null) {
+            return dp;
+        }
+        float scale = context.getResources().getDisplayMetrics().density;
+        return dp * scale;
+    }
 }

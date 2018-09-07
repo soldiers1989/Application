@@ -10,12 +10,12 @@ public class ZhiHuApplication extends Application {
 
     private static final String TAG = ZhiHuApplication.class.getSimpleName();
 
-    private static ZhiHuApplication zhiHuApplication;
+    private static ZhiHuApplication mZhiHuApplication;
 
     @Override
     public void onCreate() {
         LogUtil.d(TAG, "onCreate");
-        zhiHuApplication = this;
+        mZhiHuApplication = this;
         initSwipeBackManager();
         super.onCreate();
     }
@@ -29,6 +29,6 @@ public class ZhiHuApplication extends Application {
     }
 
     public static ZhiHuApplication getZhiHuApplication() {
-        return zhiHuApplication;
+        return mZhiHuApplication;
     }
 }

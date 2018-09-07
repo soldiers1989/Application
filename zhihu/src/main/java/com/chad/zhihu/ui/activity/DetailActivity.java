@@ -2,7 +2,7 @@ package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -14,7 +14,7 @@ import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.entity.zhihu.DetailInfo;
 import com.chad.zhihu.hepler.glide.GlideApp;
-import com.chad.zhihu.mvp.zhihu.presenter.DetailPresenter;
+import com.chad.zhihu.mvp.zhihu.presenter.detail.DetailPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IDetailView;
 import com.chad.zhihu.ui.base.BaseSwipeBackActivity;
 import com.chad.zhihu.util.HtmlUtil;
@@ -24,14 +24,18 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPresenter>
-        implements IDetailView{
+        implements IDetailView {
 
     private static final String TAG = DetailActivity.class.getSimpleName();
 
     @BindView(R.id.layout_collapsing)
     CollapsingToolbarLayout mLayoutCollapsing;
+    @BindView(R.id.layout_appbar)
+    AppBarLayout mLayoutAppBar;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.image_preview)
@@ -46,6 +50,7 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
     private ArrayList<Integer> mStoriesIds = null;
 
     private int mCurrentId;
+    private int mCurrentIndex;
 
     @Override
     protected int getLayoutId() {
@@ -60,6 +65,7 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        initAppBar();
         initToolbar();
     }
 
@@ -74,8 +80,19 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
         if (mCurrentId != -1) {
             presenter.getDetailInfo(bindToLifecycle(), mCurrentId);
         } else {
-            onFail();
+            onError();
         }
+        if (mStoriesIds != null) {
+            for (int i = 0; i < mStoriesIds.size(); i++) {
+                if (mStoriesIds.get(i) == mCurrentId) {
+                    mCurrentIndex = i;
+                }
+            }
+        }
+    }
+
+    private void initAppBar() {
+        LogUtil.d(TAG, "initToolbar");
     }
 
     private void initToolbar() {
@@ -88,11 +105,21 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
     @OnClick(R.id.btn_up)
     public void onClickUp() {
         LogUtil.d(TAG, "onClickUp");
+        if (mCurrentIndex == 0) {
+            return;
+        }
+        mCurrentIndex --;
+        presenter.getDetailInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
     }
 
     @OnClick(R.id.btn_down)
     public void onClickDown() {
         LogUtil.d(TAG, "onClickDown");
+        if (mCurrentIndex == mStoriesIds.size() - 1) {
+            return;
+        }
+        mCurrentIndex ++;
+        presenter.getDetailInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
     }
 
     @Override
@@ -116,7 +143,7 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
     }
 
     @Override
-    public void onFail() {
-        LogUtil.d(TAG, "onFail");
+    public void onError() {
+        LogUtil.d(TAG, "onError");
     }
 }

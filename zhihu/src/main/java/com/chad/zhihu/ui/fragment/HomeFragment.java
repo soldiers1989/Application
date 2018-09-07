@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
-import com.chad.zhihu.mvp.zhihu.presenter.HomePresenter;
+import com.chad.zhihu.mvp.zhihu.presenter.home.HomePresenter;
 import com.chad.zhihu.mvp.zhihu.view.IHomeView;
 import com.chad.zhihu.ui.adapter.HomeAdapter;
 import com.chad.zhihu.ui.base.BaseRxFragment;
@@ -140,8 +140,8 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     }
 
     @Override
-    public void onFail() {
-        LogUtil.d(TAG, "onFail");
+    public void onError() {
+        LogUtil.d(TAG, "onError");
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         // TODO: 2018/9/6

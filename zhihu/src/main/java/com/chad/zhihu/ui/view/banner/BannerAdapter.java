@@ -16,7 +16,7 @@ public class BannerAdapter extends PagerAdapter {
 
     private List<AppCompatImageView> mImageViewList;
 
-    private int currentPosition = 0;
+    private int mCurrentPosition = 0;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -47,7 +47,7 @@ public class BannerAdapter extends PagerAdapter {
         if (position < 0) {
             position += mImageViewList.size();
         }
-        currentPosition = position;
+        mCurrentPosition = position;
         AppCompatImageView imageView = mImageViewList.get(position);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         // 如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException
@@ -59,7 +59,7 @@ public class BannerAdapter extends PagerAdapter {
         // 设置点击事件
         imageView.setOnClickListener(v -> {
             if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(currentPosition);
+                mOnItemClickListener.onItemClick(mCurrentPosition);
             }
         });
         container.addView(imageView);

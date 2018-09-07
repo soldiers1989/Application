@@ -31,8 +31,8 @@ public class ZhiHuRetrofitHelper {
 
     private static final String BASE_URL_ZHIHU_DAILY = "http://news-at.zhihu.com/api/4/";
 
-    private static OkHttpClient okHttpClient = null;
-    private static IZhiHuApi iZhiHuApi = null;
+    private static OkHttpClient mOkHttpClient = null;
+    private static IZhiHuApi mIZhiHuApi = null;
 
     static {
         initOkHttpClient();
@@ -40,8 +40,8 @@ public class ZhiHuRetrofitHelper {
     }
 
     private static void initOkHttpClient() {
-        LogUtil.d(TAG, "initOkHttpClient : okHttpClient = " + okHttpClient);
-        if (okHttpClient == null) {
+        LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = " + mOkHttpClient);
+        if (mOkHttpClient == null) {
             synchronized (ZhiHuRetrofitHelper.class) {
                 File cacheDir = ZhiHuApplication.getZhiHuApplication().getCacheDir(); // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
@@ -50,9 +50,9 @@ public class ZhiHuRetrofitHelper {
                 // 将请求体打印出来，控制台可查看
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                okHttpClient = new OkHttpClient.Builder()
+                mOkHttpClient = new OkHttpClient.Builder()
                         .cache(cache) // 配置缓存文件
-                        .addInterceptor(httpLoggingInterceptor) // 添加消息拦截器
+                        .addInterceptor(httpLoggingInterceptor) // 添加Log拦截器
                         .addNetworkInterceptor(new HttpCacheInterceptor())  // 添加网络拦截器
                         .retryOnConnectionFailure(true) // 连接失败后重试
                         .connectTimeout(10, TimeUnit.SECONDS)   // 连接超时为10秒
@@ -65,11 +65,11 @@ public class ZhiHuRetrofitHelper {
         LogUtil.d(TAG, "initIZhiHuApi");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL_ZHIHU_DAILY)
-                .client(okHttpClient)
+                .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        iZhiHuApi = retrofit.create(IZhiHuApi.class);
+        mIZhiHuApi = retrofit.create(IZhiHuApi.class);
     }
 
     /**
@@ -78,7 +78,7 @@ public class ZhiHuRetrofitHelper {
      * @return
      */
     public static Observable<HomeInfo> getLatestHomeInfo() {
-        return iZhiHuApi.getLatestHomeInfo();
+        return mIZhiHuApi.getLatestHomeInfo();
     }
 
     /**
@@ -88,7 +88,7 @@ public class ZhiHuRetrofitHelper {
      * @return
      */
     public static Observable<HomeInfo> getMoreHomeInfo(String date) {
-        return iZhiHuApi.getMoreHomeInfo(date);
+        return mIZhiHuApi.getMoreHomeInfo(date);
     }
 
     /**
@@ -97,7 +97,7 @@ public class ZhiHuRetrofitHelper {
      * @return
      */
     public static Observable<DetailInfo> getDetailInfo(int id) {
-        return iZhiHuApi.getDetailInfo(id);
+        return mIZhiHuApi.getDetailInfo(id);
     }
 
     /**

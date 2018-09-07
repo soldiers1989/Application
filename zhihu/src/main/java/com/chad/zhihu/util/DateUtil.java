@@ -8,7 +8,7 @@ import com.chad.zhihu.R;
 public class DateUtil {
 
     public static String formatDate(Context context, String date) {
-        if (TextUtils.isEmpty(date)) {
+        if (context == null || TextUtils.isEmpty(date)) {
             return null;
         }
         String month = date.substring(4, 6);

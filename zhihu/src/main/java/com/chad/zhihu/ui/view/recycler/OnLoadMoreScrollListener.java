@@ -21,7 +21,7 @@ public abstract class OnLoadMoreScrollListener extends RecyclerView.OnScrollList
         if (mLinearLayoutManager == null) {
             return;
         }
-        // 判断是否需要加载更多
+        // 判断是否需要加载更多，如果最后还有两个Item，就开始加载更多
         mItemCount = mLinearLayoutManager.getItemCount();
         mLastVisibleItemPosition = mLinearLayoutManager.findLastVisibleItemPosition();
         if (dy > 0 && !isLoading && (mLastVisibleItemPosition > mItemCount - 2)) {

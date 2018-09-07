@@ -39,7 +39,6 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
     @BindView(R.id.layout_points)
     LinearLayout mPointsLayout;
 
-    private Unbinder unbinder = null;
     private BannerAdapter mBannerAdapter = null;
     private OnBannerItemClickListener mOnBannerItemClickListener = null;
     private Disposable mDisposable = null;
@@ -47,8 +46,6 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
     private List<Banner> mBannerList = null;
     private List<AppCompatImageView> mImageViewList = null;
 
-    private int normalPointResourceId = R.drawable.ic_banner_point_normal; // 未选中指示器
-    private int selectedPointResourceId = R.drawable.ic_banner_point_selected;  // 选中指示器
     private int mDelayTime = 10; // 轮播时间
     private int mCurrentIndex = 0; // 当前轮播位置
 
@@ -73,7 +70,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
 
     private void initView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.layout_banner, this, true);
-        unbinder = ButterKnife.bind(this);
+        ButterKnife.bind(this);
     }
 
     public void setOnBannerItemClickListener(OnBannerItemClickListener listener) {
@@ -97,20 +94,11 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             setVisibility(GONE);
             return;
         }
-
-        int size = mBannerList.size();
-        if (mPointsLayout.getChildCount() > 0) {
-            mPointsLayout.removeAllViewsInLayout();
-        }
-        if (mImageViewList == null) {
-            mImageViewList = new ArrayList<>();
-        } else {
-            mImageViewList.clear();
-        }
-        for (int i = 0; i < size; i++) {
+        reset();
+        for (int i = 0; i < mBannerList.size(); i++) {
             // 初始化Point
             View point = new View(getContext());
-            point.setBackgroundResource(normalPointResourceId);
+            point.setBackgroundResource(R.drawable.ic_banner_point_normal);
             int height = DisplayUtil.dp2Px(getContext(), 5);
             int width = DisplayUtil.dp2Px(getContext(), 5);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
@@ -132,7 +120,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             mImageViewList.add(appCompatImageView);
         }
 
-        mPointsLayout.getChildAt(0).setBackgroundResource(selectedPointResourceId);
+        mPointsLayout.getChildAt(0).setBackgroundResource(R.drawable.ic_banner_point_selected);
         mTextTitle.setText(mBannerList.get(0).getTitle());
 
         if (mBannerAdapter == null) {
@@ -151,6 +139,17 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
 
     public void stop() {
         stopScroll();
+    }
+
+    private void reset() {
+        if (mPointsLayout.getChildCount() > 0) {
+            mPointsLayout.removeAllViewsInLayout();
+        }
+        if (mImageViewList == null) {
+            mImageViewList = new ArrayList<>();
+        } else {
+            mImageViewList.clear();
+        }
     }
 
     private void startScroll() {
@@ -191,10 +190,10 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
         mCurrentIndex = position;
         for (int i = 0; i < mPointsLayout.getChildCount(); i++) {
             if (mCurrentIndex == i) {
-                mPointsLayout.getChildAt(i).setBackgroundResource(selectedPointResourceId);
+                mPointsLayout.getChildAt(i).setBackgroundResource(R.drawable.ic_banner_point_selected);
                 mTextTitle.setText(mBannerList.get(i).getTitle());
             } else {
-                mPointsLayout.getChildAt(i).setBackgroundResource(normalPointResourceId);
+                mPointsLayout.getChildAt(i).setBackgroundResource(R.drawable.ic_banner_point_normal);
             }
         }
     }
