@@ -7,12 +7,11 @@ import android.support.v7.widget.Toolbar;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.chad.zhihu.R;
-import com.chad.zhihu.mvp.base.BasePresenter;
+import com.chad.zhihu.ui.fragment.ThemesFragment;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
-import com.chad.zhihu.ui.fragment.ColumnFragment;
-import com.chad.zhihu.ui.fragment.DailyFragment;
+import com.chad.zhihu.ui.fragment.SectionsFragment;
 import com.chad.zhihu.ui.fragment.HomeFragment;
 import com.chad.zhihu.ui.fragment.MineFragment;
 import com.chad.zhihu.util.LogUtil;
@@ -65,10 +64,10 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
                 StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_home),
                 R.drawable.ic_navigation_home_selected);
         AHBottomNavigationItem ahBottomNavigationItemDaily = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_daily),
+                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_themes),
                 R.drawable.ic_navigation_daily_selected);
         AHBottomNavigationItem ahBottomNavigationItemColumn = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_column),
+                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_sections),
                 R.drawable.ic_navigation_column_selected);
         AHBottomNavigationItem ahBottomNavigationItemMine = new AHBottomNavigationItem(
                 StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_mine),
@@ -103,8 +102,8 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         LogUtil.d(TAG, "initFragmentList");
         mFragmentList = new ArrayList<>();
         mFragmentList.add(new HomeFragment());
-        mFragmentList.add(new DailyFragment());
-        mFragmentList.add(new ColumnFragment());
+        mFragmentList.add(new ThemesFragment());
+        mFragmentList.add(new SectionsFragment());
         mFragmentList.add(new MineFragment());
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

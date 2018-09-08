@@ -33,7 +33,7 @@ public class HomePresenter extends BasePresenter<IHomeView> implements IHomePres
     }
 
     @Override
-    public void onError() {
-        getView().onError();
+    public void onError(String msg) {
+        getView().onError(msg);
     }
 }

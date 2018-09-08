@@ -2,5 +2,5 @@ package com.chad.zhihu.mvp.base;
 
 public interface IBaseView {
 
-    void onError();
+    void onError(String msg);
 }

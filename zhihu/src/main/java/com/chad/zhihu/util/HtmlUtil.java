@@ -1,6 +1,6 @@
 package com.chad.zhihu.util;
 
-import com.chad.zhihu.entity.zhihu.DetailInfo;
+import com.chad.zhihu.entity.zhihu.DetailsInfo;
 
 import java.util.List;
 
@@ -18,16 +18,16 @@ public class HtmlUtil {
 
     /**
      * 获取Html字符串格式
-     * @param detailInfo
+     * @param detailsInfo
      * @return
      */
-    public static String getHtml(DetailInfo detailInfo) {
-        if (detailInfo == null) {
+    public static String getHtml(DetailsInfo detailsInfo) {
+        if (detailsInfo == null) {
             return null;
         }
-        final String js = createJavaScript(detailInfo.getJs());
-        final String css = createCss(detailInfo.getCss());
-        return createHtml(detailInfo.getBody(), js, css);
+        final String js = createJavaScript(detailsInfo.getJs());
+        final String css = createCss(detailsInfo.getCss());
+        return createHtml(detailsInfo.getBody(), js, css);
     }
 
     /**

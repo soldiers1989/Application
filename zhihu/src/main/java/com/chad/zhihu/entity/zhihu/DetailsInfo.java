@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-public class DetailInfo implements Parcelable {
+/**
+ * 详细信息实体类
+ */
+public class DetailsInfo implements Parcelable {
 
     private int id;
     private int type;
@@ -18,7 +21,7 @@ public class DetailInfo implements Parcelable {
     private List<String> js;
     private List<String> css;
 
-    protected DetailInfo(Parcel parcel) {
+    protected DetailsInfo(Parcel parcel) {
         id = parcel.readInt();
         type = parcel.readInt();
         ga_prefix = parcel.readString();
@@ -130,16 +133,16 @@ public class DetailInfo implements Parcelable {
         parcel.writeList(css);
     }
 
-    public static final Creator<DetailInfo> CREATOR = new Creator<DetailInfo>() {
+    public static final Creator<DetailsInfo> CREATOR = new Creator<DetailsInfo>() {
 
         @Override
-        public DetailInfo createFromParcel(Parcel parcel) {
-            return new DetailInfo(parcel);
+        public DetailsInfo createFromParcel(Parcel parcel) {
+            return new DetailsInfo(parcel);
         }
 
         @Override
-        public DetailInfo[] newArray(int size) {
-            return new DetailInfo[size];
+        public DetailsInfo[] newArray(int size) {
+            return new DetailsInfo[size];
         }
     };
 }

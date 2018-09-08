@@ -91,12 +91,13 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
         mLoadMoreScrollListener.setLinearLayoutManager(mLinearLayoutManager);
 
         mHomeAdapter = new HomeAdapter(getActivity());
-        mHomeAdapter.setOnItemClickListener(id ->
-                ActivityHelper.startDetailActivity(getActivity(), mStoriesIds, id));
+        mHomeAdapter.setOnItemClickListener(position ->
+                ActivityHelper.startDetailsActivity(getActivity(), mStoriesIds,
+                        mStoriesIds.get(position)));
 
         mBannerView = new BannerView(getActivity());
         mBannerView.setOnBannerItemClickListener(id ->
-                ActivityHelper.startDetailActivity(getActivity(), mStoriesIds, id));
+                ActivityHelper.startDetailsActivity(getActivity(), mStoriesIds, id));
 
         mHeaderViewAdapter = new HeaderViewAdapter(mHomeAdapter);
         mHeaderViewAdapter.addHeaderView(mBannerView);
@@ -123,7 +124,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
                                 topStories.getImage())));
         mBannerView.setBannerList(mBannerList);
         mBannerView.start();
-        mHomeAdapter.setStoriesList(homeInfo.getStories());
+        mHomeAdapter.setDataList(homeInfo.getStories());
     }
 
     @Override
@@ -136,12 +137,12 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
         mStoriesIds.addAll(mHomeInfo.getStoriesIds());
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
-        mHomeAdapter.addStoriesList(homeInfo.getStories());
+        mHomeAdapter.addDataList(homeInfo.getStories());
     }
 
     @Override
-    public void onError() {
-        LogUtil.d(TAG, "onError");
+    public void onError(String msg) {
+        LogUtil.d(TAG, "onError : msg = " + msg);
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         // TODO: 2018/9/6

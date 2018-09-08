@@ -38,7 +38,7 @@ public class HomeModel implements IHomeModel {
                 .map(o -> initStories((HomeInfo) o)) // map转换符，此处主要是给stories设置个日期
                 .compose(RxSchedulersHelper.bindToMainThread()) // 线程切换
                 .subscribe(o -> presenter.onLatestHomeInfo((HomeInfo) o),
-                        throwable -> presenter.onError());
+                        throwable -> presenter.onError(throwable.toString()));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class HomeModel implements IHomeModel {
                 .map(o -> initStories((HomeInfo) o))
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onMoreHomeInfo((HomeInfo) o),
-                        throwable -> presenter.onError());
+                        throwable -> presenter.onError(throwable.toString()));
     }
 
     private HomeInfo initStories(HomeInfo homeInfo) {

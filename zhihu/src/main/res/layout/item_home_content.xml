@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/color_item"
         android:padding="@dimen/chad_10dp">
 
         <android.support.v7.widget.AppCompatTextView
@@ -31,7 +32,7 @@
             android:layout_width="@dimen/chad_80dp"
             android:layout_height="@dimen/chad_80dp"
             android:layout_alignParentRight="true"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/pic_default_placeholder" />
 
         <android.support.v7.widget.AppCompatImageView

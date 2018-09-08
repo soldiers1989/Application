@@ -9,13 +9,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.entity.zhihu.DetailInfo;
-import com.chad.zhihu.hepler.glide.GlideApp;
-import com.chad.zhihu.mvp.zhihu.presenter.detail.DetailPresenter;
-import com.chad.zhihu.mvp.zhihu.view.IDetailView;
+import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
+import com.chad.zhihu.mvp.zhihu.view.IDetailsView;
 import com.chad.zhihu.ui.base.BaseSwipeBackActivity;
 import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
@@ -24,13 +23,11 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
-public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPresenter>
-        implements IDetailView {
+public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, DetailsPresenter>
+        implements IDetailsView {
 
-    private static final String TAG = DetailActivity.class.getSimpleName();
+    private static final String TAG = DetailsActivity.class.getSimpleName();
 
     @BindView(R.id.layout_collapsing)
     CollapsingToolbarLayout mLayoutCollapsing;
@@ -54,12 +51,12 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_detail;
+        return R.layout.activity_details;
     }
 
     @Override
-    protected DetailPresenter getPresenter() {
-        return new DetailPresenter();
+    protected DetailsPresenter getPresenter() {
+        return new DetailsPresenter();
     }
 
     @Override
@@ -78,9 +75,9 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
             mCurrentId = intent.getIntExtra(Constant.EXTRA_ID, -1);
         }
         if (mCurrentId != -1) {
-            presenter.getDetailInfo(bindToLifecycle(), mCurrentId);
+            presenter.getDetailsInfo(bindToLifecycle(), mCurrentId);
         } else {
-            onError();
+            onError("");
         }
         if (mStoriesIds != null) {
             for (int i = 0; i < mStoriesIds.size(); i++) {
@@ -109,7 +106,7 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
             return;
         }
         mCurrentIndex --;
-        presenter.getDetailInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
+        presenter.getDetailsInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
     }
 
     @OnClick(R.id.btn_down)
@@ -119,31 +116,26 @@ public class DetailActivity extends BaseSwipeBackActivity<IDetailView, DetailPre
             return;
         }
         mCurrentIndex ++;
-        presenter.getDetailInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
+        presenter.getDetailsInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
     }
 
     @Override
-    public void onDetailInfo(DetailInfo detailInfo) {
-        LogUtil.d(TAG, "onDetailInfo : detailInfo = " + detailInfo);
-        if (detailInfo == null) {
+    public void onDetailsInfo(DetailsInfo detailsInfo) {
+        LogUtil.d(TAG, "onDetailsInfo : detailsInfo = " + detailsInfo);
+        if (detailsInfo == null) {
             return;
         }
-        GlideApp.with(this)
-                .load(detailInfo.getImage())
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.pic_default_placeholder)
-                .into(mImagePreview);
+        CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
 
-        mTextTitle.setText(detailInfo.getTitle());
-        mTextSource.setText(detailInfo.getImage_source());
+        mTextTitle.setText(detailsInfo.getTitle());
+        mTextSource.setText(detailsInfo.getImage_source());
 
-        String html = HtmlUtil.getHtml(detailInfo);
+        String html = HtmlUtil.getHtml(detailsInfo);
         mWebDetail.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);
     }
 
     @Override
-    public void onError() {
-        LogUtil.d(TAG, "onError");
+    public void onError(String msg) {
+        LogUtil.d(TAG, "onError : msg = " + msg);
     }
 }

@@ -16,4 +16,6 @@
     <color name="colorItemTextNormal">#000000</color>
     <color name="colorItemTextPressed">#9E9E9E</color>
     <color name="colorItemTextExtra">#555555</color>
+
+    <color name="colorItemPressed">#EEEEEE</color>
 </resources>

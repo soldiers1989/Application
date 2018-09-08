@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
-import com.chad.zhihu.hepler.glide.GlideApp;
+import com.chad.zhihu.hepler.glide.CustomGlideModule;
 import com.chad.zhihu.util.DisplayUtil;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -110,12 +109,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
             String image = mBannerList.get(i).getImage();
             if (!TextUtils.isEmpty(image)) {
-                GlideApp.with(getContext())
-                        .load(image)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .dontAnimate()
-                        .into(appCompatImageView);
+                CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
             }
             mImageViewList.add(appCompatImageView);
         }

@@ -1,7 +1,9 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
-import com.chad.zhihu.entity.zhihu.DetailInfo;
+import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
@@ -96,10 +98,25 @@ public class ZhiHuRetrofitHelper {
      * @param id
      * @return
      */
-    public static Observable<DetailInfo> getDetailInfo(int id) {
-        return mIZhiHuApi.getDetailInfo(id);
+    public static Observable<DetailsInfo> getDetailsInfo(int id) {
+        return mIZhiHuApi.getDetailsInfo(id);
     }
 
+    /**
+     * 获取专题列表
+     * @return
+     */
+    public static Observable<ThemesInfo> getThemesInfo() {
+        return mIZhiHuApi.getThemesInfo();
+    }
+
+    /**
+     * 获取专栏列表
+     * @return
+     */
+    public static Observable<SectionsInfo> getSectionsInfo() {
+        return mIZhiHuApi.getSectionsInfo();
+    }
     /**
      * 自定义OkHttp缓存拦截器
      */

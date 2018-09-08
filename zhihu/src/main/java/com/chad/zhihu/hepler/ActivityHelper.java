@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.ui.activity.DetailActivity;
+import com.chad.zhihu.ui.activity.DetailsActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
 import com.chad.zhihu.util.LogUtil;
 
@@ -23,13 +23,13 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startDetailActivity(Activity activity, ArrayList<Integer> storiesIds, int id) {
-        LogUtil.d(TAG, "startDetailActivity : activity = " + activity
+    public static void startDetailsActivity(Activity activity, ArrayList<Integer> storiesIds, int id) {
+        LogUtil.d(TAG, "startDetailsActivity : activity = " + activity
                         +  " , storiesIds.size = " + storiesIds.size() + " , id = " + id);
         if (activity == null) {
             return;
         }
-        Intent intent = new Intent(activity, DetailActivity.class);
+        Intent intent = new Intent(activity, DetailsActivity.class);
         intent.putIntegerArrayListExtra(Constant.EXTRA_ID_LIST, storiesIds);
         intent.putExtra(Constant.EXTRA_ID, id);
         activity.startActivity(intent);

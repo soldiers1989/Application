@@ -1,6 +1,8 @@
 package com.chad.zhihu.hepler.retrofit;
 
-import com.chad.zhihu.entity.zhihu.DetailInfo;
+import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 
 import io.reactivex.Observable;
@@ -32,5 +34,20 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("story/{id}")
-    Observable<DetailInfo> getDetailInfo(@Path("id")int id);
+    Observable<DetailsInfo> getDetailsInfo(@Path("id")int id);
+
+    /**
+     * 获取专题列表
+     * @return
+     */
+    @GET("themes")
+    Observable<ThemesInfo> getThemesInfo();
+
+    /**
+     *
+     * @return
+     */
+    @GET("sections")
+    Observable<SectionsInfo> getSectionsInfo();
+
 }
