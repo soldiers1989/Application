@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -107,6 +108,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             mPointsLayout.addView(point);
             // 初始化ImageView
             AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
+            appCompatImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             String image = mBannerList.get(i).getImage();
             if (!TextUtils.isEmpty(image)) {
                 CustomGlideModule.loadImage(getContext(), image, appCompatImageView);

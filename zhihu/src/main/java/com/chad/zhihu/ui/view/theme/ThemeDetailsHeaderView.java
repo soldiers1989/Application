@@ -34,7 +34,7 @@ public class ThemeDetailsHeaderView extends ConstraintLayout {
     private OnEditorItemClickListener mOnEditorItemClickListener = null;
 
     public interface OnEditorItemClickListener {
-        void onEtitorItemClick(int position);
+        void onEditorItemClick(int position);
     }
 
     public ThemeDetailsHeaderView(Context context) {
@@ -64,7 +64,7 @@ public class ThemeDetailsHeaderView extends ConstraintLayout {
         mEditorAdapter = new EditorAdapter(mContext);
         mEditorAdapter.setOnItemClickListener(position -> {
             if (mOnEditorItemClickListener != null) {
-                mOnEditorItemClickListener.onEtitorItemClick(position);
+                mOnEditorItemClickListener.onEditorItemClick(position);
             }
         });
 
