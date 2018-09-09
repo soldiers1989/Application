@@ -61,7 +61,7 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
     @Override
     public void OnSectionsInfo(SectionsInfo sectionsInfo) {
         LogUtil.d(TAG, "OnSectionsInfo : sectionsInfo = " + sectionsInfo);
-        mSectionsAdapter.setDataList(sectionsInfo.getData());
+        mSectionsAdapter.setData(sectionsInfo.getData());
     }
 
     @Override

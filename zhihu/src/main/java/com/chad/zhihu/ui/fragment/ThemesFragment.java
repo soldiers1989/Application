@@ -4,7 +4,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
 import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.themes.ThemesPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IThemesView;
 import com.chad.zhihu.ui.adapter.ThemesAdapter;
@@ -23,6 +25,7 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
 
     private LinearLayoutManager mLinearLayoutManager = null;
     private ThemesAdapter mThemesAdapter = null;
+    private ThemesInfo mThemesInfo = null;
 
     @Override
     protected int getLayoutId() {
@@ -43,7 +46,7 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
     @Override
     protected void initData() {
         LogUtil.d(TAG, "initData");
-        presenter.getDailyInfo(bindToLifecycle());
+        presenter.getThemesInfo(bindToLifecycle());
     }
 
     private void initThemesRecycler() {
@@ -51,7 +54,9 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mThemesAdapter = new ThemesAdapter(getActivity());
         mThemesAdapter.setOnItemClickListener(position -> {
-            // TODO: 2018/9/8
+            ActivityHelper.startThemeDetailsActivity(getActivity(),
+                    mThemesInfo.getOthers().get(position).getId(),
+                    mThemesInfo.getOthers().get(position).getName());
         });
 
         mThemesRecycler.setLayoutManager(mLinearLayoutManager);
@@ -61,7 +66,16 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
     @Override
     public void onThemesInfo(ThemesInfo themesInfo) {
         LogUtil.d(TAG, "onThemesInfo : themesInfo = " + themesInfo);
-        mThemesAdapter.setDataList(themesInfo.getOthers());
+        if (themesInfo == null) {
+            return;
+        }
+        mThemesInfo = themesInfo;
+        mThemesAdapter.setData(themesInfo.getOthers());
+    }
+
+    @Override
+    public void onThemeDetailsInfo(ThemeDetailsInfo themeDetailsInfo) {
+
     }
 
     @Override

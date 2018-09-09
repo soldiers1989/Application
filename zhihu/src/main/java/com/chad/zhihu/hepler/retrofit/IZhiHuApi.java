@@ -1,6 +1,9 @@
 package com.chad.zhihu.hepler.retrofit;
 
+import com.chad.zhihu.entity.zhihu.CommentsInfo;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
+import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
 import com.chad.zhihu.entity.zhihu.ThemesInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
@@ -16,6 +19,7 @@ public interface IZhiHuApi {
 
     /**
      * 获取最新的日报信息
+     *
      * @return
      */
     @GET("stories/latest")
@@ -23,31 +27,70 @@ public interface IZhiHuApi {
 
     /**
      * 根据日期获取对应的日报信息
+     *
      * @return
      */
     @GET("stories/before/{date}")
-    Observable<HomeInfo> getMoreHomeInfo(@Path("date")String date);
-
-    /**
-     * 根据ID获取日报的详细信息
-     * @param id
-     * @return
-     */
-    @GET("story/{id}")
-    Observable<DetailsInfo> getDetailsInfo(@Path("id")int id);
+    Observable<HomeInfo> getMoreHomeInfo(@Path("date") String date);
 
     /**
      * 获取专题列表
+     *
      * @return
      */
     @GET("themes")
     Observable<ThemesInfo> getThemesInfo();
 
     /**
+     * 根据ID获取对应的专题内容
+     * @param id
+     * @return
+     */
+    @GET("theme/{id}")
+    Observable<ThemeDetailsInfo> getThemeDetailsInfo(@Path("id")int id);
+
+    /**
+     * 获取专栏列表
      *
      * @return
      */
     @GET("sections")
     Observable<SectionsInfo> getSectionsInfo();
+
+    /**
+     * 根据ID获取日报的详细信息
+     *
+     * @param id
+     * @return
+     */
+    @GET("story/{id}")
+    Observable<DetailsInfo> getDetailsInfo(@Path("id") int id);
+
+    /**
+     * 根据ID获取日报的额外信息
+     *
+     * @param id
+     * @return
+     */
+    @GET("story-extra/{id}")
+    Observable<DetailsExtraInfo> getDetailsExtraInfo(@Path("id") int id);
+
+    /**
+     * 根据ID获取日报的长评论
+     *
+     * @param id
+     * @return
+     */
+    @GET("story/{id}/long-comments")
+    Observable<CommentsInfo> getLongCommentsInfo(@Path("id") int id);
+
+    /**
+     * 根据ID获取日报的短评论
+     *
+     * @param id
+     * @return
+     */
+    @GET("story/{id}/short-comments")
+    Observable<CommentsInfo> getShortCommentsInfo(@Path("id") int id);
 
 }

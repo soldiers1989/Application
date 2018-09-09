@@ -1,5 +1,6 @@
 package com.chad.zhihu.mvp.zhihu.presenter.details;
 
+import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.mvp.zhihu.model.details.DetailsModel;
@@ -15,11 +16,17 @@ public class DetailsPresenter extends BasePresenter<IDetailsView> implements IDe
     public void getDetailsInfo(ObservableTransformer transformer, int id) {
         LogUtil.d(TAG, "getDetailsInfo : id = " + id);
         DetailsModel.getInstance().getDetailsInfo(transformer, id, this);
+        DetailsModel.getInstance().getDetailsExtraInfo(transformer, id, this);
     }
 
     @Override
-    public void onDetailInfo(DetailsInfo detailsInfo) {
+    public void onDetailsInfo(DetailsInfo detailsInfo) {
         getView().onDetailsInfo(detailsInfo);
+    }
+
+    @Override
+    public void onDetailsExtraInfo(DetailsExtraInfo detailsExtraInfo) {
+        getView().onDetailsExtraInfo(detailsExtraInfo);
     }
 
     @Override

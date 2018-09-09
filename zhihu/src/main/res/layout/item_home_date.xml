@@ -11,7 +11,7 @@
         android:paddingBottom="@dimen/chad_8dp"
         android:paddingLeft="@dimen/chad_10dp"
         android:paddingTop="@dimen/chad_16dp"
-        android:textColor="@color/colorItemTextExtra"
+        android:textColor="@color/colorTextExtra"
         android:textSize="@dimen/chad_18sp" />
 
     <include layout="@layout/item_home_content" />

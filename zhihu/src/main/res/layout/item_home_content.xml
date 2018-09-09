@@ -24,7 +24,7 @@
             android:lineSpacingExtra="@dimen/chad_2dp"
             android:maxLines="3"
             android:padding="@dimen/chad_2dp"
-            android:textColor="@color/colorItemTextNormal"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/chad_18sp" />
 
         <android.support.v7.widget.AppCompatImageView

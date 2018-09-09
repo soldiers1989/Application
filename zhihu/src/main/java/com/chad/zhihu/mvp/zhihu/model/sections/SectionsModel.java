@@ -3,7 +3,7 @@ package com.chad.zhihu.mvp.zhihu.model.sections;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
-import com.chad.zhihu.mvp.zhihu.presenter.sections.SectionsPresenter;
+import com.chad.zhihu.mvp.zhihu.presenter.sections.ISectionsPresenter;
 import com.chad.zhihu.util.LogUtil;
 
 import io.reactivex.ObservableTransformer;
@@ -24,7 +24,7 @@ public class SectionsModel implements ISectionsModel {
     }
 
     @Override
-    public void getSectionsInfo(ObservableTransformer transformer, SectionsPresenter presenter) {
+    public void getSectionsInfo(ObservableTransformer transformer, ISectionsPresenter presenter) {
         LogUtil.d(TAG, "getSectionsInfo");
         ZhiHuRetrofitHelper.getSectionsInfo()
                 .compose(transformer)

@@ -6,6 +6,15 @@
     <string name="main_navigation_sections">专栏</string>
     <string name="main_navigation_mine">我的</string>
     <string name="item_latest_date_today">今日热闻</string>
+    <string name="theme_details_editor">主编</string>
+    <string name="share_subject">分享</string>
+    <string name="share_from">来自「阅知乎」的分享:</string>
+    <string name="details_extra_info">99+</string>
+    <string name="comment_toolbar_title">条评论</string>
+    <string name="comment_long">长评论</string>
+    <string name="comment_short">短评论</string>
+    <string name="comment_sofa_message_long">深度长评虚位以待</string>
+    <string name="comment_sofa_message_short">精简短评虚位以待</string>
     <string name="unit_month">月</string>
     <string name="unit_day">日</string>
     <string name="monday">星期一</string>

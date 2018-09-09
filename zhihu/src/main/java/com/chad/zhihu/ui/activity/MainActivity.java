@@ -61,16 +61,16 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     private void initBottomNavigation() {
         LogUtil.d(TAG, "initBottomNavigation");
         AHBottomNavigationItem ahBottomNavigationItemHome = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_home),
+                StringUtil.findStringById(this, R.string.main_navigation_home),
                 R.drawable.ic_navigation_home_selected);
         AHBottomNavigationItem ahBottomNavigationItemDaily = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_themes),
+                StringUtil.findStringById(this, R.string.main_navigation_themes),
                 R.drawable.ic_navigation_daily_selected);
         AHBottomNavigationItem ahBottomNavigationItemColumn = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_sections),
+                StringUtil.findStringById(this, R.string.main_navigation_sections),
                 R.drawable.ic_navigation_column_selected);
         AHBottomNavigationItem ahBottomNavigationItemMine = new AHBottomNavigationItem(
-                StringUtil.findStringById(getApplicationContext(), R.string.main_navigation_mine),
+                StringUtil.findStringById(this, R.string.main_navigation_mine),
                 R.drawable.ic_navigation_mine_selected);
 
         mAhBottomNavigation.addItem(ahBottomNavigationItemHome);

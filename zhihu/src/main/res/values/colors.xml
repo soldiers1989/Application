@@ -8,14 +8,19 @@
     <color name="colorBottomTabAccent">#4E9AFB</color>
     <color name="colorBottomTabInactive">#555555</color>
 
+    <color name="colorTopTabBackground">#F4F4F4</color>
+    <color name="colorTopTabIndicator">#4E9AFB</color>
+    <color name="colorTopTabTextInactive">#9E9E9E</color>
+
     <color name="colorPointNormal">#9E9E9E</color>
     <color name="colorPointSelected">#FFFFFF</color>
 
     <color name="colorProgress">#4E9AFB</color>
 
-    <color name="colorItemTextNormal">#000000</color>
-    <color name="colorItemTextPressed">#9E9E9E</color>
-    <color name="colorItemTextExtra">#555555</color>
+    <color name="colorTextExtra">#555555</color>
+    <color name="colorTextSofa">#bb999999</color>
 
     <color name="colorItemPressed">#EEEEEE</color>
+
+    <color name="colorDivider">#555555</color>
 </resources>

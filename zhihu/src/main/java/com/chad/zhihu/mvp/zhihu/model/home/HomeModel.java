@@ -58,15 +58,15 @@ public class HomeModel implements IHomeModel {
             return null;
         }
         LogUtil.d(TAG, "initStories : homeInfo.getDate() = " + homeInfo.getDate());
-        List<Integer> storiesIds = new ArrayList<>();
-        for (HomeInfo.Stories stories : homeInfo.getStories()) {
-            stories.setDate(homeInfo.getDate());
-            if (stories.getImages() != null && stories.getImages().size() > 1) {
-                stories.setMultiPic(true);
+        List<Integer> storyIds = new ArrayList<>();
+        for (HomeInfo.Story story : homeInfo.getStories()) {
+            story.setDate(homeInfo.getDate());
+            if (story.getImages() != null && story.getImages().size() > 1) {
+                story.setMultiPic(true);
             }
-            storiesIds.add(stories.getId());
+            storyIds.add(story.getId());
         }
-        homeInfo.setStoriesIds(storiesIds);
+        homeInfo.setStoryIds(storyIds);
         return homeInfo;
     }
 }

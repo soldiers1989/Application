@@ -7,4 +7,6 @@ import io.reactivex.ObservableTransformer;
 public interface IDetailsModel {
 
     void getDetailsInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter);
+
+    void getDetailsExtraInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter);
 }

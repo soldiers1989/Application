@@ -40,7 +40,7 @@ public class SectionsAdapter extends BaseRecyclerViewAdapter<SectionsInfo.Sectio
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LogUtil.d(TAG, "onBindViewHolder : holder = " + holder + " , position = " + position);
-        SectionsInfo.Section section = dataList.get(position);
+        SectionsInfo.Section section = data.get(position);
         if (section == null) {
             return;
         }

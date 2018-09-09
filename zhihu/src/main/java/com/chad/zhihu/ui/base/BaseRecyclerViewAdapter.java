@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewAdapter.ViewHolder> {
 
-    protected List<T> dataList = null;
+    protected List<T> data = null;
 
     private OnItemClickListener onItemClickListener = null;
     private OnItemLongClickListener onItemLongClickListener = null;
@@ -41,7 +41,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
     @Override
     public int getItemCount() {
-        return dataList == null ? 0 : dataList.size();
+        return data == null ? 0 : data.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -52,16 +52,16 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         this.onItemLongClickListener = onItemLongClickListener;
     }
 
-    public void setDataList(List<T> dataList) {
-        this.dataList = dataList;
+    public void setData(List<T> data) {
+        this.data = data;
         notifyDataSetChanged();
     }
 
-    public void addDataList(List<T> dataList) {
-        if (this.dataList == null) {
-            this.dataList = new ArrayList<>();
+    public void addData(List<T> data) {
+        if (this.data == null) {
+            this.data = new ArrayList<>();
         }
-        this.dataList.addAll(dataList);
+        this.data.addAll(data);
         notifyDataSetChanged();
     }
 

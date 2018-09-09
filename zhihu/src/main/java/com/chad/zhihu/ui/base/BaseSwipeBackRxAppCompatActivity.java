@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
-public abstract class BaseSwipeBackActivity <V, T extends BasePresenter<V>>
+public abstract class BaseSwipeBackRxAppCompatActivity<V, T extends BasePresenter<V>>
         extends RxAppCompatActivity implements BGASwipeBackHelper.Delegate {
 
     private Unbinder unbinder = null;

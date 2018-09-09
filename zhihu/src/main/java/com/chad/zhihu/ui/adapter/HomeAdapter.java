@@ -23,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Stories> {
+public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Story> {
 
     private static final String TAG = HomeAdapter.class.getSimpleName();
 
@@ -57,8 +57,8 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Stories> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        HomeInfo.Stories stories = dataList.get(position);
-        if (stories == null) {
+        HomeInfo.Story story = data.get(position);
+        if (story == null) {
             return;
         }
         LogUtil.d(TAG, "onBindViewHolder : position = " + position);
@@ -67,17 +67,17 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Stories> {
             if (position == 0) {
                 date = StringUtil.findStringById(mContext, R.string.item_latest_date_today);
             } else {
-                date = DateUtil.formatDate(mContext, stories.getDate()) + "  "
-                        + WeekUtil.formatWeek(mContext, stories.getDate());
+                date = DateUtil.formatDate(mContext, story.getDate()) + "  "
+                        + WeekUtil.formatWeek(mContext, story.getDate());
             }
             LogUtil.d(TAG, "onBindViewHolder : date = " + date);
             ((DateItemViewHolder) holder).textDate.setText(date);
         }
-        setItemStories((ContentItemViewHolder) holder, stories);
+        setItemStories((ContentItemViewHolder) holder, story);
         super.onBindViewHolder(holder, position);
     }
 
-    private void setItemStories(ContentItemViewHolder itemViewHolder, HomeInfo.Stories stories) {
+    private void setItemStories(ContentItemViewHolder itemViewHolder, HomeInfo.Story stories) {
         LogUtil.d(TAG, "setItemStories : itemViewHolder = " + itemViewHolder
                 + " , stories = " + stories);
         if (itemViewHolder == null || stories == null) {
@@ -89,12 +89,6 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Stories> {
         List<String> images = stories.getImages();
         if (images != null && images.size() > 0) {
             CustomGlideModule.loadImage(mContext, images.get(0), itemViewHolder.imagePreview);
-        }
-        // 如果用户读过这条新闻，就改变颜色
-        if (stories.isLoad()) {
-            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextPressed));
-        } else {
-            itemViewHolder.textTitle.setTextColor(ColorUtil.findRgbById(mContext, R.color.colorItemTextNormal));
         }
 
         // 如果是多图，就将多图图片显示出来
@@ -111,8 +105,8 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Stories> {
         if (position == 0) {
             return TYPE_ITEM_DATE;
         }
-        String lastDate = dataList.get(position - 1).getDate();
-        String currentDate = dataList.get(position).getDate();
+        String lastDate = data.get(position - 1).getDate();
+        String currentDate = data.get(position).getDate();
         LogUtil.d(TAG, "getItemViewType : lastDate = " + lastDate
                 + " , currentDate = " + currentDate);
         return !lastDate.equals(currentDate) ? TYPE_ITEM_DATE : TYPE_ITEM_CONTENT;

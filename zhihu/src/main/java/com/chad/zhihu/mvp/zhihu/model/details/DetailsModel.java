@@ -1,5 +1,6 @@
 package com.chad.zhihu.mvp.zhihu.model.details;
 
+import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
@@ -23,7 +24,8 @@ public class DetailsModel implements IDetailsModel {
         return detailsModel;
     }
 
-    private DetailsModel() {}
+    private DetailsModel() {
+    }
 
     @Override
     public void getDetailsInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter) {
@@ -31,7 +33,17 @@ public class DetailsModel implements IDetailsModel {
         ZhiHuRetrofitHelper.getDetailsInfo(id)
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
-                .subscribe(o -> presenter.onDetailInfo((DetailsInfo) o),
+                .subscribe(o -> presenter.onDetailsInfo((DetailsInfo) o),
+                        throwable -> presenter.onError(throwable.toString()));
+    }
+
+    @Override
+    public void getDetailsExtraInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter) {
+        LogUtil.d(TAG, "getDetailsExtraInfo : id = " + id);
+        ZhiHuRetrofitHelper.getDetailsExtraInfo(id)
+                .compose(transformer)
+                .compose(RxSchedulersHelper.bindToMainThread())
+                .subscribe(o -> presenter.onDetailsExtraInfo((DetailsExtraInfo) o),
                         throwable -> presenter.onError(throwable.toString()));
     }
 }

@@ -1,6 +1,5 @@
 package com.chad.zhihu.ui.view.loading;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;

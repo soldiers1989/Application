@@ -24,18 +24,18 @@ public class HomeInfo implements Parcelable {
      * · 如何教会儿童在突发灾害中保护自己？"}]
      */
     private String date;
-    private List<Stories> stories;
-    private List<TopStories> top_stories;
-    private List<Integer> storiesIds;
+    private List<Story> stories;
+    private List<TopStory> top_stories;
+    private List<Integer> storyIds;
 
     protected HomeInfo(Parcel parcel) {
         date = parcel.readString();
         stories = new ArrayList<>();
-        parcel.readList(stories, Stories.class.getClassLoader());
+        parcel.readList(stories, Story.class.getClassLoader());
         top_stories = new ArrayList<>();
-        parcel.readList(top_stories, Stories.class.getClassLoader());
-        storiesIds = new ArrayList<>();
-        parcel.readList(storiesIds, Integer.class.getClassLoader());
+        parcel.readList(top_stories, TopStory.class.getClassLoader());
+        storyIds = new ArrayList<>();
+        parcel.readList(storyIds, Integer.class.getClassLoader());
     }
 
     public void setDate(String date) {
@@ -46,28 +46,28 @@ public class HomeInfo implements Parcelable {
         return date;
     }
 
-    public void setStories(List<Stories> stories) {
+    public void setStories(List<Story> stories) {
         this.stories = stories;
     }
 
-    public List<Stories> getStories() {
+    public List<Story> getStories() {
         return stories;
     }
 
-    public void setTop_stories(List<TopStories> top_stories) {
+    public void setTop_stories(List<TopStory> top_stories) {
         this.top_stories = top_stories;
     }
 
-    public List<TopStories> getTop_stories() {
+    public List<TopStory> getTop_stories() {
         return top_stories;
     }
 
-    public void setStoriesIds(List<Integer> storiesIds) {
-        this.storiesIds = storiesIds;
+    public void setStoryIds(List<Integer> storyIds) {
+        this.storyIds = storyIds;
     }
 
-    public List<Integer> getStoriesIds() {
-        return storiesIds;
+    public List<Integer> getStoryIds() {
+        return storyIds;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class HomeInfo implements Parcelable {
         dest.writeString(date);
         dest.writeList(stories);
         dest.writeList(top_stories);
-        dest.writeList(storiesIds);
+        dest.writeList(storyIds);
     }
 
     public static final Creator<HomeInfo> CREATOR = new Creator<HomeInfo>() {
@@ -96,7 +96,7 @@ public class HomeInfo implements Parcelable {
         }
     };
 
-    public static class Stories implements Parcelable {
+    public static class Story implements Parcelable {
         /**
          * images : ["http://pic3.zhimg.com/afab44d4ef0758d1940eaccbe622cf9a.jpg"]
          * type : 0
@@ -111,9 +111,8 @@ public class HomeInfo implements Parcelable {
         private String title;
         private List<String> images;
         private boolean isMultiPic;
-        private boolean isLoad;
 
-        protected Stories(Parcel parcel) {
+        protected Story(Parcel parcel) {
             id = parcel.readInt();
             type = parcel.readInt();
             ga_prefix = parcel.readString();
@@ -121,7 +120,6 @@ public class HomeInfo implements Parcelable {
             title = parcel.readString();
             images = parcel.createStringArrayList();
             isMultiPic = parcel.readByte() == 1 ? true : false;
-            isLoad = parcel.readByte() == 1 ? true : false;
         }
 
         public void setId(int id) {
@@ -180,14 +178,6 @@ public class HomeInfo implements Parcelable {
             return isMultiPic;
         }
 
-        public void setLoad(boolean load) {
-            isLoad = load;
-        }
-
-        public boolean isLoad() {
-            return isLoad;
-        }
-
         @Override
         public int describeContents() {
             return 0;
@@ -202,24 +192,23 @@ public class HomeInfo implements Parcelable {
             dest.writeString(title);
             dest.writeStringList(images);
             dest.writeByte((byte) (isMultiPic ? 1 : 0));
-            dest.writeByte((byte) (isLoad ? 1 : 0));
         }
 
-        public static final Creator<Stories> CREATOR = new Creator<Stories>() {
+        public static final Creator<Story> CREATOR = new Creator<Story>() {
 
             @Override
-            public Stories createFromParcel(Parcel source) {
-                return new Stories(source);
+            public Story createFromParcel(Parcel source) {
+                return new Story(source);
             }
 
             @Override
-            public Stories[] newArray(int size) {
-                return new Stories[size];
+            public Story[] newArray(int size) {
+                return new Story[size];
             }
         };
     }
 
-    public static class TopStories implements Parcelable {
+    public static class TopStory implements Parcelable {
         /**
          * image : http://pic3.zhimg.com/65e1e452a62f7e279f516b654b5af3e2.jpg
          * type : 0
@@ -233,7 +222,7 @@ public class HomeInfo implements Parcelable {
         private String title;
         private String image;
 
-        protected TopStories(Parcel parcel) {
+        protected TopStory(Parcel parcel) {
             id = parcel.readInt();
             type = parcel.readInt();
             ga_prefix = parcel.readString();
@@ -295,15 +284,15 @@ public class HomeInfo implements Parcelable {
             dest.writeString(image);
         }
 
-        public static final Creator<TopStories> CREATOR = new Creator<TopStories>() {
+        public static final Creator<TopStory> CREATOR = new Creator<TopStory>() {
             @Override
-            public TopStories createFromParcel(Parcel source) {
-                return new TopStories(source);
+            public TopStory createFromParcel(Parcel source) {
+                return new TopStory(source);
             }
 
             @Override
-            public TopStories[] newArray(int size) {
-                return new TopStories[size];
+            public TopStory[] newArray(int size) {
+                return new TopStory[size];
             }
         };
     }

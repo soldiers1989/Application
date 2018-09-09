@@ -41,7 +41,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     private HomeInfo mHomeInfo = null;
 
     private List<Banner> mBannerList = null;
-    private ArrayList<Integer> mStoriesIds = null;
+    private ArrayList<Integer> mStoryIds = null;
 
     @Override
     protected int getLayoutId() {
@@ -64,12 +64,11 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
     protected void initData() {
         LogUtil.d(TAG, "initData");
         mBannerList = new ArrayList<>();
-        mStoriesIds = new ArrayList<>();
+        mStoryIds = new ArrayList<>();
         mSwipeRefresh.post(() -> {
             mSwipeRefresh.setRefreshing(true);
             presenter.getLatestHomeInfo(bindToLifecycle());
         });
-
     }
 
     private void initSwipeRefresh() {
@@ -92,12 +91,12 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
 
         mHomeAdapter = new HomeAdapter(getActivity());
         mHomeAdapter.setOnItemClickListener(position ->
-                ActivityHelper.startDetailsActivity(getActivity(), mStoriesIds,
-                        mStoriesIds.get(position)));
+                ActivityHelper.startDetailsActivity(getActivity(), mStoryIds,
+                        mStoryIds.get(position)));
 
         mBannerView = new BannerView(getActivity());
         mBannerView.setOnBannerItemClickListener(id ->
-                ActivityHelper.startDetailsActivity(getActivity(), mStoriesIds, id));
+                ActivityHelper.startDetailsActivity(getActivity(), mStoryIds, id));
 
         mHeaderViewAdapter = new HeaderViewAdapter(mHomeAdapter);
         mHeaderViewAdapter.addHeaderView(mBannerView);
@@ -115,7 +114,8 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
             return;
         }
         mHomeInfo = homeInfo;
-        mStoriesIds.addAll(mHomeInfo.getStoriesIds());
+        mStoryIds.clear();
+        mStoryIds.addAll(mHomeInfo.getStoryIds());
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         Observable.fromIterable(homeInfo.getTop_stories())
@@ -124,7 +124,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
                                 topStories.getImage())));
         mBannerView.setBannerList(mBannerList);
         mBannerView.start();
-        mHomeAdapter.setDataList(homeInfo.getStories());
+        mHomeAdapter.setData(homeInfo.getStories());
     }
 
     @Override
@@ -134,10 +134,10 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
             return;
         }
         mHomeInfo = homeInfo;
-        mStoriesIds.addAll(mHomeInfo.getStoriesIds());
+        mStoryIds.addAll(mHomeInfo.getStoryIds());
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
-        mHomeAdapter.addDataList(homeInfo.getStories());
+        mHomeAdapter.addData(homeInfo.getStories());
     }
 
     @Override
@@ -145,7 +145,6 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
         LogUtil.d(TAG, "onError : msg = " + msg);
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
-        // TODO: 2018/9/6
     }
 
     @Override

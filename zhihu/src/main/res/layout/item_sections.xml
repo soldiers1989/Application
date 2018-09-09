@@ -31,7 +31,7 @@
             android:lineSpacingExtra="@dimen/chad_2dp"
             android:maxLines="3"
             android:padding="@dimen/chad_2dp"
-            android:textColor="@color/colorItemTextNormal"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/chad_18sp" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorItemTextExtra"
+            android:textColor="@color/colorTextExtra"
             android:textSize="@dimen/chad_12sp" />
 
     </RelativeLayout>

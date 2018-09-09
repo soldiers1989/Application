@@ -1,7 +1,10 @@
 package com.chad.zhihu.hepler.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
+import com.chad.zhihu.entity.zhihu.CommentsInfo;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
+import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
 import com.chad.zhihu.entity.zhihu.ThemesInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
@@ -94,7 +97,34 @@ public class ZhiHuRetrofitHelper {
     }
 
     /**
+     * 获取专题列表
+     *
+     * @return
+     */
+    public static Observable<ThemesInfo> getThemesInfo() {
+        return mIZhiHuApi.getThemesInfo();
+    }
+
+    /**
+     * 根据ID获取对应的专题内容
+     * @param id
+     * @return
+     */
+    public static Observable<ThemeDetailsInfo> getThemeDetaildInfo(int id) {
+        return mIZhiHuApi.getThemeDetailsInfo(id);
+    }
+    /**
+     * 获取专栏列表
+     *
+     * @return
+     */
+    public static Observable<SectionsInfo> getSectionsInfo() {
+        return mIZhiHuApi.getSectionsInfo();
+    }
+
+    /**
      * 根据ID获取日报的详细信息
+     *
      * @param id
      * @return
      */
@@ -103,20 +133,35 @@ public class ZhiHuRetrofitHelper {
     }
 
     /**
-     * 获取专题列表
+     * 根据ID查寻日报的额外信息
+     *
+     * @param id
      * @return
      */
-    public static Observable<ThemesInfo> getThemesInfo() {
-        return mIZhiHuApi.getThemesInfo();
+    public static Observable<DetailsExtraInfo> getDetailsExtraInfo(int id) {
+        return mIZhiHuApi.getDetailsExtraInfo(id);
     }
 
     /**
-     * 获取专栏列表
+     * 根据ID获取日报的长评论
+     *
+     * @param id
      * @return
      */
-    public static Observable<SectionsInfo> getSectionsInfo() {
-        return mIZhiHuApi.getSectionsInfo();
+    public static Observable<CommentsInfo> getLongCommentsInfo(int id) {
+        return mIZhiHuApi.getLongCommentsInfo(id);
     }
+
+    /**
+     * 根据ID获取日报的短评论
+     *
+     * @param id
+     * @return
+     */
+    public static Observable<CommentsInfo> getShortCommentsInfo(int id) {
+        return mIZhiHuApi.getShortCommentsInfo(id);
+    }
+
     /**
      * 自定义OkHttp缓存拦截器
      */

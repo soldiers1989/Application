@@ -3,6 +3,7 @@ package com.chad.zhihu;
 import android.app.Application;
 
 import com.chad.zhihu.util.LogUtil;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
 
@@ -17,6 +18,7 @@ public class ZhiHuApplication extends Application {
         LogUtil.d(TAG, "onCreate");
         mZhiHuApplication = this;
         initSwipeBackManager();
+        initFresco();
         super.onCreate();
     }
 
@@ -26,6 +28,11 @@ public class ZhiHuApplication extends Application {
     private void initSwipeBackManager() {
         LogUtil.d(TAG, "initSwipeBackManager");
         BGASwipeBackManager.getInstance().init(this);
+    }
+
+    private void initFresco() {
+        LogUtil.d(TAG, "initFresco");
+        Fresco.initialize(this);
     }
 
     public static ZhiHuApplication getZhiHuApplication() {

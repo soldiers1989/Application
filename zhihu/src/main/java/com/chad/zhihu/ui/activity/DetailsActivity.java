@@ -11,20 +11,23 @@ import android.webkit.WebView;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
+import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.hepler.glide.CustomGlideModule;
 import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IDetailsView;
-import com.chad.zhihu.ui.base.BaseSwipeBackActivity;
+import com.chad.zhihu.ui.base.BaseSwipeBackRxAppCompatActivity;
 import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
+import com.chad.zhihu.util.StringUtil;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, DetailsPresenter>
+public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {
 
     private static final String TAG = DetailsActivity.class.getSimpleName();
@@ -33,8 +36,6 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
     CollapsingToolbarLayout mLayoutCollapsing;
     @BindView(R.id.layout_appbar)
     AppBarLayout mLayoutAppBar;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.image_preview)
     AppCompatImageView mImagePreview;
     @BindView(R.id.text_title)
@@ -43,8 +44,15 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
     AppCompatTextView mTextSource;
     @BindView(R.id.web_detail)
     WebView mWebDetail;
+    @BindView(R.id.text_like)
+    AppCompatTextView mTextLike;
+    @BindView(R.id.text_comment)
+    AppCompatTextView mTextComment;
 
-    private ArrayList<Integer> mStoriesIds = null;
+    private DetailsInfo mDetailsInfo = null;
+    private DetailsExtraInfo mDetailsExtraInfo = null;
+
+    private ArrayList<Integer> mStoryIds = null;
 
     private int mCurrentId;
     private int mCurrentIndex;
@@ -62,8 +70,6 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
-        initAppBar();
-        initToolbar();
     }
 
     @Override
@@ -71,7 +77,7 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
         LogUtil.d(TAG, "initData");
         Intent intent = getIntent();
         if (intent != null) {
-            mStoriesIds = intent.getIntegerArrayListExtra(Constant.EXTRA_ID_LIST);
+            mStoryIds = intent.getIntegerArrayListExtra(Constant.EXTRA_ID_LIST);
             mCurrentId = intent.getIntExtra(Constant.EXTRA_ID, -1);
         }
         if (mCurrentId != -1) {
@@ -79,24 +85,13 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
         } else {
             onError("");
         }
-        if (mStoriesIds != null) {
-            for (int i = 0; i < mStoriesIds.size(); i++) {
-                if (mStoriesIds.get(i) == mCurrentId) {
+        if (mStoryIds != null) {
+            for (int i = 0; i < mStoryIds.size(); i++) {
+                if (mStoryIds.get(i) == mCurrentId) {
                     mCurrentIndex = i;
                 }
             }
         }
-    }
-
-    private void initAppBar() {
-        LogUtil.d(TAG, "initToolbar");
-    }
-
-    private void initToolbar() {
-        LogUtil.d(TAG, "initToolbar");
-        mToolbar.setTitleTextColor(Color.WHITE);
-        mToolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-        mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
     @OnClick(R.id.btn_up)
@@ -105,18 +100,32 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
         if (mCurrentIndex == 0) {
             return;
         }
-        mCurrentIndex --;
-        presenter.getDetailsInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
+        mCurrentIndex--;
+        presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
     }
 
     @OnClick(R.id.btn_down)
     public void onClickDown() {
         LogUtil.d(TAG, "onClickDown");
-        if (mCurrentIndex == mStoriesIds.size() - 1) {
+        if (mCurrentIndex == mStoryIds.size() - 1) {
             return;
         }
-        mCurrentIndex ++;
-        presenter.getDetailsInfo(bindToLifecycle(), mStoriesIds.get(mCurrentIndex));
+        mCurrentIndex++;
+        presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
+    }
+
+    @OnClick(R.id.btn_share)
+    public void onClickShare() {
+        LogUtil.d(TAG, "onClickShare");
+        ActivityHelper.share(this, mDetailsInfo.getTitle(), mDetailsInfo.getId());
+    }
+
+    @OnClick(R.id.btn_comment)
+    public void onClickComment() {
+        LogUtil.d(TAG, "onClickComment");
+        ActivityHelper.startCommentActivity(this, mDetailsExtraInfo.getComments(),
+                mDetailsExtraInfo.getLongComments(), mDetailsExtraInfo.getShortComments(),
+                mDetailsInfo.getId());
     }
 
     @Override
@@ -125,6 +134,7 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
         if (detailsInfo == null) {
             return;
         }
+        mDetailsInfo = detailsInfo;
         CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
 
         mTextTitle.setText(detailsInfo.getTitle());
@@ -132,6 +142,21 @@ public class DetailsActivity extends BaseSwipeBackActivity<IDetailsView, Details
 
         String html = HtmlUtil.getHtml(detailsInfo);
         mWebDetail.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);
+    }
+
+    @Override
+    public void onDetailsExtraInfo(DetailsExtraInfo detailsExtraInfo) {
+        LogUtil.d(TAG, "onDetailsExtraInfo : detailsExtraInfo = " + detailsExtraInfo);
+        if (detailsExtraInfo == null) {
+            return;
+        }
+        mDetailsExtraInfo = detailsExtraInfo;
+        mTextLike.setText(detailsExtraInfo.getPopularity() >= 99 ?
+                StringUtil.findStringById(this, R.string.details_extra_info) :
+                String.valueOf(detailsExtraInfo.getPopularity()));
+        mTextComment.setText(detailsExtraInfo.getComments() >= 99 ?
+                StringUtil.findStringById(this, R.string.details_extra_info) :
+                String.valueOf(detailsExtraInfo.getComments()));
     }
 
     @Override

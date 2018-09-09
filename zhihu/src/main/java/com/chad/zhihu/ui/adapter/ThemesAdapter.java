@@ -39,7 +39,7 @@ public class ThemesAdapter extends BaseRecyclerViewAdapter<ThemesInfo.Others> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LogUtil.d(TAG, "onBindViewHolder : holder = " + holder + " , position = " + position);
-        ThemesInfo.Others others = dataList.get(position);
+        ThemesInfo.Others others = data.get(position);
         if (others == null) {
             return;
         }
