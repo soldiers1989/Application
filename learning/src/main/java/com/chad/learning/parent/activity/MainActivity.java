@@ -15,6 +15,7 @@ import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 import com.chad.learning.retrofit.activity.RetrofitActivity;
 import com.chad.learning.rxjava.activity.RxJavaActivity;
+import com.chad.learning.statusbar.activity.StatusBarActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,6 +24,8 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     @BindView(R.id.btn_animator)
     AppCompatButton mBtnAnimator;
+    @BindView(R.id.btn_immersive_status_bar)
+    AppCompatButton mBtnImmersiveStatusBar;
     @BindView(R.id.btn_realm)
     AppCompatButton mBtnRealm;
     @BindView(R.id.btn_mvp)
@@ -55,14 +58,17 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     }
 
-    @OnClick({R.id.btn_animator, R.id.btn_realm, R.id.btn_mvp, R.id.btn_dagger,
-            R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife, R.id.btn_retrofit,
-            R.id.btn_rx_java})
+    @OnClick({R.id.btn_animator, R.id.btn_immersive_status_bar, R.id.btn_realm, R.id.btn_mvp,
+            R.id.btn_dagger, R.id.btn_lambda, R.id.btn_icepick, R.id.btn_butter_knife,
+            R.id.btn_retrofit, R.id.btn_rx_java})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_animator:
                 onAnimatorClick();
+                break;
+            case R.id.btn_immersive_status_bar:
+                onImmersiveStatusBar();
                 break;
             case R.id.btn_realm:
                 onRealmClick();
@@ -95,6 +101,11 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
 
     private void onAnimatorClick() {
         Intent intent = new Intent(MainActivity.this, AnimatorActivity.class);
+        startActivity(intent);
+    }
+
+    private void onImmersiveStatusBar() {
+        Intent intent = new Intent(MainActivity.this, StatusBarActivity.class);
         startActivity(intent);
     }
 

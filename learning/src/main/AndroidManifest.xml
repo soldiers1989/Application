@@ -21,6 +21,8 @@
         <activity android:name=".animator.ObjectAnimatorActivity" />
         <activity android:name=".animator.ValueAnimatorActivity" />
         <activity android:name=".animator.AnimatorSetActivity" />
+        <activity android:name=".statusbar.activity.StatusBarActivity" />
+        <activity android:name=".statusbar.KitKatActivity" />
         <activity android:name=".mvp.activity.MvpActivity" />
         <activity android:name=".dagger.activity.DaggerActivity" />
         <activity android:name=".lambda.activity.LambdaActivity" />
