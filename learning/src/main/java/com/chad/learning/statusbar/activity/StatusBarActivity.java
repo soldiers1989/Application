@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chad.learning.R;
-import com.chad.learning.statusbar.KitKatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

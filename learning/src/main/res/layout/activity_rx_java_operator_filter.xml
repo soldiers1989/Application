@@ -5,15 +5,30 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_create"
+        android:id="@+id/btn_conditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create" />
+        android:text="Conditions" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/text_content"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_count"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btn_range_long" />
+        android:text="Count"
+        app:layout_constraintTop_toBottomOf="@id/btn_conditions" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        app:layout_constraintTop_toBottomOf="@id/btn_count" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_index"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="index"
+        app:layout_constraintTop_toBottomOf="@id/btn_time" />
 
 </android.support.constraint.ConstraintLayout>

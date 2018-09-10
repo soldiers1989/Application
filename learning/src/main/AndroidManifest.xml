@@ -22,7 +22,7 @@
         <activity android:name=".animator.ValueAnimatorActivity" />
         <activity android:name=".animator.AnimatorSetActivity" />
         <activity android:name=".statusbar.activity.StatusBarActivity" />
-        <activity android:name=".statusbar.KitKatActivity" />
+        <activity android:name=".statusbar.activity.KitKatActivity" />
         <activity android:name=".mvp.activity.MvpActivity" />
         <activity android:name=".dagger.activity.DaggerActivity" />
         <activity android:name=".lambda.activity.LambdaActivity" />
@@ -36,6 +36,10 @@
         <activity android:name=".rxjava.operator.function.activity.RetryActivity" />
         <activity android:name=".rxjava.operator.function.activity.RepeatActivity" />
         <activity android:name=".rxjava.operator.filter.activity.FilterOperatorActivity" />
+        <activity android:name=".rxjava.operator.filter.activity.ConditionsActivity" />
+        <activity android:name=".rxjava.operator.filter.activity.CountActivity" />
+        <activity android:name=".rxjava.operator.filter.activity.TimeActivity" />
+        <activity android:name=".rxjava.operator.filter.activity.IndexActivity" />
         <activity android:name=".rxjava.network.polling.activity.PollingActivity" />
         <activity android:name=".rxjava.network.error.activity.ErrorRetryActivity" />
     </application>

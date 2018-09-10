@@ -44,6 +44,11 @@ public class Notes {
      *  功能性操作符：辅助被观察者（Observable）在发送事件时实现一些功能性的需求，如错误处理，线程调度等
      *
      *  过滤操作符：过滤/筛选被观察者（Observable）发送的事件
+     *             根据指定条件过滤事件：filter()、ofType()、skip()、skipLast()、distinct()、distinctUntilChanged();
+     *             根据指定事件数量过滤事件：take()、takeLast()
+     *             根据指定时间过滤事件：throttleFirst()、throttleLast()、sample()、throttleWithTimeout(),
+     *                                  debounce()
+     *             根据指定事件位置过滤事件：firstElement()、lastElement()、elementAt()、elementAtOrError()
      *
      *  https://blog.csdn.net/carson_ho/article/details/78179340
      */

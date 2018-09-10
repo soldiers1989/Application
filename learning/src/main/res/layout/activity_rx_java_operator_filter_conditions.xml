@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_of_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OfType"
+        app:layout_constraintTop_toBottomOf="@id/btn_filter" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        app:layout_constraintTop_toBottomOf="@id/btn_of_type" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_skip_last"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skip Last"
+        app:layout_constraintTop_toBottomOf="@id/btn_skip" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_distinct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Distinct"
+        app:layout_constraintTop_toBottomOf="@id/btn_skip_last" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_distinct_until_changed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Distinct Until Changed"
+        app:layout_constraintTop_toBottomOf="@id/btn_distinct" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_distinct_until_changed" />
+
+</android.support.constraint.ConstraintLayout>

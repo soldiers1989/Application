@@ -1,12 +1,10 @@
 package com.chad.learning.rxjava.network.error.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 
 import com.chad.learning.R;
+import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.rxjava.network.polling.entity.JSTranslation;
 import com.chad.learning.rxjava.network.polling.interfaces.IRequest;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -29,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * 网络请求出错重连
  */
-public class ErrorRetryActivity extends AppCompatActivity {
+public class ErrorRetryActivity extends BaseAppCompatActivity {
 
     @BindView(R.id.text_content)
     AppCompatTextView mTextContent;
@@ -42,9 +40,18 @@ public class ErrorRetryActivity extends AppCompatActivity {
     private int waitRetryTime = 0;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rx_java_error);
+    public int getLayoutId() {
+        return R.layout.activity_rx_java_error;
+    }
+
+    @Override
+    public void initViews() {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @OnClick(R.id.btn_error)
@@ -70,7 +77,7 @@ public class ErrorRetryActivity extends AppCompatActivity {
                             if (currentRetryCount < maxConnectCount) {
                                 currentRetryCount++;
                                 waitRetryTime = 1 + currentRetryCount * 1;
-                                return Observable.just(1).delay(1, TimeUnit.SECONDS);
+                                return Observable.just(1).delay(waitRetryTime, TimeUnit.SECONDS);
                             } else {
                                 return Observable.error(new Throwable("已经重复的次数" + currentRetryCount));
                             }

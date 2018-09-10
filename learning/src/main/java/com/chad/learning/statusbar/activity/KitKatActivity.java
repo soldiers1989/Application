@@ -1,6 +1,5 @@
-package com.chad.learning.statusbar;
+package com.chad.learning.statusbar.activity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
