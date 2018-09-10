@@ -79,6 +79,11 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
     }
 
     @Override
+    public void onBeforeSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
+
+    }
+
+    @Override
     public void onError(String msg) {
         LogUtil.d(TAG, "onError : msg = " + msg);
     }

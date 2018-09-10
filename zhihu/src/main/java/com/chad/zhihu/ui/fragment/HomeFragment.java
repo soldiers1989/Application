@@ -115,7 +115,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
         }
         mHomeInfo = homeInfo;
         mStoryIds.clear();
-        mStoryIds.addAll(mHomeInfo.getStoryIds());
+        mStoryIds.addAll(homeInfo.getStoryIds());
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         Observable.fromIterable(homeInfo.getTop_stories())
@@ -134,7 +134,7 @@ public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> imple
             return;
         }
         mHomeInfo = homeInfo;
-        mStoryIds.addAll(mHomeInfo.getStoryIds());
+        mStoryIds.addAll(homeInfo.getStoryIds());
         mSwipeRefresh.setRefreshing(false);
         mLoadMoreScrollListener.setLoading(false);
         mHomeAdapter.addData(homeInfo.getStories());

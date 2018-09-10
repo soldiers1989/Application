@@ -1,6 +1,6 @@
-package com.chad.learning.rxjava.networkpolling.interfaces;
+package com.chad.learning.rxjava.network.polling.interfaces;
 
-import com.chad.learning.rxjava.networkpolling.entity.JSTranslation;
+import com.chad.learning.rxjava.network.polling.entity.JSTranslation;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

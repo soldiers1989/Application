@@ -23,6 +23,12 @@ public class SectionsPresenter extends BasePresenter<ISectionsView> implements I
         SectionsModel.getInstance().getSectionDetailsInfo(transformer, id, this);
     }
 
+    public void getBeforeSectionDetailsInfo(ObservableTransformer transformer, int id,
+                                            long timestamp) {
+        LogUtil.d(TAG, "getBeforeSectionDetailsInfo : id = " + id + " , timestamp = " + timestamp);
+        SectionsModel.getInstance().getBeforeSectionDetailsInfo(transformer, id, timestamp, this);
+    }
+
     @Override
     public void OnSectionsInfo(SectionsInfo sectionsInfo) {
         getView().OnSectionsInfo(sectionsInfo);
@@ -31,6 +37,11 @@ public class SectionsPresenter extends BasePresenter<ISectionsView> implements I
     @Override
     public void onSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
         getView().onSectionDetailsInfo(sectionDetailsInfo);
+    }
+
+    @Override
+    public void onBeforeSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
+        getView().onBeforeSectionDetailsInfo(sectionDetailsInfo);
     }
 
     @Override

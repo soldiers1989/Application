@@ -50,6 +50,17 @@ public class SectionsModel implements ISectionsModel {
                         throwable -> presenter.onError(throwable.toString()));
     }
 
+    @Override
+    public void getBeforeSectionDetailsInfo(ObservableTransformer transformer, int id, long timestamp, ISectionsPresenter presenter) {
+        LogUtil.d(TAG, "getBeforeSectionDetailsInfo : id = " + id + " , timestamp = " + timestamp);
+        ZhiHuRetrofit.getBeforeSectionDetailsInfo(id, timestamp)
+                .compose(transformer)
+                .map(o -> initStories((SectionDetailsInfo) o))
+                .compose(RxSchedulersHelper.bindToMainThread())
+                .subscribe(o -> presenter.onBeforeSectionDetailsInfo((SectionDetailsInfo) o),
+                        throwable -> presenter.onError(throwable.toString()));
+    }
+
     private SectionDetailsInfo initStories(SectionDetailsInfo detailsInfo) {
         LogUtil.d(TAG, "initStories : detailsInfo = " + detailsInfo);
         if (detailsInfo == null) {

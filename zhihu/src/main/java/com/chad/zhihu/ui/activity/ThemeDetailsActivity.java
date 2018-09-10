@@ -141,5 +141,6 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
     @Override
     public void onError(String msg) {
         LogUtil.d(TAG, "onError : msg = " + msg);
+        mSwipeRefresh.setRefreshing(false);
     }
 }

@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.networkpolling.activity;
+package com.chad.learning.rxjava.network.polling.activity;
 
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -6,8 +6,8 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
-import com.chad.learning.rxjava.networkpolling.entity.JSTranslation;
-import com.chad.learning.rxjava.networkpolling.interfaces.IRequest;
+import com.chad.learning.rxjava.network.polling.entity.JSTranslation;
+import com.chad.learning.rxjava.network.polling.interfaces.IRequest;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -23,6 +23,9 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * 网络轮询
+ */
 public class PollingActivity extends BaseAppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.btn_polling)
@@ -100,8 +103,8 @@ public class PollingActivity extends BaseAppCompatActivity implements View.OnCli
         // 采用Observable<...>形式对网络请求进行封装
         Observable<JSTranslation> observable = iRequest.get();
         // 通过线程切换发送网络请求
-        observable.observeOn(Schedulers.io()) // 切换到IO线程进行网络请求
-                .subscribeOn(AndroidSchedulers.mainThread()) // 切换回到主线程处理请求结果
+        observable.observeOn(AndroidSchedulers.mainThread()) // 切换到IO线程进行网络请求
+                .subscribeOn(Schedulers.io()) // 切换回到主线程处理请求结果
                 .subscribe(new Observer<JSTranslation>() {
                     @Override
                     public void onSubscribe(Disposable d) {

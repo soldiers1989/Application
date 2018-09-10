@@ -34,6 +34,7 @@
         <activity android:name=".rxjava.operator.function.activity.RetryActivity" />
         <activity android:name=".rxjava.operator.function.activity.RepeatActivity" />
         <activity android:name=".rxjava.operator.filter.activity.FilterOperatorActivity" />
-        <activity android:name=".rxjava.networkpolling.activity.PollingActivity" />
+        <activity android:name=".rxjava.network.polling.activity.PollingActivity" />
+        <activity android:name=".rxjava.network.error.activity.ErrorRetryActivity" />
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.networkpolling.entity;
+package com.chad.learning.rxjava.network.polling.entity;
 
 public class JSTranslation {
 

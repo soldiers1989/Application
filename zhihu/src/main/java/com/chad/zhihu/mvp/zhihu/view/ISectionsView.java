@@ -9,4 +9,6 @@ public interface ISectionsView extends IBaseView {
     void OnSectionsInfo(SectionsInfo sectionsInfo);
 
     void onSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo);
+
+    void onBeforeSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo);
 }

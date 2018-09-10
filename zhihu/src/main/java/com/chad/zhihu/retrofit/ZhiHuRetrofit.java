@@ -134,6 +134,15 @@ public class ZhiHuRetrofit {
     }
 
     /**
+     * 根据ID和Time获取对应的专栏之前内容
+     * @param id
+     * @param timestamp
+     * @return
+     */
+    public static Observable<SectionDetailsInfo> getBeforeSectionDetailsInfo(int id, long timestamp) {
+        return mIZhiHuApi.getBeforeSectionDetailsInfo(id, timestamp);
+    }
+    /**
      * 根据ID获取日报的详细信息
      *
      * @param id

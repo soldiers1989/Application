@@ -44,11 +44,12 @@ public interface IZhiHuApi {
 
     /**
      * 根据ID获取对应的专题内容
+     *
      * @param id
      * @return
      */
     @GET("theme/{id}")
-    Observable<ThemeDetailsInfo> getThemeDetailsInfo(@Path("id")int id);
+    Observable<ThemeDetailsInfo> getThemeDetailsInfo(@Path("id") int id);
 
     /**
      * 获取专栏列表
@@ -60,11 +61,23 @@ public interface IZhiHuApi {
 
     /**
      * 根据ID获取对应的专栏内容
+     *
      * @param id
      * @return
      */
     @GET("section/{id}")
-    Observable<SectionDetailsInfo> getSectionDetailsInfo(@Path("id")int id);
+    Observable<SectionDetailsInfo> getSectionDetailsInfo(@Path("id") int id);
+
+    /**
+     * 根据ID和Time获取对应的专栏之前内容
+     *
+     * @param id
+     * @param timestamp
+     * @return
+     */
+    @GET("section/{id}/before/{timestamp}")
+    Observable<SectionDetailsInfo> getBeforeSectionDetailsInfo(@Path("id") int id,
+                                                               @Path("timestamp") long timestamp);
 
     /**
      * 根据ID获取日报的详细信息

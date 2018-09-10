@@ -9,4 +9,7 @@ public interface ISectionsModel {
     void getSectionsInfo(ObservableTransformer transformer, ISectionsPresenter presenter);
 
     void getSectionDetailsInfo(ObservableTransformer transformer, int id, ISectionsPresenter presenter);
+
+    void getBeforeSectionDetailsInfo(ObservableTransformer transformer, int id, long timestamp,
+                                     ISectionsPresenter presenter);
 }

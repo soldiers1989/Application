@@ -23,7 +23,6 @@
         android:layout_marginLeft="@dimen/chad_10dp"
         android:textColor="@android:color/black"
         android:textSize="@dimen/chad_18sp"
-        android:text="56555"
         app:layout_constraintLeft_toRightOf="@+id/image_avatar" />
 
     <android.support.v7.widget.AppCompatTextView
@@ -32,7 +31,6 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/chad_40dp"
         android:layout_marginTop="@dimen/chad_10dp"
-        android:text="6666666666666666666666666666666666666666666666666"
         android:textColor="@android:color/black"
         android:textSize="@dimen/chad_15sp"
         app:layout_constraintLeft_toRightOf="@+id/image_avatar"
@@ -47,7 +45,6 @@
         android:layout_marginTop="@dimen/chad_10dp"
         android:textColor="@color/colorTextExtra"
         android:textSize="@dimen/chad_12sp"
-        android:text="43323"
         app:layout_constraintLeft_toRightOf="@+id/image_avatar"
         app:layout_constraintTop_toBottomOf="@+id/text_content" />
 

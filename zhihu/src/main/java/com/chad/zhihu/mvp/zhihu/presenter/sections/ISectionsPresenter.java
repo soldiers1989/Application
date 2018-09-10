@@ -9,4 +9,6 @@ public interface ISectionsPresenter extends IBasePresenter {
     void OnSectionsInfo(SectionsInfo sectionsInfo);
 
     void onSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo);
+
+    void onBeforeSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo);
 }
