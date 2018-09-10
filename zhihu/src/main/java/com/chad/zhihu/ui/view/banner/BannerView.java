@@ -13,9 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.zhihu.R;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.util.DisplayUtil;
 
 import java.util.ArrayList;

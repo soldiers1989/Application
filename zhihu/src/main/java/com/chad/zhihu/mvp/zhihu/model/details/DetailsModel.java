@@ -3,7 +3,7 @@ package com.chad.zhihu.mvp.zhihu.model.details;
 import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
-import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
+import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.details.IDetailsPresenter;
 import com.chad.zhihu.util.LogUtil;
 
@@ -30,7 +30,7 @@ public class DetailsModel implements IDetailsModel {
     @Override
     public void getDetailsInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter) {
         LogUtil.d(TAG, "getDetailsInfo : id = " + id);
-        ZhiHuRetrofitHelper.getDetailsInfo(id)
+        ZhiHuRetrofit.getDetailsInfo(id)
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onDetailsInfo((DetailsInfo) o),
@@ -40,7 +40,7 @@ public class DetailsModel implements IDetailsModel {
     @Override
     public void getDetailsExtraInfo(ObservableTransformer transformer, int id, IDetailsPresenter presenter) {
         LogUtil.d(TAG, "getDetailsExtraInfo : id = " + id);
-        ZhiHuRetrofitHelper.getDetailsExtraInfo(id)
+        ZhiHuRetrofit.getDetailsExtraInfo(id)
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onDetailsExtraInfo((DetailsExtraInfo) o),

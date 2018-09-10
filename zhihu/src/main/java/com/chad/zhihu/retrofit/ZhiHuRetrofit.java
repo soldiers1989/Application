@@ -1,7 +1,8 @@
-package com.chad.zhihu.hepler.retrofit;
+package com.chad.zhihu.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
 import com.chad.zhihu.entity.zhihu.CommentsInfo;
+import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
 import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
@@ -30,9 +31,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Retrofit的具体操作
  */
-public class ZhiHuRetrofitHelper {
+public class ZhiHuRetrofit {
 
-    private static final String TAG = ZhiHuRetrofitHelper.class.getSimpleName();
+    private static final String TAG = ZhiHuRetrofit.class.getSimpleName();
 
     private static final String BASE_URL_ZHIHU_DAILY = "http://news-at.zhihu.com/api/4/";
 
@@ -47,7 +48,7 @@ public class ZhiHuRetrofitHelper {
     private static void initOkHttpClient() {
         LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = " + mOkHttpClient);
         if (mOkHttpClient == null) {
-            synchronized (ZhiHuRetrofitHelper.class) {
+            synchronized (ZhiHuRetrofit.class) {
                 File cacheDir = ZhiHuApplication.getZhiHuApplication().getCacheDir(); // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
                 int cacheMaxSize = 1024 * 1024 * 100; // 缓存大小为100M
@@ -113,6 +114,7 @@ public class ZhiHuRetrofitHelper {
     public static Observable<ThemeDetailsInfo> getThemeDetaildInfo(int id) {
         return mIZhiHuApi.getThemeDetailsInfo(id);
     }
+
     /**
      * 获取专栏列表
      *
@@ -120,6 +122,15 @@ public class ZhiHuRetrofitHelper {
      */
     public static Observable<SectionsInfo> getSectionsInfo() {
         return mIZhiHuApi.getSectionsInfo();
+    }
+
+    /**
+     * 根据ID获取对应的专栏内容
+     * @param id
+     * @return
+     */
+    public static Observable<SectionDetailsInfo> getSectionDetailsInfo(int id) {
+        return mIZhiHuApi.getSectionDetailsInfo(id);
     }
 
     /**

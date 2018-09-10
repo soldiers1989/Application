@@ -10,13 +10,11 @@ import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
-import com.chad.zhihu.entity.zhihu.ThemesInfo;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 import com.chad.zhihu.util.LogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SectionsAdapter extends BaseRecyclerViewAdapter<SectionsInfo.Section> {
 

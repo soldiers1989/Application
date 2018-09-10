@@ -4,14 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;

@@ -4,7 +4,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.sections.SectionsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.ISectionsView;
 import com.chad.zhihu.ui.adapter.SectionsAdapter;
@@ -23,6 +25,7 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
 
     private LinearLayoutManager mLinearLayoutManager = null;
     private SectionsAdapter mSectionsAdapter = null;
+    private SectionsInfo mSectionsInfo = null;
 
     @Override
     protected int getLayoutId() {
@@ -51,7 +54,9 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mSectionsAdapter = new SectionsAdapter(getActivity());
         mSectionsAdapter.setOnItemClickListener(position -> {
-            // TODO: 2018/9/8
+            ActivityHelper.startSectionDetailsActivity(getActivity(),
+                    mSectionsInfo.getData().get(position).getName(),
+                    mSectionsInfo.getData().get(position).getId());
         });
 
         mSectionsRecycler.setLayoutManager(mLinearLayoutManager);
@@ -61,7 +66,16 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
     @Override
     public void OnSectionsInfo(SectionsInfo sectionsInfo) {
         LogUtil.d(TAG, "OnSectionsInfo : sectionsInfo = " + sectionsInfo);
+        if (sectionsInfo == null) {
+            return;
+        }
+        mSectionsInfo = sectionsInfo;
         mSectionsAdapter.setData(sectionsInfo.getData());
+    }
+
+    @Override
+    public void onSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
+
     }
 
     @Override

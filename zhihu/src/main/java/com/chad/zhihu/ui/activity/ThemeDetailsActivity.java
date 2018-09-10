@@ -33,7 +33,7 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
     Toolbar mToolbar;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
-    @BindView(R.id.home_recycler)
+    @BindView(R.id.theme_recycler)
     RecyclerView mThemeDetailsRecycler;
 
     private LinearLayoutManager mLinearLayoutManager = null;
@@ -43,8 +43,6 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
     private ThemeDetailsInfo mThemeDetailsInfo = null;
 
     private int mId;
-
-    private ArrayList<Integer> mStoryIds = null;
 
     @Override
     protected int getLayoutId() {
@@ -67,13 +65,12 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
     @Override
     protected void initData() {
         LogUtil.d(TAG, "initData");
-        mStoryIds = new ArrayList<>();
         Intent intent = getIntent();
         if (intent == null) {
             return;
         }
-        mId = intent.getIntExtra(Constant.EXTRA_ID, -1);
         String title = intent.getStringExtra(Constant.EXTRA_TITLE);
+        mId = intent.getIntExtra(Constant.EXTRA_ID, -1);
         mToolbar.setTitle(title);
         mSwipeRefresh.post(() -> {
             mSwipeRefresh.setRefreshing(true);
@@ -102,7 +99,8 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
 
         mThemeDetailsAdapter = new ThemeDetailsAdapter(this);
         mThemeDetailsAdapter.setOnItemClickListener(position -> {
-            ActivityHelper.startDetailsActivity(this, mStoryIds,
+            ActivityHelper.startDetailsActivity(this,
+                    (ArrayList<Integer>) mThemeDetailsInfo.getStoryIds(),
                     mThemeDetailsInfo.getStories().get(position).getId());
         });
 
@@ -132,8 +130,6 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
             return;
         }
         mThemeDetailsInfo = themeDetailsInfo;
-        mStoryIds.clear();
-        mStoryIds.addAll(themeDetailsInfo.getStoryIds());
         mSwipeRefresh.setRefreshing(false);
         mThemeDetailsAdapter.setData(themeDetailsInfo.getStories());
 

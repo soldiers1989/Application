@@ -2,7 +2,7 @@ package com.chad.zhihu.mvp.zhihu.model.comments;
 
 import com.chad.zhihu.entity.zhihu.CommentsInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
-import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
+import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.comments.ICommentsPresenter;
 import com.chad.zhihu.util.LogUtil;
 
@@ -26,7 +26,7 @@ public class CommentsModel implements ICommentsModel {
     @Override
     public void getLongCommentsInfo(ObservableTransformer transformer, int id, ICommentsPresenter presenter) {
         LogUtil.d(TAG, "getLongCommentsInfo : id = " + id);
-        ZhiHuRetrofitHelper.getLongCommentsInfo(id)
+        ZhiHuRetrofit.getLongCommentsInfo(id)
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onCommentsInfo((CommentsInfo) o),
@@ -36,7 +36,7 @@ public class CommentsModel implements ICommentsModel {
     @Override
     public void getShortCommentsInfo(ObservableTransformer transformer, int id, ICommentsPresenter presenter) {
         LogUtil.d(TAG, "getShortCommentsInfo : id = " + id);
-        ZhiHuRetrofitHelper.getShortCommentsInfo(id)
+        ZhiHuRetrofit.getShortCommentsInfo(id)
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onCommentsInfo((CommentsInfo) o),

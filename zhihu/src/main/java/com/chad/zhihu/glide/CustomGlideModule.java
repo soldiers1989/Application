@@ -1,4 +1,4 @@
-package com.chad.zhihu.hepler.glide;
+package com.chad.zhihu.glide;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

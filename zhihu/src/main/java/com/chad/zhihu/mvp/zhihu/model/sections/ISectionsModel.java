@@ -7,4 +7,6 @@ import io.reactivex.ObservableTransformer;
 public interface ISectionsModel {
 
     void getSectionsInfo(ObservableTransformer transformer, ISectionsPresenter presenter);
+
+    void getSectionDetailsInfo(ObservableTransformer transformer, int id, ISectionsPresenter presenter);
 }

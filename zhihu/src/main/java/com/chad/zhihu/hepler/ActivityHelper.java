@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.ui.activity.CommentActivity;
+import com.chad.zhihu.ui.activity.SectionDetailsActivity;
 import com.chad.zhihu.ui.activity.ThemeDetailsActivity;
 import com.chad.zhihu.ui.activity.DetailsActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
@@ -26,15 +27,29 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startThemeDetailsActivity(Activity activity, int id, String title) {
+    public static void startThemeDetailsActivity(Activity activity, String title, int id) {
         LogUtil.d(TAG, "startThemeDetailsActivity : activity = " + activity
-                + " , id = " + id + " , title = " + title);
+                + " , title = " + title
+                + " , id = " + id);
         if (activity == null) {
             return;
         }
         Intent intent = new Intent(activity, ThemeDetailsActivity.class);
-        intent.putExtra(Constant.EXTRA_ID, id);
         intent.putExtra(Constant.EXTRA_TITLE, title);
+        intent.putExtra(Constant.EXTRA_ID, id);
+        activity.startActivity(intent);
+    }
+
+    public static void startSectionDetailsActivity(Activity activity, String title, int id) {
+        LogUtil.d(TAG, "startSectionDetailsActivity : activity = " + activity
+                + " , title = " + title
+                + " , id = " + id);
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, SectionDetailsActivity.class);
+        intent.putExtra(Constant.EXTRA_TITLE, title);
+        intent.putExtra(Constant.EXTRA_ID, id);
         activity.startActivity(intent);
     }
 

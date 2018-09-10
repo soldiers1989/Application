@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 
 import java.util.List;
 

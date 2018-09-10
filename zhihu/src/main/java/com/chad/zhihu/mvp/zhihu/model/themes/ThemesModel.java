@@ -1,15 +1,15 @@
 package com.chad.zhihu.mvp.zhihu.model.themes;
 
-import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
 import com.chad.zhihu.entity.zhihu.ThemesInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
-import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
+import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.themes.IThemesPresenter;
 import com.chad.zhihu.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.ObservableTransformer;
 
@@ -31,7 +31,7 @@ public class ThemesModel implements IThemesModel {
     @Override
     public void getThemesInfo(ObservableTransformer transformer, IThemesPresenter presenter) {
         LogUtil.d(TAG, "getThemesInfo");
-        ZhiHuRetrofitHelper.getThemesInfo()
+        ZhiHuRetrofit.getThemesInfo()
                 .compose(transformer)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onThemesInfo((ThemesInfo) o),
@@ -41,8 +41,9 @@ public class ThemesModel implements IThemesModel {
     @Override
     public void getThemeDetailsInfo(ObservableTransformer transformer, int id, IThemesPresenter presenter) {
         LogUtil.d(TAG, "getThemeDetailsInfo : id = " + id);
-        ZhiHuRetrofitHelper.getThemeDetaildInfo(id)
+        ZhiHuRetrofit.getThemeDetaildInfo(id)
                 .compose(transformer)
+                .delay(1, TimeUnit.SECONDS)
                 .map(o -> initStories((ThemeDetailsInfo) o))
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onThemeDetailsInfo((ThemeDetailsInfo) o),

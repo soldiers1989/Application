@@ -1,12 +1,10 @@
 package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 
 import com.chad.zhihu.R;
@@ -14,7 +12,7 @@ import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.DetailsInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IDetailsView;
 import com.chad.zhihu.ui.base.BaseSwipeBackRxAppCompatActivity;

@@ -2,7 +2,7 @@ package com.chad.zhihu.mvp.zhihu.model.home;
 
 import com.chad.zhihu.entity.zhihu.HomeInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
-import com.chad.zhihu.hepler.retrofit.ZhiHuRetrofitHelper;
+import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.home.IHomePresenter;
 import com.chad.zhihu.util.LogUtil;
 
@@ -32,7 +32,7 @@ public class HomeModel implements IHomeModel {
     @Override
     public void getLatestHomeInfo(ObservableTransformer transformer, IHomePresenter presenter) {
         LogUtil.d(TAG, "getLatestHomeInfo");
-        ZhiHuRetrofitHelper.getLatestHomeInfo()
+        ZhiHuRetrofit.getLatestHomeInfo()
                 .compose(transformer) // 与RxLifecycle绑定
                 .delay(1, TimeUnit.SECONDS) // 延迟一秒执行
                 .map(o -> initStories((HomeInfo) o)) // map转换符，此处主要是给stories设置个日期
@@ -44,7 +44,7 @@ public class HomeModel implements IHomeModel {
     @Override
     public void getMoreHomeInfo(ObservableTransformer transformer, String date, IHomePresenter presenter) {
         LogUtil.d(TAG, "getLatestHomeInfo : date = " + date);
-        ZhiHuRetrofitHelper.getMoreHomeInfo(date)
+        ZhiHuRetrofit.getMoreHomeInfo(date)
                 .compose(transformer)
                 .map(o -> initStories((HomeInfo) o))
                 .compose(RxSchedulersHelper.bindToMainThread())

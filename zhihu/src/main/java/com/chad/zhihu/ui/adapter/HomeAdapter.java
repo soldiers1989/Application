@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.zhihu.HomeInfo;
-import com.chad.zhihu.hepler.glide.CustomGlideModule;
+import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
-import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.DateUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
@@ -21,7 +20,6 @@ import com.chad.zhihu.util.WeekUtil;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Story> {
 

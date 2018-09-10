@@ -1,6 +1,7 @@
-package com.chad.zhihu.hepler.retrofit;
+package com.chad.zhihu.retrofit;
 
 import com.chad.zhihu.entity.zhihu.CommentsInfo;
+import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
 import com.chad.zhihu.entity.zhihu.SectionsInfo;
 import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
 import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
@@ -56,6 +57,14 @@ public interface IZhiHuApi {
      */
     @GET("sections")
     Observable<SectionsInfo> getSectionsInfo();
+
+    /**
+     * 根据ID获取对应的专栏内容
+     * @param id
+     * @return
+     */
+    @GET("section/{id}")
+    Observable<SectionDetailsInfo> getSectionDetailsInfo(@Path("id")int id);
 
     /**
      * 根据ID获取日报的详细信息
