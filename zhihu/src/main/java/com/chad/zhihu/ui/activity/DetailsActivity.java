@@ -2,7 +2,6 @@ package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.webkit.WebView;
@@ -19,6 +18,7 @@ import com.chad.zhihu.ui.base.BaseSwipeBackRxAppCompatActivity;
 import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -30,8 +30,6 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
 
     private static final String TAG = DetailsActivity.class.getSimpleName();
 
-    @BindView(R.id.layout_collapsing)
-    CollapsingToolbarLayout mLayoutCollapsing;
     @BindView(R.id.layout_appbar)
     AppBarLayout mLayoutAppBar;
     @BindView(R.id.image_preview)
@@ -68,6 +66,8 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        SystemStatusBarUtil.setTranslucentStatusBar(this);
+        initAppBar();
     }
 
     @Override
@@ -90,6 +90,18 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
                 }
             }
         }
+    }
+
+    private void initAppBar() {
+        LogUtil.d(TAG, "initAppBar");
+        mLayoutAppBar.addOnOffsetChangedListener((appBarLayout, i) -> {
+            // 0全部展开
+            if (i == 0) {
+                SystemStatusBarUtil.unlockStatusBar(DetailsActivity.this);
+            } else {
+                SystemStatusBarUtil.lockStatusBar(DetailsActivity.this);
+            }
+        });
     }
 
     @OnClick(R.id.btn_up)

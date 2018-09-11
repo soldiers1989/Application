@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00000000</color>
     <color name="colorAccent">#00000000</color>
 
+    <color name="colorStatusBar">#2e8aff</color>
+
     <color name="colorBottomTabBackground">#F4F4F4</color>
     <color name="colorBottomTabAccent">#4E9AFB</color>
     <color name="colorBottomTabInactive">#555555</color>

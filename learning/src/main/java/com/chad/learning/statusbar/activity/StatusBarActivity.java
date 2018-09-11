@@ -1,22 +1,27 @@
 package com.chad.learning.statusbar.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.chad.learning.R;
+import com.chad.learning.parent.base.BaseAppCompatActivity;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class StatusBarActivity extends AppCompatActivity {
+public class StatusBarActivity extends BaseAppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statusbar);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_statusbar;
+    }
+
+    @Override
+    public void initViews() {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @OnClick(R.id.btn_kitkat)

@@ -1,5 +1,6 @@
 package com.chad.zhihu.ui.activity;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import com.chad.zhihu.ui.fragment.SectionsFragment;
 import com.chad.zhihu.ui.fragment.HomeFragment;
 import com.chad.zhihu.ui.fragment.MineFragment;
 import com.chad.zhihu.util.LogUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,8 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        SystemStatusBarUtil.setStatusBarColor(this,
+                ColorUtil.findRgbById(this, R.color.colorStatusBar));
         initToolbar();
         initBottomNavigation();
     }

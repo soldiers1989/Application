@@ -18,7 +18,9 @@ import com.chad.zhihu.mvp.zhihu.view.ISectionsView;
 import com.chad.zhihu.ui.adapter.SectionDetailsAdapter;
 import com.chad.zhihu.ui.base.BaseMvpRxAppCompatActivity;
 import com.chad.zhihu.ui.view.recycler.OnLoadMoreScrollListener;
+import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.LogUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -58,6 +60,8 @@ public class SectionDetailsActivity extends BaseMvpRxAppCompatActivity<ISections
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        SystemStatusBarUtil.setStatusBarColor(this,
+                ColorUtil.findRgbById(this, R.color.colorStatusBar));
         initToolbar();
         initSwipeRefresh();
         initSectionDetailsRecycler();

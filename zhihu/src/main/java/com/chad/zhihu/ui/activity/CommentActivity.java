@@ -13,8 +13,10 @@ import com.chad.zhihu.ui.adapter.CommentPagerAdapter;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
 import com.chad.zhihu.ui.fragment.LongCommentsFragment;
 import com.chad.zhihu.ui.fragment.ShortCommentsFragment;
+import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,8 @@ public class CommentActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        SystemStatusBarUtil.setStatusBarColor(this,
+                ColorUtil.findRgbById(this, R.color.colorStatusBar));
         initToolbar();
     }
 

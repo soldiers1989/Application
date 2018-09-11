@@ -1,26 +1,37 @@
 package com.chad.learning.statusbar.activity;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
-import android.view.WindowManager;
+import android.graphics.Color;
 
 import com.chad.learning.R;
+import com.chad.learning.parent.base.BaseAppCompatActivity;
+import com.chad.learning.statusbar.util.SystemStatusBarUtil;
 
-public class KitKatActivity extends AppCompatActivity {
+import butterknife.OnClick;
+
+public class KitKatActivity extends BaseAppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statusbar_kitkat);
-        Window window = getWindow();
-        //4.4版本及以上
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.setFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+    public int getLayoutId() {
+        return R.layout.activity_statusbar_kitkat;
+    }
+
+    @Override
+    public void initViews() {
+        SystemStatusBarUtil.setStatusBarColor(this, Color.GREEN);
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @OnClick(R.id.btn_unlock)
+    public void onUnLockClick() {
+        SystemStatusBarUtil.unlockStatusBar(this);
+    }
+
+    @OnClick(R.id.btn_lock)
+    public void onLockClick() {
+        SystemStatusBarUtil.lockStatusBar(this);
     }
 }
