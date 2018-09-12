@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import java.util.List;
 
 public class BannerAdapter extends PagerAdapter {
@@ -28,7 +30,7 @@ public class BannerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-       return Integer.MAX_VALUE;
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -57,11 +59,12 @@ public class BannerAdapter extends PagerAdapter {
             viewGroup.removeView(imageView);
         }
         // 设置点击事件
-        imageView.setOnClickListener(v -> {
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(mCurrentPosition);
-            }
-        });
+        RxView.clicks(imageView)
+                .subscribe(o -> {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(mCurrentPosition);
+                    }
+                });
         container.addView(imageView);
         return imageView;
     }
