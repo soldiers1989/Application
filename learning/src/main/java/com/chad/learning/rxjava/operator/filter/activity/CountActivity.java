@@ -78,7 +78,7 @@ public class CountActivity extends BaseAppCompatActivity {
                 });
     }
 
-    // takeLast()过滤操作符,指定观察者只能接收到被观察者发送的最后几个事件
+    // takeLast()过滤操作符，指定观察者只能接收到被观察者发送的最后几个事件
     @OnClick(R.id.btn_take_last)
     public void onTakeLastClick() {
         mContent = "takeLast \n";
@@ -86,7 +86,11 @@ public class CountActivity extends BaseAppCompatActivity {
 
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+                emitter.onNext(4);
+                emitter.onNext(5);
             }
         }).takeLast(3)
                 .subscribe(new Observer<Integer>() {

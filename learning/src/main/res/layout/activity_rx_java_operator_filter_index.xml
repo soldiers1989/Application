@@ -5,43 +5,36 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_throttle_first"
+        android:id="@+id/btn_first_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Throttle First" />
+        android:text="First Element" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_throttle_last"
+        android:id="@+id/btn_last_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Throttle Last"
-        app:layout_constraintTop_toBottomOf="@id/btn_throttle_first" />
+        android:text="Last Element"
+        app:layout_constraintTop_toBottomOf="@id/btn_first_element" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_sample"
+        android:id="@+id/btn_element_at"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sample"
-        app:layout_constraintTop_toBottomOf="@id/btn_throttle_last" />
+        android:text="Element At"
+        app:layout_constraintTop_toBottomOf="@id/btn_last_element" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_throttle_with_timeout"
+        android:id="@+id/btn_element_at_or_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Throttle With TimeOut"
-        app:layout_constraintTop_toBottomOf="@id/btn_sample" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_debounce"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Debounce"
-        app:layout_constraintTop_toBottomOf="@id/btn_throttle_with_timeout" />
+        android:text="Element At Or Error"
+        app:layout_constraintTop_toBottomOf="@id/btn_element_at" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/text_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_debounce" />
+        app:layout_constraintTop_toBottomOf="@id/btn_element_at_or_error" />
 
 </android.support.constraint.ConstraintLayout>

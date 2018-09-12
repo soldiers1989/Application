@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.network.error.entity;
+package com.chad.learning.rxjava.demo.function.polling.entity;
 
 public class JSTranslation {
 

@@ -6,9 +6,11 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
+import com.chad.learning.rxjava.demo.filter.SearchFilterActivity;
+import com.chad.learning.rxjava.demo.function.error.activity.ErrorRetryActivity;
+import com.chad.learning.rxjava.demo.function.polling.activity.PollingActivity;
 import com.chad.learning.rxjava.entrylevel.activity.EntryLevelActivity;
-import com.chad.learning.rxjava.network.error.activity.ErrorRetryActivity;
-import com.chad.learning.rxjava.network.polling.activity.PollingActivity;
+
 import com.chad.learning.rxjava.operator.creation.activity.CreationOperatorActivity;
 import com.chad.learning.rxjava.operator.filter.activity.FilterOperatorActivity;
 import com.chad.learning.rxjava.operator.function.activity.FunctionOperatorActivity;
@@ -31,7 +33,7 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
     @BindView(R.id.btn_network_error)
     AppCompatButton mBtnNeNetworkError;
 
-  @Override
+    @Override
     public int getLayoutId() {
         return R.layout.activity_rx_java;
     }
@@ -101,6 +103,12 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     private void onNetworkError() {
         Intent intent = new Intent(RxJavaActivity.this, ErrorRetryActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_search_filter)
+    public void onSearchFilterClick() {
+        Intent intent = new Intent(RxJavaActivity.this, SearchFilterActivity.class);
         startActivity(intent);
     }
 }

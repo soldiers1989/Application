@@ -1,8 +1,10 @@
-package com.chad.learning.rxjava.network.error.interfaces;
+package com.chad.learning.rxjava.demo.function.polling.interfaces;
 
-import com.chad.learning.rxjava.network.polling.entity.JSTranslation;
+
+import com.chad.learning.rxjava.demo.function.polling.entity.JSTranslation;
 
 import io.reactivex.Observable;
+
 import retrofit2.http.GET;
 
 public interface IRequest {

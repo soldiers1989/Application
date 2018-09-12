@@ -1,41 +1,47 @@
-package com.chad.learning.rxjava.network.polling.activity;
+package com.chad.learning.rxjava.demo.function.error.activity;
 
-import android.support.v7.widget.AppCompatButton;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
-import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
-import com.chad.learning.rxjava.network.polling.entity.JSTranslation;
-import com.chad.learning.rxjava.network.polling.interfaces.IRequest;
+import com.chad.learning.rxjava.demo.function.error.entity.JSTranslation;
+import com.chad.learning.rxjava.demo.function.error.interfaces.IRequest;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * 网络轮询
+ * 网络请求出错重连
  */
-public class PollingActivity extends BaseAppCompatActivity implements View.OnClickListener {
+public class ErrorRetryActivity extends BaseAppCompatActivity {
 
-    @BindView(R.id.btn_polling)
-    AppCompatButton mBtnPolling;
     @BindView(R.id.text_content)
     AppCompatTextView mTextContent;
 
+    // 可重试次数
+    private int maxConnectCount = 10;
+    // 当前已重试次数
+    private int currentRetryCount = 0;
+    // 重试等待时间
+    private int waitRetryTime = 0;
+
     @Override
     public int getLayoutId() {
-        return R.layout.activity_rx_java_polling;
+        return R.layout.activity_rx_java_demo_error;
     }
 
     @Override
@@ -48,50 +54,8 @@ public class PollingActivity extends BaseAppCompatActivity implements View.OnCli
 
     }
 
-    @OnClick({R.id.btn_polling})
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_polling:
-                onPollingClick();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void onPollingClick() {
-        // 每次发送数字前，就发送1次网络请求，doOnNext()在执行onNext()之前调用，从而实现轮询需求
-        Observable.intervalRange(1, 10, 2, 2, TimeUnit.SECONDS)
-                .doOnNext(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        request(aLong);
-                    }
-                }).subscribe(new Observer<Long>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(Long aLong) {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-    }
-
-    private void request(Long count) {
+    @OnClick(R.id.btn_error)
+    public void onRetryErrorClick() {
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://fy.iciba.com/") // // 设置网络请求BaseUrl
@@ -102,10 +66,31 @@ public class PollingActivity extends BaseAppCompatActivity implements View.OnCli
         IRequest iRequest = retrofit.create(IRequest.class);
         // 采用Observable<...>形式对网络请求进行封装
         Observable<JSTranslation> observable = iRequest.get();
-        // 通过线程切换发送网络请求
-        observable.observeOn(AndroidSchedulers.mainThread()) // 切换到IO线程进行网络请求
-                .subscribeOn(Schedulers.io()) // 切换回到主线程处理请求结果
+        // 通过RetryWhen实现网络出错重连
+        observable.retryWhen(new Function<Observable<Throwable>, ObservableSource<?>>() {
+            @Override
+            public ObservableSource<?> apply(@NonNull Observable<Throwable> throwableObservable) throws Exception {
+                return throwableObservable.flatMap(new Function<Throwable, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Throwable throwable) throws Exception {
+                        if (throwable instanceof IOException) {
+                            if (currentRetryCount < maxConnectCount) {
+                                currentRetryCount++;
+                                waitRetryTime = 1 + currentRetryCount * 1;
+                                return Observable.just(1).delay(waitRetryTime, TimeUnit.SECONDS);
+                            } else {
+                                return Observable.error(new Throwable("已经重复的次数" + currentRetryCount));
+                            }
+                        } else {
+                            return Observable.error(new Throwable("发生了非IO异常"));
+                        }
+                    }
+                });
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<JSTranslation>() {
+
                     @Override
                     public void onSubscribe(Disposable d) {
 
@@ -116,14 +101,14 @@ public class PollingActivity extends BaseAppCompatActivity implements View.OnCli
                         int status = jsTranslation.getStatus();
                         JSTranslation.Content content = jsTranslation.getContent();
 
-                        mTextContent.setText(count + ", Result = " + status + " , " + content.getFrom()
+                        mTextContent.setText("onNext = " + status + " , " + content.getFrom()
                                 + " , " + content.getTo() + " , " + content.getVendor() + " , "
                                 + content.getOut() + " , " + content.getErr_no() + "\n");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mTextContent.setText("onError : " + e.toString());
                     }
 
                     @Override

@@ -40,7 +40,8 @@
         <activity android:name=".rxjava.operator.filter.activity.CountActivity" />
         <activity android:name=".rxjava.operator.filter.activity.TimeActivity" />
         <activity android:name=".rxjava.operator.filter.activity.IndexActivity" />
-        <activity android:name=".rxjava.network.polling.activity.PollingActivity" />
-        <activity android:name=".rxjava.network.error.activity.ErrorRetryActivity" />
+        <activity android:name=".rxjava.demo.function.polling.activity.PollingActivity" />
+        <activity android:name=".rxjava.demo.function.error.activity.ErrorRetryActivity" />
+        <activity android:name=".rxjava.demo.filter.SearchFilterActivity" />
     </application>
 </manifest>
