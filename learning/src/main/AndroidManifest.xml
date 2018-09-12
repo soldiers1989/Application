@@ -40,8 +40,11 @@
         <activity android:name=".rxjava.operator.filter.activity.CountActivity" />
         <activity android:name=".rxjava.operator.filter.activity.TimeActivity" />
         <activity android:name=".rxjava.operator.filter.activity.IndexActivity" />
+        <activity android:name=".rxjava.operator.condition.activity.ConditionOperatorActivity" />
         <activity android:name=".rxjava.demo.function.polling.activity.PollingActivity" />
         <activity android:name=".rxjava.demo.function.error.activity.ErrorRetryActivity" />
-        <activity android:name=".rxjava.demo.filter.SearchFilterActivity" />
+        <activity android:name=".rxjava.demo.filter.search.SearchActivity" />
+        <activity android:name=".rxjava.demo.filter.shake.ShakeActivity" />
+        <activity android:name=".rxbinding.activity.RxBindingActivity" />
     </application>
 </manifest>

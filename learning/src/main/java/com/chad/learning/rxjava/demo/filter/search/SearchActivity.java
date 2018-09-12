@@ -1,4 +1,4 @@
-package com.chad.learning.rxjava.demo.filter;
+package com.chad.learning.rxjava.demo.filter.search;
 
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -17,7 +17,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * 联想搜索优化
  */
-public class SearchFilterActivity extends BaseAppCompatActivity {
+public class SearchActivity extends BaseAppCompatActivity {
 
     @BindView(R.id.edit_search)
     AppCompatEditText mEditContent;
@@ -26,7 +26,7 @@ public class SearchFilterActivity extends BaseAppCompatActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_rx_java_demo_search_filter;
+        return R.layout.activity_rx_java_demo_filter_search;
     }
 
     @Override

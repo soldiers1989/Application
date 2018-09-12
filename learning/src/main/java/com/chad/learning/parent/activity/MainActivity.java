@@ -14,6 +14,7 @@ import com.chad.learning.mvp.activity.MvpActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 import com.chad.learning.retrofit.activity.RetrofitActivity;
+import com.chad.learning.rxbinding.activity.RxBindingActivity;
 import com.chad.learning.rxjava.activity.RxJavaActivity;
 import com.chad.learning.statusbar.activity.StatusBarActivity;
 
@@ -149,4 +150,9 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
         startActivity(intent);
     }
 
+    @OnClick(R.id.btn_rx_binding)
+    public void onRxBindingClick() {
+        Intent intent = new Intent(MainActivity.this, RxBindingActivity.class);
+        startActivity(intent);
+    }
 }

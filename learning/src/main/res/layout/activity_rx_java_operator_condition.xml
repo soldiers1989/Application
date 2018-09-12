@@ -5,79 +5,78 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_animator"
+        android:id="@+id/btn_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Animator" />
+        android:text="All" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_immersive_status_bar"
+        android:id="@+id/btn_contains"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Immersive Status Bar"
-        app:layout_constraintTop_toBottomOf="@+id/btn_animator" />
+        android:text="Contains"
+        app:layout_constraintTop_toBottomOf="@+id/btn_all" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_realm"
+        android:id="@+id/btn_is_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Realm"
-        app:layout_constraintTop_toBottomOf="@+id/btn_immersive_status_bar" />
+        android:text="Is Empty"
+        app:layout_constraintTop_toBottomOf="@+id/btn_contains" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_mvp"
+        android:id="@+id/btn_amb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MVP"
-        app:layout_constraintTop_toBottomOf="@+id/btn_realm" />
+        android:text="Amb"
+        app:layout_constraintTop_toBottomOf="@+id/btn_is_empty" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_dagger"
+        android:id="@+id/btn_take_while"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DAGGER"
-        app:layout_constraintTop_toBottomOf="@+id/btn_mvp" />
+        android:text="Take While"
+        app:layout_constraintTop_toBottomOf="@+id/btn_amb" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_lambda"
+        android:id="@+id/btn_take_until"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lambda"
-        app:layout_constraintTop_toBottomOf="@+id/btn_dagger" />
+        android:text="Take Until"
+        app:layout_constraintTop_toBottomOf="@+id/btn_take_while" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_icepick"
+        android:id="@+id/btn_skip_while"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Icepick"
-        app:layout_constraintTop_toBottomOf="@+id/btn_lambda" />
+        android:text="Skip While"
+        app:layout_constraintTop_toBottomOf="@+id/btn_take_until" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_butter_knife"
+        android:id="@+id/btn_skip_until"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ButterKnife"
-        app:layout_constraintTop_toBottomOf="@+id/btn_icepick" />
+        android:text="Skip Until"
+        app:layout_constraintTop_toBottomOf="@+id/btn_skip_while" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_retrofit"
+        android:id="@+id/btn_default_if_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retrofit"
-        app:layout_constraintTop_toBottomOf="@+id/btn_butter_knife" />
+        android:text="Default If Empty"
+        app:layout_constraintTop_toBottomOf="@+id/btn_skip_until" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_rx_java"
+        android:id="@+id/btn_sequence_equal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RxJava"
-        app:layout_constraintTop_toBottomOf="@+id/btn_retrofit" />
+        android:text="Sequence Equal"
+        app:layout_constraintTop_toBottomOf="@+id/btn_default_if_empty" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_rx_binding"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RxBinding"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rx_java" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sequence_equal" />
 
 </android.support.constraint.ConstraintLayout>

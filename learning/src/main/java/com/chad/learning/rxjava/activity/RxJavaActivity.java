@@ -6,12 +6,15 @@ import android.view.View;
 
 import com.chad.learning.R;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
-import com.chad.learning.rxjava.demo.filter.SearchFilterActivity;
+import com.chad.learning.rxjava.demo.filter.search.SearchActivity;
+import com.chad.learning.rxjava.demo.filter.shake.ShakeActivity;
 import com.chad.learning.rxjava.demo.function.error.activity.ErrorRetryActivity;
 import com.chad.learning.rxjava.demo.function.polling.activity.PollingActivity;
 import com.chad.learning.rxjava.entrylevel.activity.EntryLevelActivity;
 
+import com.chad.learning.rxjava.operator.condition.activity.ConditionOperatorActivity;
 import com.chad.learning.rxjava.operator.creation.activity.CreationOperatorActivity;
+import com.chad.learning.rxjava.operator.filter.activity.ConditionsActivity;
 import com.chad.learning.rxjava.operator.filter.activity.FilterOperatorActivity;
 import com.chad.learning.rxjava.operator.function.activity.FunctionOperatorActivity;
 
@@ -49,7 +52,8 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
     }
 
     @OnClick({R.id.btn_entry_level, R.id.btn_operator_creation, R.id.btn_operator_function,
-            R.id.btn_operator_filter, R.id.btn_network_polling, R.id.btn_network_error})
+            R.id.btn_operator_filter, R.id.btn_operator_creation, R.id.btn_network_polling,
+            R.id.btn_network_error})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -64,6 +68,9 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_operator_filter:
                 onFilterOperatorClick();
+                break;
+            case R.id.btn_operator_condition:
+                onConditionOperatorClick();
                 break;
             case R.id.btn_network_polling:
                 onNetworkPolling();
@@ -96,6 +103,11 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
+   private void onConditionOperatorClick() {
+       Intent intent = new Intent(RxJavaActivity.this, ConditionOperatorActivity.class);
+       startActivity(intent);
+   }
+
     private void onNetworkPolling() {
         Intent intent = new Intent(RxJavaActivity.this, PollingActivity.class);
         startActivity(intent);
@@ -108,7 +120,13 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     @OnClick(R.id.btn_search_filter)
     public void onSearchFilterClick() {
-        Intent intent = new Intent(RxJavaActivity.this, SearchFilterActivity.class);
+        Intent intent = new Intent(RxJavaActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_shake)
+    public void onShakeClick() {
+        Intent intent = new Intent(RxJavaActivity.this, ShakeActivity.class);
         startActivity(intent);
     }
 }
