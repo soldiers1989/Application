@@ -94,9 +94,8 @@ public class SectionDetailsActivity extends BaseMvpRxAppCompatActivity<ISections
     private void initSwipeRefresh() {
         LogUtil.d(TAG, "initSwipeRefresh");
         mSwipeRefresh.setColorSchemeResources(R.color.colorProgress);
-        mSwipeRefresh.setOnRefreshListener(() -> {
-            presenter.getSectionDetailsInfo(bindToLifecycle(), mId);
-        });
+        mSwipeRefresh.setOnRefreshListener(() ->
+            presenter.getSectionDetailsInfo(bindToLifecycle(), mId));
     }
 
     private void initSectionDetailsRecycler() {

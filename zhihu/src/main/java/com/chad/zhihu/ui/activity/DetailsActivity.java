@@ -2,6 +2,7 @@ package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.webkit.WebView;
@@ -19,11 +20,15 @@ import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.util.SystemStatusBarUtil;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 
 public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {
@@ -44,6 +49,10 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
     AppCompatTextView mTextLike;
     @BindView(R.id.text_comment)
     AppCompatTextView mTextComment;
+    @BindView(R.id.btn_up)
+    AppCompatImageButton mBtnUp;
+    @BindView(R.id.btn_down)
+    AppCompatImageButton mBtnDown;
 
     private DetailsInfo mDetailsInfo = null;
     private DetailsExtraInfo mDetailsExtraInfo = null;
@@ -68,6 +77,7 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
         LogUtil.d(TAG, "initViews");
         SystemStatusBarUtil.setTranslucentStatusBar(this);
         initAppBar();
+        initUpDownButton();
     }
 
     @Override
@@ -84,11 +94,7 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
             onError("");
         }
         if (mStoryIds != null) {
-            for (int i = 0; i < mStoryIds.size(); i++) {
-                if (mStoryIds.get(i) == mCurrentId) {
-                    mCurrentIndex = i;
-                }
-            }
+            mCurrentIndex = mStoryIds.indexOf(mCurrentId);
         }
     }
 
@@ -104,24 +110,28 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
         });
     }
 
-    @OnClick(R.id.btn_up)
-    public void onClickUp() {
-        LogUtil.d(TAG, "onClickUp");
-        if (mCurrentIndex == 0) {
-            return;
-        }
-        mCurrentIndex--;
-        presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
-    }
+    private void initUpDownButton() {
+        LogUtil.d(TAG, "initUpDownButton");
+        // throttleFirst() 在一秒之内，只发送第一次事件
+        RxView.clicks(mBtnUp)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(o -> {
+                    if (mCurrentIndex == 0) {
+                        return;
+                    }
+                    mCurrentIndex--;
+                    presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
+                });
 
-    @OnClick(R.id.btn_down)
-    public void onClickDown() {
-        LogUtil.d(TAG, "onClickDown");
-        if (mCurrentIndex == mStoryIds.size() - 1) {
-            return;
-        }
-        mCurrentIndex++;
-        presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
+        RxView.clicks(mBtnDown)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(o -> {
+                    if (mCurrentIndex == mStoryIds.size() - 1) {
+                        return;
+                    }
+                    mCurrentIndex++;
+                    presenter.getDetailsInfo(bindToLifecycle(), mStoryIds.get(mCurrentIndex));
+                });
     }
 
     @OnClick(R.id.btn_share)
@@ -147,8 +157,12 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
         mDetailsInfo = detailsInfo;
         CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
 
-        mTextTitle.setText(detailsInfo.getTitle());
-        mTextSource.setText(detailsInfo.getImage_source());
+        try {
+            RxTextView.text(mTextTitle).accept(detailsInfo.getTitle());
+            RxTextView.text(mTextSource).accept(detailsInfo.getImage_source());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String html = HtmlUtil.getHtml(detailsInfo);
         mWebDetail.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);

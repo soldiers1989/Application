@@ -53,11 +53,10 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
         LogUtil.d(TAG, "initThemesRecycler");
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mThemesAdapter = new ThemesAdapter(getActivity());
-        mThemesAdapter.setOnItemClickListener(position -> {
+        mThemesAdapter.setOnItemClickListener(position ->
             ActivityHelper.startThemeDetailsActivity(getActivity(),
                     mThemesInfo.getOthers().get(position).getName(),
-                    mThemesInfo.getOthers().get(position).getId());
-        });
+                    mThemesInfo.getOthers().get(position).getId()));
 
         mThemesRecycler.setLayoutManager(mLinearLayoutManager);
         mThemesRecycler.setAdapter(mThemesAdapter);

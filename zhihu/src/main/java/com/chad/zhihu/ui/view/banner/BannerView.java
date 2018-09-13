@@ -94,26 +94,27 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
             return;
         }
         reset();
-        for (int i = 0; i < mBannerList.size(); i++) {
-            // 初始化Point
-            View point = new View(getContext());
-            point.setBackgroundResource(R.drawable.ic_banner_point_normal);
-            int height = DisplayUtil.dp2Px(getContext(), 5);
-            int width = DisplayUtil.dp2Px(getContext(), 5);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
-            layoutParams.leftMargin = 10;
-            point.setLayoutParams(layoutParams);
-            point.setEnabled(false);
-            mPointsLayout.addView(point);
-            // 初始化ImageView
-            AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
-            appCompatImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            String image = mBannerList.get(i).getImage();
-            if (!TextUtils.isEmpty(image)) {
-                CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
-            }
-            mImageViewList.add(appCompatImageView);
-        }
+        Observable.fromIterable(mBannerList)
+                .subscribe(banner -> {
+                    // 初始化Point
+                    View point = new View(getContext());
+                    point.setBackgroundResource(R.drawable.ic_banner_point_normal);
+                    int height = DisplayUtil.dp2Px(getContext(), 5);
+                    int width = DisplayUtil.dp2Px(getContext(), 5);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
+                    layoutParams.leftMargin = 10;
+                    point.setLayoutParams(layoutParams);
+                    point.setEnabled(false);
+                    mPointsLayout.addView(point);
+                    // 初始化ImageView
+                    AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
+                    appCompatImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    String image = banner.getImage();
+                    if (!TextUtils.isEmpty(image)) {
+                        CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
+                    }
+                    mImageViewList.add(appCompatImageView);
+                });
 
         mPointsLayout.getChildAt(0).setBackgroundResource(R.drawable.ic_banner_point_selected);
         mTextTitle.setText(mBannerList.get(0).getTitle());

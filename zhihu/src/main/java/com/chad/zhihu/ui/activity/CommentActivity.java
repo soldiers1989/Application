@@ -59,10 +59,9 @@ public class CommentActivity extends BaseRxAppCompatActivity {
         int comments = intent.getIntExtra(Constant.EXTRA_COMMENTS, 0);
         int longComments = intent.getIntExtra(Constant.EXTRA_COMMENTS_LONG, 0);
         int shortComments = intent.getIntExtra(Constant.EXTRA_COMMENTS_SHORT, 0);
-        int id = intent.getIntExtra(Constant.EXTRA_ID, -1);
         mToolbar.setTitle(comments + StringUtil.findStringById(this,
                 R.string.comment_toolbar_title));
-        initCommentTab(longComments, shortComments, id);
+        initCommentTab(longComments, shortComments);
     }
 
     private void initToolbar() {
@@ -72,7 +71,7 @@ public class CommentActivity extends BaseRxAppCompatActivity {
         mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
-    private void initCommentTab(int longComments, int shortComments, int id) {
+    private void initCommentTab(int longComments, int shortComments) {
         LogUtil.d(TAG, "initCommentTab");
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new LongCommentsFragment());

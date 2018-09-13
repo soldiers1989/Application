@@ -1,5 +1,6 @@
 package com.chad.learning.eventbus;
 
+import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 
@@ -33,27 +34,19 @@ public class EventBusOtherActivity extends BaseAppCompatActivity {
 
     @Override
     public void initData() {
-        // 注册EventBus
-        EventBus.getDefault().register(this);
         initButton();
     }
 
     private void initButton() {
         RxView.clicks(mBtnStart).subscribe(o -> {
+            // 发送消息
             EventBus.getDefault().post(new EventMessage("我是来自EventBusOtherActivity"));
+            finish();
         });
-    }
-
-    // 通过注解指定在主线程中处理，不能做耗时操作
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onReceiveEventMessage(EventMessage eventMessage) throws Exception {
-        RxTextView.text(mTextContent).accept(eventMessage.getMessage());
     }
 
     @Override
     protected void onDestroy() {
-        // 解除EventBus注册
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

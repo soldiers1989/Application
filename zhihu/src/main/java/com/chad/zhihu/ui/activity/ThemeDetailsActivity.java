@@ -21,6 +21,7 @@ import com.chad.zhihu.ui.view.theme.ThemeDetailsHeaderView;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.SystemStatusBarUtil;
+import com.jakewharton.rxbinding2.widget.RxToolbar;
 
 import java.util.ArrayList;
 
@@ -92,9 +93,9 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
     private void initSwipeRefresh() {
         LogUtil.d(TAG, "initSwipeRefresh");
         mSwipeRefresh.setColorSchemeResources(R.color.colorProgress);
-        mSwipeRefresh.setOnRefreshListener(() -> {
-            presenter.getThemeDetailsInfo(bindToLifecycle(), mId);
-        });
+        mSwipeRefresh.setOnRefreshListener(() ->
+            presenter.getThemeDetailsInfo(bindToLifecycle(), mId)
+        );
     }
 
     private void initThemeDetailsRecycler() {
@@ -102,11 +103,11 @@ public class ThemeDetailsActivity extends BaseMvpRxAppCompatActivity<IThemesView
         mLinearLayoutManager = new LinearLayoutManager(this);
 
         mThemeDetailsAdapter = new ThemeDetailsAdapter(this);
-        mThemeDetailsAdapter.setOnItemClickListener(position -> {
+        mThemeDetailsAdapter.setOnItemClickListener(position ->
             ActivityHelper.startDetailsActivity(this,
                     (ArrayList<Integer>) mThemeDetailsInfo.getStoryIds(),
-                    mThemeDetailsInfo.getStories().get(position).getId());
-        });
+                    mThemeDetailsInfo.getStories().get(position).getId())
+        );
 
         mThemeDetailsHeaderView = new ThemeDetailsHeaderView(this);
         mThemeDetailsHeaderView.setOnEditorItemClickListener(position -> {

@@ -1,5 +1,6 @@
 package com.chad.learning.eventbus;
 
+import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 
@@ -39,7 +40,8 @@ public class EventBusActivity extends BaseAppCompatActivity {
 
     private void initButton() {
         RxView.clicks(mBtnStartOther).subscribe(o -> {
-            EventBus.getDefault().post(new EventMessage("我是来自EventBusActivity"));
+            Intent intent = new Intent(this, EventBusOtherActivity.class);
+            startActivity(intent);
         });
     }
 

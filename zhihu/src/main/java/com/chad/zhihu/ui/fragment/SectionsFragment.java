@@ -53,11 +53,10 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
         LogUtil.d(TAG, "initSectionsRecycler");
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mSectionsAdapter = new SectionsAdapter(getActivity());
-        mSectionsAdapter.setOnItemClickListener(position -> {
+        mSectionsAdapter.setOnItemClickListener(position ->
             ActivityHelper.startSectionDetailsActivity(getActivity(),
                     mSectionsInfo.getData().get(position).getName(),
-                    mSectionsInfo.getData().get(position).getId());
-        });
+                    mSectionsInfo.getData().get(position).getId()));
 
         mSectionsRecycler.setLayoutManager(mLinearLayoutManager);
         mSectionsRecycler.setAdapter(mSectionsAdapter);

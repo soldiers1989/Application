@@ -9,8 +9,10 @@ import com.chad.zhihu.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 
 public class SectionsModel implements ISectionsModel {
@@ -66,11 +68,10 @@ public class SectionsModel implements ISectionsModel {
         if (detailsInfo == null) {
             return null;
         }
-        List<Integer> storyIds = new ArrayList<>();
-        for (SectionDetailsInfo.Story story : detailsInfo.getStories()) {
-            storyIds.add(story.getId());
-        }
-        detailsInfo.setStoryIds(storyIds);
+        Observable.fromIterable(detailsInfo.getStories())
+                .collect((Callable<List<Integer>>) () -> new ArrayList<>(),
+                        (storyIds, story) -> storyIds.add(story.getId()))
+                .subscribe(storyIds -> detailsInfo.setStoryIds(storyIds), throwable -> {});
         return detailsInfo;
     }
 }

@@ -14,7 +14,6 @@ import com.chad.learning.rxjava.entrylevel.activity.EntryLevelActivity;
 
 import com.chad.learning.rxjava.operator.condition.activity.ConditionOperatorActivity;
 import com.chad.learning.rxjava.operator.creation.activity.CreationOperatorActivity;
-import com.chad.learning.rxjava.operator.filter.activity.ConditionsActivity;
 import com.chad.learning.rxjava.operator.filter.activity.FilterOperatorActivity;
 import com.chad.learning.rxjava.operator.function.activity.FunctionOperatorActivity;
 
@@ -52,7 +51,7 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
     }
 
     @OnClick({R.id.btn_entry_level, R.id.btn_operator_creation, R.id.btn_operator_function,
-            R.id.btn_operator_filter, R.id.btn_operator_creation, R.id.btn_network_polling,
+            R.id.btn_operator_filter, R.id.btn_operator_condition, R.id.btn_network_polling,
             R.id.btn_network_error, R.id.btn_search_filter, R.id.btn_shake})
     @Override
     public void onClick(View v) {
