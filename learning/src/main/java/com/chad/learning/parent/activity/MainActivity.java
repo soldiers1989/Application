@@ -8,6 +8,7 @@ import com.chad.learning.R;
 import com.chad.learning.animator.AnimatorActivity;
 import com.chad.learning.butterknife.activity.ButterKnifeActivity;
 import com.chad.learning.dagger.activity.DaggerActivity;
+import com.chad.learning.eventbus.EventBusActivity;
 import com.chad.learning.icepick.activity.IcepickActivity;
 import com.chad.learning.lambda.activity.LambdaActivity;
 import com.chad.learning.mvp.activity.MvpActivity;
@@ -153,6 +154,12 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     @OnClick(R.id.btn_rx_binding)
     public void onRxBindingClick() {
         Intent intent = new Intent(MainActivity.this, RxBindingActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_event_bus)
+    public void onEventBusClick() {
+        Intent intent = new Intent(MainActivity.this, EventBusActivity.class);
         startActivity(intent);
     }
 }

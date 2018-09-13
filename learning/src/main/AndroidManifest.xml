@@ -46,5 +46,7 @@
         <activity android:name=".rxjava.demo.filter.search.SearchActivity" />
         <activity android:name=".rxjava.demo.filter.shake.ShakeActivity" />
         <activity android:name=".rxbinding.activity.RxBindingActivity" />
+        <activity android:name=".eventbus.EventBusActivity" />
+        <activity android:name=".eventbus.EventBusOtherActivity" />
     </application>
 </manifest>

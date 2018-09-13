@@ -53,7 +53,7 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
 
     @OnClick({R.id.btn_entry_level, R.id.btn_operator_creation, R.id.btn_operator_function,
             R.id.btn_operator_filter, R.id.btn_operator_creation, R.id.btn_network_polling,
-            R.id.btn_network_error})
+            R.id.btn_network_error, R.id.btn_search_filter, R.id.btn_shake})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -77,6 +77,12 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_network_error:
                 onNetworkError();
+                break;
+            case R.id.btn_search_filter:
+                onSearchFilterClick();
+                break;
+            case R.id.btn_shake:
+                onShakeClick();
                 break;
             default:
                 break;
@@ -118,14 +124,12 @@ public class RxJavaActivity extends BaseAppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_search_filter)
-    public void onSearchFilterClick() {
+    private void onSearchFilterClick() {
         Intent intent = new Intent(RxJavaActivity.this, SearchActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_shake)
-    public void onShakeClick() {
+    private void onShakeClick() {
         Intent intent = new Intent(RxJavaActivity.this, ShakeActivity.class);
         startActivity(intent);
     }
