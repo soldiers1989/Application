@@ -18,7 +18,7 @@ public class HomeModel implements IHomeModel {
 
     private static final String TAG = HomeModel.class.getSimpleName();
 
-    private static volatile  HomeModel homeModel = null;
+    private static volatile HomeModel homeModel = null;
 
     public static HomeModel getInstance() {
         synchronized (HomeModel.class) {
@@ -29,7 +29,8 @@ public class HomeModel implements IHomeModel {
         return homeModel;
     }
 
-    private HomeModel() {}
+    private HomeModel() {
+    }
 
     @Override
     public void getLatestHomeInfo(ObservableTransformer transformer, IHomePresenter presenter) {
@@ -63,13 +64,15 @@ public class HomeModel implements IHomeModel {
         // fromIterable() 从集合中发送每一个数据事件
         // collect()    将被观察者发送的数据事件收集到一个数据机构里
         Observable.fromIterable(homeInfo.getStories())
-                .collect((Callable<List<Integer>>) () -> new ArrayList<>(), (storyIds, story) -> {
-                    story.setDate(homeInfo.getDate());
-                    if (story.getImages() != null && story.getImages().size() > 1) {
-                        story.setMultiPic(true);
-                    }
-                    storyIds.add(story.getId());
-                }).subscribe(storyIds -> homeInfo.setStoryIds(storyIds), throwable -> {});
+                .collect((Callable<List<Integer>>) () -> new ArrayList<>(),
+                        (storyIds, story) -> {
+                            story.setDate(homeInfo.getDate());
+                            if (story.getImages() != null && story.getImages().size() > 1) {
+                                story.setMultiPic(true);
+                            }
+                            storyIds.add(story.getId());
+                        }).subscribe(storyIds -> homeInfo.setStoryIds(storyIds), throwable -> {
+        });
         return homeInfo;
     }
 }

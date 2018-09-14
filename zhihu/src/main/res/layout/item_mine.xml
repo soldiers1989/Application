@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/chad_5dp"
+    android:layout_marginTop="@dimen/chad_5dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/chad_0dp"
+    app:cardElevation="@dimen/chad_1dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/color_item"
+        android:padding="@dimen/chad_20dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/image_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorTextExtra" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/chad_10dp"
+            android:textColor="@color/colorTextExtra"
+            android:textSize="@dimen/chad_18sp"
+            app:layout_constraintLeft_toRightOf="@id/image_title" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
