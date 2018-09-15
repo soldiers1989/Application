@@ -10,7 +10,7 @@ public abstract class BasePresenter<V> {
         mViewReference = new WeakReference<>(view);
     }
 
-    public void dettachView() {
+    public void detachView() {
         if (mViewReference != null && mViewReference.get() != null) {
             mViewReference.clear();
             mViewReference = null;
