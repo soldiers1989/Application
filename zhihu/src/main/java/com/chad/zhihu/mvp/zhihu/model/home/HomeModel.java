@@ -1,6 +1,6 @@
 package com.chad.zhihu.mvp.zhihu.model.home;
 
-import com.chad.zhihu.entity.zhihu.HomeInfo;
+import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.home.IHomePresenter;

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
+import com.chad.zhihu.entity.ThemeDetailsInfo;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
 

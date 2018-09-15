@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.HomeInfo;
+import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.home.HomePresenter;
 import com.chad.zhihu.mvp.zhihu.view.IHomeView;

@@ -9,8 +9,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.entity.ThemeDetailsInfo;
+import com.chad.zhihu.entity.ThemesInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.themes.ThemesPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IThemesView;
@@ -21,7 +21,6 @@ import com.chad.zhihu.ui.view.theme.ThemeDetailsHeaderView;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.SystemStatusBarUtil;
-import com.jakewharton.rxbinding2.widget.RxToolbar;
 
 import java.util.ArrayList;
 

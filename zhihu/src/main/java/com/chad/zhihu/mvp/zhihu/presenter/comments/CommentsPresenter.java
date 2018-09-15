@@ -1,6 +1,6 @@
 package com.chad.zhihu.mvp.zhihu.presenter.comments;
 
-import com.chad.zhihu.entity.zhihu.CommentsInfo;
+import com.chad.zhihu.entity.CommentsInfo;
 import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.mvp.zhihu.model.comments.CommentsModel;
 import com.chad.zhihu.mvp.zhihu.view.ICommentsView;

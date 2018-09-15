@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.entity.zhihu.CommentsInfo;
+import com.chad.zhihu.entity.CommentsInfo;
 import com.chad.zhihu.mvp.zhihu.presenter.comments.CommentsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.ICommentsView;
 import com.chad.zhihu.ui.adapter.CommentsAdapter;

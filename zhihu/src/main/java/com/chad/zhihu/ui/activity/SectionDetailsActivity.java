@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
-import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.SectionDetailsInfo;
+import com.chad.zhihu.entity.SectionsInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.sections.SectionsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.ISectionsView;

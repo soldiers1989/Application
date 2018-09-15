@@ -9,8 +9,8 @@ import android.webkit.WebView;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
-import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
-import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.entity.DetailsExtraInfo;
+import com.chad.zhihu.entity.DetailsInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
@@ -28,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
 
 public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {

@@ -1,14 +1,14 @@
 package com.chad.zhihu.retrofit;
 
 import com.chad.zhihu.ZhiHuApplication;
-import com.chad.zhihu.entity.zhihu.CommentsInfo;
-import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
-import com.chad.zhihu.entity.zhihu.SectionsInfo;
-import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.entity.zhihu.ThemesInfo;
-import com.chad.zhihu.entity.zhihu.DetailsInfo;
-import com.chad.zhihu.entity.zhihu.HomeInfo;
+import com.chad.zhihu.entity.CommentsInfo;
+import com.chad.zhihu.entity.SectionDetailsInfo;
+import com.chad.zhihu.entity.SectionsInfo;
+import com.chad.zhihu.entity.DetailsExtraInfo;
+import com.chad.zhihu.entity.ThemeDetailsInfo;
+import com.chad.zhihu.entity.ThemesInfo;
+import com.chad.zhihu.entity.DetailsInfo;
+import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.hepler.NetworkHelper;
 import com.chad.zhihu.util.LogUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

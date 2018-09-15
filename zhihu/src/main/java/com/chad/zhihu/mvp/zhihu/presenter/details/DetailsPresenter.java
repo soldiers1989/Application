@@ -1,7 +1,7 @@
 package com.chad.zhihu.mvp.zhihu.presenter.details;
 
-import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
-import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.entity.DetailsExtraInfo;
+import com.chad.zhihu.entity.DetailsInfo;
 import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.mvp.zhihu.model.details.DetailsModel;
 import com.chad.zhihu.mvp.zhihu.view.IDetailsView;

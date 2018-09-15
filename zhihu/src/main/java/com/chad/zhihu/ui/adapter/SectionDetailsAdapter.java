@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
+import com.chad.zhihu.entity.SectionDetailsInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 import com.chad.zhihu.util.DateUtil;

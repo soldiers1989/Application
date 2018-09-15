@@ -1,5 +1,6 @@
 package com.chad.zhihu.ui.fragment;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class MineFragment extends BaseRxFragment<IMineView, MinePresenter> imple
     RecyclerView mMineRecycler;
 
     private LinearLayoutManager mLinearLayoutManager = null;
+    private DividerItemDecoration mDividerItemDecoration = null;
     private MineAdapter mMineAdapter = null;
 
     @Override
@@ -59,9 +61,11 @@ public class MineFragment extends BaseRxFragment<IMineView, MinePresenter> imple
     private void initMineRecycler() {
         LogUtil.d(TAG, "initMineRecycler");
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mDividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         mMineAdapter = new MineAdapter(getActivity());
 
         mMineRecycler.setLayoutManager(mLinearLayoutManager);
+        mMineRecycler.addItemDecoration(mDividerItemDecoration);
         mMineRecycler.setAdapter(mMineAdapter);
     }
 

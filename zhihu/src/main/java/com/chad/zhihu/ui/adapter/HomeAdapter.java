@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.HomeInfo;
+import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 import com.chad.zhihu.util.DateUtil;

@@ -1,6 +1,6 @@
 package com.chad.zhihu.mvp.zhihu.presenter.home;
 
-import com.chad.zhihu.entity.zhihu.HomeInfo;
+import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.mvp.zhihu.model.home.HomeModel;
 import com.chad.zhihu.mvp.zhihu.view.IHomeView;

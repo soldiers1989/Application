@@ -1,4 +1,4 @@
-package com.chad.zhihu.entity.zhihu;
+package com.chad.zhihu.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

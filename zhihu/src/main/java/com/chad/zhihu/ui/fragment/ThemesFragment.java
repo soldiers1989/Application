@@ -4,8 +4,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.entity.ThemeDetailsInfo;
+import com.chad.zhihu.entity.ThemesInfo;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.themes.ThemesPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IThemesView;

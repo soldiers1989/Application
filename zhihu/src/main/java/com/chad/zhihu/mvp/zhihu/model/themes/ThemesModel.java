@@ -1,7 +1,7 @@
 package com.chad.zhihu.mvp.zhihu.model.themes;
 
-import com.chad.zhihu.entity.zhihu.ThemeDetailsInfo;
-import com.chad.zhihu.entity.zhihu.ThemesInfo;
+import com.chad.zhihu.entity.ThemeDetailsInfo;
+import com.chad.zhihu.entity.ThemesInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.themes.IThemesPresenter;

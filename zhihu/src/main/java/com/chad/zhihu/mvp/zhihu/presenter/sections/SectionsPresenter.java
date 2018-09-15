@@ -1,7 +1,7 @@
 package com.chad.zhihu.mvp.zhihu.presenter.sections;
 
-import com.chad.zhihu.entity.zhihu.SectionDetailsInfo;
-import com.chad.zhihu.entity.zhihu.SectionsInfo;
+import com.chad.zhihu.entity.SectionDetailsInfo;
+import com.chad.zhihu.entity.SectionsInfo;
 import com.chad.zhihu.mvp.base.BasePresenter;
 import com.chad.zhihu.mvp.zhihu.model.sections.SectionsModel;
 import com.chad.zhihu.mvp.zhihu.view.ISectionsView;

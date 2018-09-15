@@ -1,7 +1,7 @@
 package com.chad.zhihu.mvp.zhihu.model.details;
 
-import com.chad.zhihu.entity.zhihu.DetailsExtraInfo;
-import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.entity.DetailsExtraInfo;
+import com.chad.zhihu.entity.DetailsInfo;
 import com.chad.zhihu.hepler.RxSchedulersHelper;
 import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.details.IDetailsPresenter;

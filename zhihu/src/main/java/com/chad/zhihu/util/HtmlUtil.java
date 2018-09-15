@@ -1,6 +1,6 @@
 package com.chad.zhihu.util;
 
-import com.chad.zhihu.entity.zhihu.DetailsInfo;
+import com.chad.zhihu.entity.DetailsInfo;
 
 import java.util.List;
 

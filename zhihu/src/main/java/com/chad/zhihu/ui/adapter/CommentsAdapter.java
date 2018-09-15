@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
-import com.chad.zhihu.entity.zhihu.CommentsInfo;
+import com.chad.zhihu.entity.CommentsInfo;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
 import com.chad.zhihu.util.DateUtil;
 import com.chad.zhihu.util.LogUtil;
