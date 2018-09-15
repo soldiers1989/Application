@@ -11,7 +11,7 @@ import butterknife.Unbinder;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 public abstract class BaseMvpRxAppCompatActivity<V, T extends BasePresenter<V>>
-        extends RxAppCompatActivity{
+        extends RxAppCompatActivity {
 
     private Unbinder unbinder = null;
 
