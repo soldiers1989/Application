@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">悦享新微博</string>
-    <string name="title_navigation_home">首页</string>
-    <string name="title_navigation_hot">热门</string>
-    <string name="title_navigation_find">发现</string>
-    <string name="title_navigation_location">周边</string>
-    <string name="title_navigation_about">关于</string>
-    <string name="title_navigation_setting">设置</string>
-    <string name="open">打开</string>
-    <string name="close">关闭</string>
+    <string name="navigation_user_login">点击登录</string>
+    <string name="navigation_title_home">首页</string>
+    <string name="navigation_title_about">关于</string>
+    <string name="navigation_title_setting">设置</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
 </resources>

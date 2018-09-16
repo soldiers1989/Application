@@ -1,5 +1,6 @@
 package com.chad.weibo.ui.activity;
 
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,8 @@ public class MainActivity extends BaseRxAppCompatActivity {
 
     @BindView(R.id.layout_drawer)
     DrawerLayout mLayoutDrawer;
+    @BindView(R.id.layout_appbar)
+    AppBarLayout mLayoutAppBar;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -29,6 +32,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        initToolbar();
         initDrawer();
     }
 
@@ -37,11 +41,17 @@ public class MainActivity extends BaseRxAppCompatActivity {
         LogUtil.d(TAG, "initData");
     }
 
+    private void initToolbar() {
+        LogUtil.d(TAG, "initToolbar");
+        mToolbar.setNavigationIcon(R.drawable.ic_toolbar_navigation);
+        mToolbar.setTitle("全部");
+        setSupportActionBar(mToolbar);
+    }
+
     private void initDrawer() {
         LogUtil.d(TAG, "initDrawer");
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mLayoutDrawer, mToolbar,
-                R.string.open, R.string.close);
-        mActionBarDrawerToggle.syncState();
+                R.string.drawer_open, R.string.drawer_close);
         mLayoutDrawer.addDrawerListener(mActionBarDrawerToggle);
     }
 }
