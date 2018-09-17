@@ -29,10 +29,10 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailsActivityMvp extends BaseSwipeBackMvpRxAppCompatActivity<IDetailsView, DetailsPresenter>
+public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {
 
-    private static final String TAG = DetailsActivityMvp.class.getSimpleName();
+    private static final String TAG = DetailsActivity.class.getSimpleName();
 
     @BindView(R.id.layout_appbar)
     AppBarLayout mLayoutAppBar;
@@ -102,9 +102,9 @@ public class DetailsActivityMvp extends BaseSwipeBackMvpRxAppCompatActivity<IDet
         mLayoutAppBar.addOnOffsetChangedListener((appBarLayout, i) -> {
             // 0全部展开
             if (i == 0) {
-                SystemStatusBarUtil.unlockStatusBar(DetailsActivityMvp.this);
+                SystemStatusBarUtil.unlockStatusBar(DetailsActivity.this);
             } else {
-                SystemStatusBarUtil.lockStatusBar(DetailsActivityMvp.this);
+                SystemStatusBarUtil.lockStatusBar(DetailsActivity.this);
             }
         });
     }

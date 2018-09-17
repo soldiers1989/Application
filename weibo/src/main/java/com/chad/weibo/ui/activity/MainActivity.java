@@ -82,4 +82,5 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mToolbar.setTitle(menuItem.getTitle());
         mLayoutDrawer.closeDrawers();
     }
+
 }
