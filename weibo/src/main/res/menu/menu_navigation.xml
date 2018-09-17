@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group>
+    <group android:id="@+id/group_sina">
         <item
-            android:id="@+id/menu_home"
+            android:id="@+id/item_home"
             android:icon="@drawable/ic_navigation_home"
             android:title="@string/navigation_title_home" />
 
         <item
-            android:id="@+id/menu_about"
+            android:id="@+id/item_hot"
+            android:icon="@drawable/ic_navigation_hot"
+            android:title="@string/navigation_title_hot" />
+    </group>
+
+    <group android:id="@+id/group_app">
+        <item
+            android:id="@+id/item_about"
             android:icon="@drawable/ic_navigation_about"
             android:title="@string/navigation_title_about" />
 
         <item
-            android:id="@+id/menu_setting"
+            android:id="@+id/item_setting"
             android:icon="@drawable/ic_navigation_setting"
             android:title="@string/navigation_title_setting" />
     </group>

@@ -35,7 +35,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
         LogUtil.d(TAG, "initViews");
         initToolbar();
         initDrawer();
-        initNavigationView();
+        initNavigation();
     }
 
     @Override
@@ -60,30 +60,26 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mLayoutDrawer.addDrawerListener(mActionBarDrawerToggle);
     }
 
-    private void initNavigationView() {
-        LogUtil.d(TAG, "initNavigationView");
+    private void initNavigation() {
+        LogUtil.d(TAG, "initNavigation");
         MenuItem defaultMenuItem = mNavigationView.getMenu().getItem(0);
-        defaultMenuItem.setCheckable(true);
-        defaultMenuItem.setChecked(true);
-        mToolbar.setTitle(defaultMenuItem.getTitle());
+        setNavigationItemChecked(defaultMenuItem);
 
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.menu_home:
-                    // TODO: 2018/9/16 做切换页面逻辑 
-                    break;
-                case R.id.menu_about:
-                    break;
-                case R.id.menu_setting:
-                    break;
-                    default:
-                        break;
-            }
-            menuItem.setCheckable(true);
-            menuItem.setChecked(true);
-            mToolbar.setTitle(menuItem.getTitle());
-            mLayoutDrawer.closeDrawers();
+            // TODO: 2018/9/17 切换页面等逻辑
+            setNavigationItemChecked(menuItem);
             return false;
         });
+    }
+
+    private void setNavigationItemChecked(MenuItem menuItem) {
+        LogUtil.d(TAG, "setNavigationItemChecked : menuItem = " + menuItem);
+        if (menuItem == null) {
+            return;
+        }
+        menuItem.setCheckable(true);
+        menuItem.setChecked(true);
+        mToolbar.setTitle(menuItem.getTitle());
+        mLayoutDrawer.closeDrawers();
     }
 }

@@ -9,10 +9,10 @@
     </style>
     <!-- 主界面Theme，主要是为了修改DrawerArrow颜色 -->
     <style name="MainTheme" parent="AppTheme">
-        <item name="drawerArrowStyle">@style/DrawerArrowToggle</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowToggleStyle</item>
     </style>
     <!-- 定义DrawerArrow的颜色 -->
-    <style name="DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+    <style name="DrawerArrowToggleStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
     <!-- 定义Toolbar标题的字体大小和颜色 -->
