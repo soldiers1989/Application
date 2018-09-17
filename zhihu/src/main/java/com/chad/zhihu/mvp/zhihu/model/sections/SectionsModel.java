@@ -35,6 +35,7 @@ public class SectionsModel implements ISectionsModel {
         LogUtil.d(TAG, "getSectionsInfo");
         ZhiHuRetrofit.getSectionsInfo()
                 .compose(transformer)
+                .delay(1, TimeUnit.SECONDS)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.OnSectionsInfo((SectionsInfo) o),
                         throwable -> presenter.onError(throwable.toString()));

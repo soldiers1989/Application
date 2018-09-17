@@ -1,7 +1,9 @@
 package com.chad.zhihu.ui.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.ThemeDetailsInfo;
@@ -22,6 +24,8 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
 
     @BindView(R.id.themes_recycler)
     RecyclerView mThemesRecycler;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLayoutLoading;
 
     private LinearLayoutManager mLinearLayoutManager = null;
     private ThemesAdapter mThemesAdapter = null;
@@ -70,6 +74,7 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
         }
         mThemesInfo = themesInfo;
         mThemesAdapter.setData(themesInfo.getOthers());
+        mLayoutLoading.setVisibility(View.GONE);
     }
 
     @Override
@@ -80,5 +85,6 @@ public class ThemesFragment extends BaseRxFragment<IThemesView, ThemesPresenter>
     @Override
     public void onError(String msg) {
         LogUtil.d(TAG, "onError : msg = " + msg);
+        mLayoutLoading.setVisibility(View.GONE);
     }
 }

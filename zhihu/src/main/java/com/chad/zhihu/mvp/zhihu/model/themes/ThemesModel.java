@@ -35,6 +35,7 @@ public class ThemesModel implements IThemesModel {
         LogUtil.d(TAG, "getThemesInfo");
         ZhiHuRetrofit.getThemesInfo()
                 .compose(transformer)
+                .delay(1, TimeUnit.SECONDS)
                 .compose(RxSchedulersHelper.bindToMainThread())
                 .subscribe(o -> presenter.onThemesInfo((ThemesInfo) o),
                         throwable -> presenter.onError(throwable.toString()));

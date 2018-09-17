@@ -1,7 +1,9 @@
 package com.chad.zhihu.ui.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.entity.SectionDetailsInfo;
@@ -22,6 +24,8 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
 
     @BindView(R.id.sections_recycler)
     RecyclerView mSectionsRecycler;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLayoutLoading;
 
     private LinearLayoutManager mLinearLayoutManager = null;
     private SectionsAdapter mSectionsAdapter = null;
@@ -70,6 +74,7 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
         }
         mSectionsInfo = sectionsInfo;
         mSectionsAdapter.setData(sectionsInfo.getData());
+        mLayoutLoading.setVisibility(View.GONE);
     }
 
     @Override
@@ -85,5 +90,6 @@ public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPres
     @Override
     public void onError(String msg) {
         LogUtil.d(TAG, "onError : msg = " + msg);
+        mLayoutLoading.setVisibility(View.GONE);
     }
 }

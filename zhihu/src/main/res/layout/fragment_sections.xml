@@ -10,4 +10,8 @@
         android:overScrollMode="never"
         android:scrollbars="vertical" />
 
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading" />
+
 </android.support.constraint.ConstraintLayout>

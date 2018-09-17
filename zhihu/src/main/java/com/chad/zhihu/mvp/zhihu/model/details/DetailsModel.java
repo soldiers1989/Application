@@ -7,6 +7,8 @@ import com.chad.zhihu.retrofit.ZhiHuRetrofit;
 import com.chad.zhihu.mvp.zhihu.presenter.details.IDetailsPresenter;
 import com.chad.zhihu.util.LogUtil;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.ObservableTransformer;
 
 public class DetailsModel implements IDetailsModel {
