@@ -37,6 +37,13 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support:design:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+    // 新浪微博SDK
+    implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
+    // Glide图片加载库
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    // Fresco图片加载库
+    implementation 'com.facebook.fresco:fresco:1.10.0'
     // ButterKnife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
@@ -55,9 +62,4 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     // Retrofit网络请求RxJava适配器
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    // Glide图片加载库
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    // Fresco图片加载库
-    implementation 'com.facebook.fresco:fresco:1.10.0'
 }
