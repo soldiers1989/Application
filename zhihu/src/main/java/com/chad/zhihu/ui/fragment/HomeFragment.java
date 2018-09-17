@@ -11,7 +11,7 @@ import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.home.HomePresenter;
 import com.chad.zhihu.mvp.zhihu.view.IHomeView;
 import com.chad.zhihu.ui.adapter.HomeAdapter;
-import com.chad.zhihu.ui.base.BaseRxFragment;
+import com.chad.zhihu.ui.base.BaseMvpRxFragment;
 import com.chad.zhihu.ui.view.banner.Banner;
 import com.chad.zhihu.ui.view.banner.BannerView;
 import com.chad.zhihu.ui.view.recycler.HeaderViewAdapter;
@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.Observable;
 
-public class HomeFragment extends BaseRxFragment<IHomeView, HomePresenter> implements IHomeView {
+public class HomeFragment extends BaseMvpRxFragment<IHomeView, HomePresenter> implements IHomeView {
 
     private static final String TAG = HomeFragment.class.getSimpleName();
 

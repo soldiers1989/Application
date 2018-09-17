@@ -2,28 +2,28 @@ package com.chad.zhihu.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.chad.zhihu.mvp.base.BasePresenter;
 
-public abstract class BaseMvpRxAppCompatActivity<V, T extends BasePresenter<V>>
-        extends BaseRxAppCompatActivity {
+public abstract class BaseMvpRxFragment<V, T extends BasePresenter<V>> extends BaseRxFragment {
 
     protected T presenter = null;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         presenter = getPresenter();
         presenter.attachView((V) this);
-        super.onCreate(savedInstanceState);
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroyView() {
         if (presenter != null) {
             presenter.detachView();
             presenter = null;
         }
-        super.onDestroy();
+        super.onDestroyView();
     }
 
     protected abstract T getPresenter();

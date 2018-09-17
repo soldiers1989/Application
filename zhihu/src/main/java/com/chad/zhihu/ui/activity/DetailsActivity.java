@@ -15,7 +15,7 @@ import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IDetailsView;
-import com.chad.zhihu.ui.base.BaseSwipeBackRxAppCompatActivity;
+import com.chad.zhihu.ui.base.BaseSwipeBackMvpRxAppCompatActivity;
 import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
@@ -29,10 +29,10 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsView, DetailsPresenter>
+public class DetailsActivityMvp extends BaseSwipeBackMvpRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {
 
-    private static final String TAG = DetailsActivity.class.getSimpleName();
+    private static final String TAG = DetailsActivityMvp.class.getSimpleName();
 
     @BindView(R.id.layout_appbar)
     AppBarLayout mLayoutAppBar;
@@ -102,9 +102,9 @@ public class DetailsActivity extends BaseSwipeBackRxAppCompatActivity<IDetailsVi
         mLayoutAppBar.addOnOffsetChangedListener((appBarLayout, i) -> {
             // 0全部展开
             if (i == 0) {
-                SystemStatusBarUtil.unlockStatusBar(DetailsActivity.this);
+                SystemStatusBarUtil.unlockStatusBar(DetailsActivityMvp.this);
             } else {
-                SystemStatusBarUtil.lockStatusBar(DetailsActivity.this);
+                SystemStatusBarUtil.lockStatusBar(DetailsActivityMvp.this);
             }
         });
     }

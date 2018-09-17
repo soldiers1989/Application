@@ -13,12 +13,12 @@ import com.chad.zhihu.entity.CommentsInfo;
 import com.chad.zhihu.mvp.zhihu.presenter.comments.CommentsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.ICommentsView;
 import com.chad.zhihu.ui.adapter.CommentsAdapter;
-import com.chad.zhihu.ui.base.BaseRxFragment;
+import com.chad.zhihu.ui.base.BaseMvpRxFragment;
 import com.chad.zhihu.util.LogUtil;
 
 import butterknife.BindView;
 
-public class ShortCommentsFragment extends BaseRxFragment<ICommentsView, CommentsPresenter>
+public class ShortCommentsFragment extends BaseMvpRxFragment<ICommentsView, CommentsPresenter>
         implements ICommentsView {
 
     private static final String TAG = ShortCommentsFragment.class.getSimpleName();

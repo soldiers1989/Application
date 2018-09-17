@@ -12,12 +12,12 @@ import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.mvp.zhihu.presenter.sections.SectionsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.ISectionsView;
 import com.chad.zhihu.ui.adapter.SectionsAdapter;
-import com.chad.zhihu.ui.base.BaseRxFragment;
+import com.chad.zhihu.ui.base.BaseMvpRxFragment;
 import com.chad.zhihu.util.LogUtil;
 
 import butterknife.BindView;
 
-public class SectionsFragment extends BaseRxFragment<ISectionsView, SectionsPresenter>
+public class SectionsFragment extends BaseMvpRxFragment<ISectionsView, SectionsPresenter>
         implements ISectionsView {
 
     private static final String TAG = SectionsFragment.class.getSimpleName();

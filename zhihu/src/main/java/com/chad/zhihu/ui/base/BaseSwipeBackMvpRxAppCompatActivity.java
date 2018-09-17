@@ -4,16 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.chad.zhihu.mvp.base.BasePresenter;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
-public abstract class BaseSwipeBackRxAppCompatActivity<V, T extends BasePresenter<V>>
-        extends RxAppCompatActivity implements BGASwipeBackHelper.Delegate {
-
-    private Unbinder unbinder = null;
+public abstract class BaseSwipeBackMvpRxAppCompatActivity<V, T extends BasePresenter<V>>
+        extends BaseRxAppCompatActivity implements BGASwipeBackHelper.Delegate {
 
     protected T presenter = null;
     protected BGASwipeBackHelper bgaSwipeBackHelper = null;
@@ -21,13 +16,9 @@ public abstract class BaseSwipeBackRxAppCompatActivity<V, T extends BasePresente
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initSwipeBackHelper();
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        unbinder = ButterKnife.bind(this);
         presenter = getPresenter();
         presenter.attachView((V) this);
-        initViews();
-        initData();
+        super.onCreate(savedInstanceState);
     }
 
     /**
@@ -79,10 +70,6 @@ public abstract class BaseSwipeBackRxAppCompatActivity<V, T extends BasePresente
 
     @Override
     protected void onDestroy() {
-        if (unbinder != null) {
-            unbinder.unbind();
-            unbinder = null;
-        }
         if (presenter != null) {
             presenter.detachView();
             presenter = null;
@@ -93,11 +80,5 @@ public abstract class BaseSwipeBackRxAppCompatActivity<V, T extends BasePresente
         super.onDestroy();
     }
 
-    protected abstract int getLayoutId();
-
     protected abstract T getPresenter();
-
-    protected abstract void initViews();
-
-    protected abstract void initData();
 }

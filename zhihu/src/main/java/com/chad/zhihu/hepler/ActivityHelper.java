@@ -6,9 +6,9 @@ import android.content.Intent;
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.ui.activity.CommentActivity;
+import com.chad.zhihu.ui.activity.DetailsActivity;
 import com.chad.zhihu.ui.activity.SectionDetailsActivity;
 import com.chad.zhihu.ui.activity.ThemeDetailsActivity;
-import com.chad.zhihu.ui.activity.DetailsActivity;
 import com.chad.zhihu.ui.activity.MainActivity;
 import com.chad.zhihu.util.LogUtil;
 
