@@ -17,7 +17,7 @@
     </style>
     <!-- 定义Toolbar标题的字体大小和颜色 -->
     <style name="ToolbarTitleAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorGeneralText</item>
     </style>
     <!-- 设置NavigationView的MenuItem字体大小-->
     <style name="NavigationTheme">
@@ -26,7 +26,7 @@
     <!-- 定义全局通用文字的大小和颜色-->
     <style name="TextGeneralStyle">
         <item name="android:textSize">@dimen/chad_18sp</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorGeneralText</item>
     </style>
 
 </resources>
