@@ -8,7 +8,7 @@ import com.chad.weibo.mvp.base.BasePresenter;
 public abstract class BaseMvpAppCompatActivity<V, T extends BasePresenter<V>>
         extends BaseRxAppCompatActivity {
 
-    private T presenter = null;
+    protected T presenter = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

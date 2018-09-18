@@ -18,7 +18,7 @@ public abstract class BasePresenter<V> {
     }
 
     protected V getView() {
-        return mViewReference == null ? null : mViewReference.get();
+        return mViewReference == null? null: mViewReference.get();
     }
 
     protected boolean isAttachView() {

@@ -12,9 +12,12 @@ public class WeiBoApplication extends Application {
 
     private static final String TAG = WeiBoApplication.class.getSimpleName();
 
+    private static WeiBoApplication mWeiBoApplication = null;
+
     @Override
     public void onCreate() {
         LogUtil.d(TAG, "onCreate");
+        mWeiBoApplication = this;
         initFresco();
         initWeiBoSdk();
         super.onCreate();
@@ -30,5 +33,10 @@ public class WeiBoApplication extends Application {
         AuthInfo authInfo = new AuthInfo(this, WeiBoConstant.APP_KEY,
                 WeiBoConstant.REDIRECT_URL, WeiBoConstant.SCOPE);
         WbSdk.install(this, authInfo);
+    }
+
+    public static WeiBoApplication getWeiBoApplication() {
+        LogUtil.d(TAG, "getWeiBoApplication");
+        return mWeiBoApplication == null? null: mWeiBoApplication;
     }
 }

@@ -8,7 +8,7 @@ import com.chad.weibo.mvp.base.BasePresenter;
 
 public abstract class BaseMvpFragment<V, T extends BasePresenter<V>> extends BaseRxFragment {
 
-    private T presenter = null;
+    protected T presenter = null;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

@@ -38,11 +38,6 @@ public class MainActivity extends BaseRxAppCompatActivity {
         initNavigation();
     }
 
-    @Override
-    protected void initData() {
-        LogUtil.d(TAG, "initData");
-    }
-
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
         mToolbar.setTitle("");
@@ -72,6 +67,11 @@ public class MainActivity extends BaseRxAppCompatActivity {
         });
     }
 
+    @Override
+    protected void initData() {
+        LogUtil.d(TAG, "initData");
+    }
+
     private void setNavigationItemChecked(MenuItem menuItem) {
         LogUtil.d(TAG, "setNavigationItemChecked : menuItem = " + menuItem);
         if (menuItem == null) {
@@ -82,5 +82,4 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mToolbar.setTitle(menuItem.getTitle());
         mLayoutDrawer.closeDrawers();
     }
-
 }
