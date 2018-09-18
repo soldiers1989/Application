@@ -15,4 +15,6 @@ public interface IAuthModel {
     void authorizeWeb(Activity activity);
 
     void authorize(Activity activity);
+
+    void clearAccessToken();
 }

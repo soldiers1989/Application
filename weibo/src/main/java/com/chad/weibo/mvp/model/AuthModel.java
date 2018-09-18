@@ -65,6 +65,12 @@ public class AuthModel implements IAuthModel, WbAuthListener {
     }
 
     @Override
+    public void clearAccessToken() {
+        LogUtil.d(TAG, "clearAccessToken");
+        mWeiBoAuthHelper.clearAccessToken();
+    }
+
+    @Override
     public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
         LogUtil.d(TAG, "onSuccess : oauth2AccessToken = "
                 + (oauth2AccessToken == null ? null : "Not Null"));

@@ -7,10 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.chad.weibo.R;
+import com.chad.weibo.entity.User;
+import com.chad.weibo.helper.WeiBoAuthHelper;
+import com.chad.weibo.retrofit.WeiBoRetrofit;
 import com.chad.weibo.ui.base.BaseRxAppCompatActivity;
 import com.chad.weibo.util.LogUtil;
+import com.chad.weibo.util.RxSchedulersUtil;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseRxAppCompatActivity {
 
@@ -70,6 +76,17 @@ public class MainActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initData() {
         LogUtil.d(TAG, "initData");
+        Oauth2AccessToken accessToken = WeiBoAuthHelper.getInstance(getApplicationContext()).getOauth2AccessToken();
+        String uid = accessToken.getUid();
+        WeiBoRetrofit.getUser(accessToken.getToken(), uid)
+                .compose(bindToLifecycle())
+                .compose(RxSchedulersUtil.thread())
+                .subscribe(new Consumer<User>() {
+                    @Override
+                    public void accept(User user) throws Exception {
+                        LogUtil.d(TAG, "accept : user = " + user.getScreen_name());
+                    }
+                });
     }
 
     private void setNavigationItemChecked(MenuItem menuItem) {

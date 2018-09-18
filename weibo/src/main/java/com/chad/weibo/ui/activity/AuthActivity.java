@@ -60,6 +60,7 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
         LogUtil.d(TAG, "auth : isSessionValid = " + presenter.isSessionValid());
         if (presenter.isSessionValid()) {
             ActivityHelper.startMainActivity(this);
+            finish();
         } else {
             presenter.authorize(this);
         }
@@ -84,6 +85,7 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
     public void onAuthSuccess() {
         LogUtil.d(TAG, "onAuthSuccess");
         ActivityHelper.startMainActivity(this);
+        finish();
     }
 
     @Override

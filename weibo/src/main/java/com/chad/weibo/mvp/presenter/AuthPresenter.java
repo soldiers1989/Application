@@ -38,6 +38,11 @@ public class AuthPresenter extends BasePresenter<IAuthView> implements IAuthPres
         AuthModel.getInstance(this).authorize(activity);
     }
 
+    public void clearAccessToken() {
+        LogUtil.d(TAG, "clearAccessToken");
+        AuthModel.getInstance(this).clearAccessToken();
+    }
+
     @Override
     public void onAuthSuccess() {
         getView().onAuthSuccess();

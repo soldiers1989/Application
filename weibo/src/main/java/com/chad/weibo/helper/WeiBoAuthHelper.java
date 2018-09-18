@@ -53,6 +53,10 @@ public class WeiBoAuthHelper {
         return AccessTokenKeeper.readAccessToken(mContext);
     }
 
+    public void clearAccessToken() {
+        AccessTokenKeeper.clear(mContext);
+    }
+
     public SsoHandler getSsoHandler() {
         return mSsoHandler == null ? null : mSsoHandler;
     }
