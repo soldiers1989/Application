@@ -14,12 +14,14 @@ public class NetworkHelper {
     public static boolean isNetworkConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) WeiBoApplication
                 .getWeiBoApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
-        LogUtil.d(TAG, "isNetworkConnected : connectivityManager = " + connectivityManager);
+        LogUtil.d(TAG, "isNetworkConnected : connectivityManager = "
+                + (connectivityManager == null ? null : "Not Null"));
         if (connectivityManager != null) {
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            LogUtil.d(TAG, "isNetworkConnected : networkInfo = " + networkInfo);
+            LogUtil.d(TAG, "isNetworkConnected : networkInfo = "
+                    + (networkInfo == null ? null : "Not Null"));
             if (networkInfo != null) {
-                return  networkInfo.isConnected();
+                return networkInfo.isConnected();
             }
         }
         return false;

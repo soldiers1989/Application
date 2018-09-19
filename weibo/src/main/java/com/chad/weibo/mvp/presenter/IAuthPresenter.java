@@ -1,12 +1,5 @@
 package com.chad.weibo.mvp.presenter;
 
-import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
+import com.chad.weibo.mvp.view.IAuthView;
 
-public interface IAuthPresenter {
-
-    void onAuthSuccess();
-
-    void onAuthCancel();
-
-    void onAuthFailure(WbConnectErrorMessage wbConnectErrorMessage);
-}
+public interface IAuthPresenter extends IAuthView {}

@@ -40,7 +40,8 @@ public class WeiBoRetrofit {
     }
 
     private static void initOkHttpClient() {
-        LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = " + mOkHttpClient);
+        LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = "
+                + (mOkHttpClient == null? null: "Not Null"));
         if (mOkHttpClient == null) {
             synchronized (WeiBoRetrofit.class) {
                 File cacheDir = WeiBoApplication.getWeiBoApplication().getCacheDir(); // 缓存文件目录
