@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
     // 新浪微博SDK
-    implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
+    implementation 'com.sina.weibo.sdk:core:4.3.0:openDefaultRelease@aar'
     // Glide图片加载库
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'

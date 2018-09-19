@@ -19,6 +19,7 @@ public class User implements Parcelable {
     private String url;
     private String profile_image_url;
     private String profile_url;
+    private String cover_image_phone;
     private String domain;
     private String weihao;
     private String gender;
@@ -85,6 +86,10 @@ public class User implements Parcelable {
 
     public String getProfile_url() {
         return profile_url;
+    }
+
+    public String getCover_image_phone() {
+        return cover_image_phone;
     }
 
     public String getDomain() {
@@ -191,6 +196,7 @@ public class User implements Parcelable {
         url = out.readString();
         profile_image_url = out.readString();
         profile_url = out.readString();
+        cover_image_phone = out.readString();
         domain = out.readString();
         weihao = out.readString();
         gender = out.readString();
@@ -234,6 +240,7 @@ public class User implements Parcelable {
         in.writeString(url);
         in.writeString(profile_image_url);
         in.writeString(profile_url);
+        in.writeString(cover_image_phone);
         in.writeString(domain);
         in.writeString(weihao);
         in.writeString(gender);

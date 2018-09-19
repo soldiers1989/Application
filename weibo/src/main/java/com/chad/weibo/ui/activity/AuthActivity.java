@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.chad.weibo.R;
 import com.chad.weibo.helper.ActivityHelper;
-import com.chad.weibo.mvp.presenter.AuthPresenter;
+import com.chad.weibo.mvp.presenter.auth.AuthPresenter;
 import com.chad.weibo.mvp.view.IAuthView;
 import com.chad.weibo.ui.base.BaseMvpAppCompatActivity;
 import com.chad.weibo.util.LogUtil;
@@ -27,8 +27,8 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.text_status)
-    AppCompatTextView mTextStatus;
+    @BindView(R.id.status)
+    AppCompatTextView mStatus;
 
     @Override
     protected int getLayoutId() {
@@ -98,6 +98,6 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
     public void onAuthFailure(WbConnectErrorMessage wbConnectErrorMessage) {
         LogUtil.d(TAG, "onAuthFailure : code = " + wbConnectErrorMessage.getErrorCode()
                 + " , message = " + wbConnectErrorMessage.getErrorMessage());
-        mTextStatus.setText(getString(R.string.auth_failure) + wbConnectErrorMessage.getErrorMessage());
+        mStatus.setText(getString(R.string.auth_failure) + wbConnectErrorMessage.getErrorMessage());
     }
 }

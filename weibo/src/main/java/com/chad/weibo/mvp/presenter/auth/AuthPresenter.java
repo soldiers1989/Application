@@ -1,9 +1,9 @@
-package com.chad.weibo.mvp.presenter;
+package com.chad.weibo.mvp.presenter.auth;
 
 import android.app.Activity;
 
 import com.chad.weibo.mvp.base.BasePresenter;
-import com.chad.weibo.mvp.model.AuthModel;
+import com.chad.weibo.mvp.model.auth.AuthModel;
 import com.chad.weibo.mvp.view.IAuthView;
 import com.chad.weibo.util.LogUtil;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;

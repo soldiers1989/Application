@@ -29,6 +29,7 @@ public class Status implements Parcelable {
     private int comments_count;
     private int attitudes_count;
     private int mlevel;
+    private Visible visible;
 
     public String getCreated_at() {
         return created_at;
@@ -114,6 +115,10 @@ public class Status implements Parcelable {
         return mlevel;
     }
 
+    public Visible getVisible() {
+        return visible;
+    }
+
     protected Status(Parcel out) {
         created_at = out.readString();
         id = out.readLong();
@@ -136,6 +141,7 @@ public class Status implements Parcelable {
         comments_count = out.readInt();
         attitudes_count = out.readInt();
         mlevel = out.readInt();
+        visible = (Visible) out.readValue(Visible.class.getClassLoader());
     }
 
     @Override
@@ -166,6 +172,7 @@ public class Status implements Parcelable {
         in.writeInt(comments_count);
         in.writeInt(attitudes_count);
         in.writeInt(mlevel);
+        in.writeValue(visible);
     }
 
     public static final Creator<Status> CREATOR = new Creator<Status>() {

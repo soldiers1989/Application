@@ -3,22 +3,37 @@ package com.chad.weibo.ui.activity;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.weibo.R;
 import com.chad.weibo.entity.User;
+import com.chad.weibo.eventbus.EventMessage;
+import com.chad.weibo.eventbus.EventType;
+import com.chad.weibo.glide.CustomGlideModule;
+import com.chad.weibo.glide.GlideApp;
+import com.chad.weibo.helper.ActivityHelper;
 import com.chad.weibo.helper.WeiBoAuthHelper;
-import com.chad.weibo.retrofit.WeiBoRetrofit;
-import com.chad.weibo.ui.base.BaseRxAppCompatActivity;
+import com.chad.weibo.mvp.presenter.main.MainPresenter;
+import com.chad.weibo.mvp.view.IMainView;
+import com.chad.weibo.ui.base.BaseMvpAppCompatActivity;
 import com.chad.weibo.util.LogUtil;
-import com.chad.weibo.util.RxSchedulersUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
-import butterknife.BindView;
-import io.reactivex.functions.Consumer;
+import org.greenrobot.eventbus.EventBus;
 
-public class MainActivity extends BaseRxAppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresenter>
+        implements IMainView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -28,8 +43,12 @@ public class MainActivity extends BaseRxAppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.view_navigation)
     NavigationView mNavigationView;
+    AppCompatImageView mCoverImagePhone;
+    SimpleDraweeView mUserAvatar;
+    AppCompatTextView mUserName;
 
     private ActionBarDrawerToggle mActionBarDrawerToggle = null;
+    private User mUser = null;
 
     @Override
     protected int getLayoutId() {
@@ -71,22 +90,34 @@ public class MainActivity extends BaseRxAppCompatActivity {
             setNavigationItemChecked(menuItem);
             return false;
         });
+
+        View view = mNavigationView.getHeaderView(0);
+        mCoverImagePhone = view.findViewById(R.id.cover_image_phone);
+        mUserAvatar = view.findViewById(R.id.user_avatar);
+        mUserName = view.findViewById(R.id.user_name);
+
+        mUserAvatar.setOnClickListener(v -> ActivityHelper.startUserActivity(this));
     }
 
     @Override
     protected void initData() {
         LogUtil.d(TAG, "initData");
-        Oauth2AccessToken accessToken = WeiBoAuthHelper.getInstance(getApplicationContext()).getOauth2AccessToken();
-        long uid = Long.parseLong(accessToken.getUid());
-        WeiBoRetrofit.getUser(accessToken.getToken(), uid)
-                .compose(bindToLifecycle())
-                .compose(RxSchedulersUtil.thread())
-                .subscribe(new Consumer<User>() {
-                    @Override
-                    public void accept(User user) throws Exception {
-                        LogUtil.d(TAG, "accept : user = " + user.getScreen_name());
-                    }
-                });
+        getUser();
+    }
+
+    private void getUser() {
+        LogUtil.d(TAG, "getUser");
+        Oauth2AccessToken accessToken = WeiBoAuthHelper.getInstance().getOauth2AccessToken();
+        if (accessToken != null) {
+            String access_token = accessToken.getToken();
+            long uid = Long.parseLong(accessToken.getUid());
+            presenter.getUser(bindToLifecycle(), access_token, uid);
+        }
+    }
+
+    @Override
+    protected MainPresenter getPresenter() {
+        return new MainPresenter();
     }
 
     private void setNavigationItemChecked(MenuItem menuItem) {
@@ -98,5 +129,33 @@ public class MainActivity extends BaseRxAppCompatActivity {
         menuItem.setChecked(true);
         mToolbar.setTitle(menuItem.getTitle());
         mLayoutDrawer.closeDrawers();
+    }
+
+    @Override
+    protected void onStop() {
+        LogUtil.d(TAG, "onPause");
+        EventBus.getDefault().post(new EventMessage(EventType.TYPE_USER, mUser));
+        super.onStop();
+    }
+
+    @Override
+    public void onUser(User user) {
+        LogUtil.d(TAG, "onUser : user = " + (user == null ? null : "Not Null"));
+        if (user == null) {
+            return;
+        }
+        mUser = user;
+        GlideApp.with(this)
+                .load(user.getCover_image_phone())
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(mCoverImagePhone);
+        mUserAvatar.setImageURI(user.getAvatar_large());
+        mUserName.setText(user.getScreen_name());
+    }
+
+    @Override
+    public void onError(Object object) {
+        LogUtil.d(TAG, "onError : message = " + ((Throwable) object).getMessage());
     }
 }

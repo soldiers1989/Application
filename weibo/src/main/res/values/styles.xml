@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorTheme</item>
     </style>
     <!-- 主界面Theme，主要是为了修改DrawerArrow颜色 -->
     <style name="MainTheme" parent="AppTheme">
@@ -27,6 +28,15 @@
     <style name="TextGeneralStyle">
         <item name="android:textSize">@dimen/chad_18sp</item>
         <item name="android:textColor">@color/colorGeneralText</item>
+    </style>
+
+    <style name="UserDescriptionTextStyle">
+        <item name="android:textSize">@dimen/chad_15sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
     </style>
 
 </resources>

@@ -14,9 +14,4 @@
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:titleTextAppearance="@style/ToolbarTitleAppearance" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/chad_3dp"
-        android:background="@drawable/shadow_toolbar" />
-
 </android.support.design.widget.AppBarLayout>

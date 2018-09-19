@@ -1,10 +1,9 @@
-package com.chad.weibo.mvp.model;
+package com.chad.weibo.mvp.model.auth;
 
 import android.app.Activity;
 
-import com.chad.weibo.WeiBoApplication;
 import com.chad.weibo.helper.WeiBoAuthHelper;
-import com.chad.weibo.mvp.presenter.AuthPresenter;
+import com.chad.weibo.mvp.presenter.auth.AuthPresenter;
 import com.chad.weibo.util.LogUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbAuthListener;
@@ -31,7 +30,7 @@ public class AuthModel implements IAuthModel, WbAuthListener {
 
     private AuthModel(AuthPresenter oauthPresenter) {
         mOauthPresenter = oauthPresenter;
-        mWeiBoAuthHelper = WeiBoAuthHelper.getInstance(WeiBoApplication.getWeiBoApplication());
+        mWeiBoAuthHelper = WeiBoAuthHelper.getInstance();
     }
 
     @Override

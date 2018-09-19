@@ -1,10 +1,6 @@
 package com.chad.weibo.glide;
 
-import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
-
 import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.module.AppGlideModule;
 
 /**
@@ -12,12 +8,4 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 @GlideModule
 public class CustomGlideModule extends AppGlideModule {
-
-    public static void load(Context context, String url, AppCompatImageView imageView) {
-        GlideApp.with(context)
-                .load(url) // 设置URL
-                .centerCrop() // 设置scaleType
-                .diskCacheStrategy(DiskCacheStrategy.ALL) // 设置缓存
-                .into(imageView);
-    }
 }

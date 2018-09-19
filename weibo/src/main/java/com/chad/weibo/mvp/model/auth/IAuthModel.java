@@ -1,4 +1,4 @@
-package com.chad.weibo.mvp.model;
+package com.chad.weibo.mvp.model.auth;
 
 import android.app.Activity;
 

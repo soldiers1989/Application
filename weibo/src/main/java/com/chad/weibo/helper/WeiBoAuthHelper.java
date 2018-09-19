@@ -3,6 +3,7 @@ package com.chad.weibo.helper;
 import android.app.Activity;
 import android.content.Context;
 
+import com.chad.weibo.WeiBoApplication;
 import com.chad.weibo.util.LogUtil;
 import com.sina.weibo.sdk.auth.AccessTokenKeeper;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -19,17 +20,17 @@ public class WeiBoAuthHelper {
 
     private static volatile WeiBoAuthHelper mWeiBoAuthHelper = null;
 
-    public static WeiBoAuthHelper getInstance(Context context) {
+    public static WeiBoAuthHelper getInstance() {
         synchronized (WeiBoAuthHelper.class) {
             if (mWeiBoAuthHelper == null) {
-                mWeiBoAuthHelper = new WeiBoAuthHelper(context);
+                mWeiBoAuthHelper = new WeiBoAuthHelper();
             }
         }
         return mWeiBoAuthHelper;
     }
 
-    private WeiBoAuthHelper(Context context) {
-        mContext = context;
+    private WeiBoAuthHelper() {
+        mContext = WeiBoApplication.getWeiBoApplication();
         mOauth2AccessToken = readAccessToken();
     }
 
