@@ -9,8 +9,8 @@ import android.os.Parcelable;
 public class Status implements Parcelable {
 
     private String created_at;
-    private int id;
-    private int mid;
+    private long id;
+    private long mid;
     private String idstr;
     private String text;
     private String source;
@@ -34,11 +34,11 @@ public class Status implements Parcelable {
         return created_at;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getMid() {
+    public long getMid() {
         return mid;
     }
 
@@ -116,8 +116,8 @@ public class Status implements Parcelable {
 
     protected Status(Parcel out) {
         created_at = out.readString();
-        id = out.readInt();
-        mid = out.readInt();
+        id = out.readLong();
+        mid = out.readLong();
         idstr = out.readString();
         text = out.readString();
         source = out.readString();
@@ -146,8 +146,8 @@ public class Status implements Parcelable {
     @Override
     public void writeToParcel(Parcel in, int flags) {
         in.writeString(created_at);
-        in.writeInt(id);
-        in.writeInt(mid);
+        in.writeLong(id);
+        in.writeLong(mid);
         in.writeString(idstr);
         in.writeString(text);
         in.writeString(source);

@@ -12,5 +12,5 @@ import retrofit2.http.Query;
 public interface IWeiBoApi {
 
     @GET("users/show.json")
-    Observable<User> getUser(@Query("access_token") String access_token, @Query("uid") String uid);
+    Observable<User> getUser(@Query("access_token") String access_token, @Query("uid") long uid);
 }

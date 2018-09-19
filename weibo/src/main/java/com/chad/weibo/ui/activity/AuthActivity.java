@@ -43,7 +43,7 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        mToolbar.setTitle(R.string.auth_title);
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
 

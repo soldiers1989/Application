@@ -77,7 +77,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
     protected void initData() {
         LogUtil.d(TAG, "initData");
         Oauth2AccessToken accessToken = WeiBoAuthHelper.getInstance(getApplicationContext()).getOauth2AccessToken();
-        String uid = accessToken.getUid();
+        long uid = Long.parseLong(accessToken.getUid());
         WeiBoRetrofit.getUser(accessToken.getToken(), uid)
                 .compose(bindToLifecycle())
                 .compose(RxSchedulersUtil.thread())

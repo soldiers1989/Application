@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 public class User implements Parcelable {
 
-    private int id;
+    private long id;
     private String idstr;
     private String screen_name;
     private String name;
@@ -43,7 +43,7 @@ public class User implements Parcelable {
     private int bi_followers_count;
     private String lang;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -180,7 +180,7 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel out) {
-        id = out.readInt();
+        id = out.readLong();
         idstr = out.readString();
         screen_name = out.readString();
         name = out.readString();
@@ -223,7 +223,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel in, int flags) {
-        in.writeInt(id);
+        in.writeLong(id);
         in.writeString(idstr);
         in.writeString(screen_name);
         in.writeString(name);

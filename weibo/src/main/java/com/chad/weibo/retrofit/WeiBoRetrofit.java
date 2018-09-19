@@ -35,7 +35,7 @@ public class WeiBoRetrofit {
         initIWeiBoApi();
     }
 
-    public static Observable<User> getUser(String access_token, String uid) {
+    public static Observable<User> getUser(String access_token, long uid) {
         return mIWeiBoApi.getUser(access_token, uid);
     }
 

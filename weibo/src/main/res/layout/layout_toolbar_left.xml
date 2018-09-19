@@ -18,4 +18,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/chad_3dp"
         android:background="@drawable/shadow_toolbar" />
+
 </android.support.design.widget.AppBarLayout>
