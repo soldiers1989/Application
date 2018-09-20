@@ -27,8 +27,8 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.status)
-    AppCompatTextView mStatus;
+    @BindView(R.id.message)
+    AppCompatTextView mMessage;
 
     @Override
     protected int getLayoutId() {
@@ -98,6 +98,6 @@ public class AuthActivity extends BaseMvpAppCompatActivity<IAuthView, AuthPresen
     public void onAuthFailure(WbConnectErrorMessage wbConnectErrorMessage) {
         LogUtil.d(TAG, "onAuthFailure : code = " + wbConnectErrorMessage.getErrorCode()
                 + " , message = " + wbConnectErrorMessage.getErrorMessage());
-        mStatus.setText(getString(R.string.auth_failure) + wbConnectErrorMessage.getErrorMessage());
+        mMessage.setText(getString(R.string.auth_failure) + wbConnectErrorMessage.getErrorMessage());
     }
 }

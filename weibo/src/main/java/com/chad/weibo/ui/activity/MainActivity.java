@@ -38,7 +38,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.layout_drawer)
-    DrawerLayout mLayoutDrawer;
+    DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.view_navigation)
@@ -74,10 +74,10 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
 
     private void initDrawer() {
         LogUtil.d(TAG, "initDrawer");
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mLayoutDrawer, mToolbar,
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.drawer_open, R.string.drawer_close);
         mActionBarDrawerToggle.syncState(); // 将Toolbar与Drawer同步
-        mLayoutDrawer.addDrawerListener(mActionBarDrawerToggle);
+        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
     }
 
     private void initNavigation() {
@@ -128,7 +128,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         menuItem.setCheckable(true);
         menuItem.setChecked(true);
         mToolbar.setTitle(menuItem.getTitle());
-        mLayoutDrawer.closeDrawers();
+        mDrawerLayout.closeDrawers();
     }
 
     @Override
@@ -145,11 +145,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
             return;
         }
         mUser = user;
-        GlideApp.with(this)
-                .load(user.getCover_image_phone())
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(mCoverImagePhone);
+        CustomGlideModule.load(this, user.getCover_image_phone(), mCoverImagePhone);
         mUserAvatar.setImageURI(user.getAvatar_large());
         mUserName.setText(user.getScreen_name());
     }

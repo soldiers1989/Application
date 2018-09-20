@@ -13,4 +13,6 @@
     <string name="friends">关注</string>
     <string name="followers">粉丝</string>
     <string name="description">简介:</string>
+    <string name="sheet">主页</string>
+    <string name="status">微博</string>
 </resources>
