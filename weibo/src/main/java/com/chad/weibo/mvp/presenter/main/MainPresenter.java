@@ -2,7 +2,7 @@ package com.chad.weibo.mvp.presenter.main;
 
 import com.chad.weibo.entity.User;
 import com.chad.weibo.mvp.base.BasePresenter;
-import com.chad.weibo.mvp.model.main.MainModel;
+import com.chad.weibo.mvp.model.MainModel;
 import com.chad.weibo.mvp.view.IMainView;
 import com.chad.weibo.util.LogUtil;
 

@@ -1,4 +1,4 @@
-package com.chad.weibo.mvp.model.auth;
+package com.chad.weibo.mvp.model;
 
 import android.app.Activity;
 
@@ -10,7 +10,7 @@ import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
-public class AuthModel implements IAuthModel, WbAuthListener {
+public class AuthModel implements WbAuthListener {
 
     private static final String TAG = AuthModel.class.getSimpleName();
 
@@ -33,37 +33,31 @@ public class AuthModel implements IAuthModel, WbAuthListener {
         mWeiBoAuthHelper = WeiBoAuthHelper.getInstance();
     }
 
-    @Override
     public boolean isSessionValid() {
         LogUtil.d(TAG, "isSessionValid");
         return mWeiBoAuthHelper.isSessionValid();
     }
 
-    @Override
     public SsoHandler getSsoHandler() {
         LogUtil.d(TAG, "getSsoHandler");
         return mWeiBoAuthHelper.getSsoHandler();
     }
 
-    @Override
     public void authorizeClientSso(Activity activity) {
         LogUtil.d(TAG, "authorizeClientSso");
         mWeiBoAuthHelper.authorizeClientSso(activity, this);
     }
 
-    @Override
     public void authorizeWeb(Activity activity) {
         LogUtil.d(TAG, "authorizeWeb");
         mWeiBoAuthHelper.authorizeWeb(activity, this);
     }
 
-    @Override
     public void authorize(Activity activity) {
         LogUtil.d(TAG, "authorize");
         mWeiBoAuthHelper.authorize(activity, this);
     }
 
-    @Override
     public void clearAccessToken() {
         LogUtil.d(TAG, "clearAccessToken");
         mWeiBoAuthHelper.clearAccessToken();

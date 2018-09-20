@@ -1,19 +1,21 @@
 package com.chad.weibo.ui.activity;
 
+import android.graphics.Color;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.weibo.R;
 import com.chad.weibo.entity.User;
 import com.chad.weibo.eventbus.EventMessage;
 import com.chad.weibo.eventbus.EventType;
 import com.chad.weibo.glide.CustomGlideModule;
-import com.chad.weibo.glide.GlideApp;
 import com.chad.weibo.ui.adapter.UserTabAdapter;
 import com.chad.weibo.ui.base.BaseRxAppCompatActivity;
 import com.chad.weibo.ui.fragment.UserSheetFragment;
@@ -34,8 +36,14 @@ public class UserActivity extends BaseRxAppCompatActivity {
 
     private static final String TAG = UserActivity.class.getSimpleName();
 
+    @BindView(R.id.layout_appbar)
+    AppBarLayout mAppBarLayout;
+    @BindView(R.id.layout_collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.toolbar_user_name)
+    AppCompatTextView mToolbarUserName;
     @BindView(R.id.cover_image_phone)
     AppCompatImageView mCoverImagePhone;
     @BindView(R.id.user_avatar)
@@ -59,14 +67,30 @@ public class UserActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        initAppBar();
         initToolbar();
         initUserTab();
-        // https://www.jianshu.com/p/5f8f1b684631?mType=Group
+    }
+
+    private void initAppBar() {
+        LogUtil.d(TAG, "initAppBar");
+        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, i) -> {
+            if (Math.abs(i) == mAppBarLayout.getHeight() - mToolbar.getHeight()) {
+                mCollapsingToolbarLayout.setContentScrimColor(Color.WHITE);
+                mToolbar.setNavigationIcon(R.drawable.ic_user_back_dark);
+                mToolbarUserName.setVisibility(View.VISIBLE);
+            } else {
+                mCollapsingToolbarLayout.setContentScrimColor(Color.TRANSPARENT);
+                mToolbar.setNavigationIcon(R.drawable.ic_user_back_light);
+                mToolbarUserName.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_user_back_dark);
+        mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
     private void initUserTab() {
@@ -108,6 +132,7 @@ public class UserActivity extends BaseRxAppCompatActivity {
         if (user == null) {
             return;
         }
+        mToolbarUserName.setText(user.getScreen_name());
         CustomGlideModule.load(this, user.getCover_image_phone(), mCoverImagePhone);
         mUserAvatar.setImageURI(user.getAvatar_large());
         mUserName.setText(user.getScreen_name());

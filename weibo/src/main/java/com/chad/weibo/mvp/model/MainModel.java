@@ -1,4 +1,4 @@
-package com.chad.weibo.mvp.model.main;
+package com.chad.weibo.mvp.model;
 
 import com.chad.weibo.entity.User;
 import com.chad.weibo.mvp.presenter.main.IMainPresenter;
@@ -8,7 +8,7 @@ import com.chad.weibo.util.RxSchedulersUtil;
 
 import io.reactivex.ObservableTransformer;
 
-public class MainModel implements IMainModel {
+public class MainModel {
 
     private static final String TAG = MainModel.class.getSimpleName();
 
@@ -26,7 +26,6 @@ public class MainModel implements IMainModel {
     private MainModel() {
     }
 
-    @Override
     public void getUser(ObservableTransformer transformer, String access_token, long uid,
                         IMainPresenter mainPresenter) {
         LogUtil.d(TAG, "getUer");

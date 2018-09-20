@@ -20,16 +20,16 @@
     <style name="ToolbarTitleAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@color/colorGeneralText</item>
     </style>
-    <!-- 设置NavigationView的MenuItem字体大小-->
+    <!-- 设置NavigationView的MenuItem字体大小 -->
     <style name="NavigationTheme">
         <item name="android:textSize">@dimen/chad_18sp</item>
     </style>
-    <!-- 定义全局通用文字的大小和颜色-->
+    <!-- 定义全局通用文字的大小和颜色 -->
     <style name="TextGeneralStyle">
         <item name="android:textSize">@dimen/chad_18sp</item>
         <item name="android:textColor">@color/colorGeneralText</item>
     </style>
-
+    <!-- 个人信息界面的简介等字体风格 -->
     <style name="UserDescriptionTextStyle">
         <item name="android:textSize">@dimen/chad_15sp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -37,6 +37,10 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
+    </style>
+    <!-- 个人信息界面的标签字体大小 -->
+    <style name="UserTabTextAppearance">
+        <item name="android:textSize">@dimen/chad_18sp</item>
     </style>
 
 </resources>

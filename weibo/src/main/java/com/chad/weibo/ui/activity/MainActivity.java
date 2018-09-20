@@ -6,18 +6,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.weibo.R;
 import com.chad.weibo.entity.User;
 import com.chad.weibo.eventbus.EventMessage;
 import com.chad.weibo.eventbus.EventType;
 import com.chad.weibo.glide.CustomGlideModule;
-import com.chad.weibo.glide.GlideApp;
 import com.chad.weibo.helper.ActivityHelper;
 import com.chad.weibo.helper.WeiBoAuthHelper;
 import com.chad.weibo.mvp.presenter.main.MainPresenter;
@@ -30,7 +26,6 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresenter>
         implements IMainView {

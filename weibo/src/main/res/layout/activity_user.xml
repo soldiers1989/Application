@@ -10,22 +10,18 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/layout_appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/chad_260dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:elevation="@dimen/chad_0dp">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/layout_collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="@android:color/transparent"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                app:titleEnabled="false">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -41,7 +37,7 @@
                         android:id="@+id/user_avatar"
                         android:layout_width="@dimen/chad_100dp"
                         android:layout_height="@dimen/chad_100dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="@dimen/chad_20dp"
                         app:layout_constraintBottom_toTopOf="@id/user_name"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -60,12 +56,20 @@
                         android:shadowDx="0"
                         android:shadowDy="1"
                         android:shadowRadius="1"
-                        android:text="@string/navigation_user_name"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/chad_18sp"
                         app:layout_constraintBottom_toTopOf="@id/count"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/chad_10dp"
+                        android:layout_marginLeft="@dimen/chad_5dp"
+                        app:layout_constraintBottom_toTopOf="@id/count"
+                        app:layout_constraintLeft_toRightOf="@id/user_name" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/count"
@@ -80,39 +84,62 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/description"
                         style="@style/UserDescriptionTextStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/chad_300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/chad_20dp"
+                        android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
 
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/toolbar_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorGeneralText"
+                        android:textSize="@dimen/chad_22sp"
+                        android:visibility="gone" />
+
+                </android.support.v7.widget.Toolbar>
+
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/layout_tab"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorUserTab"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/colorGeneral"
-                app:tabIndicatorHeight="@dimen/chad_5dp" />
+                app:tabIndicatorHeight="@dimen/chad_5dp"
+                app:tabSelectedTextColor="@android:color/black"
+                app:tabTextAppearance="@style/UserTabTextAppearance"
+                app:tabTextColor="@android:color/darker_gray" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_tab" />
+                android:layout_height="match_parent" />
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 
