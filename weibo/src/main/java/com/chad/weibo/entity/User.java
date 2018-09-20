@@ -43,6 +43,7 @@ public class User implements Parcelable {
     private int online_status;
     private int bi_followers_count;
     private String lang;
+    private int urank;
 
     public long getId() {
         return id;
@@ -184,6 +185,10 @@ public class User implements Parcelable {
         return lang;
     }
 
+    public int getUrank() {
+        return urank;
+    }
+
     protected User(Parcel out) {
         id = out.readLong();
         idstr = out.readString();
@@ -220,6 +225,7 @@ public class User implements Parcelable {
         online_status = out.readInt();
         bi_followers_count = out.readInt();
         lang = out.readString();
+        urank = out.readInt();
     }
 
     @Override
@@ -264,6 +270,7 @@ public class User implements Parcelable {
         in.writeInt(online_status);
         in.writeInt(bi_followers_count);
         in.writeString(lang);
+        in.writeInt(urank);
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {

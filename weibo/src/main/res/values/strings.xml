@@ -17,4 +17,7 @@
     <string name="status">微博</string>
     <string name="account_info">账号信息</string>
     <string name="personal_info">个人信息</string>
+    <string name="rank">LV</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
 </resources>

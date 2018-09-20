@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="user_sheet_account">
-        <item>昵称</item>
-        <item>简介</item>
         <item>等级</item>
         <item>注册时间</item>
-        <item>阳光信用</item>
     </string-array>
 
     <string-array name="user_sheet_personal">
-        <item>信息</item>
+        <item>性别</item>
         <item>所在地</item>
-        <item>学校</item>
-        <item>学历</item>
-        <item>公司</item>
     </string-array>
 </resources>

@@ -12,7 +12,7 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/layout_appbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/chad_260dp"
+            android:layout_height="@dimen/chad_240dp"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -87,6 +87,7 @@
                         android:layout_width="@dimen/chad_300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/chad_20dp"
+                        android:gravity="center"
                         android:singleLine="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -106,8 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
-                        android:textColor="@color/colorGeneralText"
-                        android:textSize="@dimen/chad_22sp"
+                        style="@style/TextGeneralStyle"
                         android:visibility="gone" />
 
                 </android.support.v7.widget.Toolbar>
@@ -129,7 +129,7 @@
                 android:background="@color/colorUserTab"
                 app:tabGravity="center"
                 app:tabIndicatorColor="@color/colorGeneral"
-                app:tabIndicatorHeight="@dimen/chad_5dp"
+                app:tabIndicatorHeight="@dimen/chad_4dp"
                 app:tabSelectedTextColor="@android:color/black"
                 app:tabTextAppearance="@style/UserTabTextAppearance"
                 app:tabTextColor="@android:color/darker_gray" />

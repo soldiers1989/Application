@@ -10,6 +10,7 @@ import com.chad.weibo.eventbus.EventMessage;
 import com.chad.weibo.eventbus.EventType;
 import com.chad.weibo.ui.adapter.UserSheetAdapter;
 import com.chad.weibo.ui.base.BaseRxFragment;
+import com.chad.weibo.util.DateUtil;
 import com.chad.weibo.util.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -68,11 +69,25 @@ public class UserSheetFragment extends BaseRxFragment {
         }
         switch (eventMessage.getType()) {
             case EventType.TYPE_USER:
-//                handleUser((User) eventMessage.getObject());
+                handleUser((User) eventMessage.getObject());
                 break;
             default:
                 break;
         }
+    }
+
+    private void handleUser(User user) {
+        LogUtil.d(TAG, "handleUser : user = " + (user == null ? null : "Not Null"));
+        if (user == null) {
+            return;
+        }
+        String[] accountValues = new String[]{getString(R.string.rank) + " " + user.getUrank(),
+                DateUtil.formatDate(user.getCreated_at())};
+        mUserSheetAccountAdapter.setValues(accountValues);
+        String[] personalValues = new String[]{user.getGender().equals("m") ?
+                getString(R.string.male): getString(R.string.female),
+                user.getLocation()};
+        mUserSheetPersonalAdapter.setValues(personalValues);
     }
 
     @Override

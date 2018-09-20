@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.weibo.R;
@@ -48,6 +49,8 @@ public class UserActivity extends BaseRxAppCompatActivity {
     AppCompatImageView mCoverImagePhone;
     @BindView(R.id.user_avatar)
     SimpleDraweeView mUserAvatar;
+    @BindView(R.id.gender)
+    AppCompatImageView mGender;
     @BindView(R.id.user_name)
     AppCompatTextView mUserName;
     @BindView(R.id.count)
@@ -135,10 +138,17 @@ public class UserActivity extends BaseRxAppCompatActivity {
         mToolbarUserName.setText(user.getScreen_name());
         CustomGlideModule.load(this, user.getCover_image_phone(), mCoverImagePhone);
         mUserAvatar.setImageURI(user.getAvatar_large());
+        if (!TextUtils.isEmpty(user.getGender())) {
+            if (user.getGender().equals("m")) {
+                mGender.setImageResource(R.drawable.ic_gender_male);
+            } else if (user.getGender().equals("f")) {
+                mGender.setImageResource(R.drawable.ic_gender_female);
+            }
+        }
         mUserName.setText(user.getScreen_name());
-        mCount.setText(getString(R.string.friends) + "\0" + user.getFriends_count()
-                + "\0\0|\0\0"
-                + getString(R.string.followers) + "\0" + user.getFollowers_count());
+        mCount.setText(getString(R.string.friends) + " " + user.getFriends_count()
+                + "  |  "
+                + getString(R.string.followers) + " " + user.getFollowers_count());
         mDescription.setText(getString(R.string.description) + user.getDescription());
     }
 
