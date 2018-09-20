@@ -15,4 +15,6 @@
     <string name="description">简介:</string>
     <string name="sheet">主页</string>
     <string name="status">微博</string>
+    <string name="account_info">账号信息</string>
+    <string name="personal_info">个人信息</string>
 </resources>

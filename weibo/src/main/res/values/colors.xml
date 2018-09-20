@@ -7,5 +7,6 @@
     <color name="colorTheme">#EDEDED</color>
     <color name="colorGeneral">#FF8200</color>
     <color name="colorGeneralText">#525252</color>
+    <color name="colorUserSheetText">#303030</color>
     <color name="colorUserTab">#F5F5F5</color>
 </resources>
