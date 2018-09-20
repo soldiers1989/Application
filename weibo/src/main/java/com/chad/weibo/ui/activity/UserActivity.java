@@ -138,17 +138,12 @@ public class UserActivity extends BaseRxAppCompatActivity {
         mToolbarUserName.setText(user.getScreen_name());
         CustomGlideModule.load(this, user.getCover_image_phone(), mCoverImagePhone);
         mUserAvatar.setImageURI(user.getAvatar_large());
-        if (!TextUtils.isEmpty(user.getGender())) {
-            if (user.getGender().equals("m")) {
-                mGender.setImageResource(R.drawable.ic_gender_male);
-            } else if (user.getGender().equals("f")) {
-                mGender.setImageResource(R.drawable.ic_gender_female);
-            }
-        }
+        mGender.setImageResource(user.getGender().equals("m") ?
+                R.drawable.ic_gender_male : R.drawable.ic_gender_female);
         mUserName.setText(user.getScreen_name());
         mCount.setText(getString(R.string.friends) + " " + user.getFriends_count()
-                + "  |  "
-                + getString(R.string.followers) + " " + user.getFollowers_count());
+                + "  |  " +
+                getString(R.string.followers) + " " + user.getFollowers_count());
         mDescription.setText(getString(R.string.description) + user.getDescription());
     }
 
