@@ -10,7 +10,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorUserSheetText"
+        android:textColor="@color/colorGeneralText"
         android:textSize="@dimen/chad_17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -19,6 +19,7 @@ import com.chad.weibo.eventbus.EventType;
 import com.chad.weibo.glide.CustomGlideModule;
 import com.chad.weibo.ui.adapter.UserTabAdapter;
 import com.chad.weibo.ui.base.BaseRxAppCompatActivity;
+import com.chad.weibo.ui.fragment.HomeFragment;
 import com.chad.weibo.ui.fragment.UserSheetFragment;
 import com.chad.weibo.ui.fragment.UserStatusFragment;
 import com.chad.weibo.util.LogUtil;
@@ -100,7 +101,7 @@ public class UserActivity extends BaseRxAppCompatActivity {
         LogUtil.d(TAG, "initUserTab");
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new UserSheetFragment());
-        fragments.add(new UserStatusFragment());
+        fragments.add(new HomeFragment());
         List<String> titles = new ArrayList<>();
         titles.add(getString(R.string.sheet));
         titles.add(getString(R.string.status));
