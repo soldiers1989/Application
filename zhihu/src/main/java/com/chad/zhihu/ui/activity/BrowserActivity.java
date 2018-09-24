@@ -1,21 +1,23 @@
 package com.chad.zhihu.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintSet;
 import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
+import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.LogUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -26,10 +28,10 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
 
     private static final String TAG = BrowserActivity.class.getSimpleName();
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.web_browser)
     WebView mWebBrowser;
+    @BindView(R.id.bar_progress)
+    ProgressBar mBarProgress;
     @BindView(R.id.btn_back)
     AppCompatImageButton mBtnBack;
     @BindView(R.id.btn_forward)
@@ -43,7 +45,9 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
-        initToolbar();
+        SystemStatusBarUtil.setStatusBarColor(this,
+                ColorUtil.findRgbById(this, R.color.colorStatusBar));
+        SystemStatusBarUtil.lockStatusBar(this);
         initWeb();
         initNavigationButton();
     }
@@ -51,44 +55,48 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
     @Override
     protected void initData() {
         LogUtil.d(TAG, "initData");
-        Intent intent = new Intent();
+        Intent intent = getIntent();
         if (intent == null) {
             return;
         }
         String url = intent.getStringExtra(Constant.EXTRA_URL);
-//        mWebBrowser.loadUrl(url);
-    }
-
-    private void initToolbar() {
-        LogUtil.d(TAG, "initToolbar");
-        setSupportActionBar(mToolbar);
+        mWebBrowser.loadUrl(url);
     }
 
     private void initWeb() {
         LogUtil.d(TAG, "initWeb");
+        WebSettings webSettings = mWebBrowser.getSettings();
+        webSettings.setBlockNetworkImage(!AppSettings.getInstance().isGraphBrowsing());
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        webSettings.setJavaScriptEnabled(true);
+
         mWebBrowser.setWebViewClient(new WebViewClient() {
-            @SuppressLint("NewApi")
+
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                mWebBrowser.loadUrl(request.getUrl().toString());
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                mWebBrowser.loadUrl(url);
                 return true;
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mWebBrowser.loadUrl(request.getUrl().toString());
+                }
+                return true;
             }
         });
-        mWebBrowser.loadUrl("http://www.baidu.com");
 
         mWebBrowser.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                switch (newProgress) {
-                    case 100:
-                        break;
-                    default:
-                        break;
+                if (newProgress == 100) {
+                    mBarProgress.setVisibility(View.GONE);
+                } else {
+                    mBarProgress.setVisibility(View.VISIBLE);
+                    mBarProgress.setProgress(newProgress);
                 }
                 super.onProgressChanged(view, newProgress);
             }

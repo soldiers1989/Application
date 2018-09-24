@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/graph_browsing"
-            android:textColor="@color/colorTextExtra"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/chad_18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,21 +34,23 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/chad_10dp"
+        android:layout_marginRight="@dimen/chad_10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/layout_graph_browsing" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_built_in_browser"
-        app:layout_constraintTop_toBottomOf="@id/layout_graph_browsing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/chad_10dp">
+        android:padding="@dimen/chad_10dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_graph_browsing">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/built_in_browser"
-            android:textColor="@color/colorTextExtra"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/chad_18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -67,6 +69,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/chad_10dp"
+        android:layout_marginRight="@dimen/chad_10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/layout_built_in_browser" />
 

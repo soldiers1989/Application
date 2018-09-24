@@ -1,11 +1,15 @@
 package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.AppSettings;
@@ -77,6 +81,7 @@ public class DetailsActivity extends BaseMvpRxAppCompatActivity<IDetailsView, De
         LogUtil.d(TAG, "initViews");
         SystemStatusBarUtil.setTranslucentStatusBar(this);
         initAppBar();
+        initWeb();
         initUpDownButton();
     }
 
@@ -108,6 +113,51 @@ public class DetailsActivity extends BaseMvpRxAppCompatActivity<IDetailsView, De
                 SystemStatusBarUtil.unlockStatusBar(DetailsActivity.this);
             } else {
                 SystemStatusBarUtil.lockStatusBar(DetailsActivity.this);
+            }
+        });
+    }
+
+    private void initWeb() {
+        LogUtil.d(TAG, "initWeb");
+        mWebDetail.setWebViewClient(new WebViewClient() {
+
+            /**
+             * 5.0之前有效
+             */
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (AppSettings.getInstance().isBuiltInBrowser()) {
+                    ActivityHelper.startBrowserActivity(DetailsActivity.this, url);
+                } else {
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri uri = Uri.parse(url);
+                    intent.setData(uri);
+                    DetailsActivity.this.startActivity(intent);
+                }
+                return true;
+            }
+
+            /**
+             * 5.0之后使用该方法
+             * @param view
+             * @param request
+             * @return
+             */
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    return false;
+                }
+                if (AppSettings.getInstance().isBuiltInBrowser()) {
+                    ActivityHelper.startBrowserActivity(DetailsActivity.this, request.getUrl().toString());
+                } else {
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    intent.setData(request.getUrl());
+                    DetailsActivity.this.startActivity(intent);
+                }
+                return true;
             }
         });
     }
