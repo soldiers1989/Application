@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.entity.SectionsInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
@@ -43,7 +44,11 @@ public class SectionsAdapter extends BaseRecyclerViewAdapter<SectionsInfo.Sectio
             return;
         }
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        CustomGlideModule.loadImage(mContext, section.getThumbnail(), itemViewHolder.imagePreview);
+        if (AppSettings.getInstance().isShowPicture()) {
+            CustomGlideModule.loadImage(mContext, section.getThumbnail(), itemViewHolder.imagePreview);
+        } else {
+            itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);
+        }
         itemViewHolder.textName.setText(section.getName());
         itemViewHolder.textDescription.setText(section.getDescription());
         super.onBindViewHolder(holder, position);

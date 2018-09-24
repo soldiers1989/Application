@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.entity.ThemeDetailsInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
@@ -39,8 +40,11 @@ public class ThemeDetailsAdapter extends BaseRecyclerViewAdapter<ThemeDetailsInf
         }
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         itemViewHolder.textTitle.setText(story.getTitle());
-        if (story.getImages() != null && story.getImages().size() > 0) {
+        if (story.getImages() != null && story.getImages().size() > 0
+                && AppSettings.getInstance().isShowPicture()) {
             CustomGlideModule.loadImage(mContext, story.getImages().get(0), itemViewHolder.imagePreview);
+        } else {
+            itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);
         }
         super.onBindViewHolder(holder, position);
     }

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="mine">
-        <item>定位导航</item>
-        <item>打赏开发者</item>
-        <item>意见反馈</item>
-        <item>通用设置</item>
-    </string-array>
-</resources>

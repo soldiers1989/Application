@@ -7,13 +7,13 @@ import android.support.v7.widget.Toolbar;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.chad.zhihu.R;
+import com.chad.zhihu.ui.fragment.SettingsFragment;
 import com.chad.zhihu.ui.fragment.ThemesFragment;
 import com.chad.zhihu.util.ColorUtil;
 import com.chad.zhihu.util.StringUtil;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
 import com.chad.zhihu.ui.fragment.SectionsFragment;
 import com.chad.zhihu.ui.fragment.HomeFragment;
-import com.chad.zhihu.ui.fragment.MineFragment;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.SystemStatusBarUtil;
 
@@ -72,14 +72,14 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         AHBottomNavigationItem ahBottomNavigationItemColumn = new AHBottomNavigationItem(
                 StringUtil.findStringById(this, R.string.main_navigation_sections),
                 R.drawable.ic_navigation_column_selected);
-        AHBottomNavigationItem ahBottomNavigationItemMine = new AHBottomNavigationItem(
-                StringUtil.findStringById(this, R.string.main_navigation_mine),
+        AHBottomNavigationItem ahBottomNavigationItemSettings = new AHBottomNavigationItem(
+                StringUtil.findStringById(this, R.string.main_navigation_settings),
                 R.drawable.ic_navigation_mine_selected);
 
         mAhBottomNavigation.addItem(ahBottomNavigationItemHome);
         mAhBottomNavigation.addItem(ahBottomNavigationItemDaily);
         mAhBottomNavigation.addItem(ahBottomNavigationItemColumn);
-        mAhBottomNavigation.addItem(ahBottomNavigationItemMine);
+        mAhBottomNavigation.addItem(ahBottomNavigationItemSettings);
 
         mAhBottomNavigation.setColored(false);
         mAhBottomNavigation.setForceTint(false);
@@ -107,7 +107,7 @@ public class MainActivity extends BaseRxAppCompatActivity implements AHBottomNav
         mFragmentList.add(new HomeFragment());
         mFragmentList.add(new ThemesFragment());
         mFragmentList.add(new SectionsFragment());
-        mFragmentList.add(new MineFragment());
+        mFragmentList.add(new SettingsFragment());
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_fragment, mFragmentList.get(0));

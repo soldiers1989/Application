@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.util.DisplayUtil;
 
@@ -109,8 +110,10 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
                     // 初始化ImageView
                     AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
                     appCompatImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    appCompatImageView.setImageResource(R.drawable.pic_default_placeholder);
                     String image = banner.getImage();
-                    if (!TextUtils.isEmpty(image)) {
+                    if (!TextUtils.isEmpty(image)
+                            && AppSettings.getInstance().isShowPicture()) {
                         CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
                     }
                     mImageViewList.add(appCompatImageView);

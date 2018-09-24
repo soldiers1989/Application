@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.webkit.WebView;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.app.Constant;
 import com.chad.zhihu.entity.DetailsExtraInfo;
 import com.chad.zhihu.entity.DetailsInfo;
@@ -154,7 +155,11 @@ public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetail
             return;
         }
         mDetailsInfo = detailsInfo;
-        CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
+        if (AppSettings.getInstance().isShowPicture()) {
+            CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
+        } else {
+            mImagePreview.setImageResource(R.drawable.pic_default_placeholder);
+        }
 
         try {
             RxTextView.text(mTextTitle).accept(detailsInfo.getTitle());
@@ -163,6 +168,7 @@ public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetail
             e.printStackTrace();
         }
 
+        mWebDetail.getSettings().setBlockNetworkImage(!AppSettings.getInstance().isShowPicture());
         String html = HtmlUtil.getHtml(detailsInfo);
         mWebDetail.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);
     }

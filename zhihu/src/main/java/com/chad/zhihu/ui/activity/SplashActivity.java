@@ -9,6 +9,7 @@ import com.chad.zhihu.R;
 import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.ui.base.BaseRxAppCompatActivity;
 import com.chad.zhihu.util.LogUtil;
+import com.chad.zhihu.util.SystemStatusBarUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,6 +36,8 @@ public class SplashActivity extends BaseRxAppCompatActivity implements Animator.
     @Override
     protected void initViews() {
         LogUtil.d(TAG, "initViews");
+        SystemStatusBarUtil.setTranslucentStatusBar(this);
+        SystemStatusBarUtil.unlockStatusBar(this);
     }
 
     @Override

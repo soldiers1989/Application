@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.entity.ThemeDetailsInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 
@@ -76,15 +77,19 @@ public class ThemeDetailsHeaderView extends ConstraintLayout {
         mOnEditorItemClickListener = listener;
     }
 
-   public void setImagePreview(String image) {
-       CustomGlideModule.loadImage(mContext, image, mImagePreview);
-   }
+    public void setImagePreview(String image) {
+        if (AppSettings.getInstance().isShowPicture()) {
+            CustomGlideModule.loadImage(mContext, image, mImagePreview);
+        } else {
+            mImagePreview.setImageResource(R.drawable.pic_default_placeholder);
+        }
+    }
 
-   public void setDescription(String description) {
+    public void setDescription(String description) {
         mTextDescription.setText(description);
-   }
+    }
 
-   public void setData(List<ThemeDetailsInfo.Editor> editors) {
+    public void setData(List<ThemeDetailsInfo.Editor> editors) {
         mEditorAdapter.setData(editors);
-   }
+    }
 }

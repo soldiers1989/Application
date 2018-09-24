@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.zhihu.R;
+import com.chad.zhihu.app.AppSettings;
 import com.chad.zhihu.entity.HomeInfo;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.ui.base.BaseRecyclerViewAdapter;
@@ -85,8 +86,11 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Story> {
         itemViewHolder.textTitle.setText(stories.getTitle());
         // 加载图片
         List<String> images = stories.getImages();
-        if (images != null && images.size() > 0) {
+        if (images != null && images.size() > 0
+                && AppSettings.getInstance().isShowPicture()) {
             CustomGlideModule.loadImage(mContext, images.get(0), itemViewHolder.imagePreview);
+        } else {
+            itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);
         }
 
         // 如果是多图，就将多图图片显示出来

@@ -4,7 +4,7 @@
     <string name="main_navigation_home">首页</string>
     <string name="main_navigation_themes">专题</string>
     <string name="main_navigation_sections">专栏</string>
-    <string name="main_navigation_mine">我的</string>
+    <string name="main_navigation_settings">设置</string>
     <string name="item_latest_date_today">今日热闻</string>
     <string name="theme_details_editor">主编</string>
     <string name="share_subject">分享</string>
@@ -24,4 +24,5 @@
     <string name="friday">星期五</string>
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
+    <string name="picture_mode">有图模式</string>
 </resources>
