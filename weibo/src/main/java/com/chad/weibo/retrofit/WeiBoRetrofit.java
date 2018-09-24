@@ -1,6 +1,8 @@
 package com.chad.weibo.retrofit;
 
 import com.chad.weibo.WeiBoApplication;
+import com.chad.weibo.entity.RateLimitStatus;
+import com.chad.weibo.entity.TimeLine;
 import com.chad.weibo.entity.User;
 import com.chad.weibo.helper.NetworkHelper;
 import com.chad.weibo.util.LogUtil;
@@ -35,13 +37,27 @@ public class WeiBoRetrofit {
         initIWeiBoApi();
     }
 
+    public static Observable<RateLimitStatus> getRateLimitStatus(String access_token) {
+        return mIWeiBoApi.getRateLimitStatus(access_token);
+    }
+
     public static Observable<User> getUser(String access_token, long uid) {
         return mIWeiBoApi.getUser(access_token, uid);
     }
 
+    public static Observable<TimeLine> getHomeTimeLine(String access_token, int count, int page,
+                                                       int feature) {
+        return mIWeiBoApi.getHomeTimeLine(access_token, count, page, feature);
+    }
+
+    public static Observable<TimeLine> getUserTimeLine(String access_token, long uid, int count,
+                                                        int page, int feature) {
+        return mIWeiBoApi.getUserTimeLine(access_token, uid, count, page, feature);
+    }
+
     private static void initOkHttpClient() {
         LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = "
-                + (mOkHttpClient == null? null: "Not Null"));
+                + (mOkHttpClient == null ? null : "Not Null"));
         if (mOkHttpClient == null) {
             synchronized (WeiBoRetrofit.class) {
                 File cacheDir = WeiBoApplication.getWeiBoApplication().getCacheDir(); // 缓存文件目录

@@ -7,17 +7,12 @@
             android:title="@string/navigation_title_home" />
 
         <item
-            android:id="@+id/item_hot"
-            android:icon="@drawable/ic_navigation_hot"
-            android:title="@string/navigation_title_hot" />
+            android:id="@+id/item_message"
+            android:icon="@drawable/ic_navigation_message"
+            android:title="@string/navigation_title_message" />
     </group>
 
     <group android:id="@+id/group_app">
-        <item
-            android:id="@+id/item_about"
-            android:icon="@drawable/ic_navigation_about"
-            android:title="@string/navigation_title_about" />
-
         <item
             android:id="@+id/item_setting"
             android:icon="@drawable/ic_navigation_setting"

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/chad_0dp"
+    app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/chad_10dp"
+        android:paddingRight="@dimen/chad_10dp"
+        android:paddingTop="@dimen/chad_10dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/chad_10dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/user_avatar"
+                android:layout_width="@dimen/chad_50dp"
+                android:layout_height="@dimen/chad_50dp"
+                fresco:placeholderImage="@drawable/pic_default_user_head"
+                fresco:placeholderImageScaleType="centerCrop"
+                fresco:roundAsCircle="true" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_10dp"
+                android:text="追逐繁星"
+                android:textColor="@color/colorGeneral"
+                android:textSize="@dimen/chad_17sp"
+                app:layout_constraintLeft_toRightOf="@id/user_avatar" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/create_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_10dp"
+                android:layout_marginTop="@dimen/chad_5dp"
+                android:textSize="@dimen/chad_12sp"
+                app:layout_constraintLeft_toRightOf="@id/user_avatar"
+                app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_5dp"
+                android:layout_marginTop="@dimen/chad_5dp"
+                android:text="@string/from"
+                android:textSize="@dimen/chad_12sp"
+                app:layout_constraintLeft_toRightOf="@id/create_at"
+                app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_5dp"
+                android:layout_marginTop="@dimen/chad_5dp"
+                android:textSize="@dimen/chad_12sp"
+                app:layout_constraintLeft_toRightOf="@id/from"
+                app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/chad_10dp"
+            android:autoLink="email|web"
+            android:text="今天我来到你的窗外,@追逐繁星，http://errerre,ffasff"
+            android:textColor="@color/colorGeneralText"
+            android:textSize="@dimen/chad_16sp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/chad_10dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_recycler_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never" />
+
+            <VideoView
+                android:id="@+id/view_video"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/chad_200dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/chad_1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/chad_30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_repost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_time_line_repost" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/count_repost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/chad_5dp"
+                    android:text="@string/repost"
+                    android:textSize="@dimen/chad_15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_time_line_comment" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/count_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/chad_5dp"
+                    android:text="@string/comment"
+                    android:textSize="@dimen/chad_15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_attitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/image_attitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_time_line_attitude_normal" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/count_attitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/chad_5dp"
+                    android:text="@string/attitude"
+                    android:textSize="@dimen/chad_15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
