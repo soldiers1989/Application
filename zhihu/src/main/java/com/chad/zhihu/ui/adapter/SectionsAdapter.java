@@ -44,7 +44,7 @@ public class SectionsAdapter extends BaseRecyclerViewAdapter<SectionsInfo.Sectio
             return;
         }
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        if (AppSettings.getInstance().isShowPicture()) {
+        if (AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(mContext, section.getThumbnail(), itemViewHolder.imagePreview);
         } else {
             itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);

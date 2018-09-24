@@ -24,5 +24,6 @@
     <string name="friday">星期五</string>
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
-    <string name="picture_mode">有图模式</string>
+    <string name="graph_browsing">带图浏览(消耗流量较大)</string>
+    <string name="built_in_browser">内置浏览器</string>
 </resources>

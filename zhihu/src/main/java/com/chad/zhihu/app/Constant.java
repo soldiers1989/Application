@@ -10,4 +10,5 @@ public class Constant {
     public static final String EXTRA_COMMENTS_LONG = "longComments";
     public static final String EXTRA_COMMENTS_SHORT = "shortComments";
     public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_URL = "url";
 }

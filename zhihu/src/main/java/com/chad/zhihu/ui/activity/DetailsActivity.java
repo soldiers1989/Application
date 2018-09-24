@@ -16,7 +16,7 @@ import com.chad.zhihu.hepler.ActivityHelper;
 import com.chad.zhihu.glide.CustomGlideModule;
 import com.chad.zhihu.mvp.zhihu.presenter.details.DetailsPresenter;
 import com.chad.zhihu.mvp.zhihu.view.IDetailsView;
-import com.chad.zhihu.ui.base.BaseSwipeBackMvpRxAppCompatActivity;
+import com.chad.zhihu.ui.base.BaseMvpRxAppCompatActivity;
 import com.chad.zhihu.util.HtmlUtil;
 import com.chad.zhihu.util.LogUtil;
 import com.chad.zhihu.util.StringUtil;
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetailsView, DetailsPresenter>
+public class DetailsActivity extends BaseMvpRxAppCompatActivity<IDetailsView, DetailsPresenter>
         implements IDetailsView {
 
     private static final String TAG = DetailsActivity.class.getSimpleName();
@@ -96,6 +96,8 @@ public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetail
         if (mStoryIds != null) {
             mCurrentIndex = mStoryIds.indexOf(mCurrentId);
         }
+
+        mWebDetail.getSettings().setBlockNetworkImage(!AppSettings.getInstance().isGraphBrowsing());
     }
 
     private void initAppBar() {
@@ -155,7 +157,7 @@ public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetail
             return;
         }
         mDetailsInfo = detailsInfo;
-        if (AppSettings.getInstance().isShowPicture()) {
+        if (AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(getApplicationContext(), detailsInfo.getImage(), mImagePreview);
         } else {
             mImagePreview.setImageResource(R.drawable.pic_default_placeholder);
@@ -167,8 +169,6 @@ public class DetailsActivity extends BaseSwipeBackMvpRxAppCompatActivity<IDetail
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        mWebDetail.getSettings().setBlockNetworkImage(!AppSettings.getInstance().isShowPicture());
         String html = HtmlUtil.getHtml(detailsInfo);
         mWebDetail.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);
     }

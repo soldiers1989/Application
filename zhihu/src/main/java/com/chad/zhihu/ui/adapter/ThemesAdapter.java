@@ -44,7 +44,7 @@ public class ThemesAdapter extends BaseRecyclerViewAdapter<ThemesInfo.Others> {
             return;
         }
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        if (AppSettings.getInstance().isShowPicture()) {
+        if (AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(mContext, others.getThumbnail(), itemViewHolder.imagePreview);
         } else {
             itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);

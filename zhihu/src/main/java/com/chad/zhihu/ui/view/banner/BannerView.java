@@ -113,7 +113,7 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
                     appCompatImageView.setImageResource(R.drawable.pic_default_placeholder);
                     String image = banner.getImage();
                     if (!TextUtils.isEmpty(image)
-                            && AppSettings.getInstance().isShowPicture()) {
+                            && AppSettings.getInstance().isGraphBrowsing()) {
                         CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
                     }
                     mImageViewList.add(appCompatImageView);

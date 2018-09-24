@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.Constant;
+import com.chad.zhihu.ui.activity.BrowserActivity;
 import com.chad.zhihu.ui.activity.CommentActivity;
 import com.chad.zhihu.ui.activity.DetailsActivity;
 import com.chad.zhihu.ui.activity.SectionDetailsActivity;
@@ -62,6 +63,14 @@ public class ActivityHelper {
         Intent intent = new Intent(activity, DetailsActivity.class);
         intent.putIntegerArrayListExtra(Constant.EXTRA_ID_LIST, storiesIds);
         intent.putExtra(Constant.EXTRA_ID, id);
+        activity.startActivity(intent);
+    }
+
+    public static void startBrowserActivity(Activity activity, String url) {
+        LogUtil.d(TAG, "startBrowserActivity : activity = " + activity
+                + " , url = " + url);
+        Intent intent = new Intent(activity, BrowserActivity.class);
+        intent.putExtra(Constant.EXTRA_URL, url);
         activity.startActivity(intent);
     }
 

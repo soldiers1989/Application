@@ -8,9 +8,10 @@ import com.chad.zhihu.ZhiHuApplication;
 public class AppSettings {
 
     public static final String NAME_PREFERENCES = "Settings";
-    public static final String MODE_PICTURE = "pictureMode";
+    public static final String KEY_GRAPH_BROWSING = "graphBrowsing";
+    public static final String KEY_BUILT_IN_BROWSER = "builtInBrowser";
 
-    private SharedPreferences mSharedPreferences = null;
+    private SharedPreferences mSharedPreferences;
 
     private static volatile AppSettings  mAppSettings = null;
 
@@ -28,17 +29,31 @@ public class AppSettings {
                 .getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void setPictureMode(boolean isShow) {
+    public void setGraphBrowsing(boolean isShow) {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putBoolean(MODE_PICTURE, isShow).commit();
+        mSharedPreferences.edit().putBoolean(KEY_GRAPH_BROWSING, isShow).commit();
     }
 
-    public boolean isShowPicture() {
+    public boolean isGraphBrowsing() {
         if (mSharedPreferences == null) {
             return true;
         }
-        return mSharedPreferences.getBoolean(MODE_PICTURE, true);
+        return mSharedPreferences.getBoolean(KEY_GRAPH_BROWSING, true);
+    }
+
+    public void setBuiltInBrowser(boolean isInBrowser) {
+        if (mSharedPreferences == null) {
+            return;
+        }
+        mSharedPreferences.edit().putBoolean(KEY_BUILT_IN_BROWSER, isInBrowser).commit();
+    }
+
+    public boolean isBuiltInBrowser() {
+        if (mSharedPreferences == null) {
+            return true;
+        }
+        return mSharedPreferences.getBoolean(KEY_BUILT_IN_BROWSER, true);
     }
 }

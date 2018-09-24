@@ -43,7 +43,7 @@ public class SectionDetailsAdapter extends BaseRecyclerViewAdapter<SectionDetail
         itemViewHolder.textTitle.setText(story.getTitle());
         itemViewHolder.textDate.setText(DateUtil.formatDate(mContext, story.getDate()));
         if (story.getImages() != null && story.getImages().size() > 0
-                && AppSettings.getInstance().isShowPicture()) {
+                && AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(mContext, story.getImages().get(0), itemViewHolder.imagePreview);
         } else {
             itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);

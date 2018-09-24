@@ -87,7 +87,7 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Story> {
         // 加载图片
         List<String> images = stories.getImages();
         if (images != null && images.size() > 0
-                && AppSettings.getInstance().isShowPicture()) {
+                && AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(mContext, images.get(0), itemViewHolder.imagePreview);
         } else {
             itemViewHolder.imagePreview.setImageResource(R.drawable.pic_default_placeholder);

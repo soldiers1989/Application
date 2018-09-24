@@ -78,7 +78,7 @@ public class ThemeDetailsHeaderView extends ConstraintLayout {
     }
 
     public void setImagePreview(String image) {
-        if (AppSettings.getInstance().isShowPicture()) {
+        if (AppSettings.getInstance().isGraphBrowsing()) {
             CustomGlideModule.loadImage(mContext, image, mImagePreview);
         } else {
             mImagePreview.setImageResource(R.drawable.pic_default_placeholder);
