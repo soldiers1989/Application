@@ -2,8 +2,11 @@ package com.chad.hlife;
 
 import android.app.Application;
 
+import com.chad.hlife.config.WeiBoConfig;
 import com.chad.hlife.util.LogUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AuthInfo;
 
 public class HLifeApplication extends Application {
 
@@ -15,8 +18,16 @@ public class HLifeApplication extends Application {
     public void onCreate() {
         LogUtil.d(TAG, "onCreate");
         mHLifeApplication = this;
+        initWeiBoSdk();
         initFresco();
         super.onCreate();
+    }
+
+    private void initWeiBoSdk() {
+        LogUtil.d(TAG, "initWeiBoSdk");
+        AuthInfo authInfo = new AuthInfo(this, WeiBoConfig.APP_KEY,
+                WeiBoConfig.REDIRECT_URL, WeiBoConfig.SCOPE);
+        WbSdk.install(this, authInfo);
     }
 
     private void initFresco() {
@@ -26,6 +37,6 @@ public class HLifeApplication extends Application {
 
     public static HLifeApplication getHLifeApplication() {
         LogUtil.d(TAG, "getHLifeApplication");
-        return mHLifeApplication == null? null: mHLifeApplication;
+        return mHLifeApplication == null ? null : mHLifeApplication;
     }
 }

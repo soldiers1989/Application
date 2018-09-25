@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">HLife</string>
+    <string name="app_name">小黑Life</string>
+    <string name="login_wechat">微信一键登录</string>
+    <string name="login_weibo">微博一键登录</string>
     <string name="user_name">用户名称</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>

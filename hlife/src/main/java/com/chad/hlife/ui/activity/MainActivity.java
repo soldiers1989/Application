@@ -23,15 +23,15 @@ public class MainActivity extends BaseRxAppCompatActivity {
     @BindView(R.id.view_navigation)
     NavigationView mNavigationView;
 
-    private ActionBarDrawerToggle mActionBarDrawerToggle = null;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
 
     @Override
-    protected int getLayoutId() {
+    protected int onGetLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void initViews() {
+    protected void onInitView() {
         LogUtil.d(TAG, "initViews");
         initToolbar();
         initDrawerLayout();
@@ -63,11 +63,6 @@ public class MainActivity extends BaseRxAppCompatActivity {
         setNavigationItemChecked(mNavigationView.getMenu().getItem(0));
     }
 
-    @Override
-    protected void initData() {
-        LogUtil.d(TAG, "initData");
-    }
-
     private void setNavigationItemChecked(MenuItem menuItem) {
         LogUtil.d(TAG, "setNavigationItemChecked : menuItem = " + menuItem);
         if (menuItem == null) {
@@ -77,5 +72,10 @@ public class MainActivity extends BaseRxAppCompatActivity {
         menuItem.setChecked(true);
         mToolbar.setTitle(menuItem.getTitle());
         mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    protected void onInitData() {
+        LogUtil.d(TAG, "initData");
     }
 }

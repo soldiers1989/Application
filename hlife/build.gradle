@@ -47,4 +47,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.1'
     // RxLifecycle
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
+    // 新浪微博SDK
+    implementation 'com.sina.weibo.sdk:core:4.3.0:openDefaultRelease@aar'
 }

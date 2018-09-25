@@ -15,10 +15,10 @@ public abstract class BaseRxAppCompatActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setContentView(onGetLayoutId());
         unbinder = ButterKnife.bind(this);
-        initViews();
-        initData();
+        onInitView();
+        onInitData();
     }
 
     @Override
@@ -30,9 +30,9 @@ public abstract class BaseRxAppCompatActivity extends RxAppCompatActivity {
         super.onDestroy();
     }
 
-    protected abstract int getLayoutId();
+    protected abstract int onGetLayoutId();
 
-    protected abstract void initViews();
+    protected abstract void onInitView();
 
-    protected abstract void initData();
+    protected abstract void onInitData();
 }

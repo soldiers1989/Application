@@ -47,13 +47,13 @@
 
     <group android:id="@+id/group_app">
         <item
-            android:id="@+id/item_about"
-            android:icon="@drawable/ic_navigation_about"
-            android:title="@string/about" />
-        <item
             android:id="@+id/item_settings"
             android:icon="@drawable/ic_navigation_settings"
             android:title="@string/settings" />
+        <item
+            android:id="@+id/item_about"
+            android:icon="@drawable/ic_navigation_about"
+            android:title="@string/about" />
     </group>
 
 </menu>
