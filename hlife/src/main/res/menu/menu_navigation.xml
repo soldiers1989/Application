@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_entertainment">
+        <item
+            android:id="@+id/item_news"
+            android:icon="@drawable/ic_navigation_news"
+            android:title="@string/news" />
+        <item
+            android:id="@+id/item_history"
+            android:icon="@drawable/ic_navigation_history"
+            android:title="@string/history" />
+        <item
+            android:id="@+id/item_joke"
+            android:icon="@drawable/ic_navigation_joke"
+            android:title="@string/joke" />
+    </group>
+
+    <group android:id="@+id/group_life">
+        <item
+            android:id="@+id/item_film_info"
+            android:icon="@drawable/ic_navigation_film_info"
+            android:title="@string/film_info" />
+        <item
+            android:id="@+id/item_film_ticket"
+            android:icon="@drawable/ic_navigation_film_ticket"
+            android:title="@string/film_ticket" />
+        <item
+            android:id="@+id/item_books_store"
+            android:icon="@drawable/ic_navigation_books_store"
+            android:title="@string/books_store" />
+    </group>
+
+    <group android:id="@+id/group_query">
+        <item
+            android:id="@+id/item_wifi"
+            android:icon="@drawable/ic_navigation_wifi"
+            android:title="@string/wifi" />
+        <item
+            android:id="@+id/item_place"
+            android:icon="@drawable/ic_navigation_place"
+            android:title="@string/place" />
+        <item
+            android:id="@+id/item_card"
+            android:icon="@drawable/ic_navigation_crad"
+            android:title="@string/card" />
+    </group>
+
+    <group android:id="@+id/group_app">
+        <item
+            android:id="@+id/item_about"
+            android:icon="@drawable/ic_navigation_about"
+            android:title="@string/about" />
+        <item
+            android:id="@+id/item_settings"
+            android:icon="@drawable/ic_navigation_settings"
+            android:title="@string/settings" />
+    </group>
+
+</menu>
