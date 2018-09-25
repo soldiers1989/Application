@@ -1,9 +1,11 @@
 package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -47,6 +49,8 @@ public class DetailsActivity extends BaseMvpRxAppCompatActivity<IDetailsView, De
     AppCompatTextView mTextTitle;
     @BindView(R.id.text_source)
     AppCompatTextView mTextSource;
+    @BindView(R.id.view_scroll)
+    NestedScrollView mScrollView;
     @BindView(R.id.web_detail)
     WebView mWebDetail;
     @BindView(R.id.text_like)
@@ -158,6 +162,11 @@ public class DetailsActivity extends BaseMvpRxAppCompatActivity<IDetailsView, De
                     DetailsActivity.this.startActivity(intent);
                 }
                 return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
             }
         });
     }

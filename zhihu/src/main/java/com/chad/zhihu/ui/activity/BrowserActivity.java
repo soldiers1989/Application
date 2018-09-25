@@ -1,8 +1,13 @@
 package com.chad.zhihu.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -10,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import com.chad.zhihu.R;
 import com.chad.zhihu.app.AppSettings;
@@ -28,6 +34,12 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
 
     private static final String TAG = BrowserActivity.class.getSimpleName();
 
+    @BindView(R.id.layout_appbar)
+    AppBarLayout mLayoutAppBar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.view_scroll)
+    NestedScrollView mScrollView;
     @BindView(R.id.web_browser)
     WebView mWebBrowser;
     @BindView(R.id.bar_progress)
@@ -36,6 +48,8 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
     AppCompatImageButton mBtnBack;
     @BindView(R.id.btn_forward)
     AppCompatImageButton mBtnForward;
+    @BindView(R.id.btn_refresh)
+    AppCompatImageButton mBtnRefresh;
 
     @Override
     protected int getLayoutId() {
@@ -48,6 +62,7 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
         SystemStatusBarUtil.setStatusBarColor(this,
                 ColorUtil.findRgbById(this, R.color.colorStatusBar));
         SystemStatusBarUtil.lockStatusBar(this);
+        initToolbar();
         initWeb();
         initNavigationButton();
     }
@@ -61,6 +76,13 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
         }
         String url = intent.getStringExtra(Constant.EXTRA_URL);
         mWebBrowser.loadUrl(url);
+    }
+
+    private void initToolbar() {
+        LogUtil.d(TAG, "initToolbar");
+        mToolbar.setTitleTextColor(Color.WHITE);
+        mToolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
+        mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
     private void initWeb() {
@@ -87,17 +109,27 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
                 }
                 return true;
             }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                mToolbar.setTitle(url);
+                mBarProgress.setVisibility(View.VISIBLE);
+                mBarProgress.setMax(100);
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                mBarProgress.setVisibility(View.GONE);
+                mScrollView.fullScroll(ScrollView.SCROLL_INDICATOR_TOP);
+                super.onPageFinished(view, url);
+            }
         });
 
         mWebBrowser.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100) {
-                    mBarProgress.setVisibility(View.GONE);
-                } else {
-                    mBarProgress.setVisibility(View.VISIBLE);
-                    mBarProgress.setProgress(newProgress);
-                }
+                mBarProgress.setProgress(newProgress);
                 super.onProgressChanged(view, newProgress);
             }
         });
@@ -121,5 +153,9 @@ public class BrowserActivity extends BaseRxAppCompatActivity {
                         mWebBrowser.goForward();
                     }
                 });
+
+        RxView.clicks(mBtnRefresh)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(o -> mWebBrowser.reload());
     }
 }
