@@ -26,13 +26,10 @@ public class LoginModel {
     }
 
     private LoginModel() {
-        mWeiBoAuthHelper = WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication());
     }
 
     public void weiBoAuth(Activity activity, ILoginPresenter loginPresenter) {
-        if (mWeiBoAuthHelper == null) {
-            return;
-        }
+        initWeiBoAuthHelper();
         if (mWeiBoAuthHelper.isSessionValid()) {
             loginPresenter.onWeiBoLoginSuccess();
         } else {
@@ -57,28 +54,28 @@ public class LoginModel {
     }
 
     public void cancelWeiBoAuth(ILoginPresenter loginPresenter) {
-        if (mWeiBoAuthHelper == null) {
-            return;
-        }
+        initWeiBoAuthHelper();
         mWeiBoAuthHelper.clearAccessToken();
         loginPresenter.onWeiBoLogout();
     }
 
     public SsoHandler getWeiBoSsoHandler() {
-        if (mWeiBoAuthHelper == null) {
-            return null;
-        }
+        initWeiBoAuthHelper();
         return mWeiBoAuthHelper.getSsoHandler();
     }
 
     public String getWeiBoAccessToken() {
-        if (mWeiBoAuthHelper == null) {
-            return null;
-        }
+        initWeiBoAuthHelper();
         return mWeiBoAuthHelper.getOauth2AccessToken().getToken();
     }
 
     public void weChatAuth(ILoginPresenter loginPresenter) {
 
+    }
+
+    private void initWeiBoAuthHelper() {
+        if (mWeiBoAuthHelper == null) {
+            mWeiBoAuthHelper = WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication());
+        }
     }
 }

@@ -24,5 +24,14 @@
     <style name="NavigationViewTheme">
         <item name="android:textSize">@dimen/chad_16sp</item>
     </style>
-
+    <!-- 全局文字通用风格 -->
+    <style name="TextStyle">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/chad_18sp</item>
+    </style>
+    <!-- 全局文字副标题通用风格 -->
+    <style name="SubTextStyle">
+        <item name="android:textColor">@color/colorSubText</item>
+        <item name="android:textSize">@dimen/chad_16sp</item>
+    </style>
 </resources>

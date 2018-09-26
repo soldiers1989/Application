@@ -1,4 +1,4 @@
-package com.chad.hlife.config;
+package com.chad.hlife.app.config;
 
 public class WeiBoConfig {
 

@@ -5,6 +5,10 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // Sina WeiBo
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        // SuperSwipeRefreshLayout
+        maven { url "http://dl.bintray.com/nuptboyzhb/maven" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
@@ -17,6 +21,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        maven { url "http://dl.bintray.com/nuptboyzhb/maven" }
     }
 }
 

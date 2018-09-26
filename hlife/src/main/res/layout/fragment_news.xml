@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/layout_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:overScrollMode="never"
+            app:tabIndicatorHeight="@dimen/chad_0dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorText" />
+
+        <com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
+            android:id="@+id/layout_super_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="vertical" />
+
+        </com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        app:layout_anchor="@id/layout_main"
+        app:layout_anchorGravity="bottom|right"
+        app:layout_behavior="com.chad.hlife.ui.view.behavior.FloatingActionButtonBehavior" />
+
+</android.support.design.widget.CoordinatorLayout>

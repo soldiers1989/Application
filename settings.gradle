@@ -1,1 +1,1 @@
-include ':learning', ':zhihu'
+include ':learning', ':zhihu', ':weibo', ':hlife'

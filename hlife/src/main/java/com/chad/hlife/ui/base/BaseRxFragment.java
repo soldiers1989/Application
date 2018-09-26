@@ -18,7 +18,7 @@ public abstract class BaseRxFragment extends RxFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutId(), container, false);
+        return inflater.inflate(onGetLayoutId(), container, false);
     }
 
     @Override
@@ -29,8 +29,8 @@ public abstract class BaseRxFragment extends RxFragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        initViews();
-        initData();
+        onInitView();
+        onInitData();
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -43,9 +43,9 @@ public abstract class BaseRxFragment extends RxFragment {
         super.onDestroyView();
     }
 
-    protected abstract int getLayoutId();
+    protected abstract int onGetLayoutId();
 
-    protected abstract void initViews();
+    protected abstract void onInitView();
 
-    protected abstract void initData();
+    protected abstract void onInitData();
 }

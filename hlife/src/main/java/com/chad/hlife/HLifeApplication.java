@@ -2,7 +2,7 @@ package com.chad.hlife;
 
 import android.app.Application;
 
-import com.chad.hlife.config.WeiBoConfig;
+import com.chad.hlife.app.config.WeiBoConfig;
 import com.chad.hlife.util.LogUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.sina.weibo.sdk.WbSdk;

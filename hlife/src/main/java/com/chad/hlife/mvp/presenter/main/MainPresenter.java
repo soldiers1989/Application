@@ -10,10 +10,10 @@ import io.reactivex.ObservableTransformer;
 
 public class MainPresenter extends BasePresenter<IMainView> implements IMainPresenter {
 
-    public void getUserInfo(int model, ObservableTransformer transformer, String accessToken) {
+    public void getUserInfo(int model, ObservableTransformer transformer, String accessToken, long uid) {
         switch (model) {
             case AppConstant.MODEL_LOGIN_WEIBO:
-                MainModel.getInstance().getWeiBoUserInfo(transformer, accessToken, this);
+                MainModel.getInstance().getWeiBoUserInfo(transformer, accessToken, uid, this);
                 break;
             case AppConstant.MODEL_LOGIN_WECHAT:
                 MainModel.getInstance().getWeiXinUserInfo(transformer, accessToken, this);
