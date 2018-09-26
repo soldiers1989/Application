@@ -12,6 +12,11 @@
     <style name="MainTheme" parent="AppTheme">
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+    <!-- 新闻头条详情页Theme -->
+    <style name="NewsDetailTheme" parent="AppTheme">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
     <!-- 定义DrawerArrow的颜色 -->
     <style name="DrawerArrowStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
@@ -32,6 +37,6 @@
     <!-- 全局文字副标题通用风格 -->
     <style name="SubTextStyle">
         <item name="android:textColor">@color/colorSubText</item>
-        <item name="android:textSize">@dimen/chad_16sp</item>
+        <item name="android:textSize">@dimen/chad_14sp</item>
     </style>
 </resources>

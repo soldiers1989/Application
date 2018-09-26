@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.mvp.presenter.news.NewsPresenter;
 import com.chad.hlife.mvp.view.INewsView;
@@ -60,6 +59,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
 
     private void initTabLayout() {
         LogUtil.d(TAG, "initTabLayout");
+        mTabLayout.addOnTabSelectedListener(this);
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.top));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.society));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.internal));
@@ -70,7 +70,6 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.science));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.finance));
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.fashion));
-        mTabLayout.addOnTabSelectedListener(this);
     }
 
     private void initSuperSwipeRefreshLayout() {

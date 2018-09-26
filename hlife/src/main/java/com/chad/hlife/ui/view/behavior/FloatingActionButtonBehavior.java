@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.view.behavior;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -24,6 +25,7 @@ public class FloatingActionButtonBehavior extends FloatingActionButton.Behavior 
                 axes, type);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
                                @NonNull FloatingActionButton child,
@@ -31,10 +33,5 @@ public class FloatingActionButtonBehavior extends FloatingActionButton.Behavior 
                                int dxUnconsumed, int dyUnconsumed, int type) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
                 dyUnconsumed, type);
-        if (dyConsumed > 0 && child.getVisibility() == View.VISIBLE) {
-            child.hide();
-        } else if (dyConsumed < 0 && child.getVisibility() != View.VISIBLE) {
-            child.show();
-        }
     }
 }

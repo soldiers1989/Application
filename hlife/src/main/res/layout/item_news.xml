@@ -14,13 +14,12 @@
             android:id="@+id/text_title"
             style="@style/TextStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="杨幂的发际线再也回不去了么？网友吐槽像半秃" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/layout_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/chad_100dp"
             android:layout_marginTop="@dimen/chad_10dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/text_title">
@@ -28,8 +27,8 @@
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_one"
                 android:layout_width="@dimen/chad_0dp"
-                android:layout_height="@dimen/chad_150dp"
-                android:layout_marginRight="@dimen/chad_10dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/chad_5dp"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/pic_placeholder_image" />
@@ -37,8 +36,8 @@
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_two"
                 android:layout_width="@dimen/chad_0dp"
-                android:layout_height="@dimen/chad_150dp"
-                android:layout_marginRight="@dimen/chad_10dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/chad_5dp"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/pic_placeholder_image" />
@@ -46,7 +45,7 @@
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_three"
                 android:layout_width="@dimen/chad_0dp"
-                android:layout_height="@dimen/chad_150dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/pic_placeholder_image" />
@@ -59,7 +58,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/chad_10dp"
-            android:text="2018-09-26 16:00"
             app:layout_constraintTop_toBottomOf="@id/layout_image" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -69,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/chad_10dp"
             android:layout_marginTop="@dimen/chad_10dp"
-            android:text="腾讯娱乐"
             app:layout_constraintLeft_toRightOf="@id/text_date"
             app:layout_constraintTop_toBottomOf="@id/layout_image" />
 

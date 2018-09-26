@@ -40,7 +40,7 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        mToolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
+        mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
