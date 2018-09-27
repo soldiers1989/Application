@@ -1,6 +1,8 @@
 package com.chad.hlife.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -10,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
 
@@ -73,7 +76,22 @@ public class NewsDetailActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        mWebView.loadUrl("http://mini.eastday.com/mobile/170105110355287.html?qid=juheshuju");
+        handleIntent(getIntent());
+    }
+
+    private void handleIntent(Intent intent) {
+        LogUtil.d(TAG, "handleIntent : intent = " + (intent == null ? "Null" : "Not Null"));
+        if (intent == null) {
+            return;
+        }
+        String title = intent.getStringExtra(AppConstant.EXTRA_TITLE);
+        if (!TextUtils.isEmpty(title)) {
+            mToolbar.setTitle(title);
+        }
+        String url = intent.getStringExtra(AppConstant.EXTRA_URL);
+        if (!TextUtils.isEmpty(url)) {
+            mWebView.loadUrl(url);
+        }
     }
 
     @Override

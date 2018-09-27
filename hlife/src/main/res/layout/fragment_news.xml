@@ -20,6 +20,7 @@
             app:tabIndicatorHeight="@dimen/chad_0dp"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextAppearance="@style/TabTextStyle"
             app:tabTextColor="@color/colorText" />
 
         <com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout

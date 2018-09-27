@@ -24,8 +24,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.NewsDetailActivity"
-            android:theme="@style/NewsDetailTheme">
-        </activity>
+        <activity
+            android:name=".ui.activity.NewsDetailActivity"
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name=".ui.activity.HistoryDetailActivity"
+            android:theme="@style/DetailTheme" />
     </application>
 </manifest>

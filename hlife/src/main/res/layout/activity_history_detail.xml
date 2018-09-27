@@ -25,13 +25,6 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <ProgressBar
-                android:id="@+id/bar_progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/chad_2dp"
-                android:progressDrawable="@drawable/color_progress" />
-
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView
@@ -41,13 +34,25 @@
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <WebView
-                android:id="@+id/view_web"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:isScrollContainer="false"
-                android:overScrollMode="never"
-                android:scrollbars="vertical" />
+                android:padding="@dimen/chad_10dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/text_content"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/view_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@id/text_content" />
+
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.v4.widget.NestedScrollView>
 

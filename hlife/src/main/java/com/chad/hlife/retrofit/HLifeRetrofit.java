@@ -2,7 +2,12 @@ package com.chad.hlife.retrofit;
 
 import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.entity.juhe.CardInfo;
+import com.chad.hlife.entity.juhe.HistoryDetailInfo;
+import com.chad.hlife.entity.juhe.HistoryInfo;
+import com.chad.hlife.entity.juhe.JokeInfo;
 import com.chad.hlife.entity.juhe.NewsInfo;
+import com.chad.hlife.entity.juhe.PhonePlaceInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.helper.NetworkHelper;
 import com.chad.hlife.retrofit.api.IJuHeApi;
@@ -15,7 +20,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableTransformer;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -46,6 +50,30 @@ public class HLifeRetrofit {
 
     public static Observable<NewsInfo> getNewsInfo(String type, String key) {
         return mIJuHeApi.getNewsInfo(type, key);
+    }
+
+    public static Observable<HistoryInfo> getHistoryInfo(String key, String date) {
+        return mIJuHeApi.getHistoryInfo(key, date);
+    }
+
+    public static Observable<HistoryDetailInfo> getHistoryDetailInfo(String key, String eId) {
+        return mIJuHeApi.getHistoryDetailInfo(key, eId);
+    }
+
+    public static Observable<JokeInfo> getJokeInfo(String key) {
+        return mIJuHeApi.getJokeInfo(key);
+    }
+
+    public static Observable<JokeInfo> getMoreJokeInfo(String sort, String time, String key) {
+        return mIJuHeApi.getMoreJokeInfo(sort, time, key);
+    }
+
+    public static Observable<CardInfo> getCardInfo(String cardNo, String key) {
+        return mIJuHeApi.getCardInfo(cardNo, key);
+    }
+
+    public static Observable<PhonePlaceInfo> getPhonePlaceInfo(int phone, String key) {
+        return mIJuHeApi.getPhonePlaceInfo(phone, key);
     }
 
     private static void initIWeiBoApi() {

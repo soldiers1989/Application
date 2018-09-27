@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.hlife.R;
+import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.glide.CustomGlideModule;
 import com.chad.hlife.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;
 
-public class NewsAdapter extends BaseRecyclerViewAdapter<Integer> {
+public class NewsAdapter extends BaseRecyclerViewAdapter<NewsInfo.Data> {
 
     private Context mContext;
 
@@ -32,15 +33,13 @@ public class NewsAdapter extends BaseRecyclerViewAdapter<Integer> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        itemViewHolder.textTitle.setText("杨幂的发际线再也回不去了么？网友吐槽像半秃");
-        CustomGlideModule.load(mContext, "http://03.imgmini.eastday.com/mobile/20170105/20170105110355_" +
-                "806f4ed3fe71d04fa452783d6736a02b_1_mwpm_03200403.jpeg", itemViewHolder.imageOne);
-        CustomGlideModule.load(mContext, "http://03.imgmini.eastday.com/mobile/20170105/20170105110355_" +
-                "806f4ed3fe71d04fa452783d6736a02b_2_mwpm_03200403.jpeg", itemViewHolder.imageTwo);
-        CustomGlideModule.load(mContext, "http://03.imgmini.eastday.com/mobile/20170105/20170105110355_" +
-                "806f4ed3fe71d04fa452783d6736a02b_3_mwpm_03200403.jpeg", itemViewHolder.imageThree);
-        itemViewHolder.textDate.setText("2018-09-26 16:00");
-        itemViewHolder.textAuthorName.setText("腾讯娱乐");
+        NewsInfo.Data newsData = data.get(position);
+        itemViewHolder.textTitle.setText(newsData.getTitle());
+        CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS(), itemViewHolder.imageOne);
+        CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS02(), itemViewHolder.imageTwo);
+        CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS03(), itemViewHolder.imageThree);
+        itemViewHolder.textDate.setText(newsData.getDate());
+        itemViewHolder.textAuthorName.setText(newsData.getAuthorName());
         super.onBindViewHolder(holder, position);
     }
 

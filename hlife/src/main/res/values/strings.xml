@@ -26,4 +26,11 @@
     <string name="science">科技</string>
     <string name="finance">财经</string>
     <string name="fashion">时尚</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="drop_down_refresh">下拉刷新</string>
+    <string name="release_update">释放更新</string>
+    <string name="refreshing">刷新中...</string>
+    <string name="loading">加载中...</string>
 </resources>

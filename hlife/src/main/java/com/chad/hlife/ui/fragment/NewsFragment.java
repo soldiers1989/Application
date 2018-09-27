@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.NewsInfo;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.news.NewsPresenter;
 import com.chad.hlife.mvp.view.INewsView;
 import com.chad.hlife.ui.adapter.NewsAdapter;
@@ -83,21 +84,20 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         LogUtil.d(TAG, "initRecyclerView");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mNewsAdapter = new NewsAdapter(getContext());
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mNewsAdapter = new NewsAdapter(getContext());
+        mNewsAdapter.setOnItemClickListener(position ->
+                ActivityHelper.startNewsDetailActivity(getActivity(),
+                        mTabLayout.getTabAt(mTabLayout.getSelectedTabPosition()).getText().toString(),
+                        mNewsAdapter.getData().get(position).getUrl()));
         mRecyclerView.setAdapter(mNewsAdapter);
-
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            list.add(i);
-        }
-        mNewsAdapter.setData(list);
     }
 
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "initData");
         initNewsTypes();
+        // TODO: 2018/9/27
 //        presenter.getNewsInfo(bindToLifecycle(),
 //                mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
@@ -119,7 +119,14 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
 
     @Override
     public void onNewsInfo(NewsInfo newsInfo) {
-        LogUtil.d(TAG, "onNewsInfo newsInfo = " + (newsInfo == null ? "Null" : "Not Null"));
+        LogUtil.d(TAG, "onNewsInfo : newsInfo = " + (newsInfo == null ? "Null" : "Not Null"));
+        if (newsInfo == null) {
+            return;
+        }
+        if (mSuperSwipeRefreshLayout.isRefreshing()) {
+            mSuperSwipeRefreshLayout.setRefreshing(false);
+        }
+        mNewsAdapter.setData(newsInfo.getResult().getData());
     }
 
     @Override
@@ -133,6 +140,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         if (presenter == null || mNewsTypes == null) {
             return;
         }
+        // TODO: 2018/9/27
 //        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(tab.getPosition()), JuHeConfig.KEY_NEWS);
     }
 
@@ -153,6 +161,8 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
             return;
         }
         mHeaderView.refresh();
+        // TODO: 2018/9/27
+        //  presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
 
     @Override

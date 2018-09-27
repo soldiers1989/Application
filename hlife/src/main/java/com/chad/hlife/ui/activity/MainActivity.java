@@ -18,7 +18,7 @@ import com.chad.hlife.ui.fragment.FilmTicketFragment;
 import com.chad.hlife.ui.fragment.HistoryFragment;
 import com.chad.hlife.ui.fragment.JokeFragment;
 import com.chad.hlife.ui.fragment.NewsFragment;
-import com.chad.hlife.ui.fragment.PlaceFragment;
+import com.chad.hlife.ui.fragment.PhonePlaceFragment;
 import com.chad.hlife.ui.fragment.SettingsFragment;
 import com.chad.hlife.ui.fragment.WifiFragment;
 import com.chad.hlife.util.LogUtil;
@@ -99,7 +99,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
                 case R.id.item_wifi:
                     switchFragment(6);
                     break;
-                case R.id.item_place:
+                case R.id.item_phone_place:
                     switchFragment(7);
                     break;
                 case R.id.item_card:
@@ -136,7 +136,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mFragments.add(new FilmTicketFragment());
         mFragments.add(new BooksStoreFragment());
         mFragments.add(new WifiFragment());
-        mFragments.add(new PlaceFragment());
+        mFragments.add(new PhonePlaceFragment());
         mFragments.add(new CardFragment());
         mFragments.add(new AboutFragment());
         mFragments.add(new SettingsFragment());

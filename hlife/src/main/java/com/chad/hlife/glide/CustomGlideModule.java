@@ -2,14 +2,20 @@ package com.chad.hlife.glide;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 
 import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.module.AppGlideModule;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.chad.hlife.R;
 
 /**
@@ -18,7 +24,7 @@ import com.chad.hlife.R;
 @GlideModule
 public class CustomGlideModule extends AppGlideModule {
 
-    public static void load(Context context, String url, AppCompatImageView imageView) {
+    public static void loadCenterCrop(Context context, String url, AppCompatImageView imageView) {
         GlideApp.with(context)
                 .load(url)
                 .centerCrop()
@@ -27,37 +33,19 @@ public class CustomGlideModule extends AppGlideModule {
                 .into(imageView);
     }
 
-    public static void load(Activity activity, String url, AppCompatImageView imageView) {
-        GlideApp.with(activity)
+    public static void loadFitCenter(Context context, String url, AppCompatImageView imageView) {
+        GlideApp.with(context)
                 .load(url)
-                .centerCrop()
+                .fitCenter()
                 .placeholder(R.drawable.pic_placeholder_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
 
-    public static void load(FragmentActivity fragmentActivity, String url, AppCompatImageView imageView) {
-        GlideApp.with(fragmentActivity)
+    public static void loadFitXY(Context context, String url, AppCompatImageView imageView) {
+        GlideApp.with(context)
                 .load(url)
-                .centerCrop()
-                .placeholder(R.drawable.pic_placeholder_image)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView);
-    }
-
-    public static void load(Fragment fragment, String url, AppCompatImageView imageView) {
-        GlideApp.with(fragment)
-                .load(url)
-                .centerCrop()
-                .placeholder(R.drawable.pic_placeholder_image)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView);
-    }
-
-    public static void load(View view, String url, AppCompatImageView imageView) {
-        GlideApp.with(view)
-                .load(url)
-                .centerCrop()
+                .fitCenter()
                 .placeholder(R.drawable.pic_placeholder_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
