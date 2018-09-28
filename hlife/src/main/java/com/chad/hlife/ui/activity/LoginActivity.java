@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.mvp.presenter.login.LoginPresenter;
 import com.chad.hlife.mvp.view.ILoginView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
@@ -13,6 +14,7 @@ import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPresenter>
         implements ILoginView {
@@ -49,9 +51,16 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
 
     }
 
-    @Override
-    public void onError(Object object) {
+    @OnClick(R.id.btn_login_weibo)
+    public void weiBoLogin() {
+        LogUtil.d(TAG, "weiBoLogin");
+        presenter.login(AppConstant.MODEL_LOGIN_WEIBO, this);
+    }
 
+    @OnClick(R.id.btn_login_wechat)
+    public void weChatLogin() {
+        LogUtil.d(TAG, "weChatLogin");
+        presenter.login(AppConstant.MODEL_LOGIN_WECHAT, this);
     }
 
     @Override
@@ -71,6 +80,11 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
 
     @Override
     public void onWeiBoLogout() {
+
+    }
+
+    @Override
+    public void onError(Object object) {
 
     }
 
