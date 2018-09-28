@@ -15,8 +15,6 @@
     <string name="query">查询服务</string>
     <string name="about">关于</string>
     <string name="settings">设置</string>
-    <string name="phone_place">手机号码归属地</string>
-    <string name="id_card">身份证信息</string>
     <string name="top">头条</string>
     <string name="society">社会</string>
     <string name="internal">国内</string>
@@ -27,6 +25,8 @@
     <string name="science">科技</string>
     <string name="finance">财经</string>
     <string name="fashion">时尚</string>
+    <string name="phone_place">手机号码归属地</string>
+    <string name="id_card">身份证信息</string>
     <string name="year">年</string>
     <string name="month">月</string>
     <string name="day">日</string>
