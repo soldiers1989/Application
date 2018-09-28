@@ -36,13 +36,9 @@
             android:icon="@drawable/ic_navigation_wifi"
             android:title="@string/wifi" />
         <item
-            android:id="@+id/item_phone_place"
-            android:icon="@drawable/ic_navigation_place"
-            android:title="@string/place" />
-        <item
-            android:id="@+id/item_card"
-            android:icon="@drawable/ic_navigation_crad"
-            android:title="@string/card" />
+            android:id="@+id/item_query"
+            android:icon="@drawable/ic_navigation_query"
+            android:title="@string/query" />
     </group>
 
     <group android:id="@+id/group_app">

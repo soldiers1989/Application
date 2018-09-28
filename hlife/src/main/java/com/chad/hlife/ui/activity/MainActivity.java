@@ -12,13 +12,12 @@ import com.chad.hlife.R;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.ui.fragment.AboutFragment;
 import com.chad.hlife.ui.fragment.BooksStoreFragment;
-import com.chad.hlife.ui.fragment.CardFragment;
 import com.chad.hlife.ui.fragment.FilmInfoFragment;
 import com.chad.hlife.ui.fragment.FilmTicketFragment;
 import com.chad.hlife.ui.fragment.HistoryFragment;
 import com.chad.hlife.ui.fragment.JokeFragment;
 import com.chad.hlife.ui.fragment.NewsFragment;
-import com.chad.hlife.ui.fragment.PhonePlaceFragment;
+import com.chad.hlife.ui.fragment.QueryFragment;
 import com.chad.hlife.ui.fragment.SettingsFragment;
 import com.chad.hlife.ui.fragment.WifiFragment;
 import com.chad.hlife.util.LogUtil;
@@ -99,17 +98,14 @@ public class MainActivity extends BaseRxAppCompatActivity {
                 case R.id.item_wifi:
                     switchFragment(6);
                     break;
-                case R.id.item_phone_place:
+                case R.id.item_query:
                     switchFragment(7);
                     break;
-                case R.id.item_card:
+                case R.id.item_about:
                     switchFragment(8);
                     break;
-                case R.id.item_about:
-                    switchFragment(9);
-                    break;
                 case R.id.item_settings:
-                    switchFragment(10);
+                    switchFragment(9);
                     break;
                 default:
                     break;
@@ -136,8 +132,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mFragments.add(new FilmTicketFragment());
         mFragments.add(new BooksStoreFragment());
         mFragments.add(new WifiFragment());
-        mFragments.add(new PhonePlaceFragment());
-        mFragments.add(new CardFragment());
+        mFragments.add(new QueryFragment());
         mFragments.add(new AboutFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()

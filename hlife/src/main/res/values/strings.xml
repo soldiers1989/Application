@@ -12,10 +12,11 @@
     <string name="film_ticket">电影票</string>
     <string name="books_store">图书商店</string>
     <string name="wifi">附近WIFI</string>
-    <string name="place">号码归属地</string>
-    <string name="card">身份证信息</string>
+    <string name="query">查询服务</string>
     <string name="about">关于</string>
     <string name="settings">设置</string>
+    <string name="phone_place">手机号码归属地</string>
+    <string name="id_card">身份证信息</string>
     <string name="top">头条</string>
     <string name="society">社会</string>
     <string name="internal">国内</string>
@@ -33,4 +34,9 @@
     <string name="release_update">释放更新</string>
     <string name="refreshing">刷新中...</string>
     <string name="loading">加载中...</string>
+    <string name="hint_card">请输入15或18位身份证号码</string>
+    <string name="province">省份</string>
+    <string name="area">地&#8195;&#8195;区</string>
+    <string name="sex">性&#8195;&#8195;别</string>
+    <string name="birthday">出生日期</string>
 </resources>
