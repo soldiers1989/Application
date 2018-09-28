@@ -23,19 +23,7 @@
             app:tabTextAppearance="@style/TabTextStyle"
             app:tabTextColor="@color/colorText" />
 
-        <com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
-            android:id="@+id/layout_super_swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/view_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="vertical" />
-
-        </com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
+        <include layout="@layout/layout_refresh_list" />
 
     </LinearLayout>
 

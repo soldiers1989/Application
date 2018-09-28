@@ -53,6 +53,7 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.colorText));
         mToolbar.setNavigationIcon(R.drawable.ic_close_dark);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }

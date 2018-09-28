@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.activity;
 
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
         mToolbar.setTitle("");
+        mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
