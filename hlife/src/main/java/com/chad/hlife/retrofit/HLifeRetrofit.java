@@ -3,6 +3,7 @@ package com.chad.hlife.retrofit;
 import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
+import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.entity.juhe.CardInfo;
 import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
@@ -71,6 +72,11 @@ public class HLifeRetrofit {
 
     public static Observable<BookCatalogInfo> getBookCatalogInfo(String key) {
         return mIJuHeApi.getBookCatalogInfo(key);
+    }
+
+    public static Observable<BookContentInfo> getBookContentInfo(String key, String catalogId,
+                                                                 String pn, String rn) {
+        return mIJuHeApi.getBookContentInfo(key, catalogId, pn, rn);
     }
 
     public static Observable<CardInfo> getCardInfo(String cardNo, String key) {

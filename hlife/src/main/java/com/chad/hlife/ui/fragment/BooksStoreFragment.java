@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
+import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
 import com.chad.hlife.mvp.view.IBooksStoreView;
 import com.chad.hlife.ui.adapter.BookListAdapter;
@@ -72,6 +73,11 @@ public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksSt
             return;
         }
         mBookListAdapter.setData(bookCatalogInfo.getResult());
+    }
+
+    @Override
+    public void onBookContentInfo(BookContentInfo bookContentInfo) {
+
     }
 
     @Override

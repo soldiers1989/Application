@@ -1,6 +1,7 @@
 package com.chad.hlife.mvp.model;
 
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
+import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.mvp.presenter.books.IBooksStorePresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
 import com.chad.hlife.util.RxSchedulersUtil;
@@ -24,11 +25,20 @@ public class BooksStoreModel {
     }
 
     public void getBookCatalogInfo(ObservableTransformer transformer, String key,
-                                  IBooksStorePresenter booksStorePresenter) {
+                                   IBooksStorePresenter booksStorePresenter) {
         HLifeRetrofit.getBookCatalogInfo(key)
                 .compose(transformer)
                 .compose(RxSchedulersUtil.workThread())
                 .subscribe(o -> booksStorePresenter.onBookCatalogInfo((BookCatalogInfo) o),
+                        throwable -> booksStorePresenter.onError(throwable));
+    }
+
+    public void getBookContentInfo(ObservableTransformer transformer, String key, String catalogId,
+                                   String pn, String rn, IBooksStorePresenter booksStorePresenter) {
+        HLifeRetrofit.getBookContentInfo(key, catalogId, pn, rn)
+                .compose(transformer)
+                .compose(RxSchedulersUtil.workThread())
+                .subscribe(o -> booksStorePresenter.onBookContentInfo((BookContentInfo) o),
                         throwable -> booksStorePresenter.onError(throwable));
     }
 }

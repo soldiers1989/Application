@@ -19,10 +19,7 @@
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/MainTheme">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.activity.NewsDetailActivity"
@@ -30,5 +27,11 @@
         <activity
             android:name=".ui.activity.HistoryDetailActivity"
             android:theme="@style/DetailTheme" />
+        <activity android:name=".ui.activity.BooksStoreActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
