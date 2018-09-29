@@ -27,10 +27,10 @@ public class JokeInfo implements Parcelable {
         return result;
     }
 
-    protected JokeInfo(Parcel out) {
-        reason = out.readString();
-        error_code = out.readString();
-        result = (Result) out.readValue(Result.class.getClassLoader());
+    protected JokeInfo(Parcel in) {
+        reason = in.readString();
+        error_code = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -65,9 +65,9 @@ public class JokeInfo implements Parcelable {
             return data;
         }
 
-        protected Result(Parcel out) {
+        protected Result(Parcel in) {
             data = new ArrayList<>();
-            out.readList(data, Data.class.getClassLoader());
+            in.readList(data, Data.class.getClassLoader());
         }
 
         @Override
@@ -116,11 +116,11 @@ public class JokeInfo implements Parcelable {
             return updatetime;
         }
 
-        protected Data(Parcel out) {
-            content = out.readString();
-            hashId = out.readString();
-            unixtime = out.readString();
-            updatetime = out.readString();
+        protected Data(Parcel in) {
+            content = in.readString();
+            hashId = in.readString();
+            unixtime = in.readString();
+            updatetime = in.readString();
         }
 
         @Override

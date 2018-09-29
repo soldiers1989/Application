@@ -79,11 +79,6 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     }
 
     @Override
-    public void onWeiBoLogout() {
-
-    }
-
-    @Override
     public void onError(Object object) {
 
     }

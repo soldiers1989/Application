@@ -9,17 +9,29 @@ import java.util.List;
 /**
  * 图书分类目录
  */
-public class BooksStoreInfo implements Parcelable {
+public class BookCatalogInfo implements Parcelable {
 
     private String reason;
     private String resultcode;
     private List<Result> result;
 
-    protected BooksStoreInfo(Parcel out) {
-        reason = out.readString();
-        resultcode = out.readString();
+    public String getReason() {
+        return reason;
+    }
+
+    public String getResultcode() {
+        return resultcode;
+    }
+
+    public List<Result> getResult() {
+        return result;
+    }
+
+    protected BookCatalogInfo(Parcel in) {
+        reason = in.readString();
+        resultcode = in.readString();
         result = new ArrayList<>();
-        out.readList(result, Result.class.getClassLoader());
+        in.readList(result, Result.class.getClassLoader());
     }
 
     @Override
@@ -34,15 +46,15 @@ public class BooksStoreInfo implements Parcelable {
         parcel.writeList(result);
     }
 
-    public static final Creator<BooksStoreInfo> CREATOR = new Creator<BooksStoreInfo>() {
+    public static final Creator<BookCatalogInfo> CREATOR = new Creator<BookCatalogInfo>() {
         @Override
-        public BooksStoreInfo createFromParcel(Parcel parcel) {
-            return new BooksStoreInfo(parcel);
+        public BookCatalogInfo createFromParcel(Parcel parcel) {
+            return new BookCatalogInfo(parcel);
         }
 
         @Override
-        public BooksStoreInfo[] newArray(int size) {
-            return new BooksStoreInfo[size];
+        public BookCatalogInfo[] newArray(int size) {
+            return new BookCatalogInfo[size];
         }
     };
 
@@ -59,9 +71,9 @@ public class BooksStoreInfo implements Parcelable {
             return catalog;
         }
 
-        protected Result(Parcel out) {
-            id = out.readInt();
-            catalog = out.readString();
+        protected Result(Parcel in) {
+            id = in.readInt();
+            catalog = in.readString();
         }
 
         @Override

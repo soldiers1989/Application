@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.news.NewsPresenter;
@@ -98,8 +99,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         LogUtil.d(TAG, "initData");
         initNewsTypes();
         // TODO: 2018/9/27
-//        presenter.getNewsInfo(bindToLifecycle(),
-//                mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
+//        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
 
     private void initNewsTypes() {
@@ -162,7 +162,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         }
         mHeaderView.refresh();
         // TODO: 2018/9/27
-        //  presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
+//        presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
 
     @Override

@@ -24,10 +24,10 @@ public class PhonePlaceInfo implements Parcelable {
         return result;
     }
 
-    protected PhonePlaceInfo(Parcel out) {
-        reason = out.readString();
-        resultcode = out.readString();
-        result = (Result) out.readValue(Result.class.getClassLoader());
+    protected PhonePlaceInfo(Parcel in) {
+        reason = in.readString();
+        resultcode = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -87,13 +87,13 @@ public class PhonePlaceInfo implements Parcelable {
             return card;
         }
 
-        protected Result(Parcel out) {
-            province = out.readString();
-            city = out.readString();
-            areacode = out.readString();
-            zip = out.readString();
-            company = out.readString();
-            card = out.readString();
+        protected Result(Parcel in) {
+            province = in.readString();
+            city = in.readString();
+            areacode = in.readString();
+            zip = in.readString();
+            company = in.readString();
+            card = in.readString();
         }
 
         @Override

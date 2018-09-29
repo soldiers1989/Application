@@ -24,18 +24,6 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         }
     }
 
-    public void logout(int model) {
-        switch (model) {
-            case AppConstant.MODEL_LOGIN_WEIBO:
-                LoginModel.getInstance().cancelWeiBoAuth(this);
-                break;
-            case AppConstant.MODEL_LOGIN_WECHAT:
-                break;
-            default:
-                break;
-        }
-    }
-
     public SsoHandler getWeiBoSsoHandler() {
         return LoginModel.getInstance().getWeiBoSsoHandler();
     }
@@ -62,10 +50,5 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
     @Override
     public void onWeiBoLoginFailure(WbConnectErrorMessage wbConnectErrorMessage) {
         getView().onWeiBoLoginFailure(wbConnectErrorMessage);
-    }
-
-    @Override
-    public void onWeiBoLogout() {
-        getView().onWeiBoLogout();
     }
 }

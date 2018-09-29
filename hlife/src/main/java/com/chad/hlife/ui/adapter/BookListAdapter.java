@@ -8,16 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.hlife.R;
-import com.chad.hlife.entity.juhe.BooksStoreInfo;
+import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;
 
-public class BooksStoreAdapter extends BaseRecyclerViewAdapter<BooksStoreInfo.Result> {
+public class BookListAdapter extends BaseRecyclerViewAdapter<BookCatalogInfo.Result> {
 
     private Context mContext;
 
-    public BooksStoreAdapter(Context context) {
+    public BookListAdapter(Context context) {
         mContext = context;
     }
 

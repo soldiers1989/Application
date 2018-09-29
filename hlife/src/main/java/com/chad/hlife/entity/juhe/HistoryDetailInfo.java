@@ -27,10 +27,10 @@ public class HistoryDetailInfo implements Parcelable {
         return result;
     }
 
-    protected HistoryDetailInfo(Parcel out) {
-        reason = out.readString();
-        error_code = out.readString();
-        result = (Result) out.readValue(Result.class.getClassLoader());
+    protected HistoryDetailInfo(Parcel in) {
+        reason = in.readString();
+        error_code = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -85,13 +85,13 @@ public class HistoryDetailInfo implements Parcelable {
             return picUrl;
         }
 
-        protected Result(Parcel out) {
-            e_id = out.readString();
-            title = out.readString();
-            content = out.readString();
-            picNo = out.readInt();
+        protected Result(Parcel in) {
+            e_id = in.readString();
+            title = in.readString();
+            content = in.readString();
+            picNo = in.readInt();
             picUrl = new ArrayList<>();
-            out.readList(picUrl, PicUrl.class.getClassLoader());
+            in.readList(picUrl, PicUrl.class.getClassLoader());
         }
 
         @Override
@@ -139,10 +139,10 @@ public class HistoryDetailInfo implements Parcelable {
             return url;
         }
 
-        protected PicUrl(Parcel out) {
-            id = out.readInt();
-            pic_title = out.readString();
-            url = out.readString();
+        protected PicUrl(Parcel in) {
+            id = in.readInt();
+            pic_title = in.readString();
+            url = in.readString();
         }
 
         @Override

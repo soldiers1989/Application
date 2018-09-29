@@ -1,5 +1,6 @@
 package com.chad.hlife.retrofit.api;
 
+import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.CardInfo;
 import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
@@ -28,6 +29,9 @@ public interface IJuHeApi {
     @GET("joke/content/list.php")
     Observable<JokeInfo> getMoreJokeInfo(@Query("sort") String sort, @Query("time") String time,
                                          @Query("key") String key);
+
+    @GET("http://apis.juhe.cn/goodbook/catalog")
+    Observable<BookCatalogInfo> getBookCatalogInfo(@Query("key")String key);
 
     @GET("http://apis.juhe.cn/idcard/index")
     Observable<CardInfo> getCardInfo(@Query("cardno") String cardNo, @Query("key") String key);

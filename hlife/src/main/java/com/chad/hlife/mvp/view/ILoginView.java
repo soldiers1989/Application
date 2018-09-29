@@ -10,6 +10,4 @@ public interface ILoginView extends IBaseView {
     void onWeiBoLoginCancel();
 
     void onWeiBoLoginFailure(WbConnectErrorMessage wbConnectErrorMessage);
-
-    void onWeiBoLogout();
 }

@@ -53,12 +53,6 @@ public class LoginModel {
         }
     }
 
-    public void cancelWeiBoAuth(ILoginPresenter loginPresenter) {
-        initWeiBoAuthHelper();
-        mWeiBoAuthHelper.clearAccessToken();
-        loginPresenter.onWeiBoLogout();
-    }
-
     public SsoHandler getWeiBoSsoHandler() {
         initWeiBoAuthHelper();
         return mWeiBoAuthHelper.getSsoHandler();

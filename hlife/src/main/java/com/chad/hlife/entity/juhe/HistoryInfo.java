@@ -27,11 +27,11 @@ public class HistoryInfo implements Parcelable {
         return result;
     }
 
-    protected HistoryInfo(Parcel out) {
-        reason = out.readString();
-        error_code = out.readString();
+    protected HistoryInfo(Parcel in) {
+        reason = in.readString();
+        error_code = in.readString();
         result = new ArrayList<>();
-        out.readList(result, Result.class.getClassLoader());
+        in.readList(result, Result.class.getClassLoader());
     }
 
     @Override
@@ -81,11 +81,11 @@ public class HistoryInfo implements Parcelable {
             return title;
         }
 
-        protected Result(Parcel out) {
-            e_id = out.readString();
-            day = out.readString();
-            date = out.readString();
-            title = out.readString();
+        protected Result(Parcel in) {
+            e_id = in.readString();
+            day = in.readString();
+            date = in.readString();
+            title = in.readString();
         }
 
         @Override

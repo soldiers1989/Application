@@ -65,6 +65,10 @@ public class HeaderView extends ConstraintLayout implements Animation.AnimationL
             mAnimation = new RotateAnimation(0f, 360f,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
+        } else {
+            mAnimation.cancel();
+            mAnimation.setInterpolator(null);
+            mAnimation.setAnimationListener(null);
         }
         mAnimation.setRepeatCount(1);
         mAnimation.setDuration(1000);

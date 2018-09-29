@@ -5,14 +5,18 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
-import com.chad.hlife.ui.adapter.BooksStoreAdapter;
-import com.chad.hlife.ui.base.BaseRxFragment;
+import com.chad.hlife.entity.juhe.BookCatalogInfo;
+import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
+import com.chad.hlife.mvp.view.IBooksStoreView;
+import com.chad.hlife.ui.adapter.BookListAdapter;
+import com.chad.hlife.ui.base.BaseMvpFragment;
 import com.chad.hlife.util.LogUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
 import butterknife.BindView;
 
-public class BooksStoreFragment extends BaseRxFragment implements SuperSwipeRefreshLayout.OnPullRefreshListener {
+public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksStorePresenter>
+        implements IBooksStoreView, SuperSwipeRefreshLayout.OnPullRefreshListener {
 
     private static final String TAG = BooksStoreFragment.class.getSimpleName();
 
@@ -21,7 +25,12 @@ public class BooksStoreFragment extends BaseRxFragment implements SuperSwipeRefr
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
 
-    private BooksStoreAdapter mBooksStoreAdapter;
+    private BookListAdapter mBookListAdapter;
+
+    @Override
+    protected BooksStorePresenter onGetPresenter() {
+        return new BooksStorePresenter();
+    }
 
     @Override
     protected int onGetLayoutId() {
@@ -45,13 +54,29 @@ public class BooksStoreFragment extends BaseRxFragment implements SuperSwipeRefr
         LogUtil.d(TAG, "initRecyclerView");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mBooksStoreAdapter = new BooksStoreAdapter(getContext());
-        mRecyclerView.setAdapter(mBooksStoreAdapter);
+        mBookListAdapter = new BookListAdapter(getContext());
+        mRecyclerView.setAdapter(mBookListAdapter);
     }
 
     @Override
     protected void onInitData() {
+        LogUtil.d(TAG, "onInitData");
+//        presenter.getBookCatalogInfo(bindToLifecycle(), JuHeConfig.KEY_BOOKS);
+    }
 
+    @Override
+    public void onBookCatalogInfo(BookCatalogInfo bookCatalogInfo) {
+        LogUtil.d(TAG, "onBookCatalogInfo : bookCatalogInfo = "
+                + (bookCatalogInfo == null ? "Null" : "Not Null"));
+        if (bookCatalogInfo == null) {
+            return;
+        }
+        mBookListAdapter.setData(bookCatalogInfo.getResult());
+    }
+
+    @Override
+    public void onError(Object object) {
+        LogUtil.d(TAG, "onError");
     }
 
     @Override

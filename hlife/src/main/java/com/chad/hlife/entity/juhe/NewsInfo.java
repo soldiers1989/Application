@@ -22,9 +22,9 @@ public class NewsInfo implements Parcelable {
         return result;
     }
 
-    protected NewsInfo(Parcel out) {
-        reason = out.readString();
-        result = (Result) out.readValue(Result.class.getClassLoader());
+    protected NewsInfo(Parcel in) {
+        reason = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -63,10 +63,10 @@ public class NewsInfo implements Parcelable {
             return data;
         }
 
-        protected Result(Parcel out) {
-            stat = out.readString();
+        protected Result(Parcel in) {
+            stat = in.readString();
             data = new ArrayList<>();
-            out.readList(data, Data.class.getClassLoader());
+            in.readList(data, Data.class.getClassLoader());
         }
 
         @Override
@@ -141,16 +141,16 @@ public class NewsInfo implements Parcelable {
             return thumbnail_pic_s03;
         }
 
-        protected Data(Parcel out) {
-            uniquekey = out.readString();
-            title = out.readString();
-            date = out.readString();
-            category = out.readString();
-            author_name = out.readString();
-            url = out.readString();
-            thumbnail_pic_s = out.readString();
-            thumbnail_pic_s02 = out.readString();
-            thumbnail_pic_s03 = out.readString();
+        protected Data(Parcel in) {
+            uniquekey = in.readString();
+            title = in.readString();
+            date = in.readString();
+            category = in.readString();
+            author_name = in.readString();
+            url = in.readString();
+            thumbnail_pic_s = in.readString();
+            thumbnail_pic_s02 = in.readString();
+            thumbnail_pic_s03 = in.readString();
         }
 
         @Override

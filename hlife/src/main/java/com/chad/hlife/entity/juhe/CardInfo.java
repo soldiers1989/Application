@@ -24,10 +24,10 @@ public class CardInfo implements Parcelable {
         return result;
     }
 
-    protected CardInfo(Parcel out) {
-        reason = out.readString();
-        resultcode = out.readString();
-        result = (Result) out.readValue(Result.class.getClassLoader());
+    protected CardInfo(Parcel in) {
+        reason = in.readString();
+        resultcode = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -72,10 +72,10 @@ public class CardInfo implements Parcelable {
             return birthday;
         }
 
-        protected Result(Parcel out) {
-            area = out.readString();
-            sex = out.readString();
-            birthday = out.readString();
+        protected Result(Parcel in) {
+            area = in.readString();
+            sex = in.readString();
+            birthday = in.readString();
         }
 
         @Override
