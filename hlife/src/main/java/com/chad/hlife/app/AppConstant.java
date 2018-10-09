@@ -10,7 +10,8 @@ public class AppConstant {
     public static final String EXTRA_URL = "url";
 
     public static final String URL_BASE_WEIBO = "https://api.weibo.com/2/";
-    public static final String URL_BASE_JUHE = "http://v.juhe.cn/";
+    public static final String URL_BASE_JUHE_V = "http://v.juhe.cn/";
+    public static final String URL_BASE_JUHE_API = "http://apis.juhe.cn/";
 
     public static final String TYPE_NEWS_TOP = "top";
     public static final String TYPE_NEWS_SHEHUI = "shehui";

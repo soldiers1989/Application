@@ -13,7 +13,7 @@ public class HistoryDetailInfo implements Parcelable {
 
     private String reason;
     private String error_code;
-    private Result result;
+    private List<Result> result;
 
     public String getReason() {
         return reason;
@@ -23,14 +23,15 @@ public class HistoryDetailInfo implements Parcelable {
         return error_code;
     }
 
-    public Result getResult() {
+    public List<Result> getResult() {
         return result;
     }
 
     protected HistoryDetailInfo(Parcel in) {
         reason = in.readString();
         error_code = in.readString();
-        result = (Result) in.readValue(Result.class.getClassLoader());
+        result = new ArrayList<>();
+        in.readList(result, Result.class.getClassLoader());
     }
 
     @Override
@@ -42,7 +43,7 @@ public class HistoryDetailInfo implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(reason);
         parcel.writeString(error_code);
-        parcel.writeValue(result);
+        parcel.writeList(result);
     }
 
     public static final Creator<HistoryDetailInfo> CREATOR = new Creator<HistoryDetailInfo>() {

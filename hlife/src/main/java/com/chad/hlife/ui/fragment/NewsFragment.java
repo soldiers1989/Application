@@ -98,8 +98,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
     protected void onInitData() {
         LogUtil.d(TAG, "initData");
         initNewsTypes();
-        // TODO: 2018/9/27
-//        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
+        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
 
     private void initNewsTypes() {
@@ -127,6 +126,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
             mSuperSwipeRefreshLayout.setRefreshing(false);
         }
         mNewsAdapter.setData(newsInfo.getResult().getData());
+        mRecyclerView.scrollToPosition(0);
     }
 
     @Override
@@ -140,8 +140,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         if (presenter == null || mNewsTypes == null) {
             return;
         }
-        // TODO: 2018/9/27
-//        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(tab.getPosition()), JuHeConfig.KEY_NEWS);
+        presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(tab.getPosition()), JuHeConfig.KEY_NEWS);
     }
 
     @Override
@@ -161,8 +160,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
             return;
         }
         mHeaderView.refresh();
-        // TODO: 2018/9/27
-//        presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
+        presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
     }
 
     @Override

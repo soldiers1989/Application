@@ -5,8 +5,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
 import com.chad.hlife.mvp.view.IBooksStoreView;
 import com.chad.hlife.ui.adapter.BookListAdapter;
@@ -56,13 +58,17 @@ public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksSt
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mBookListAdapter = new BookListAdapter(getContext());
+        mBookListAdapter.setOnItemClickListener(position ->
+                ActivityHelper.startBooksStoreActivity(getActivity(),
+                        mBookListAdapter.getData().get(position).getCatalog(),
+                        mBookListAdapter.getData().get(position).getId()));
         mRecyclerView.setAdapter(mBookListAdapter);
     }
 
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-//        presenter.getBookCatalogInfo(bindToLifecycle(), JuHeConfig.KEY_BOOKS);
+        presenter.getBookCatalogInfo(bindToLifecycle(), JuHeConfig.KEY_BOOKS);
     }
 
     @Override

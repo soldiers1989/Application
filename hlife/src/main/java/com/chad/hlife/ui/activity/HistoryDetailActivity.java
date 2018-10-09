@@ -84,8 +84,7 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
         }
         String id = intent.getStringExtra(AppConstant.EXTRA_ID);
         if (!TextUtils.isEmpty(id)) {
-            // TODO: 2018/9/27
-//            presenter.getHistoryDetailInfo(bindToLifecycle(), JuHeConfig.KEY_HISTORY, id);
+            presenter.getHistoryDetailInfo(bindToLifecycle(), JuHeConfig.KEY_HISTORY, id);
         }
     }
 
@@ -101,8 +100,8 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
         if (historyDetailInfo == null) {
             return;
         }
-        mTextContent.setText(historyDetailInfo.getResult().getContent());
-        mHistoryDetailAdapter.addData(historyDetailInfo.getResult().getPicUrl());
+        mTextContent.setText(historyDetailInfo.getResult().get(0).getContent());
+        mHistoryDetailAdapter.addData(historyDetailInfo.getResult().get(0).getPicUrl());
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
@@ -41,7 +43,7 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.colorText));
+        mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
@@ -61,9 +63,9 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
         if (!TextUtils.isEmpty(title)) {
             mToolbar.setTitle(title);
         }
-        String id = intent.getStringExtra(AppConstant.EXTRA_ID);
-        if (!TextUtils.isEmpty(id)) {
-            // TODO: 2018/9/29  
+        int id = intent.getIntExtra(AppConstant.EXTRA_ID, -1);
+        if (-1 != id) {
+            presenter.getBookContentInfo(bindToLifecycle(), JuHeConfig.KEY_BOOKS, id, 0, 30);
         }
     }
 

@@ -15,6 +15,7 @@ import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.util.DateUtil;
 import com.chad.hlife.util.LogUtil;
+import com.facebook.common.time.SystemClock;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
 import butterknife.BindView;
@@ -72,8 +73,7 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        // TODO: 2018/9/27
-//        presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE);
+        presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE);
     }
 
     @Override
@@ -110,8 +110,7 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
             return;
         }
         mHeaderView.refresh();
-        // TODO: 2018/9/27
-        //        presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE);
+        presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE);
     }
 
     @Override
@@ -131,10 +130,9 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
     @Override
     public void onLoadMore() {
         LogUtil.d(TAG, "onLoadMore");
-        // TODO: 2018/9/27
-//        presenter.getMoreJokeInfo(bindToLifecycle(), AppConstant.SORT_JOKE_DESC,
-//                mJokeAdapter.getData().get(mJokeAdapter.getItemCount() - 1).getUnixtime(),
-//                JuHeConfig.KEY_JOKE);
+        presenter.getMoreJokeInfo(bindToLifecycle(), AppConstant.SORT_JOKE_DESC,
+                mJokeAdapter.getData().get(mJokeAdapter.getItemCount() - 1).getUnixtime(),
+                JuHeConfig.KEY_JOKE);
     }
 
     @Override

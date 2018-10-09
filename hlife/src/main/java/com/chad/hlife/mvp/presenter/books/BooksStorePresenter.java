@@ -14,8 +14,8 @@ public class BooksStorePresenter extends BasePresenter<IBooksStoreView> implemen
         BooksStoreModel.getInstance().getBookCatalogInfo(transformer, key, this);
     }
 
-    public void getBookContentInfo(ObservableTransformer transformer, String key, String catalogId,
-                                   String pn, String rn) {
+    public void getBookContentInfo(ObservableTransformer transformer, String key, int catalogId,
+                                   int pn, int rn) {
         BooksStoreModel.getInstance().getBookContentInfo(transformer, key, catalogId, pn, rn, this);
     }
 

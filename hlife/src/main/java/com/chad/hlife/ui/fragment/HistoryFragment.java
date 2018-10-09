@@ -79,8 +79,7 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        // TODO: 2018/9/27
-//        presenter.getHistoryInfo(bindToLifecycle(), JuHeConfig.KEY_HISTORY, DateUtil.getMonthDay());
+        presenter.getHistoryInfo(bindToLifecycle(), JuHeConfig.KEY_HISTORY, DateUtil.getMonthDay());
     }
 
     @Override

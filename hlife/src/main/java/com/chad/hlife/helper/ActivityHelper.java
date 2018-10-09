@@ -30,7 +30,7 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startBooksStoreActivity(Activity activity, String title, String id) {
+    public static void startBooksStoreActivity(Activity activity, String title, int id) {
         if (activity == null) {
             return;
         }

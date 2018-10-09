@@ -33,8 +33,8 @@ public class BooksStoreModel {
                         throwable -> booksStorePresenter.onError(throwable));
     }
 
-    public void getBookContentInfo(ObservableTransformer transformer, String key, String catalogId,
-                                   String pn, String rn, IBooksStorePresenter booksStorePresenter) {
+    public void getBookContentInfo(ObservableTransformer transformer, String key, int catalogId,
+                                   int pn, int rn, IBooksStorePresenter booksStorePresenter) {
         HLifeRetrofit.getBookContentInfo(key, catalogId, pn, rn)
                 .compose(transformer)
                 .compose(RxSchedulersUtil.workThread())

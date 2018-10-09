@@ -1,5 +1,6 @@
 package com.chad.hlife.retrofit.api;
 
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.entity.juhe.CardInfo;
@@ -31,17 +32,17 @@ public interface IJuHeApi {
     Observable<JokeInfo> getMoreJokeInfo(@Query("sort") String sort, @Query("time") String time,
                                          @Query("key") String key);
 
-    @GET("http://apis.juhe.cn/goodbook/catalog")
+    @GET(AppConstant.URL_BASE_JUHE_API + "goodbook/catalog")
     Observable<BookCatalogInfo> getBookCatalogInfo(@Query("key") String key);
 
-    @GET("http://apis.juhe.cn/goodbook/query")
+    @GET(AppConstant.URL_BASE_JUHE_API + "goodbook/query")
     Observable<BookContentInfo> getBookContentInfo(@Query("key") String key,
-                                                   @Query("catalog_id") String catalogId,
-                                                   @Query("pn") String pn, @Query("rn") String rn);
+                                                   @Query("catalog_id") int catalogId,
+                                                   @Query("pn") int pn, @Query("rn") int rn);
 
-    @GET("http://apis.juhe.cn/idcard/index")
+    @GET(AppConstant.URL_BASE_JUHE_API + "idcard/index")
     Observable<CardInfo> getCardInfo(@Query("cardno") String cardNo, @Query("key") String key);
 
-    @GET("http://apis.juhe.cn/mobile/get")
+    @GET(AppConstant.URL_BASE_JUHE_API + "mobile/get")
     Observable<PhonePlaceInfo> getPhonePlaceInfo(@Query("phone") int phone, @Query("key") String key);
 }

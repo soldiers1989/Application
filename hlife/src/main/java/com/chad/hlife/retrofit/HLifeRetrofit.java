@@ -74,8 +74,8 @@ public class HLifeRetrofit {
         return mIJuHeApi.getBookCatalogInfo(key);
     }
 
-    public static Observable<BookContentInfo> getBookContentInfo(String key, String catalogId,
-                                                                 String pn, String rn) {
+    public static Observable<BookContentInfo> getBookContentInfo(String key, int catalogId,
+                                                                 int pn, int rn) {
         return mIJuHeApi.getBookContentInfo(key, catalogId, pn, rn);
     }
 
@@ -101,7 +101,7 @@ public class HLifeRetrofit {
     private static void initIJuHeApi() {
         LogUtil.d(TAG, "initIJuHeApi");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppConstant.URL_BASE_JUHE)
+                .baseUrl(AppConstant.URL_BASE_JUHE_V)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
