@@ -41,4 +41,6 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+    <include layout="@layout/layout_loading" />
+
 </android.support.constraint.ConstraintLayout>

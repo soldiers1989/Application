@@ -13,18 +13,18 @@ import com.chad.hlife.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;
 
-public class BookListAdapter extends BaseRecyclerViewAdapter<BookCatalogInfo.Result> {
+public class BookCatalogAdapter extends BaseRecyclerViewAdapter<BookCatalogInfo.Result> {
 
     private Context mContext;
 
-    public BookListAdapter(Context context) {
+    public BookCatalogAdapter(Context context) {
         mContext = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_books_store, viewGroup, false);
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_books_store_catalog, viewGroup, false);
         return new ItemViewHolder(itemView);
     }
 

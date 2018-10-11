@@ -2,8 +2,13 @@ package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -12,6 +17,7 @@ import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
 import com.chad.hlife.mvp.view.IBooksStoreView;
+import com.chad.hlife.ui.adapter.BookContentAdapter;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
 
@@ -24,6 +30,12 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.view_recycler)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
+
+    private BookContentAdapter mBookContentAdapter;
 
     @Override
     protected BooksStorePresenter onGetPresenter() {
@@ -39,6 +51,7 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         initToolbar();
+        initRecyclerView();
     }
 
     private void initToolbar() {
@@ -46,6 +59,16 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
+
+    private void initRecyclerView() {
+        LogUtil.d(TAG, "initRecyclerView");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        mBookContentAdapter = new BookContentAdapter(getApplicationContext());
+        mRecyclerView.setAdapter(mBookContentAdapter);
     }
 
     @Override
@@ -81,6 +104,8 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
         if (bookContentInfo == null) {
             return;
         }
+        mLoading.setVisibility(View.GONE);
+        mBookContentAdapter.setData(bookContentInfo.getResult().getData());
     }
 
     @Override

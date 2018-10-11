@@ -1,21 +1,11 @@
 package com.chad.hlife.glide;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatImageView;
-import android.view.View;
 
 import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.module.AppGlideModule;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.chad.hlife.R;
 
 /**

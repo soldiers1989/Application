@@ -1,11 +1,13 @@
 package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -31,6 +33,8 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
     AppCompatTextView mTextContent;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
 
     private HistoryDetailAdapter mHistoryDetailAdapter;
 
@@ -100,6 +104,7 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
         if (historyDetailInfo == null) {
             return;
         }
+        mLoading.setVisibility(View.GONE);
         mTextContent.setText(historyDetailInfo.getResult().get(0).getContent());
         mHistoryDetailAdapter.addData(historyDetailInfo.getResult().get(0).getPicUrl());
     }

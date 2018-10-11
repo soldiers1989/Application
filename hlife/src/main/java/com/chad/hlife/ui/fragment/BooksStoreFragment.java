@@ -1,6 +1,5 @@
 package com.chad.hlife.ui.fragment;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -11,24 +10,21 @@ import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.books.BooksStorePresenter;
 import com.chad.hlife.mvp.view.IBooksStoreView;
-import com.chad.hlife.ui.adapter.BookListAdapter;
+import com.chad.hlife.ui.adapter.BookCatalogAdapter;
 import com.chad.hlife.ui.base.BaseMvpFragment;
 import com.chad.hlife.util.LogUtil;
-import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
 import butterknife.BindView;
 
 public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksStorePresenter>
-        implements IBooksStoreView, SuperSwipeRefreshLayout.OnPullRefreshListener {
+        implements IBooksStoreView {
 
     private static final String TAG = BooksStoreFragment.class.getSimpleName();
 
-    @BindView(R.id.layout_super_swipe_refresh)
-    SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
 
-    private BookListAdapter mBookListAdapter;
+    private BookCatalogAdapter mBookCatalogAdapter;
 
     @Override
     protected BooksStorePresenter onGetPresenter() {
@@ -43,26 +39,19 @@ public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksSt
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        initSuperSwipeRefreshLayout();
         initRecyclerView();
-    }
-
-    private void initSuperSwipeRefreshLayout() {
-        LogUtil.d(TAG, "initSuperSwipeRefreshLayout");
-        mSuperSwipeRefreshLayout.setHeaderView(new ConstraintLayout(getContext()));
-        mSuperSwipeRefreshLayout.setOnPullRefreshListener(this);
     }
 
     private void initRecyclerView() {
         LogUtil.d(TAG, "initRecyclerView");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mBookListAdapter = new BookListAdapter(getContext());
-        mBookListAdapter.setOnItemClickListener(position ->
+        mBookCatalogAdapter = new BookCatalogAdapter(getContext());
+        mBookCatalogAdapter.setOnItemClickListener(position ->
                 ActivityHelper.startBooksStoreActivity(getActivity(),
-                        mBookListAdapter.getData().get(position).getCatalog(),
-                        mBookListAdapter.getData().get(position).getId()));
-        mRecyclerView.setAdapter(mBookListAdapter);
+                        mBookCatalogAdapter.getData().get(position).getCatalog(),
+                        mBookCatalogAdapter.getData().get(position).getId()));
+        mRecyclerView.setAdapter(mBookCatalogAdapter);
     }
 
     @Override
@@ -78,7 +67,7 @@ public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksSt
         if (bookCatalogInfo == null) {
             return;
         }
-        mBookListAdapter.setData(bookCatalogInfo.getResult());
+        mBookCatalogAdapter.setData(bookCatalogInfo.getResult());
     }
 
     @Override
@@ -89,21 +78,5 @@ public class BooksStoreFragment extends BaseMvpFragment<IBooksStoreView, BooksSt
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
-    }
-
-    @Override
-    public void onRefresh() {
-        LogUtil.d(TAG, "onRefresh");
-        mSuperSwipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onPullDistance(int i) {
-
-    }
-
-    @Override
-    public void onPullEnable(boolean b) {
-
     }
 }

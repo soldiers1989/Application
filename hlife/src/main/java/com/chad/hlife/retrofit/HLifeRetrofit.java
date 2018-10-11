@@ -5,6 +5,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.entity.juhe.CardInfo;
+import com.chad.hlife.entity.juhe.FilmTicketInfo;
 import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
@@ -68,6 +69,10 @@ public class HLifeRetrofit {
 
     public static Observable<JokeInfo> getMoreJokeInfo(String sort, String time, String key) {
         return mIJuHeApi.getMoreJokeInfo(sort, time, key);
+    }
+
+    public static Observable<FilmTicketInfo> getFilmTicketInfo(String key) {
+        return mIJuHeApi.getFilmTicketInfo(key);
     }
 
     public static Observable<BookCatalogInfo> getBookCatalogInfo(String key) {

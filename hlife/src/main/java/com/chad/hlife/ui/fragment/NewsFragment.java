@@ -19,8 +19,11 @@ import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         implements INewsView, TabLayout.BaseOnTabSelectedListener,
@@ -160,7 +163,11 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
             return;
         }
         mHeaderView.refresh();
-        presenter.getNewsInfo(bindToLifecycle(),mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS);
+        Observable.timer(1, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> presenter.getNewsInfo(bindToLifecycle(),
+                        mNewsTypes.get(mTabLayout.getSelectedTabPosition()), JuHeConfig.KEY_NEWS));
     }
 
     @Override

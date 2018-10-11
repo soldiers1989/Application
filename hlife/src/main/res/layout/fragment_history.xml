@@ -13,13 +13,13 @@
             android:id="@+id/text_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:padding="@dimen/chad_10dp"
             android:textColor="@color/colorText"
             android:textSize="@dimen/chad_16sp" />
 
-        <include layout="@layout/layout_refresh_list" />
+        <include layout="@layout/layout_list" />
 
     </LinearLayout>
 

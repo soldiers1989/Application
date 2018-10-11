@@ -1,11 +1,11 @@
 package com.chad.hlife.ui.fragment;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.ui.base.BaseRxFragment;
+import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.util.LogUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
@@ -19,6 +19,8 @@ public class WifiFragment extends BaseRxFragment implements SuperSwipeRefreshLay
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+
+    private HeaderView mHeaderView;
 
     @Override
     protected int onGetLayoutId() {
@@ -34,7 +36,8 @@ public class WifiFragment extends BaseRxFragment implements SuperSwipeRefreshLay
 
     private void initSuperSwipeRefreshLayout() {
         LogUtil.d(TAG, "initSuperSwipeRefreshLayout");
-        mSuperSwipeRefreshLayout.setHeaderView(new ConstraintLayout(getContext()));
+        mHeaderView = new HeaderView(getContext());
+        mSuperSwipeRefreshLayout.setHeaderView(mHeaderView);
         mSuperSwipeRefreshLayout.setOnPullRefreshListener(this);
     }
 
@@ -53,7 +56,8 @@ public class WifiFragment extends BaseRxFragment implements SuperSwipeRefreshLay
     @Override
     public void onRefresh() {
         LogUtil.d(TAG, "onRefresh");
-        mSuperSwipeRefreshLayout.setRefreshing(false);
+        mHeaderView.refresh();
+        // TODO: 2018/10/11  
     }
 
     @Override
@@ -62,7 +66,11 @@ public class WifiFragment extends BaseRxFragment implements SuperSwipeRefreshLay
     }
 
     @Override
-    public void onPullEnable(boolean b) {
-
+    public void onPullEnable(boolean enable) {
+        LogUtil.d(TAG, "onPullEnable : enable = " + enable);
+        if (mHeaderView == null) {
+            return;
+        }
+        mHeaderView.pullEnable(enable);
     }
 }

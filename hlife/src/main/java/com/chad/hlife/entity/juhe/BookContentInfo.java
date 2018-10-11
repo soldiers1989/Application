@@ -19,7 +19,7 @@ public class BookContentInfo implements Parcelable {
         return reason;
     }
 
-    public String getResultcode() {
+    public String getResultCode() {
         return resultcode;
     }
 

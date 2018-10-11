@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.fragment;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -13,12 +14,14 @@ import com.chad.hlife.ui.adapter.JokeAdapter;
 import com.chad.hlife.ui.base.BaseMvpFragment;
 import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.ui.view.refresh.HeaderView;
-import com.chad.hlife.util.DateUtil;
 import com.chad.hlife.util.LogUtil;
-import com.facebook.common.time.SystemClock;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
         implements IJokeView, SuperSwipeRefreshLayout.OnPullRefreshListener,
@@ -66,6 +69,7 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mJokeAdapter = new JokeAdapter(getContext());
         mRecyclerView.setAdapter(mJokeAdapter);
     }
@@ -110,7 +114,10 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
             return;
         }
         mHeaderView.refresh();
-        presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE);
+        Observable.timer(1, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> presenter.getJokeInfo(bindToLifecycle(), JuHeConfig.KEY_JOKE));
     }
 
     @Override

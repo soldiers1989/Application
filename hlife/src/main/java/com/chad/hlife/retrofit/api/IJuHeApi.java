@@ -4,6 +4,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
 import com.chad.hlife.entity.juhe.CardInfo;
+import com.chad.hlife.entity.juhe.FilmTicketInfo;
 import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
@@ -31,6 +32,9 @@ public interface IJuHeApi {
     @GET("joke/content/list.php")
     Observable<JokeInfo> getMoreJokeInfo(@Query("sort") String sort, @Query("time") String time,
                                          @Query("key") String key);
+
+    @GET("wepiao/query")
+    Observable<FilmTicketInfo> getFilmTicketInfo(@Query("key") String key);
 
     @GET(AppConstant.URL_BASE_JUHE_API + "goodbook/catalog")
     Observable<BookCatalogInfo> getBookCatalogInfo(@Query("key") String key);

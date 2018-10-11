@@ -4,7 +4,10 @@ import android.content.Context;
 
 import com.chad.hlife.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtil {
 
@@ -25,5 +28,16 @@ public class DateUtil {
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         return month + "/" + day;
+    }
+
+    public static String getCurrentTime(String time, String pattern) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return Long.toString(date.getTime()/1000);
     }
 }

@@ -3,35 +3,33 @@ package com.chad.hlife.entity.juhe;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.chad.hlife.util.StringUtil;
 
 /**
- * 图书分类目录
+ * 电影票
  */
-public class BookCatalogInfo implements Parcelable {
+public class FilmTicketInfo implements Parcelable {
 
     private String reason;
-    private String resultcode;
-    private List<Result> result;
+    private String error_code;
+    private Result result;
 
     public String getReason() {
         return reason;
     }
 
-    public String getResultCode() {
-        return resultcode;
+    public String getErrorCode() {
+        return error_code;
     }
 
-    public List<Result> getResult() {
+    public Result getResult() {
         return result;
     }
 
-    protected BookCatalogInfo(Parcel in) {
+    protected FilmTicketInfo(Parcel in) {
         reason = in.readString();
-        resultcode = in.readString();
-        result = new ArrayList<>();
-        in.readList(result, Result.class.getClassLoader());
+        error_code = in.readString();
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -42,38 +40,38 @@ public class BookCatalogInfo implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(reason);
-        parcel.writeString(resultcode);
-        parcel.writeList(result);
+        parcel.writeString(error_code);
+        parcel.writeValue(result);
     }
 
-    public static final Creator<BookCatalogInfo> CREATOR = new Creator<BookCatalogInfo>() {
+    public static final Creator<FilmTicketInfo> CREATOR = new Creator<FilmTicketInfo>() {
         @Override
-        public BookCatalogInfo createFromParcel(Parcel parcel) {
-            return new BookCatalogInfo(parcel);
+        public FilmTicketInfo createFromParcel(Parcel parcel) {
+            return new FilmTicketInfo(parcel);
         }
 
         @Override
-        public BookCatalogInfo[] newArray(int size) {
-            return new BookCatalogInfo[size];
+        public FilmTicketInfo[] newArray(int size) {
+            return new FilmTicketInfo[size];
         }
     };
 
     public static class Result implements Parcelable {
 
-        private int id;
-        private String catalog;
+        private String h5url;
+        private String h5weixin;
 
-        public int getId() {
-            return id;
+        public String getH5url() {
+            return h5url;
         }
 
-        public String getCatalog() {
-            return catalog;
+        public String getH5weixin() {
+            return h5weixin;
         }
 
         protected Result(Parcel in) {
-            id = in.readInt();
-            catalog = in.readString();
+            h5url = in.readString();
+            h5weixin = in.readString();
         }
 
         @Override
@@ -83,8 +81,8 @@ public class BookCatalogInfo implements Parcelable {
 
         @Override
         public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeInt(id);
-            parcel.writeString(catalog);
+            parcel.writeString(h5url);
+            parcel.writeString(h5weixin);
         }
 
         public static final Creator<Result> CREATOR = new Creator<Result>() {
