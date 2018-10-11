@@ -11,6 +11,7 @@ import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.entity.juhe.PhonePlaceInfo;
+import com.chad.hlife.entity.juhe.WifiInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.helper.NetworkHelper;
 import com.chad.hlife.retrofit.api.IJuHeApi;
@@ -82,6 +83,10 @@ public class HLifeRetrofit {
     public static Observable<BookContentInfo> getBookContentInfo(String key, int catalogId,
                                                                  int pn, int rn) {
         return mIJuHeApi.getBookContentInfo(key, catalogId, pn, rn);
+    }
+
+    public static Observable<WifiInfo> getWifiInfo(double lon, double lat, int gtype, String key) {
+        return mIJuHeApi.getWifiInfo(lon, lat, gtype, key);
     }
 
     public static Observable<CardInfo> getCardInfo(String cardNo, String key) {

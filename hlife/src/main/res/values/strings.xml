@@ -41,4 +41,6 @@
     <string name="birthday">出生日期</string>
     <string name="buy">购买</string>
     <string name="no_books_available_for_sale">暂无可售图书</string>
+    <string name="current_distance">当前距离</string>
+    <string name="meters">米</string>
 </resources>

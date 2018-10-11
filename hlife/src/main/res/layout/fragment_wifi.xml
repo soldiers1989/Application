@@ -12,7 +12,6 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:padding="@dimen/chad_10dp">
 
             <android.support.v7.widget.AppCompatImageView

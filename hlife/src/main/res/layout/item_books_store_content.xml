@@ -14,7 +14,7 @@
         android:src="@drawable/pic_placeholder_image" />
 
     <LinearLayout
-        android:layout_width="@dimen/chad_280dp"
+        android:layout_width="@dimen/chad_200dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/chad_10dp"
         android:orientation="vertical"
@@ -33,21 +33,24 @@
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/chad_10dp" />
+            android:layout_marginTop="@dimen/chad_10dp"
+            android:textColor="@color/colorText" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_reading"
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/chad_5dp" />
+            android:layout_marginTop="@dimen/chad_5dp"
+            android:textColor="@color/colorText" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_tags"
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/chad_5dp" />
+            android:layout_marginTop="@dimen/chad_5dp"
+            android:textColor="@color/colorText" />
 
     </LinearLayout>
 

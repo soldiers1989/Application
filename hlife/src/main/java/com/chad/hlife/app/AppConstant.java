@@ -26,4 +26,8 @@ public class AppConstant {
 
     public static final String SORT_JOKE_DESC = "desc";
     public static final String SORT_JOKE_ASC = "asc";
+
+    public static final int TYPE_WIFI_BAIDU = 1;
+    public static final int TYPE_WIFI_GOOGLE = 2;
+    public static final int TYPE_WIFI_GPS = 3;
 }
