@@ -10,17 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.chad.hlife.R;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
-import com.chad.hlife.ui.fragment.AboutFragment;
-import com.chad.hlife.ui.fragment.BooksStoreFragment;
-import com.chad.hlife.ui.fragment.FilmInfoFragment;
-import com.chad.hlife.ui.fragment.FilmTicketFragment;
-import com.chad.hlife.ui.fragment.HistoryFragment;
-import com.chad.hlife.ui.fragment.JokeFragment;
-import com.chad.hlife.ui.fragment.NewsFragment;
-import com.chad.hlife.ui.fragment.QueryFragment;
-import com.chad.hlife.ui.fragment.SettingsFragment;
-import com.chad.hlife.ui.fragment.WifiFragment;
+import com.chad.hlife.ui.juhe.fragment.BooksStoreFragment;
+import com.chad.hlife.ui.juhe.fragment.HistoryFragment;
+import com.chad.hlife.ui.juhe.fragment.JokeFragment;
+import com.chad.hlife.ui.juhe.fragment.NewsFragment;
+import com.chad.hlife.ui.juhe.fragment.SettingsFragment;
+import com.chad.hlife.ui.juhe.fragment.WifiFragment;
 import com.chad.hlife.util.LogUtil;
 
 import java.util.ArrayList;
@@ -81,38 +78,38 @@ public class MainActivity extends BaseRxAppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.item_news:
                     switchFragment(0);
+                    setNavigationItemChecked(menuItem);
                     break;
                 case R.id.item_history:
                     switchFragment(1);
+                    setNavigationItemChecked(menuItem);
                     break;
                 case R.id.item_joke:
                     switchFragment(2);
+                    setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_film_info:
-                    switchFragment(3);
-                    break;
-                case R.id.item_film_ticket:
-                    switchFragment(4);
-                    break;
-                case R.id.item_books_store:
-                    switchFragment(5);
+                case R.id.item_zhihu:
+                    mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_wifi:
-                    switchFragment(6);
+                    switchFragment(3);
+                    setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_query:
-                    switchFragment(7);
+                case R.id.item_books_store:
+                    switchFragment(4);
+                    setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_about:
-                    switchFragment(8);
+                case R.id.item_film_ticket:
+                    ActivityHelper.startFilmTicketActivity(this);
+                    mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_settings:
-                    switchFragment(9);
+                    switchFragment(5);
+                    setNavigationItemChecked(menuItem);
                     break;
                 default:
                     break;
             }
-            setNavigationItemChecked(menuItem);
             return false;
         });
         setNavigationItemChecked(mNavigationView.getMenu().getItem(0));
@@ -130,12 +127,8 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
         mFragments.add(new JokeFragment());
-        mFragments.add(new FilmInfoFragment());
-        mFragments.add(new FilmTicketFragment());
-        mFragments.add(new BooksStoreFragment());
         mFragments.add(new WifiFragment());
-        mFragments.add(new QueryFragment());
-        mFragments.add(new AboutFragment());
+        mFragments.add(new BooksStoreFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.content_fragment, mFragments.get(0)).commit();

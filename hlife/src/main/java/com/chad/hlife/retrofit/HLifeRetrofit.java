@@ -1,21 +1,27 @@
 package com.chad.hlife.retrofit;
 
-import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.juhe.BookCatalogInfo;
 import com.chad.hlife.entity.juhe.BookContentInfo;
-import com.chad.hlife.entity.juhe.CardInfo;
 import com.chad.hlife.entity.juhe.FilmTicketInfo;
 import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
 import com.chad.hlife.entity.juhe.NewsInfo;
-import com.chad.hlife.entity.juhe.PhonePlaceInfo;
 import com.chad.hlife.entity.juhe.WifiInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
+import com.chad.hlife.entity.zhihu.CommentsInfo;
+import com.chad.hlife.entity.zhihu.DetailsExtraInfo;
+import com.chad.hlife.entity.zhihu.DetailsInfo;
+import com.chad.hlife.entity.zhihu.HomeInfo;
+import com.chad.hlife.entity.zhihu.SectionDetailsInfo;
+import com.chad.hlife.entity.zhihu.SectionsInfo;
+import com.chad.hlife.entity.zhihu.ThemeDetailsInfo;
+import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.helper.NetworkHelper;
 import com.chad.hlife.retrofit.api.IJuHeApi;
 import com.chad.hlife.retrofit.api.IWeiBoApi;
+import com.chad.hlife.retrofit.api.IZhiHuApi;
 import com.chad.hlife.util.LogUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -41,10 +47,12 @@ public class HLifeRetrofit {
     private static OkHttpClient mOkHttpClient = null;
     private static IWeiBoApi mIWeiBoApi = null;
     private static IJuHeApi mIJuHeApi = null;
+    private static IZhiHuApi mIZhiHuApi = null;
 
     static {
         initOkHttpClient();
         initIJuHeApi();
+        initIZhiHuApi();
     }
 
     public static Observable<WeiBoUserInfo> getWeiBoUserInfo(String accessToken, long uid) {
@@ -89,12 +97,48 @@ public class HLifeRetrofit {
         return mIJuHeApi.getWifiInfo(lon, lat, gtype, key);
     }
 
-    public static Observable<CardInfo> getCardInfo(String cardNo, String key) {
-        return mIJuHeApi.getCardInfo(cardNo, key);
+    public static Observable<HomeInfo> getLatestHomeInfo() {
+        return mIZhiHuApi.getLatestHomeInfo();
     }
 
-    public static Observable<PhonePlaceInfo> getPhonePlaceInfo(int phone, String key) {
-        return mIJuHeApi.getPhonePlaceInfo(phone, key);
+    public static Observable<HomeInfo> getMoreHomeInfo(String date) {
+        return mIZhiHuApi.getMoreHomeInfo(date);
+    }
+
+    public static Observable<ThemesInfo> getThemesInfo() {
+        return mIZhiHuApi.getThemesInfo();
+    }
+
+    public static Observable<ThemeDetailsInfo> getThemeDetaildInfo(int id) {
+        return mIZhiHuApi.getThemeDetailsInfo(id);
+    }
+
+    public static Observable<SectionsInfo> getSectionsInfo() {
+        return mIZhiHuApi.getSectionsInfo();
+    }
+
+    public static Observable<SectionDetailsInfo> getSectionDetailsInfo(int id) {
+        return mIZhiHuApi.getSectionDetailsInfo(id);
+    }
+
+    public static Observable<SectionDetailsInfo> getBeforeSectionDetailsInfo(int id, long timestamp) {
+        return mIZhiHuApi.getBeforeSectionDetailsInfo(id, timestamp);
+    }
+
+    public static Observable<DetailsInfo> getDetailsInfo(int id) {
+        return mIZhiHuApi.getDetailsInfo(id);
+    }
+
+    public static Observable<DetailsExtraInfo> getDetailsExtraInfo(int id) {
+        return mIZhiHuApi.getDetailsExtraInfo(id);
+    }
+
+    public static Observable<CommentsInfo> getLongCommentsInfo(int id) {
+        return mIZhiHuApi.getLongCommentsInfo(id);
+    }
+
+    public static Observable<CommentsInfo> getShortCommentsInfo(int id) {
+        return mIZhiHuApi.getShortCommentsInfo(id);
     }
 
     private static void initIWeiBoApi() {
@@ -119,12 +163,23 @@ public class HLifeRetrofit {
         mIJuHeApi = retrofit.create(IJuHeApi.class);
     }
 
+    private static void initIZhiHuApi() {
+        LogUtil.d(TAG, "initIZhiHuApi");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(AppConstant.URL_BASE_ZHIHU)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        mIZhiHuApi = retrofit.create(IZhiHuApi.class);
+    }
+
     private static void initOkHttpClient() {
         LogUtil.d(TAG, "initOkHttpClient : mOkHttpClient = "
                 + (mOkHttpClient == null ? null : "Not Null"));
         if (mOkHttpClient == null) {
             synchronized (HLifeRetrofit.class) {
-                File cacheDir = HLifeApplication.getHLifeApplication().getCacheDir(); // 缓存文件目录
+                File cacheDir = AppConstant.FILE_DIR_CACHE; // 缓存文件目录
                 File cacheFile = new File(cacheDir, "ZhiHuCache"); // 创建缓存文件
                 int cacheMaxSize = 1024 * 1024 * 100; // 缓存大小为100M
                 Cache cache = new Cache(cacheFile, cacheMaxSize); // 创建缓存文件

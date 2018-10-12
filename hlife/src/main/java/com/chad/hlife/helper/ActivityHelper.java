@@ -3,13 +3,14 @@ package com.chad.hlife.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.ui.activity.BooksDetailActivity;
-import com.chad.hlife.ui.activity.BooksStoreActivity;
-import com.chad.hlife.ui.activity.FilmTicketActivity;
-import com.chad.hlife.ui.activity.HistoryDetailActivity;
-import com.chad.hlife.ui.activity.NewsDetailActivity;
+import com.chad.hlife.ui.juhe.activity.BooksDetailActivity;
+import com.chad.hlife.ui.juhe.activity.BooksStoreActivity;
+import com.chad.hlife.ui.juhe.activity.FilmTicketActivity;
+import com.chad.hlife.ui.juhe.activity.HistoryDetailActivity;
+import com.chad.hlife.ui.juhe.activity.NewsDetailActivity;
 
 public class ActivityHelper {
 
@@ -59,5 +60,13 @@ public class ActivityHelper {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(AppConstant.EXTRA_URL, url);
         context.startActivity(intent);
+    }
+
+    public static void startGpsSettingsActivity(Activity activity, int requestCode) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        activity.startActivityForResult(intent, requestCode);
     }
 }

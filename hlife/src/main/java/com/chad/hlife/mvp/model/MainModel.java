@@ -1,6 +1,5 @@
 package com.chad.hlife.mvp.model;
 
-import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.mvp.presenter.main.IMainPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;

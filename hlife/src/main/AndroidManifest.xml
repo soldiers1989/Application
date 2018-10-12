@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chad.hlife">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,19 +21,21 @@
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/MainTheme">
+        </activity>
+        <activity
+            android:name=".ui.juhe.activity.NewsDetailActivity"
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name=".ui.juhe.activity.HistoryDetailActivity"
+            android:theme="@style/DetailTheme" />
+        <activity android:name=".ui.zhihu.activity.ZhiHuActivity" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.NewsDetailActivity"
-            android:theme="@style/DetailTheme" />
-        <activity
-            android:name=".ui.activity.HistoryDetailActivity"
-            android:theme="@style/DetailTheme" />
-        <activity android:name=".ui.activity.FilmTicketActivity" />
-        <activity android:name=".ui.activity.BooksStoreActivity" />
-        <activity android:name=".ui.activity.BooksDetailActivity" />
+        <activity android:name=".ui.juhe.activity.FilmTicketActivity" />
+        <activity android:name=".ui.juhe.activity.BooksStoreActivity" />
+        <activity android:name=".ui.juhe.activity.BooksDetailActivity" />
     </application>
 </manifest>

@@ -13,32 +13,26 @@
             android:id="@+id/item_joke"
             android:icon="@drawable/ic_navigation_joke"
             android:title="@string/joke" />
+        <item
+            android:id="@+id/item_zhihu"
+            android:icon="@drawable/ic_navigation_zhihu"
+            android:title="@string/zhihu" />
     </group>
 
     <group android:id="@+id/group_life">
-        <item
-            android:id="@+id/item_film_info"
-            android:icon="@drawable/ic_navigation_film_info"
-            android:title="@string/film_info" />
-        <item
-            android:id="@+id/item_film_ticket"
-            android:icon="@drawable/ic_navigation_film_ticket"
-            android:title="@string/film_ticket" />
-        <item
-            android:id="@+id/item_books_store"
-            android:icon="@drawable/ic_navigation_books_store"
-            android:title="@string/books_store" />
-    </group>
-
-    <group android:id="@+id/group_query">
         <item
             android:id="@+id/item_wifi"
             android:icon="@drawable/ic_navigation_wifi"
             android:title="@string/wifi" />
         <item
-            android:id="@+id/item_query"
-            android:icon="@drawable/ic_navigation_query"
-            android:title="@string/query" />
+            android:id="@+id/item_books_store"
+            android:icon="@drawable/ic_navigation_books_store"
+            android:title="@string/books_store" />
+        <item
+            android:id="@+id/item_film_ticket"
+            android:icon="@drawable/ic_navigation_film_ticket"
+            android:title="@string/film_ticket" />
+
     </group>
 
     <group android:id="@+id/group_app">
@@ -46,10 +40,6 @@
             android:id="@+id/item_settings"
             android:icon="@drawable/ic_navigation_settings"
             android:title="@string/settings" />
-        <item
-            android:id="@+id/item_about"
-            android:icon="@drawable/ic_navigation_about"
-            android:title="@string/about" />
     </group>
 
 </menu>

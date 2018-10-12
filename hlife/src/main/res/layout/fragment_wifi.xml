@@ -12,6 +12,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:padding="@dimen/chad_10dp">
 
             <android.support.v7.widget.AppCompatImageView
@@ -26,8 +27,8 @@
                 android:id="@+id/text_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:text="紫金研发创业中心"
+                android:enabled="false"
+                android:text="@string/in_position"
                 android:textColor="@color/colorText"
                 android:textSize="@dimen/chad_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +38,9 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <include layout="@layout/layout_refresh_list" />
+        <include layout="@layout/layout_divider" />
+
+        <include layout="@layout/layout_list" />
 
     </LinearLayout>
 
