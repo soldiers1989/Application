@@ -7,6 +7,7 @@ import com.chad.hlife.app.config.WeiBoConfig;
 import com.chad.hlife.app.config.ZhiHuConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
+import com.chad.hlife.entity.mob.OilPricesInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.entity.zhihu.CommentsInfo;
 import com.chad.hlife.entity.zhihu.DetailExtraInfo;
@@ -67,6 +68,10 @@ public class HLifeRetrofit {
 
     public static Observable<HistoryInfo> getHistoryInfo(String key, String day) {
         return mIMobApi.getHistoryInfo(key, day);
+    }
+
+    public static Observable<OilPricesInfo> getOilPricesInfo(String key) {
+        return mIMobApi.getOilPricesInfo(key);
     }
 
     public static Observable<HomeInfo> getLatestHomeInfo() {

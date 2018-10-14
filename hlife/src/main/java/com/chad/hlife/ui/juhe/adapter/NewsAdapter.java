@@ -39,7 +39,7 @@ public class NewsAdapter extends BaseRecyclerViewAdapter<NewsInfo.Data> {
         CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS02(), itemViewHolder.imageTwo);
         CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS03(), itemViewHolder.imageThree);
         itemViewHolder.textDate.setText(newsData.getDate());
-        itemViewHolder.textAuthorName.setText(mContext.getString(R.string.source) + ":"+ newsData.getAuthorName());
+        itemViewHolder.textAuthorName.setText(mContext.getString(R.string.source) + "："+ newsData.getAuthorName());
         super.onBindViewHolder(holder, position);
     }
 

@@ -10,6 +10,10 @@
             android:icon="@drawable/ic_navigation_history"
             android:title="@string/history" />
         <item
+            android:id="@+id/item_oil_prices"
+            android:icon="@drawable/ic_navigation_oil_prices"
+            android:title="@string/oil_prices" />
+        <item
             android:id="@+id/item_recipe"
             android:icon="@drawable/ic_navigation_recipe"
             android:title="@string/recipe" />
@@ -21,9 +25,9 @@
             android:icon="@drawable/ic_navigation_zhihu"
             android:title="@string/zhihu" />
         <item
-            android:id="@+id/item_tao_piao_piao"
-            android:icon="@drawable/ic_navigation_tao_piao_piao"
-            android:title="@string/taopiaopiao" />
+            android:id="@+id/item_tao_ticket"
+            android:icon="@drawable/ic_navigation_tao_ticket"
+            android:title="@string/tao_ticket" />
 
     </group>
 

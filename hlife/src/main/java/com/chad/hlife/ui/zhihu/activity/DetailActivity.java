@@ -178,7 +178,7 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
         mDetailInfo = detailInfo;
         CustomGlideModule.loadCenterCrop(getApplicationContext(), detailInfo.getImage(), mImagePreview);
         mTextTitle.setText(detailInfo.getTitle());
-        mTextSource.setText(getString(R.string.source) + ":" + detailInfo.getImage_source());
+        mTextSource.setText(getString(R.string.source) + "：" + detailInfo.getImage_source());
         String html = HtmlUtil.getHtml(detailInfo);
         mWebView.loadData(html, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODED);
     }

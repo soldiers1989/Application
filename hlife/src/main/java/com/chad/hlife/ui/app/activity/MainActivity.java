@@ -24,6 +24,7 @@ import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.mob.fragment.HistoryFragment;
 import com.chad.hlife.ui.juhe.fragment.NewsFragment;
 import com.chad.hlife.ui.app.fragment.SettingsFragment;
+import com.chad.hlife.ui.mob.fragment.OilPricesFragment;
 import com.chad.hlife.ui.mob.fragment.RecipeFragment;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -101,20 +102,24 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
                     switchFragment(1);
                     setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_recipe:
+                case R.id.item_oil_prices:
                     switchFragment(2);
+                    setNavigationItemChecked(menuItem);
+                    break;
+                case R.id.item_recipe:
+                    switchFragment(3);
                     setNavigationItemChecked(menuItem);
                     break;
                 case R.id.item_zhihu:
                     ActivityHelper.startZhiHuActivity(this);
                     mDrawerLayout.closeDrawers();
                     break;
-                case R.id.item_tao_piao_piao:
-                    ActivityHelper.startTaoPiaoPiaoActivity(this);
+                case R.id.item_tao_ticket:
+                    ActivityHelper.startTaoTicketActivity(this);
                     mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_settings:
-                    switchFragment(3);
+                    switchFragment(4);
                     setNavigationItemChecked(menuItem);
                     break;
                 default:
@@ -137,6 +142,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         mFragments = new ArrayList<>();
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
+        mFragments.add(new OilPricesFragment());
         mFragments.add(new RecipeFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()

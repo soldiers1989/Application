@@ -5,8 +5,9 @@ import android.content.Intent;
 
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.app.activity.MainActivity;
-import com.chad.hlife.ui.app.activity.TaoPiaoPiaoActivity;
+import com.chad.hlife.ui.app.activity.TaoTicketActivity;
 import com.chad.hlife.ui.juhe.activity.NewsDetailActivity;
+import com.chad.hlife.ui.mob.activity.HistoryDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
@@ -35,19 +36,28 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
+    public static void startHistoryDetailActivity(Activity activity, String title) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, HistoryDetailActivity.class);
+        intent.putExtra(AppConstant.EXTRA_TITLE, title);
+        activity.startActivity(intent);
+    }
+
+    public static void startTaoTicketActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, TaoTicketActivity.class);
+        activity.startActivity(intent);
+    }
+
     public static void startZhiHuActivity(Activity activity) {
         if (activity == null) {
             return;
         }
         Intent intent = new Intent(activity, ZhiHuActivity.class);
-        activity.startActivity(intent);
-    }
-
-    public static void startTaoPiaoPiaoActivity(Activity activity) {
-        if (activity == null) {
-            return;
-        }
-        Intent intent = new Intent(activity, TaoPiaoPiaoActivity.class);
         activity.startActivity(intent);
     }
 

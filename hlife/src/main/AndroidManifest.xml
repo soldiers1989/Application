@@ -24,10 +24,13 @@
             android:name=".ui.app.activity.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/MainTheme" />
+        <activity android:name=".ui.app.activity.TaoTicketActivity" />
         <activity
             android:name=".ui.juhe.activity.NewsDetailActivity"
             android:theme="@style/DetailTheme" />
-        <activity android:name=".ui.app.activity.TaoPiaoPiaoActivity" />
+        <activity
+            android:name=".ui.mob.activity.HistoryDetailActivity"
+            android:theme="@style/DetailTheme" />
         <activity android:name=".ui.zhihu.activity.ZhiHuActivity" />
         <activity android:name=".ui.zhihu.activity.DetailActivity" />
         <activity android:name=".ui.zhihu.activity.CommentsActivity" />

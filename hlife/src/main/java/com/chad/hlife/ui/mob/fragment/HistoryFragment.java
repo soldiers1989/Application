@@ -2,7 +2,6 @@ package com.chad.hlife.ui.mob.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,13 +9,17 @@ import android.view.View;
 import com.chad.hlife.R;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.HistoryInfo;
+import com.chad.hlife.eventbus.EventMessage;
+import com.chad.hlife.eventbus.EventType;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.history.HistoryPresenter;
 import com.chad.hlife.mvp.view.mob.IHistoryView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.base.BaseRxFragment;
 import com.chad.hlife.ui.mob.adapter.HistoryAdapter;
 import com.chad.hlife.util.DateUtil;
 import com.chad.hlife.util.LogUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 
@@ -33,6 +36,8 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     ConstraintLayout mLoading;
 
     private HistoryAdapter mHistoryAdapter;
+
+    private String mHistoryEvent;
 
     @Override
     protected HistoryPresenter onGetPresenter() {
@@ -62,6 +67,10 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mHistoryAdapter = new HistoryAdapter(getContext());
+        mHistoryAdapter.setOnItemClickListener(position -> {
+            mHistoryEvent = mHistoryAdapter.getData().get(position).getEvent();
+            ActivityHelper.startHistoryDetailActivity(getActivity(), mHistoryAdapter.getData().get(position).getTitle());
+        });
         mRecyclerView.setAdapter(mHistoryAdapter);
     }
 
@@ -86,5 +95,12 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+    }
+
+    @Override
+    public void onStop() {
+        LogUtil.d(TAG, "onStop");
+        EventBus.getDefault().post(new EventMessage(EventType.TYPE_HISTORY, mHistoryEvent));
+        super.onStop();
     }
 }

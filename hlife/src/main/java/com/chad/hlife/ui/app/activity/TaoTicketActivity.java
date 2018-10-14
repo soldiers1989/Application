@@ -19,9 +19,9 @@ import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
 
-public class TaoPiaoPiaoActivity extends BaseRxAppCompatActivity {
+public class TaoTicketActivity extends BaseRxAppCompatActivity {
 
-    private static final String TAG = TaoPiaoPiaoActivity.class.getSimpleName();
+    private static final String TAG = TaoTicketActivity.class.getSimpleName();
 
     @BindView(R.id.view_web)
     WebView mWebView;
@@ -32,7 +32,7 @@ public class TaoPiaoPiaoActivity extends BaseRxAppCompatActivity {
 
     @Override
     protected int onGetLayoutId() {
-        return R.layout.activity_tao_piao_piao;
+        return R.layout.activity_tao_ticket;
     }
 
     @Override

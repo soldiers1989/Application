@@ -68,4 +68,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     // OkHttp消息拦截器
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

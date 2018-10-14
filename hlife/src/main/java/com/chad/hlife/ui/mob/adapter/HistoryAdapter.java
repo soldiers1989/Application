@@ -34,7 +34,6 @@ public class HistoryAdapter extends BaseRecyclerViewAdapter<HistoryInfo.Result> 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         HistoryInfo.Result result = data.get(position);
         itemViewHolder.textTitle.setText(result.getTitle());
-        itemViewHolder.textEvent.setText(result.getEvent());
         itemViewHolder.textDate.setText(DateUtil.formatData(result.getDate()));
         super.onBindViewHolder(holder, position);
     }
@@ -43,8 +42,6 @@ public class HistoryAdapter extends BaseRecyclerViewAdapter<HistoryInfo.Result> 
 
         @BindView(R.id.text_title)
         AppCompatTextView textTitle;
-        @BindView(R.id.text_event)
-        AppCompatTextView textEvent;
         @BindView(R.id.text_date)
         AppCompatTextView textDate;
 
