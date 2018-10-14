@@ -2,7 +2,6 @@ package com.chad.hlife.mvp.presenter.login;
 
 import android.app.Activity;
 
-import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.mvp.base.BasePresenter;
 import com.chad.hlife.mvp.model.LoginModel;
 import com.chad.hlife.mvp.view.ILoginView;
@@ -11,17 +10,8 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginPresenter {
 
-    public void login(int model, Activity activity) {
-        switch (model) {
-            case AppConstant.MODEL_LOGIN_WEIBO:
-                LoginModel.getInstance().weiBoAuth(activity, this);
-                break;
-            case AppConstant.MODEL_LOGIN_WECHAT:
-                LoginModel.getInstance().weChatAuth(this);
-                break;
-            default:
-                break;
-        }
+    public void weiBoLogin(Activity activity) {
+        LoginModel.getInstance().weiBoAuth(activity, this);
     }
 
     public SsoHandler getWeiBoSsoHandler() {

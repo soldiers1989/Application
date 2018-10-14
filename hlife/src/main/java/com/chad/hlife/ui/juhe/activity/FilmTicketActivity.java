@@ -17,6 +17,7 @@ import com.chad.hlife.helper.WebViewHelper;
 import com.chad.hlife.mvp.presenter.juhe.film.FilmTicketPresenter;
 import com.chad.hlife.mvp.view.juhe.IFilmTicketView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StringUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -32,6 +33,8 @@ public class FilmTicketActivity extends BaseMvpAppCompatActivity<IFilmTicketView
     WebView mWebView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     @Override
     protected FilmTicketPresenter onGetPresenter() {
@@ -47,6 +50,7 @@ public class FilmTicketActivity extends BaseMvpAppCompatActivity<IFilmTicketView
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initWebView();
     }
 

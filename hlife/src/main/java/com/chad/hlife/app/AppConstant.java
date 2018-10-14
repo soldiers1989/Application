@@ -13,9 +13,6 @@ public class AppConstant {
     public static final int COLOR_STATUS_BAR_RED = R.color.colorStatusBarRed;
     public static final int COLOR_STATUS_BAR_BLACK = R.color.colorStatusBarBlack;
 
-    public static final int MODEL_LOGIN_WEIBO = 0;
-    public static final int MODEL_LOGIN_WECHAT = 1;
-
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_URL = "url";

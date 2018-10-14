@@ -8,11 +8,11 @@ import com.chad.hlife.HLifeApplication;
 public class AppSettings {
 
     public static final String NAME_PREFERENCES = "Settings";
-    public static final String KEY_LOGIN_MODEL = "login_model";
+    public static final String KEY_LOGIN_STATUS = "login_status";
 
     private SharedPreferences mSharedPreferences;
 
-    private static volatile AppSettings  mAppSettings = null;
+    private static volatile AppSettings mAppSettings = null;
 
     public static AppSettings getInstance() {
         synchronized (AppSettings.class) {
@@ -28,17 +28,17 @@ public class AppSettings {
                 .getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void setLoginModel(int model) {
+    public void setLoginStatus(boolean isLogin) {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putInt(KEY_LOGIN_MODEL, model).commit();
+        mSharedPreferences.edit().putBoolean(KEY_LOGIN_STATUS, isLogin).commit();
     }
 
-    public int getLoginModel() {
+    public boolean getLoginStatus() {
         if (mSharedPreferences == null) {
-            return -1;
+            return false;
         }
-        return mSharedPreferences.getInt(KEY_LOGIN_MODEL, -1);
+        return mSharedPreferences.getBoolean(KEY_LOGIN_STATUS, false);
     }
 }

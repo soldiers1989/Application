@@ -13,6 +13,7 @@ import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.helper.WebViewHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
@@ -26,6 +27,8 @@ public class BooksDetailActivity extends BaseRxAppCompatActivity {
     WebView mWebView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     @Override
     protected int onGetLayoutId() {
@@ -36,6 +39,7 @@ public class BooksDetailActivity extends BaseRxAppCompatActivity {
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initWebView();
     }
 

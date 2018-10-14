@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <com.chad.hlife.ui.view.loading.DoubleCircleLoadingView
+        android:id="@+id/view_loading"
         android:layout_width="@dimen/chad_45dp"
         android:layout_height="@dimen/chad_45dp"
         app:layout_constraintBottom_toBottomOf="parent"

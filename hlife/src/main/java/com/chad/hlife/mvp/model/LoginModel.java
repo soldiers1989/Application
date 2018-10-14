@@ -63,10 +63,6 @@ public class LoginModel {
         return mWeiBoAuthHelper.isSessionValid();
     }
 
-    public void weChatAuth(ILoginPresenter loginPresenter) {
-
-    }
-
     private void initWeiBoAuthHelper() {
         if (mWeiBoAuthHelper == null) {
             mWeiBoAuthHelper = WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication());

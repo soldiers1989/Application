@@ -1,6 +1,7 @@
 package com.chad.hlife.ui.view.loading;
 
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
@@ -30,6 +31,10 @@ public class DoubleCircleLoadingView extends AppCompatImageView {
         mLoadingDrawable = new LoadingDrawable(context, mLoadingAnimator);
         setColorFilter(context.getResources().getColor(R.color.colorPrimary));
         setImageDrawable(mLoadingDrawable);
+    }
+
+    public void setColor(@ColorInt int color) {
+        setColorFilter(color);
     }
 
     @Override

@@ -35,11 +35,6 @@ public class MainModel {
                         throwable -> mainPresenter.onError(throwable));
     }
 
-    public void getWeiXinUserInfo(ObservableTransformer transformer, String accessToken,
-                                  IMainPresenter mainPresenter) {
-
-    }
-
     public Oauth2AccessToken getOauth2AccessToken() {
         return WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication())
                 .getOauth2AccessToken();

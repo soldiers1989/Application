@@ -6,7 +6,6 @@ import android.support.constraint.ConstraintLayout;
 import android.view.View;
 
 import com.chad.hlife.R;
-import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.login.LoginPresenter;
@@ -52,19 +51,12 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        switch (AppSettings.getInstance().getLoginModel()) {
-            case AppConstant.MODEL_LOGIN_WEIBO:
-                if (presenter.isWeiBoSessionValid()) {
-                    startMainActivity(false);
-                } else {
-                    presenter.login(AppConstant.MODEL_LOGIN_WEIBO, this);
-                }
-                break;
-            case AppConstant.MODEL_LOGIN_WECHAT:
-                // TODO: 2018/10/14
-                break;
-            default:
-                break;
+        if (AppSettings.getInstance().getLoginStatus()) {
+            if (presenter.isWeiBoSessionValid()) {
+                startMainActivity(false);
+            } else {
+                presenter.weiBoLogin(this);
+            }
         }
     }
 
@@ -85,42 +77,48 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
         }
     }
 
-    @OnClick(R.id.btn_login_weibo)
-    public void weiBoLogin() {
-        LogUtil.d(TAG, "weiBoLogin");
-        presenter.login(AppConstant.MODEL_LOGIN_WEIBO, this);
+    @OnClick(R.id.btn_login)
+    public void onLoginClick() {
+        LogUtil.d(TAG, "onLoginClick");
+        presenter.weiBoLogin(this);
     }
 
-    @OnClick(R.id.btn_login_wechat)
-    public void weChatLogin() {
-        LogUtil.d(TAG, "weChatLogin");
-        presenter.login(AppConstant.MODEL_LOGIN_WECHAT, this);
+    @OnClick(R.id.btn_tourists)
+    public void onTouristsClick() {
+        LogUtil.d(TAG, "onTouristsClick");
+        startMainActivity(false);
+    }
+
+    @OnClick(R.id.btn_close)
+    public void onCloseClick() {
+        LogUtil.d(TAG, "onCloseClick");
+        finish();
     }
 
     @Override
     public void onWeiBoLoginSuccess() {
         LogUtil.d(TAG, "onWeiBoLoginSuccess");
-        AppSettings.getInstance().setLoginModel(AppConstant.MODEL_LOGIN_WEIBO);
+        AppSettings.getInstance().setLoginStatus(true);
         startMainActivity(true);
     }
 
     @Override
     public void onWeiBoLoginCancel() {
         LogUtil.d(TAG, "onWeiBoLoginCancel");
-        AppSettings.getInstance().setLoginModel(-1);
+        AppSettings.getInstance().setLoginStatus(false);
         finish();
     }
 
     @Override
     public void onWeiBoLoginFailure(WbConnectErrorMessage wbConnectErrorMessage) {
         LogUtil.d(TAG, "onWeiBoLoginFailure : errorMessage = " + wbConnectErrorMessage.getErrorMessage());
-        AppSettings.getInstance().setLoginModel(-1);
+        AppSettings.getInstance().setLoginStatus(false);
     }
 
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
-        AppSettings.getInstance().setLoginModel(-1);
+        AppSettings.getInstance().setLoginStatus(false);
     }
 
     @Override

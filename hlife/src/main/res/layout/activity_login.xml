@@ -5,64 +5,44 @@
     android:layout_height="match_parent"
     android:background="@drawable/pic_login">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/layout_weibo"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        style="@style/TextStyle"
+        android:layout_width="@dimen/chad_160dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/chad_20dp"
-        app:layout_constraintBottom_toTopOf="@id/layout_wechat"
+        android:layout_marginBottom="@dimen/chad_15dp"
+        android:background="@drawable/btn_login"
+        android:padding="@dimen/chad_10dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toTopOf="@id/btn_tourists"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login_weibo"
-            android:layout_width="@dimen/chad_200dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_login"
-            android:padding="@dimen/chad_10dp"
-            android:text="@string/login_weibo"
-            android:textSize="@dimen/chad_16sp" />
-
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/chad_20dp"
-            android:src="@drawable/ic_weibo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/layout_wechat"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_tourists"
+        style="@style/TextStyle"
+        android:layout_width="@dimen/chad_160dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/chad_70dp"
+        android:layout_marginBottom="@dimen/chad_15dp"
+        android:background="@drawable/btn_login"
+        android:padding="@dimen/chad_10dp"
+        android:text="@string/tourists"
+        app:layout_constraintBottom_toTopOf="@id/btn_close"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_close"
+        style="@style/TextStyle"
+        android:layout_width="@dimen/chad_160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/chad_50dp"
+        android:background="@drawable/btn_login"
+        android:padding="@dimen/chad_10dp"
+        android:text="@string/close"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login_wechat"
-            android:layout_width="@dimen/chad_200dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_login"
-            android:padding="@dimen/chad_10dp"
-            android:paddingLeft="@dimen/chad_20dp"
-            android:text="@string/login_wechat"
-            android:textSize="@dimen/chad_16sp" />
-
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/chad_20dp"
-            android:src="@drawable/ic_wechat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <include layout="@layout/layout_loading" />
 

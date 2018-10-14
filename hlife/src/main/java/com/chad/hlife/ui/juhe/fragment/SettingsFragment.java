@@ -64,7 +64,7 @@ public class SettingsFragment extends BaseRxFragment
                     break;
                 case 3:
                     WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication()).clearAccessToken();
-                    AppSettings.getInstance().setLoginModel(-1);
+                    AppSettings.getInstance().setLoginStatus(false);
                     getActivity().finish();
                     break;
                 default:

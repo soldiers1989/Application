@@ -134,7 +134,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
     protected void onInitData() {
         LogUtil.d(TAG, "initData");
         initFragment();
-//        getUserInfo();
+        getUserInfo();
     }
 
     private void initFragment() {
@@ -151,19 +151,13 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
 
     public void getUserInfo() {
         LogUtil.d(TAG, "getUserInfo");
-        switch (AppSettings.getInstance().getLoginModel()) {
-            case AppConstant.MODEL_LOGIN_WEIBO:
-                Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
-                if (accessToken != null) {
-                    String access_token = accessToken.getToken();
-                    long uid = Long.parseLong(accessToken.getUid());
-                    presenter.getUserInfo(AppConstant.MODEL_LOGIN_WEIBO, bindToLifecycle(), access_token, uid);
-                }
-                break;
-            case AppConstant.MODEL_LOGIN_WECHAT:
-                // TODO: 2018/10/14
-                break;
-            default:
+        if (AppSettings.getInstance().getLoginStatus()) {
+            Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
+            if (accessToken != null) {
+                String access_token = accessToken.getToken();
+                long uid = Long.parseLong(accessToken.getUid());
+                presenter.getWeiBoUserInfo(bindToLifecycle(), access_token, uid);
+            }
         }
     }
 
