@@ -6,26 +6,38 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.app.AppSettings;
+import com.chad.hlife.entity.weibo.WeiBoUserInfo;
+import com.chad.hlife.glide.CustomGlideModule;
 import com.chad.hlife.helper.ActivityHelper;
-import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.mvp.presenter.main.MainPresenter;
+import com.chad.hlife.mvp.view.IMainView;
+import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.juhe.fragment.BooksStoreFragment;
 import com.chad.hlife.ui.juhe.fragment.HistoryFragment;
 import com.chad.hlife.ui.juhe.fragment.JokeFragment;
 import com.chad.hlife.ui.juhe.fragment.NewsFragment;
 import com.chad.hlife.ui.juhe.fragment.SettingsFragment;
-import com.chad.hlife.ui.juhe.fragment.WifiFragment;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseRxAppCompatActivity {
+public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresenter>
+        implements IMainView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -43,6 +55,11 @@ public class MainActivity extends BaseRxAppCompatActivity {
     private int mLastFragmentPosition;
 
     @Override
+    protected MainPresenter onGetPresenter() {
+        return new MainPresenter();
+    }
+
+    @Override
     protected int onGetLayoutId() {
         return R.layout.activity_main;
     }
@@ -50,6 +67,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "initViews");
+        StatusBarUtil.setStatusBarColor(this, AppConstant.COLOR_STATUS_BAR_BLUE);
         initToolbar();
         initDrawerLayout();
         initNavigationView();
@@ -88,23 +106,20 @@ public class MainActivity extends BaseRxAppCompatActivity {
                     switchFragment(2);
                     setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_zhihu:
-                    mDrawerLayout.closeDrawers();
-                    break;
-                case R.id.item_wifi:
+                case R.id.item_books_store:
                     switchFragment(3);
                     setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_books_store:
-                    switchFragment(4);
-                    setNavigationItemChecked(menuItem);
+                case R.id.item_zhihu:
+                    ActivityHelper.startZhiHuActivity(this);
+                    mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_film_ticket:
                     ActivityHelper.startFilmTicketActivity(this);
                     mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_settings:
-                    switchFragment(5);
+                    switchFragment(4);
                     setNavigationItemChecked(menuItem);
                     break;
                 default:
@@ -119,6 +134,7 @@ public class MainActivity extends BaseRxAppCompatActivity {
     protected void onInitData() {
         LogUtil.d(TAG, "initData");
         initFragment();
+//        getUserInfo();
     }
 
     private void initFragment() {
@@ -127,11 +143,28 @@ public class MainActivity extends BaseRxAppCompatActivity {
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
         mFragments.add(new JokeFragment());
-        mFragments.add(new WifiFragment());
         mFragments.add(new BooksStoreFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.content_fragment, mFragments.get(0)).commit();
+    }
+
+    public void getUserInfo() {
+        LogUtil.d(TAG, "getUserInfo");
+        switch (AppSettings.getInstance().getLoginModel()) {
+            case AppConstant.MODEL_LOGIN_WEIBO:
+                Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
+                if (accessToken != null) {
+                    String access_token = accessToken.getToken();
+                    long uid = Long.parseLong(accessToken.getUid());
+                    presenter.getUserInfo(AppConstant.MODEL_LOGIN_WEIBO, bindToLifecycle(), access_token, uid);
+                }
+                break;
+            case AppConstant.MODEL_LOGIN_WECHAT:
+                // TODO: 2018/10/14
+                break;
+            default:
+        }
     }
 
     private void setNavigationItemChecked(MenuItem menuItem) {
@@ -161,5 +194,25 @@ public class MainActivity extends BaseRxAppCompatActivity {
                     .show(mFragments.get(position)).commit();
         }
         mLastFragmentPosition = position;
+    }
+
+    @Override
+    public void onWeiBoUserInfo(WeiBoUserInfo weiBoUserInfo) {
+        LogUtil.d(TAG, "onWeiBoUserInfo : weiBoUserInfo = " + weiBoUserInfo);
+        if (weiBoUserInfo == null) {
+            return;
+        }
+        View view = mNavigationView.getHeaderView(0);
+        AppCompatImageView userWall = view.findViewById(R.id.image_user_wall);
+        SimpleDraweeView userAvatar = view.findViewById(R.id.drawee_user_avatar);
+        AppCompatTextView userName = view.findViewById(R.id.text_user_name);
+        CustomGlideModule.loadCenterCrop(this, weiBoUserInfo.getCover_image_phone(), userWall);
+        userAvatar.setImageURI(weiBoUserInfo.getAvatar_large());
+        userName.setText(weiBoUserInfo.getName());
+    }
+
+    @Override
+    public void onError(Object object) {
+        LogUtil.d(TAG, "onError");
     }
 }

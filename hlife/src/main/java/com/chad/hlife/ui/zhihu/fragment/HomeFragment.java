@@ -1,22 +1,23 @@
 package com.chad.hlife.ui.zhihu.fragment;
 
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.hlife.R;
-import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.zhihu.HomeInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.home.HomePresenter;
 import com.chad.hlife.mvp.view.zhihu.IHomeView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.juhe.adapter.NewsAdapter;
 import com.chad.hlife.ui.view.banner.Banner;
 import com.chad.hlife.ui.view.banner.BannerView;
+import com.chad.hlife.ui.view.recycler.HeaderViewAdapter;
 import com.chad.hlife.ui.view.recycler.OnLoadMoreScrollListener;
 import com.chad.hlife.ui.view.refresh.HeaderView;
+import com.chad.hlife.ui.zhihu.adapter.HomeAdapter;
 import com.chad.hlife.util.LogUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
@@ -36,14 +37,18 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
 
     private HeaderView mHeaderView;
+    private LoadMoreScrollListener mLoadMoreScrollListener;
     private BannerView mBannerView;
+    private HomeAdapter mHomeAdapter;
 
-    private HomeInfo mHomeInfo = null;
+    private List<Banner> mBanners;
+    private ArrayList<Integer> mStoryIds;
 
-    private List<Banner> mBanners = null;
-    private List<Integer> mStoryIds = null;
+    private String mDate;
 
     @Override
     protected HomePresenter onGetPresenter() {
@@ -82,6 +87,22 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mLoadMoreScrollListener = new LoadMoreScrollListener();
+        mLoadMoreScrollListener.setLinearLayoutManager(linearLayoutManager);
+        mRecyclerView.addOnScrollListener(mLoadMoreScrollListener);
+        mHomeAdapter = new HomeAdapter(getContext());
+        mHomeAdapter.setOnItemClickListener(position ->
+                ActivityHelper.startDetailActivity(getActivity(), mStoryIds,
+                        mHomeAdapter.getData().get(position).getId())
+        );
+
+        mBannerView = new BannerView(getContext());
+        mBannerView.setOnBannerItemClickListener(id ->
+                ActivityHelper.startDetailActivity(getActivity(), mStoryIds, id)
+        );
+        HeaderViewAdapter headerViewAdapter = new HeaderViewAdapter(mHomeAdapter);
+        headerViewAdapter.addHeaderView(mBannerView);
+        mRecyclerView.setAdapter(headerViewAdapter);
     }
 
     @Override
@@ -90,18 +111,23 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
         if (homeInfo == null) {
             return;
         }
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
+        }
         if (mSuperSwipeRefreshLayout.isRefreshing()) {
             mSuperSwipeRefreshLayout.setRefreshing(false);
         }
-        mHomeInfo = homeInfo;
-        mStoryIds.clear();
-        mStoryIds.addAll(homeInfo.getStoryIds());
+        mBanners.clear();
         Observable.fromIterable(homeInfo.getTop_stories())
                 .forEach(topStories ->
                         mBanners.add(new Banner(topStories.getId(), topStories.getTitle(),
                                 topStories.getImage())));
         mBannerView.setBannerList(mBanners);
         mBannerView.start();
+        mHomeAdapter.setData(homeInfo.getStories());
+        mStoryIds.clear();
+        mStoryIds.addAll(homeInfo.getStoryIds());
+        mDate = homeInfo.getDate();
     }
 
     @Override
@@ -110,13 +136,17 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
         if (homeInfo == null) {
             return;
         }
-        mHomeInfo = homeInfo;
+        if (mLoadMoreScrollListener.isLoading()) {
+            mLoadMoreScrollListener.setLoading(false);
+        }
+        mHomeAdapter.addData(homeInfo.getStories());
         mStoryIds.addAll(homeInfo.getStoryIds());
+        mDate = homeInfo.getDate();
     }
 
     @Override
     public void onError(Object object) {
-
+        LogUtil.d(TAG, "onError");
     }
 
     @Override
@@ -155,24 +185,15 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
         super.onDestroy();
     }
 
-
     private class LoadMoreScrollListener extends OnLoadMoreScrollListener {
 
         @Override
         protected void onLoadMore() {
-            LogUtil.d(TAG, "onLoadMore : mHomeInfo = " + mHomeInfo);
-            if (mHomeInfo == null || presenter == null) {
+            LogUtil.d(TAG, "onLoadMore : mDate = " + mDate);
+            if (TextUtils.isEmpty(mDate)) {
                 return;
             }
-            presenter.getMoreHomeInfo(bindToLifecycle(), mHomeInfo.getDate());
-        }
-
-        @Override
-        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//            if (mSwipeRefresh != null && mLinearLayoutManager != null) {
-//                mSwipeRefresh.setEnabled(mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0);
-//            }
-            super.onScrolled(recyclerView, dx, dy);
+            presenter.getMoreHomeInfo(bindToLifecycle(), mDate);
         }
     }
 }

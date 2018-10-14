@@ -1,6 +1,6 @@
 package com.chad.hlife.mvp.model.zhihu;
 
-import com.chad.hlife.entity.zhihu.SectionDetailsInfo;
+import com.chad.hlife.entity.zhihu.SectionsDetailInfo;
 import com.chad.hlife.entity.zhihu.SectionsInfo;
 import com.chad.hlife.mvp.presenter.zhihu.sections.ISectionsPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
@@ -37,26 +37,26 @@ public class SectionsModel {
                         throwable -> sectionsPresenter.onError(throwable));
     }
 
-    public void getSectionDetailsInfo(ObservableTransformer transformer, int id, ISectionsPresenter sectionsPresenter) {
-        HLifeRetrofit.getSectionDetailsInfo(id)
+    public void getSectionsDetailInfo(ObservableTransformer transformer, int id, ISectionsPresenter sectionsPresenter) {
+        HLifeRetrofit.getSectionsDetailInfo(id)
                 .compose(transformer)
-                .map(o -> initStories((SectionDetailsInfo) o))
+                .map(o -> initStories((SectionsDetailInfo) o))
                 .compose(RxSchedulersUtil.workThread())
-                .subscribe(o -> sectionsPresenter.onSectionDetailsInfo((SectionDetailsInfo) o),
+                .subscribe(o -> sectionsPresenter.onSectionsDetailInfo((SectionsDetailInfo) o),
                         throwable -> sectionsPresenter.onError(throwable));
     }
 
-    public void getBeforeSectionDetailsInfo(ObservableTransformer transformer, int id, long timestamp,
+    public void getBeforeSectionsDetailInfo(ObservableTransformer transformer, int id, long timestamp,
                                             ISectionsPresenter sectionsPresenter) {
-        HLifeRetrofit.getBeforeSectionDetailsInfo(id, timestamp)
+        HLifeRetrofit.getBeforeSectionsDetailInfo(id, timestamp)
                 .compose(transformer)
-                .map(o -> initStories((SectionDetailsInfo) o))
+                .map(o -> initStories((SectionsDetailInfo) o))
                 .compose(RxSchedulersUtil.workThread())
-                .subscribe(o -> sectionsPresenter.onBeforeSectionDetailsInfo((SectionDetailsInfo) o),
+                .subscribe(o -> sectionsPresenter.onBeforeSectionsDetailInfo((SectionsDetailInfo) o),
                         throwable -> sectionsPresenter.onError(throwable.toString()));
     }
 
-    private SectionDetailsInfo initStories(SectionDetailsInfo detailsInfo) {
+    private SectionsDetailInfo initStories(SectionsDetailInfo detailsInfo) {
         if (detailsInfo == null) {
             return null;
         }

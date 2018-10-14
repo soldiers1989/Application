@@ -1,8 +1,10 @@
 package com.chad.hlife.ui.juhe.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -33,6 +35,8 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
 
     private HeaderView mHeaderView;
 
@@ -85,6 +89,9 @@ public class JokeFragment extends BaseMvpFragment<IJokeView, JokePresenter>
         LogUtil.d(TAG, "onJokeInfo : jokeInfo = " + (jokeInfo == null ? "Null" : "Not Null"));
         if (jokeInfo == null) {
             return;
+        }
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
         }
         if (mSuperSwipeRefreshLayout.isRefreshing()) {
             mSuperSwipeRefreshLayout.setRefreshing(false);

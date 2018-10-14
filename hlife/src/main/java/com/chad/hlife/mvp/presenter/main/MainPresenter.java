@@ -5,6 +5,7 @@ import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
 import com.chad.hlife.mvp.model.MainModel;
 import com.chad.hlife.mvp.view.IMainView;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import io.reactivex.ObservableTransformer;
 
@@ -21,6 +22,10 @@ public class MainPresenter extends BasePresenter<IMainView> implements IMainPres
             default:
                 break;
         }
+    }
+
+    public Oauth2AccessToken getOauth2AccessToken() {
+        return MainModel.getInstance().getOauth2AccessToken();
     }
 
     @Override

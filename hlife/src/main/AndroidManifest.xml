@@ -20,7 +20,11 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/MainTheme">
+            android:theme="@style/MainTheme" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.juhe.activity.NewsDetailActivity"
@@ -28,14 +32,13 @@
         <activity
             android:name=".ui.juhe.activity.HistoryDetailActivity"
             android:theme="@style/DetailTheme" />
-        <activity android:name=".ui.zhihu.activity.ZhiHuActivity" >
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
         <activity android:name=".ui.juhe.activity.FilmTicketActivity" />
         <activity android:name=".ui.juhe.activity.BooksStoreActivity" />
         <activity android:name=".ui.juhe.activity.BooksDetailActivity" />
+        <activity android:name=".ui.zhihu.activity.ZhiHuActivity" />
+        <activity android:name=".ui.zhihu.activity.DetailActivity" />
+        <activity android:name=".ui.zhihu.activity.CommentsActivity" />
+        <activity android:name=".ui.zhihu.activity.ThemesDetailActivity" />
+        <activity android:name=".ui.zhihu.activity.SectionsDetailActivity" />
     </application>
 </manifest>

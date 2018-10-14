@@ -1,9 +1,12 @@
 package com.chad.hlife.mvp.model;
 
+import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
+import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.mvp.presenter.main.IMainPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
 import com.chad.hlife.util.RxSchedulersUtil;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import io.reactivex.ObservableTransformer;
 
@@ -35,5 +38,10 @@ public class MainModel {
     public void getWeiXinUserInfo(ObservableTransformer transformer, String accessToken,
                                   IMainPresenter mainPresenter) {
 
+    }
+
+    public Oauth2AccessToken getOauth2AccessToken() {
+        return WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication())
+                .getOauth2AccessToken();
     }
 }

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/chad_1dp"
     android:layout_marginTop="@dimen/chad_1dp"
+    app:cardBackgroundColor="@color/color_item"
     app:cardCornerRadius="@dimen/chad_10dp">
 
     <android.support.constraint.ConstraintLayout

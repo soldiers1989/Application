@@ -1,6 +1,6 @@
 package com.chad.hlife.mvp.presenter.zhihu.sections;
 
-import com.chad.hlife.entity.zhihu.SectionDetailsInfo;
+import com.chad.hlife.entity.zhihu.SectionsDetailInfo;
 import com.chad.hlife.entity.zhihu.SectionsInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
 import com.chad.hlife.mvp.model.zhihu.SectionsModel;
@@ -14,13 +14,13 @@ public class SectionsPresenter extends BasePresenter<ISectionsView> implements I
         SectionsModel.getInstance().getSectionsInfo(transformer, this);
     }
 
-    public void getSectionDetailsInfo(ObservableTransformer transformer, int id) {
-        SectionsModel.getInstance().getSectionDetailsInfo(transformer, id, this);
+    public void getSectionsDetailInfo(ObservableTransformer transformer, int id) {
+        SectionsModel.getInstance().getSectionsDetailInfo(transformer, id, this);
     }
 
-    public void getBeforeSectionDetailsInfo(ObservableTransformer transformer, int id,
+    public void getBeforeSectionsDetailInfo(ObservableTransformer transformer, int id,
                                             long timestamp) {
-        SectionsModel.getInstance().getBeforeSectionDetailsInfo(transformer, id, timestamp, this);
+        SectionsModel.getInstance().getBeforeSectionsDetailInfo(transformer, id, timestamp, this);
     }
 
     @Override
@@ -29,13 +29,13 @@ public class SectionsPresenter extends BasePresenter<ISectionsView> implements I
     }
 
     @Override
-    public void onSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
-        getView().onSectionDetailsInfo(sectionDetailsInfo);
+    public void onSectionsDetailInfo(SectionsDetailInfo sectionsDetailInfo) {
+        getView().onSectionsDetailInfo(sectionsDetailInfo);
     }
 
     @Override
-    public void onBeforeSectionDetailsInfo(SectionDetailsInfo sectionDetailsInfo) {
-        getView().onBeforeSectionDetailsInfo(sectionDetailsInfo);
+    public void onBeforeSectionsDetailInfo(SectionsDetailInfo sectionsDetailInfo) {
+        getView().onBeforeSectionsDetailInfo(sectionsDetailInfo);
     }
 
     @Override

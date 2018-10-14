@@ -22,6 +22,7 @@ import com.chad.hlife.mvp.view.juhe.IBooksStoreView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.juhe.adapter.BookContentAdapter;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -52,6 +53,7 @@ public class BooksStoreActivity extends BaseMvpAppCompatActivity<IBooksStoreView
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initToolbar();
         initRecyclerView();
     }

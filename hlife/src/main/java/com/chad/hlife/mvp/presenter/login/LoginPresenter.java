@@ -28,8 +28,8 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         return LoginModel.getInstance().getWeiBoSsoHandler();
     }
 
-    public String getWeiBoAccessToken() {
-        return LoginModel.getInstance().getWeiBoAccessToken();
+    public boolean isWeiBoSessionValid() {
+        return LoginModel.getInstance().isWeiBoSessionValid();
     }
 
     @Override

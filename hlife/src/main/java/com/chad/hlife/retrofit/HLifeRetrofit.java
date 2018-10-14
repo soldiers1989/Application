@@ -8,15 +8,14 @@ import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
 import com.chad.hlife.entity.juhe.NewsInfo;
-import com.chad.hlife.entity.juhe.WifiInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.entity.zhihu.CommentsInfo;
-import com.chad.hlife.entity.zhihu.DetailsExtraInfo;
-import com.chad.hlife.entity.zhihu.DetailsInfo;
+import com.chad.hlife.entity.zhihu.DetailExtraInfo;
+import com.chad.hlife.entity.zhihu.DetailInfo;
 import com.chad.hlife.entity.zhihu.HomeInfo;
-import com.chad.hlife.entity.zhihu.SectionDetailsInfo;
+import com.chad.hlife.entity.zhihu.SectionsDetailInfo;
 import com.chad.hlife.entity.zhihu.SectionsInfo;
-import com.chad.hlife.entity.zhihu.ThemeDetailsInfo;
+import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.helper.NetworkHelper;
 import com.chad.hlife.retrofit.api.IJuHeApi;
@@ -93,10 +92,6 @@ public class HLifeRetrofit {
         return mIJuHeApi.getBookContentInfo(key, catalogId, pn, rn);
     }
 
-    public static Observable<WifiInfo> getWifiInfo(double lon, double lat, int gtype, String key) {
-        return mIJuHeApi.getWifiInfo(lon, lat, gtype, key);
-    }
-
     public static Observable<HomeInfo> getLatestHomeInfo() {
         return mIZhiHuApi.getLatestHomeInfo();
     }
@@ -109,28 +104,28 @@ public class HLifeRetrofit {
         return mIZhiHuApi.getThemesInfo();
     }
 
-    public static Observable<ThemeDetailsInfo> getThemeDetaildInfo(int id) {
-        return mIZhiHuApi.getThemeDetailsInfo(id);
+    public static Observable<ThemesDetailInfo> getThemesDetailInfo(int id) {
+        return mIZhiHuApi.getThemesDetailInfo(id);
     }
 
     public static Observable<SectionsInfo> getSectionsInfo() {
         return mIZhiHuApi.getSectionsInfo();
     }
 
-    public static Observable<SectionDetailsInfo> getSectionDetailsInfo(int id) {
-        return mIZhiHuApi.getSectionDetailsInfo(id);
+    public static Observable<SectionsDetailInfo> getSectionsDetailInfo(int id) {
+        return mIZhiHuApi.getSectionsDetailInfo(id);
     }
 
-    public static Observable<SectionDetailsInfo> getBeforeSectionDetailsInfo(int id, long timestamp) {
-        return mIZhiHuApi.getBeforeSectionDetailsInfo(id, timestamp);
+    public static Observable<SectionsDetailInfo> getBeforeSectionsDetailInfo(int id, long timestamp) {
+        return mIZhiHuApi.getBeforeSectionsDetailInfo(id, timestamp);
     }
 
-    public static Observable<DetailsInfo> getDetailsInfo(int id) {
-        return mIZhiHuApi.getDetailsInfo(id);
+    public static Observable<DetailInfo> getDetailInfo(int id) {
+        return mIZhiHuApi.getDetailInfo(id);
     }
 
-    public static Observable<DetailsExtraInfo> getDetailsExtraInfo(int id) {
-        return mIZhiHuApi.getDetailsExtraInfo(id);
+    public static Observable<DetailExtraInfo> getDetailExtraInfo(int id) {
+        return mIZhiHuApi.getDetailExtraInfo(id);
     }
 
     public static Observable<CommentsInfo> getLongCommentsInfo(int id) {

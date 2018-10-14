@@ -58,9 +58,9 @@ public class LoginModel {
         return mWeiBoAuthHelper.getSsoHandler();
     }
 
-    public String getWeiBoAccessToken() {
+    public boolean isWeiBoSessionValid() {
         initWeiBoAuthHelper();
-        return mWeiBoAuthHelper.getOauth2AccessToken().getToken();
+        return mWeiBoAuthHelper.isSessionValid();
     }
 
     public void weChatAuth(ILoginPresenter loginPresenter) {

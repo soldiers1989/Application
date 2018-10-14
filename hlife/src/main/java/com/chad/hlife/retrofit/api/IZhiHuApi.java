@@ -2,12 +2,12 @@ package com.chad.hlife.retrofit.api;
 
 
 import com.chad.hlife.entity.zhihu.CommentsInfo;
-import com.chad.hlife.entity.zhihu.DetailsExtraInfo;
-import com.chad.hlife.entity.zhihu.DetailsInfo;
+import com.chad.hlife.entity.zhihu.DetailExtraInfo;
+import com.chad.hlife.entity.zhihu.DetailInfo;
 import com.chad.hlife.entity.zhihu.HomeInfo;
-import com.chad.hlife.entity.zhihu.SectionDetailsInfo;
+import com.chad.hlife.entity.zhihu.SectionsDetailInfo;
 import com.chad.hlife.entity.zhihu.SectionsInfo;
-import com.chad.hlife.entity.zhihu.ThemeDetailsInfo;
+import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 
 import io.reactivex.Observable;
@@ -47,7 +47,7 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("theme/{id}")
-    Observable<ThemeDetailsInfo> getThemeDetailsInfo(@Path("id") int id);
+    Observable<ThemesDetailInfo> getThemesDetailInfo(@Path("id") int id);
 
     /**
      * 获取专栏列表
@@ -64,7 +64,7 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("section/{id}")
-    Observable<SectionDetailsInfo> getSectionDetailsInfo(@Path("id") int id);
+    Observable<SectionsDetailInfo> getSectionsDetailInfo(@Path("id") int id);
 
     /**
      * 根据ID和Time获取对应的专栏之前内容
@@ -74,7 +74,7 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("section/{id}/before/{timestamp}")
-    Observable<SectionDetailsInfo> getBeforeSectionDetailsInfo(@Path("id") int id,
+    Observable<SectionsDetailInfo> getBeforeSectionsDetailInfo(@Path("id") int id,
                                                                @Path("timestamp") long timestamp);
 
     /**
@@ -84,7 +84,7 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("story/{id}")
-    Observable<DetailsInfo> getDetailsInfo(@Path("id") int id);
+    Observable<DetailInfo> getDetailInfo(@Path("id") int id);
 
     /**
      * 根据ID获取日报的额外信息
@@ -93,7 +93,7 @@ public interface IZhiHuApi {
      * @return
      */
     @GET("story-extra/{id}")
-    Observable<DetailsExtraInfo> getDetailsExtraInfo(@Path("id") int id);
+    Observable<DetailExtraInfo> getDetailExtraInfo(@Path("id") int id);
 
     /**
      * 根据ID获取日报的长评论

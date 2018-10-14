@@ -12,7 +12,6 @@ public class WeiBoAuthHelper {
 
     private Context mContext;
     private SsoHandler mSsoHandler;
-    private Oauth2AccessToken mOauth2AccessToken;
 
     private static volatile WeiBoAuthHelper mWeiBoAuthHelper = null;
 
@@ -27,15 +26,14 @@ public class WeiBoAuthHelper {
 
     private WeiBoAuthHelper(Context context) {
         mContext = context;
-        mOauth2AccessToken = readAccessToken();
     }
 
     public boolean isSessionValid() {
-        return mOauth2AccessToken == null ? false : mOauth2AccessToken.isSessionValid();
+        return readAccessToken().isSessionValid();
     }
 
     public Oauth2AccessToken getOauth2AccessToken() {
-        return mOauth2AccessToken == null? null: mOauth2AccessToken;
+        return readAccessToken();
     }
 
     public void writeAccessToken(Oauth2AccessToken oauth2AccessToken) {

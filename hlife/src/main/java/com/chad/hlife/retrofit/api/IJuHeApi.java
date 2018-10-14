@@ -8,7 +8,6 @@ import com.chad.hlife.entity.juhe.HistoryDetailInfo;
 import com.chad.hlife.entity.juhe.HistoryInfo;
 import com.chad.hlife.entity.juhe.JokeInfo;
 import com.chad.hlife.entity.juhe.NewsInfo;
-import com.chad.hlife.entity.juhe.WifiInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -90,16 +89,4 @@ public interface IJuHeApi {
     Observable<BookContentInfo> getBookContentInfo(@Query("key") String key,
                                                    @Query("catalog_id") int catalogId,
                                                    @Query("pn") int pn, @Query("rn") int rn);
-
-    /**
-     * 周边Wifi
-     * @param lon
-     * @param lat
-     * @param gtype
-     * @param key
-     * @return
-     */
-    @GET(AppConstant.URL_BASE_JUHE_API + "wifi/local")
-    Observable<WifiInfo> getWifiInfo(@Query("lon") double lon, @Query("lat") double lat,
-                                     @Query("gtype") int gtype, @Query("key") String key);
 }

@@ -19,6 +19,7 @@ import com.chad.hlife.mvp.view.juhe.IHistoryView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.juhe.adapter.HistoryDetailAdapter;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -51,6 +52,7 @@ public class HistoryDetailActivity extends BaseMvpAppCompatActivity<IHistoryView
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
         initToolbar();
         initRecyclerView();
     }

@@ -1,6 +1,7 @@
 package com.chad.hlife.app;
 
 import com.chad.hlife.HLifeApplication;
+import com.chad.hlife.R;
 
 import java.io.File;
 
@@ -8,19 +9,20 @@ public class AppConstant {
 
     public static final File FILE_DIR_CACHE = HLifeApplication.getHLifeApplication().getCacheDir();
 
+    public static final int COLOR_STATUS_BAR_BLUE = R.color.colorStatusBarBlue;
+    public static final int COLOR_STATUS_BAR_RED = R.color.colorStatusBarRed;
+    public static final int COLOR_STATUS_BAR_BLACK = R.color.colorStatusBarBlack;
+
     public static final int MODEL_LOGIN_WEIBO = 0;
     public static final int MODEL_LOGIN_WECHAT = 1;
-
-    public static final int REQUEST_CODE_GPS_SETTINGS = 0;
-    public static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
-
-    public static final int TYPE_WIFI_BAIDU = 1;
-    public static final int TYPE_WIFI_GOOGLE = 2;
-    public static final int TYPE_WIFI_GPS = 3;
 
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_URL = "url";
+    public static final String EXTRA_LIST_ID = "list_id";
+    public static final String EXTRA_COMMENTS_COUNT = "comments";
+    public static final String EXTRA_COMMENTS_COUNT_LONG = "long_comments";
+    public static final String EXTRA_COMMENTS_COUNT_SHORT = "short_comments";
 
     public static final String URL_BASE_WEIBO = "https://api.weibo.com/2/";
     public static final String URL_BASE_JUHE_V = "http://v.juhe.cn/";

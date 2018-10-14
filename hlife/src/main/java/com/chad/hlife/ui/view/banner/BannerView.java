@@ -13,10 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.chad.zhihu.R;
-import com.chad.zhihu.app.AppSettings;
-import com.chad.zhihu.glide.CustomGlideModule;
-import com.chad.zhihu.util.DisplayUtil;
+import com.chad.hlife.R;
+import com.chad.hlife.glide.CustomGlideModule;
+import com.chad.hlife.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,11 +109,10 @@ public class BannerView extends ConstraintLayout implements ViewPager.OnPageChan
                     // 初始化ImageView
                     AppCompatImageView appCompatImageView = new AppCompatImageView(getContext());
                     appCompatImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    appCompatImageView.setImageResource(R.drawable.pic_default_placeholder);
+                    appCompatImageView.setImageResource(R.drawable.pic_placeholder_image);
                     String image = banner.getImage();
-                    if (!TextUtils.isEmpty(image)
-                            && AppSettings.getInstance().isGraphBrowsing()) {
-                        CustomGlideModule.loadImage(getContext(), image, appCompatImageView);
+                    if (!TextUtils.isEmpty(image)) {
+                        CustomGlideModule.loadCenterCrop(getContext(), image, appCompatImageView);
                     }
                     mImageViewList.add(appCompatImageView);
                 });

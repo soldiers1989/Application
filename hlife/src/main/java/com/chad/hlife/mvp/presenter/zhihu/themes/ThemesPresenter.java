@@ -1,6 +1,6 @@
 package com.chad.hlife.mvp.presenter.zhihu.themes;
 
-import com.chad.hlife.entity.zhihu.ThemeDetailsInfo;
+import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
 import com.chad.hlife.mvp.model.zhihu.ThemesModel;
@@ -14,8 +14,8 @@ public class ThemesPresenter extends BasePresenter<IThemesView> implements IThem
         ThemesModel.getInstance().getThemesInfo(transformer, this);
     }
 
-    public void getThemeDetailsInfo(ObservableTransformer transformer, int id) {
-        ThemesModel.getInstance().getThemeDetailsInfo(transformer, id, this);
+    public void getThemesDetailInfo(ObservableTransformer transformer, int id) {
+        ThemesModel.getInstance().getThemesDetailInfo(transformer, id, this);
     }
 
     @Override
@@ -24,8 +24,8 @@ public class ThemesPresenter extends BasePresenter<IThemesView> implements IThem
     }
 
     @Override
-    public void onThemeDetailsInfo(ThemeDetailsInfo themeDetailsInfo) {
-        getView().onThemeDetailsInfo(themeDetailsInfo);
+    public void onThemesDetailInfo(ThemesDetailInfo themesDetailInfo) {
+        getView().onThemesDetailInfo(themesDetailInfo);
     }
 
     @Override

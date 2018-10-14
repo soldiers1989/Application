@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.hlife.BuildConfig;
 import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppSettings;
+import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.ui.base.BaseRxFragment;
 import com.chad.hlife.ui.juhe.adapter.SettingsAdapter;
 import com.chad.hlife.util.CacheFileUtil;
@@ -54,6 +56,21 @@ public class SettingsFragment extends BaseRxFragment
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mSettingsAdapter = new SettingsAdapter(getContext());
+        mSettingsAdapter.setOnItemClickListener(position -> {
+            switch (position) {
+                case 2:
+                    CacheFileUtil.clearCacheFile(HLifeApplication.getHLifeApplication());
+                    getSettingsData();
+                    break;
+                case 3:
+                    WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication()).clearAccessToken();
+                    AppSettings.getInstance().setLoginModel(-1);
+                    getActivity().finish();
+                    break;
+                default:
+                    break;
+            }
+        });
         mRecyclerView.setAdapter(mSettingsAdapter);
     }
 
@@ -99,6 +116,7 @@ public class SettingsFragment extends BaseRxFragment
         list.add("小黑工作室");
         list.add(BuildConfig.VERSION_NAME);
         list.add(CacheFileUtil.getCacheFileSize(HLifeApplication.getHLifeApplication()));
+        list.add(getString(R.string.logout));
         mSettingsAdapter.setData(list);
     }
 }

@@ -11,7 +11,6 @@
     <string name="joke">笑话大全</string>
     <string name="film_ticket">电影票</string>
     <string name="books_store">图书商店</string>
-    <string name="wifi">附近WIFI</string>
     <string name="settings">设置</string>
     <string name="top">头条</string>
     <string name="society">社会</string>
@@ -44,7 +43,24 @@
     <string name="developer">关于开发者</string>
     <string name="version">软件版本号</string>
     <string name="cache">清除缓存</string>
+    <string name="logout">退出登录</string>
     <string name="home">首页</string>
     <string name="themes">专题</string>
     <string name="sections">专栏</string>
+    <string name="today_hot_news">今日热闻</string>
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+    <string name="saturday">星期六</string>
+    <string name="sunday">星期日</string>
+    <string name="source">来源</string>
+    <string name="editor">主编</string>
+    <string name="greater_than_99">99+</string>
+    <string name="first_one">已经是第一条了</string>
+    <string name="last_one">已经是最后一条了</string>
+    <string name="comment">条评论</string>
+    <string name="long_comment">长评论</string>
+    <string name="short_comment">短评论</string>
 </resources>

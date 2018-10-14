@@ -1,7 +1,7 @@
 package com.chad.hlife.ui.juhe.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +14,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.helper.WebViewHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -34,6 +35,7 @@ public class BooksDetailActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initWebView();
     }
 
@@ -44,20 +46,17 @@ public class BooksDetailActivity extends BaseRxAppCompatActivity {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.getUrl().toString());
+                } else {
+                    view.loadUrl(request.toString());
+                }
                 return true;
             }
 
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (mLoading != null) {
-                    mLoading.setVisibility(View.VISIBLE);
-                }
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
             public void onPageFinished(WebView view, String url) {
-                if (mLoading != null) {
+                if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
                     mLoading.setVisibility(View.GONE);
                 }
                 super.onPageFinished(view, url);

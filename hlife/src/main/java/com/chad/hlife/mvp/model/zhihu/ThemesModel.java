@@ -1,6 +1,6 @@
 package com.chad.hlife.mvp.model.zhihu;
 
-import com.chad.hlife.entity.zhihu.ThemeDetailsInfo;
+import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.mvp.presenter.zhihu.themes.IThemesPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
@@ -36,16 +36,16 @@ public class ThemesModel {
                         throwable -> themesPresenter.onError(throwable.toString()));
     }
 
-    public void getThemeDetailsInfo(ObservableTransformer transformer, int id, IThemesPresenter themesPresenter) {
-        HLifeRetrofit.getThemeDetaildInfo(id)
+    public void getThemesDetailInfo(ObservableTransformer transformer, int id, IThemesPresenter themesPresenter) {
+        HLifeRetrofit.getThemesDetailInfo(id)
                 .compose(transformer)
-                .map(o -> initStories((ThemeDetailsInfo) o))
+                .map(o -> initStories((ThemesDetailInfo) o))
                 .compose(RxSchedulersUtil.workThread())
-                .subscribe(o -> themesPresenter.onThemeDetailsInfo((ThemeDetailsInfo) o),
+                .subscribe(o -> themesPresenter.onThemesDetailInfo((ThemesDetailInfo) o),
                         throwable -> themesPresenter.onError(throwable));
     }
 
-    private ThemeDetailsInfo initStories(ThemeDetailsInfo detailsInfo) {
+    private ThemesDetailInfo initStories(ThemesDetailInfo detailsInfo) {
         if (detailsInfo == null) {
             return null;
         }

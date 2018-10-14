@@ -14,20 +14,16 @@
             android:icon="@drawable/ic_navigation_joke"
             android:title="@string/joke" />
         <item
-            android:id="@+id/item_zhihu"
-            android:icon="@drawable/ic_navigation_zhihu"
-            android:title="@string/zhihu" />
-    </group>
-
-    <group android:id="@+id/group_life">
-        <item
-            android:id="@+id/item_wifi"
-            android:icon="@drawable/ic_navigation_wifi"
-            android:title="@string/wifi" />
-        <item
             android:id="@+id/item_books_store"
             android:icon="@drawable/ic_navigation_books_store"
             android:title="@string/books_store" />
+    </group>
+
+    <group android:id="@+id/group_app">
+        <item
+            android:id="@+id/item_zhihu"
+            android:icon="@drawable/ic_navigation_zhihu"
+            android:title="@string/zhihu" />
         <item
             android:id="@+id/item_film_ticket"
             android:icon="@drawable/ic_navigation_film_ticket"
@@ -35,7 +31,7 @@
 
     </group>
 
-    <group android:id="@+id/group_app">
+    <group android:id="@+id/group_settings">
         <item
             android:id="@+id/item_settings"
             android:icon="@drawable/ic_navigation_settings"

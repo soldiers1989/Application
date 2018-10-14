@@ -2,14 +2,21 @@ package com.chad.hlife.ui.zhihu.activity;
 
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.ui.zhihu.fragment.HomeFragment;
+import com.chad.hlife.ui.zhihu.fragment.SectionsFragment;
+import com.chad.hlife.ui.zhihu.fragment.ThemesFragment;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +42,7 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initToolbar();
         initBottomNavigation();
     }
@@ -43,7 +51,7 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
         LogUtil.d(TAG, "initToolbar");
         mToolbar.setTitle(R.string.zhihu);
         mToolbar.setTitleTextColor(Color.WHITE);
-        mToolbar.setNavigationIcon(R.drawable.ic_back_light);
+        mToolbar.setNavigationIcon(R.drawable.ic_close_light);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
@@ -82,7 +90,18 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
 
     @Override
     protected void onInitData() {
+        LogUtil.d(TAG, "onInitData");
+        initFragment();
+    }
 
+    private void initFragment() {
+        LogUtil.d(TAG, "initFragment");
+        mFragments = new ArrayList<>();
+        mFragments.add(new HomeFragment());
+        mFragments.add(new ThemesFragment());
+        mFragments.add(new SectionsFragment());
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.content_fragment, mFragments.get(0)).commit();
     }
 
     @Override
@@ -92,6 +111,15 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
         if (mFragments == null || mFragments.size() < 3 || mSelectedPosition == position) {
             return false;
         }
-        return false;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (!mFragments.get(position).isAdded()) {
+            fragmentTransaction.hide(mFragments.get(mSelectedPosition))
+                    .add(R.id.content_fragment, mFragments.get(position)).commit();
+        } else {
+            fragmentTransaction.hide(mFragments.get(mSelectedPosition))
+                    .show(mFragments.get(position)).commit();
+        }
+        mSelectedPosition = position;
+        return true;
     }
 }

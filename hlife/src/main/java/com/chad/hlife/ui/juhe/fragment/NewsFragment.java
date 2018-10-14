@@ -1,8 +1,10 @@
 package com.chad.hlife.ui.juhe.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -37,6 +39,8 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
 
     private HeaderView mHeaderView;
 
@@ -125,6 +129,9 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         if (newsInfo == null) {
             return;
         }
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
+        }
         if (mSuperSwipeRefreshLayout.isRefreshing()) {
             mSuperSwipeRefreshLayout.setRefreshing(false);
         }
@@ -142,6 +149,9 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
         LogUtil.d(TAG, "onTabSelected : position = " + tab.getPosition());
         if (presenter == null || mNewsTypes == null) {
             return;
+        }
+        if (mLoading != null && mLoading.getVisibility() == View.GONE) {
+            mLoading.setVisibility(View.VISIBLE);
         }
         presenter.getNewsInfo(bindToLifecycle(), mNewsTypes.get(tab.getPosition()), JuHeConfig.KEY_NEWS);
     }

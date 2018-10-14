@@ -1,9 +1,11 @@
 package com.chad.hlife.ui.juhe.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.config.JuHeConfig;
@@ -28,6 +30,8 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     AppCompatTextView mTextDate;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.layout_loading)
+    ConstraintLayout mLoading;
 
     private HistoryAdapter mHistoryAdapter;
 
@@ -78,6 +82,9 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
         LogUtil.d(TAG, "onHistoryInfo : historyInfo = " + (historyInfo == null ? "Null" : "Not Null"));
         if (historyInfo == null) {
             return;
+        }
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
         }
         mHistoryAdapter.setData(historyInfo.getResult());
     }

@@ -5,4 +5,6 @@
 
     <include layout="@layout/layout_list" />
 
+    <include layout="@layout/layout_loading" />
+
 </android.support.design.widget.CoordinatorLayout>

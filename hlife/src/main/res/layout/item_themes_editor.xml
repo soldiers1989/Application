@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/chad_10dp"
+    android:paddingRight="@dimen/chad_10dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/image_avatar"
+        android:layout_width="@dimen/chad_30dp"
+        android:layout_height="@dimen/chad_30dp"
+        fresco:placeholderImage="@drawable/pic_placeholder_user_avatar"
+        fresco:placeholderImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"
+        fresco:roundedCornerRadius="@dimen/chad_20dp" />
+
+</android.support.constraint.ConstraintLayout>

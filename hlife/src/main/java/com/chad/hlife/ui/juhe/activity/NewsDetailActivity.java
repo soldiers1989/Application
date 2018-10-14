@@ -13,9 +13,9 @@ import android.widget.ProgressBar;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.helper.WebViewHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
+import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -38,6 +38,7 @@ public class NewsDetailActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
         initToolbar();
         initWebView();
     }
@@ -50,7 +51,6 @@ public class NewsDetailActivity extends BaseRxAppCompatActivity {
 
     private void initWebView() {
         LogUtil.d(TAG, "initWebView");
-        WebViewHelper.webViewSettings(mWebView);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
