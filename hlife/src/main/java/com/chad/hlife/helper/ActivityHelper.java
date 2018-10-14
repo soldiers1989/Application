@@ -1,15 +1,11 @@
 package com.chad.hlife.helper;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.ui.activity.MainActivity;
-import com.chad.hlife.ui.juhe.activity.BooksDetailActivity;
-import com.chad.hlife.ui.juhe.activity.BooksStoreActivity;
-import com.chad.hlife.ui.juhe.activity.FilmTicketActivity;
-import com.chad.hlife.ui.juhe.activity.HistoryDetailActivity;
+import com.chad.hlife.ui.app.activity.MainActivity;
+import com.chad.hlife.ui.app.activity.TaoPiaoPiaoActivity;
 import com.chad.hlife.ui.juhe.activity.NewsDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
@@ -39,16 +35,6 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startHistoryDetailActivity(Activity activity, String title, String id) {
-        if (activity == null) {
-            return;
-        }
-        Intent intent = new Intent(activity, HistoryDetailActivity.class);
-        intent.putExtra(AppConstant.EXTRA_TITLE, title);
-        intent.putExtra(AppConstant.EXTRA_ID, id);
-        activity.startActivity(intent);
-    }
-
     public static void startZhiHuActivity(Activity activity) {
         if (activity == null) {
             return;
@@ -57,32 +43,12 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startFilmTicketActivity(Activity activity) {
+    public static void startTaoPiaoPiaoActivity(Activity activity) {
         if (activity == null) {
             return;
         }
-        Intent intent = new Intent(activity, FilmTicketActivity.class);
+        Intent intent = new Intent(activity, TaoPiaoPiaoActivity.class);
         activity.startActivity(intent);
-    }
-
-    public static void startBooksStoreActivity(Activity activity, String title, int id) {
-        if (activity == null) {
-            return;
-        }
-        Intent intent = new Intent(activity, BooksStoreActivity.class);
-        intent.putExtra(AppConstant.EXTRA_TITLE, title);
-        intent.putExtra(AppConstant.EXTRA_ID, id);
-        activity.startActivity(intent);
-    }
-
-    public static void startBooksDetailActivity(Context context, String url) {
-        if (context == null) {
-            return;
-        }
-        Intent intent = new Intent(context, BooksDetailActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(AppConstant.EXTRA_URL, url);
-        context.startActivity(intent);
     }
 
     public static void startDetailActivity(Activity activity, ArrayList<Integer> storyIds, int id) {

@@ -1,13 +1,12 @@
 package com.chad.hlife.retrofit;
 
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.entity.juhe.BookCatalogInfo;
-import com.chad.hlife.entity.juhe.BookContentInfo;
-import com.chad.hlife.entity.juhe.FilmTicketInfo;
-import com.chad.hlife.entity.juhe.HistoryDetailInfo;
-import com.chad.hlife.entity.juhe.HistoryInfo;
-import com.chad.hlife.entity.juhe.JokeInfo;
+import com.chad.hlife.app.config.JuHeConfig;
+import com.chad.hlife.app.config.MobConfig;
+import com.chad.hlife.app.config.WeiBoConfig;
+import com.chad.hlife.app.config.ZhiHuConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
+import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.entity.zhihu.CommentsInfo;
 import com.chad.hlife.entity.zhihu.DetailExtraInfo;
@@ -19,6 +18,7 @@ import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.helper.NetworkHelper;
 import com.chad.hlife.retrofit.api.IJuHeApi;
+import com.chad.hlife.retrofit.api.IMobApi;
 import com.chad.hlife.retrofit.api.IWeiBoApi;
 import com.chad.hlife.retrofit.api.IZhiHuApi;
 import com.chad.hlife.util.LogUtil;
@@ -46,11 +46,13 @@ public class HLifeRetrofit {
     private static OkHttpClient mOkHttpClient = null;
     private static IWeiBoApi mIWeiBoApi = null;
     private static IJuHeApi mIJuHeApi = null;
+    private static IMobApi mIMobApi = null;
     private static IZhiHuApi mIZhiHuApi = null;
 
     static {
         initOkHttpClient();
         initIJuHeApi();
+        initIMobApi();
         initIZhiHuApi();
     }
 
@@ -63,33 +65,8 @@ public class HLifeRetrofit {
         return mIJuHeApi.getNewsInfo(type, key);
     }
 
-    public static Observable<HistoryInfo> getHistoryInfo(String key, String date) {
-        return mIJuHeApi.getHistoryInfo(key, date);
-    }
-
-    public static Observable<HistoryDetailInfo> getHistoryDetailInfo(String key, String eId) {
-        return mIJuHeApi.getHistoryDetailInfo(key, eId);
-    }
-
-    public static Observable<JokeInfo> getJokeInfo(String key) {
-        return mIJuHeApi.getJokeInfo(key);
-    }
-
-    public static Observable<JokeInfo> getMoreJokeInfo(String sort, String time, String key) {
-        return mIJuHeApi.getMoreJokeInfo(sort, time, key);
-    }
-
-    public static Observable<FilmTicketInfo> getFilmTicketInfo(String key) {
-        return mIJuHeApi.getFilmTicketInfo(key);
-    }
-
-    public static Observable<BookCatalogInfo> getBookCatalogInfo(String key) {
-        return mIJuHeApi.getBookCatalogInfo(key);
-    }
-
-    public static Observable<BookContentInfo> getBookContentInfo(String key, int catalogId,
-                                                                 int pn, int rn) {
-        return mIJuHeApi.getBookContentInfo(key, catalogId, pn, rn);
+    public static Observable<HistoryInfo> getHistoryInfo(String key, String day) {
+        return mIMobApi.getHistoryInfo(key, day);
     }
 
     public static Observable<HomeInfo> getLatestHomeInfo() {
@@ -139,7 +116,7 @@ public class HLifeRetrofit {
     private static void initIWeiBoApi() {
         LogUtil.d(TAG, "initIWeiBoApi");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppConstant.URL_BASE_WEIBO)
+                .baseUrl(WeiBoConfig.URL_BASE_WEIBO)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -150,7 +127,7 @@ public class HLifeRetrofit {
     private static void initIJuHeApi() {
         LogUtil.d(TAG, "initIJuHeApi");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppConstant.URL_BASE_JUHE_V)
+                .baseUrl(JuHeConfig.URL_BASE_JUHE_V)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -158,10 +135,21 @@ public class HLifeRetrofit {
         mIJuHeApi = retrofit.create(IJuHeApi.class);
     }
 
+    private static void initIMobApi() {
+        LogUtil.d(TAG, "initIMobApi");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MobConfig.URL_BASE_MOB)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        mIMobApi = retrofit.create(IMobApi.class);
+    }
+
     private static void initIZhiHuApi() {
         LogUtil.d(TAG, "initIZhiHuApi");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppConstant.URL_BASE_ZHIHU)
+                .baseUrl(ZhiHuConfig.URL_BASE_ZHIHU)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

@@ -1,7 +1,7 @@
 package com.chad.hlife.mvp.model.juhe;
 
 import com.chad.hlife.entity.juhe.NewsInfo;
-import com.chad.hlife.mvp.presenter.juhe.news.INewsPresenter;
+import com.chad.hlife.mvp.presenter.juhe.INewsPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
 import com.chad.hlife.util.RxSchedulersUtil;
 

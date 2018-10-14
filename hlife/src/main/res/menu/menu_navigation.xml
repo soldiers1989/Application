@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/group_entertainment">
+    <group android:id="@+id/group_fragment">
         <item
             android:id="@+id/item_news"
             android:icon="@drawable/ic_navigation_news"
@@ -10,24 +10,20 @@
             android:icon="@drawable/ic_navigation_history"
             android:title="@string/history" />
         <item
-            android:id="@+id/item_joke"
-            android:icon="@drawable/ic_navigation_joke"
-            android:title="@string/joke" />
-        <item
-            android:id="@+id/item_books_store"
-            android:icon="@drawable/ic_navigation_books_store"
-            android:title="@string/books_store" />
+            android:id="@+id/item_recipe"
+            android:icon="@drawable/ic_navigation_recipe"
+            android:title="@string/recipe" />
     </group>
 
-    <group android:id="@+id/group_app">
+    <group android:id="@+id/group_activity">
         <item
             android:id="@+id/item_zhihu"
             android:icon="@drawable/ic_navigation_zhihu"
             android:title="@string/zhihu" />
         <item
-            android:id="@+id/item_film_ticket"
-            android:icon="@drawable/ic_navigation_film_ticket"
-            android:title="@string/film_ticket" />
+            android:id="@+id/item_tao_piao_piao"
+            android:icon="@drawable/ic_navigation_tao_piao_piao"
+            android:title="@string/taopiaopiao" />
 
     </group>
 

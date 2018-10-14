@@ -6,11 +6,10 @@
     <string name="open">打开</string>
     <string name="close">关闭</string>
     <string name="news">新闻头条</string>
-    <string name="zhihu">知乎日报</string>
     <string name="history">历史上的今天</string>
-    <string name="joke">笑话大全</string>
-    <string name="film_ticket">电影票</string>
-    <string name="books_store">图书商店</string>
+    <string name="recipe">菜谱</string>
+    <string name="zhihu">知乎日报</string>
+    <string name="taopiaopiao">淘票票</string>
     <string name="settings">设置</string>
     <string name="top">头条</string>
     <string name="society">社会</string>

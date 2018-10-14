@@ -1,9 +1,12 @@
 package com.chad.hlife.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.chad.hlife.R;
+
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,18 +31,25 @@ public class DateUtil {
         Calendar calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return month + "/" + day;
+        String monthStr = Integer.toString(month);
+        if (month < 10) {
+            monthStr = "0" + monthStr;
+        }
+        String dayStr = Integer.toString(day);
+        if (month < 10) {
+            dayStr = "0" + dayStr;
+        }
+        return monthStr + dayStr;
     }
 
-    public static String getCurrentTime(String time, String pattern) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date date = null;
-        try {
-            date = simpleDateFormat.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public static String formatData(String date) {
+        if (TextUtils.isEmpty(date)) {
+            return null;
         }
-        return Long.toString(date.getTime()/1000);
+        String year = date.substring(0, 4);
+        String month = date.substring(4, 6);
+        String day = date.substring(6, 8);
+        return year + "-" + month + "-" + day;
     }
 
     public static String formatDate(Context context, String date) {

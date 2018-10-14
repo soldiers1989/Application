@@ -11,7 +11,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.JuHeConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.helper.ActivityHelper;
-import com.chad.hlife.mvp.presenter.juhe.news.NewsPresenter;
+import com.chad.hlife.mvp.presenter.juhe.NewsPresenter;
 import com.chad.hlife.mvp.view.juhe.INewsView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
 import com.chad.hlife.ui.juhe.adapter.NewsAdapter;
