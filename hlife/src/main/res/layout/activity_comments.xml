@@ -30,13 +30,14 @@
                 app:tabTextAppearance="@style/TabTextStyle"
                 app:tabTextColor="@color/colorText" />
 
-            <include layout="@layout/layout_divider" />
+            <include layout="@layout/layout_divider_horizontal" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never" />
+                android:overScrollMode="never"
+                android:scrollbars="none" />
 
         </LinearLayout>
 

@@ -7,7 +7,9 @@ import com.chad.hlife.app.config.WeiBoConfig;
 import com.chad.hlife.app.config.ZhiHuConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
-import com.chad.hlife.entity.mob.OilPricesInfo;
+import com.chad.hlife.entity.mob.OilPriceInfo;
+import com.chad.hlife.entity.mob.RecipeCategoryInfo;
+import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.entity.zhihu.CommentsInfo;
 import com.chad.hlife.entity.zhihu.DetailExtraInfo;
@@ -70,8 +72,22 @@ public class HLifeRetrofit {
         return mIMobApi.getHistoryInfo(key, day);
     }
 
-    public static Observable<OilPricesInfo> getOilPricesInfo(String key) {
-        return mIMobApi.getOilPricesInfo(key);
+    public static Observable<OilPriceInfo> getOilPriceInfo(String key) {
+        return mIMobApi.getOilPriceInfo(key);
+    }
+
+    public static Observable<RecipeCategoryInfo> getRecipeCategoryInfo(String key) {
+        return mIMobApi.getRecipeCategoryInfo(key);
+    }
+
+    public static Observable<RecipeDetailInfo> getRecipeDetailInfoByCId(String key, String id,
+                                                                        int page, int size) {
+        return mIMobApi.getRecipeDetailInfoByCId(key, id, page, size);
+    }
+
+    public static Observable<RecipeDetailInfo> getRecipeDetailInfoByName(String key, String name,
+                                                                         int page, int size) {
+        return mIMobApi.getRecipeDetailInfoByName(key, name, page, size);
     }
 
     public static Observable<HomeInfo> getLatestHomeInfo() {

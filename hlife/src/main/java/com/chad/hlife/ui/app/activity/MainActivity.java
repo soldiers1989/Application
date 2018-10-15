@@ -24,7 +24,7 @@ import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.mob.fragment.HistoryFragment;
 import com.chad.hlife.ui.juhe.fragment.NewsFragment;
 import com.chad.hlife.ui.app.fragment.SettingsFragment;
-import com.chad.hlife.ui.mob.fragment.OilPricesFragment;
+import com.chad.hlife.ui.mob.fragment.OilPriceFragment;
 import com.chad.hlife.ui.mob.fragment.RecipeFragment;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -142,7 +142,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         mFragments = new ArrayList<>();
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
-        mFragments.add(new OilPricesFragment());
+        mFragments.add(new OilPriceFragment());
         mFragments.add(new RecipeFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()

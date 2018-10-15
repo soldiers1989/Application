@@ -79,7 +79,7 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        mWebView.loadUrl(AppConstant.URL_TAOPIAOPIAO);
+        mWebView.loadUrl(AppConstant.URL_TAO_TICKET);
     }
 
     @Override

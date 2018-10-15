@@ -13,11 +13,13 @@ public class AppConstant {
     public static final int COLOR_STATUS_BAR_RED = R.color.colorStatusBarRed;
     public static final int COLOR_STATUS_BAR_BLACK = R.color.colorStatusBarBlack;
 
-    public static final String URL_TAOPIAOPIAO = "https://www.taopiaopiao.com/";
+    public static final String URL_TAO_TICKET = "https://www.taopiaopiao.com/";
 
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_URL = "url";
+    public static final String EXTRA_TYPE = "type";
+    public static final String EXTRA_NAME = "name";
     public static final String EXTRA_LIST_ID = "list_id";
     public static final String EXTRA_COMMENTS_COUNT = "comments";
     public static final String EXTRA_COMMENTS_COUNT_LONG = "long_comments";
@@ -33,4 +35,7 @@ public class AppConstant {
     public static final String TYPE_NEWS_KEJI = "keji";
     public static final String TYPE_NEWS_CAIJING = "caijing";
     public static final String TYPE_NEWS_SHISHANG = "shishang";
+
+    public static final String TYPE_RECIPE_ID = "id";
+    public static final String TYPE_RECIPE_NAME = "name";
 }

@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:scrollbars="vertical"
+            android:scrollbars="none"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <WebView
@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:isScrollContainer="false"
                 android:overScrollMode="never"
-                android:scrollbars="vertical" />
+                android:scrollbars="none" />
 
         </android.support.v4.widget.NestedScrollView>
 

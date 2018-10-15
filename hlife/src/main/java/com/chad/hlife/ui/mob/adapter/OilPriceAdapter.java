@@ -8,16 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.hlife.R;
-import com.chad.hlife.entity.mob.OilPricesInfo;
+import com.chad.hlife.entity.mob.OilPriceInfo;
 import com.chad.hlife.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;
 
-public class OilPricesAdapter extends BaseRecyclerViewAdapter<OilPricesInfo.Result> {
+public class OilPriceAdapter extends BaseRecyclerViewAdapter<OilPriceInfo.Price> {
 
     private Context mContext;
 
-    public OilPricesAdapter(Context context) {
+    public OilPriceAdapter(Context context) {
         mContext = context;
     }
 
@@ -31,16 +31,16 @@ public class OilPricesAdapter extends BaseRecyclerViewAdapter<OilPricesInfo.Resu
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        OilPricesInfo.Prices prices = data.get(position).getPrices();
-        itemViewHolder.textProvince.setText(prices.getProvince());
+        OilPriceInfo.Price price = data.get(position);
+        itemViewHolder.textProvince.setText(price.getProvince());
         itemViewHolder.textDieselOil0.setText(mContext.getString(R.string.today_prices) + "："
-                + prices.getDieselOil0());
+                + price.getDieselOil0());
         itemViewHolder.textGasoline90.setText(mContext.getString(R.string.today_prices) + "："
-                + prices.getGasoline90());
+                + price.getGasoline90());
         itemViewHolder.textGasoline93.setText(mContext.getString(R.string.today_prices) + "："
-                + prices.getGasoline93());
+                + price.getGasoline93());
         itemViewHolder.textGasoline97.setText(mContext.getString(R.string.today_prices) + "："
-                + prices.getGasoline97());
+                + price.getGasoline97());
         super.onBindViewHolder(holder, position);
     }
 

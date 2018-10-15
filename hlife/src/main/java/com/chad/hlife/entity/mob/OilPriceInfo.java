@@ -3,20 +3,17 @@ package com.chad.hlife.entity.mob;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.annotations.Until;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 今日油价
  */
-public class OilPricesInfo implements Parcelable {
+public class OilPriceInfo implements Parcelable {
 
     private String msg;
     private String retCode;
-    private List<Result> result;
+    private Result result;
 
     public String getMsg() {
         return msg;
@@ -26,15 +23,14 @@ public class OilPricesInfo implements Parcelable {
         return retCode;
     }
 
-    public List<Result> getResult() {
+    public Result getResult() {
         return result;
     }
 
-    protected OilPricesInfo(Parcel in) {
+    protected OilPriceInfo(Parcel in) {
         msg = in.readString();
         retCode = in.readString();
-        result = new ArrayList<>();
-        in.readList(result, Result.class.getClassLoader());
+        result = (Result) in.readValue(Result.class.getClassLoader());
     }
 
     @Override
@@ -46,37 +42,37 @@ public class OilPricesInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(msg);
         dest.writeString(retCode);
-        dest.writeList(result);
+        dest.writeValue(result);
     }
 
-    public static final Creator<OilPricesInfo> CREATOR = new Creator<OilPricesInfo>() {
+    public static final Creator<OilPriceInfo> CREATOR = new Creator<OilPriceInfo>() {
         @Override
-        public OilPricesInfo createFromParcel(Parcel source) {
-            return new OilPricesInfo(source);
+        public OilPriceInfo createFromParcel(Parcel source) {
+            return new OilPriceInfo(source);
         }
 
         @Override
-        public OilPricesInfo[] newArray(int size) {
-            return new OilPricesInfo[size];
+        public OilPriceInfo[] newArray(int size) {
+            return new OilPriceInfo[size];
         }
     };
 
-
     public static class Result implements Parcelable {
         
-        Prices prices;
+        List<Price> prices;
 
-        public Prices getPrices() {
+        public List<Price> getPrices() {
             return prices;
         }
 
         protected Result(Parcel in) {
-            prices = (Prices) in.readValue(Prices.class.getClassLoader());
+            prices = new ArrayList<>();
+            in.readList(prices, Price.class.getClassLoader());
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeValue(prices);
+            dest.writeList(prices);
         }
 
         @Override
@@ -97,7 +93,7 @@ public class OilPricesInfo implements Parcelable {
         };
     }
 
-    public static class Prices implements Parcelable {
+    public static class Price implements Parcelable {
 
         private String dieselOil0;
         private String gasoline90;
@@ -125,7 +121,7 @@ public class OilPricesInfo implements Parcelable {
             return province;
         }
 
-        protected Prices(Parcel in) {
+        protected Price(Parcel in) {
             dieselOil0 = in.readString();
             gasoline90 = in.readString();
             gasoline93 = in.readString();
@@ -147,15 +143,15 @@ public class OilPricesInfo implements Parcelable {
             dest.writeString(province);
         }
 
-        public static final Creator<Prices> CREATOR = new Creator<Prices>() {
+        public static final Creator<Price> CREATOR = new Creator<Price>() {
             @Override
-            public Prices createFromParcel(Parcel source) {
-                return new Prices(source);
+            public Price createFromParcel(Parcel source) {
+                return new Price(source);
             }
 
             @Override
-            public Prices[] newArray(int size) {
-                return new Prices[size];
+            public Price[] newArray(int size) {
+                return new Price[size];
             }
         };
     }
