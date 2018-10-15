@@ -20,16 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/chad_10dp"
             android:layout_toStartOf="@id/image_preview"
-            android:maxLines="3"
-            android:padding="@dimen/chad_2dp" />
+            android:maxLines="3" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_date"
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="@dimen/chad_2dp" />
+            android:layout_alignParentBottom="true" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/image_preview"

@@ -3,9 +3,12 @@ package com.chad.hlife.ui.mob.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -15,6 +18,7 @@ import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.mob.adapter.RecipeAdapter;
 import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.util.LogUtil;
@@ -37,9 +41,10 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
 
+    private RecipeAdapter mRecipeAdapter;
+
     private String mType;
-    private String mId;
-    private String mName;
+    private String mParam;
     private int mCurrentPage = 1;
 
     @Override
@@ -58,6 +63,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initToolbar();
         initSuperSwipeRefreshLayout();
+        initRecyclerView();
     }
 
     private void initToolbar() {
@@ -73,6 +79,16 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         mSuperSwipeRefreshLayout.setOnPullRefreshListener(this);
         mSuperSwipeRefreshLayout.setFooterView(new FooterView(getApplicationContext()));
         mSuperSwipeRefreshLayout.setOnPushLoadMoreListener(this);
+    }
+
+    private void initRecyclerView() {
+        LogUtil.d(TAG, "initRecyclerView");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        mRecipeAdapter = new RecipeAdapter(getApplicationContext());
+        mRecyclerView.setAdapter(mRecipeAdapter);
     }
 
     @Override
@@ -92,11 +108,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         }
         mType = intent.getStringExtra(AppConstant.EXTRA_TYPE);
         if (!TextUtils.isEmpty(mType)) {
-            if (AppConstant.TYPE_RECIPE_ID.equals(mType)) {
-                mId = intent.getStringExtra(AppConstant.EXTRA_ID);
-            } else if (AppConstant.TYPE_RECIPE_NAME.equals(mType)) {
-                mName = intent.getStringExtra(AppConstant.EXTRA_NAME);
-            }
+            mParam = intent.getStringExtra(AppConstant.EXTRA_PARAM);
             getRecipeDetailInfo(mType);
         }
     }
@@ -107,9 +119,9 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
             return;
         }
         if (AppConstant.TYPE_RECIPE_ID.equals(mType)) {
-            presenter.getRecipeDetailInfoByCId(bindToLifecycle(), MobConfig.APP_KEY, mId, mCurrentPage, 20);
+            presenter.getRecipeDetailInfoByCId(bindToLifecycle(), MobConfig.APP_KEY, mParam, mCurrentPage, 20);
         } else if (AppConstant.TYPE_RECIPE_NAME.equals(mType)) {
-            presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, mName, mCurrentPage, 20);
+            presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, mParam, mCurrentPage, 20);
         }
     }
 
@@ -124,7 +136,11 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         if (recipeDetailInfo == null) {
             return;
         }
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
+        }
         mSuperSwipeRefreshLayout.setLoadMore(false);
+        mRecipeAdapter.addData(recipeDetailInfo.getResult().getList());
         mCurrentPage ++;
     }
 

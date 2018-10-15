@@ -36,7 +36,7 @@ public class RecipeMainCategoryAdapter extends BaseRecyclerViewAdapter<RecipeCat
         super.onBindViewHolder(holder, position);
     }
 
-    public class ItemViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+    public class ItemViewHolder extends ViewHolder {
 
         @BindView(R.id.text_category)
         AppCompatTextView textCategory;

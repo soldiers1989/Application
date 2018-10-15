@@ -14,7 +14,7 @@
     </style>
     <!-- 详情页Theme -->
     <style name="DetailTheme" parent="AppTheme">
-        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimary">@color/colorTheme</item>
         <item name="android:windowBackground">@android:color/white</item>
     </style>
     <!-- 定义DrawerArrow的颜色 -->

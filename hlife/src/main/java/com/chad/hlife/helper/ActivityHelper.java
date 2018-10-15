@@ -8,6 +8,7 @@ import com.chad.hlife.ui.app.activity.MainActivity;
 import com.chad.hlife.ui.app.activity.TaoTicketActivity;
 import com.chad.hlife.ui.juhe.activity.NewsDetailActivity;
 import com.chad.hlife.ui.mob.activity.HistoryDetailActivity;
+import com.chad.hlife.ui.mob.activity.RecipeActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
@@ -42,6 +43,17 @@ public class ActivityHelper {
         }
         Intent intent = new Intent(activity, HistoryDetailActivity.class);
         intent.putExtra(AppConstant.EXTRA_TITLE, title);
+        activity.startActivity(intent);
+    }
+
+    public static void startRecipeActivity(Activity activity, String title, String type, String param) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, RecipeActivity.class);
+        intent.putExtra(AppConstant.EXTRA_TITLE, title);
+        intent.putExtra(AppConstant.EXTRA_TYPE, type);
+        intent.putExtra(AppConstant.EXTRA_PARAM, param);
         activity.startActivity(intent);
     }
 

@@ -21,7 +21,6 @@
             android:layout_marginEnd="@dimen/chad_10dp"
             android:layout_toStartOf="@id/image_preview"
             android:maxLines="3"
-            android:padding="@dimen/chad_2dp"
             android:paddingLeft="@dimen/chad_10dp"
             android:paddingRight="@dimen/chad_10dp" />
 

@@ -106,7 +106,7 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<HomeInfo.Story> {
         }
     }
 
-    public class ContentItemViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+    public class ContentItemViewHolder extends ViewHolder {
 
         @BindView(R.id.text_title)
         AppCompatTextView textTitle;

@@ -9,8 +9,11 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
+import com.chad.hlife.entity.mob.RecipeDetailInfo;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
@@ -79,9 +82,15 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
             mRecipeSubCategoryAdapter.setData(mRecipeMainCategoryAdapter.getData().get(position).getChilds());
         });
         mMainRecyclerView.setAdapter(mRecipeMainCategoryAdapter);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mSubRecyclerView.setLayoutManager(gridLayoutManager);
         mRecipeSubCategoryAdapter = new RecipeSubCategoryAdapter(getContext());
+        mRecipeSubCategoryAdapter.setOnItemClickListener(position ->
+                ActivityHelper.startRecipeActivity(getActivity(),
+                        mRecipeSubCategoryAdapter.getData().get(position).getCategoryInfo().getName(),
+                        AppConstant.TYPE_RECIPE_ID,
+                        mRecipeSubCategoryAdapter.getData().get(position).getCategoryInfo().getCtgId())
+        );
         mSubRecyclerView.setAdapter(mRecipeSubCategoryAdapter);
     }
 
@@ -108,6 +117,11 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
                     mMainRecyclerView.getChildAt(0).setSelected(true);
                     mRecipeSubCategoryAdapter.setData(recipeCategoryInfo.getResult().getChilds().get(0).getChilds());
                 });
+    }
+
+    @Override
+    public void onRecipeDetailInfo(RecipeDetailInfo recipeDetailInfo) {
+
     }
 
     @Override

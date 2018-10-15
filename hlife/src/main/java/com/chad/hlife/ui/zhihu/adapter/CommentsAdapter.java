@@ -44,7 +44,7 @@ public class CommentsAdapter extends BaseRecyclerViewAdapter<CommentsInfo.Commen
         super.onBindViewHolder(viewHolder, position);
     }
 
-    public class ItemViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+    public class ItemViewHolder extends ViewHolder {
 
         @BindView(R.id.image_avatar)
         SimpleDraweeView imageAvatar;

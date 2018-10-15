@@ -44,7 +44,7 @@ public class ThemesDetailAdapter extends BaseRecyclerViewAdapter<ThemesDetailInf
         super.onBindViewHolder(holder, position);
     }
 
-    public class ItemViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+    public class ItemViewHolder extends ViewHolder {
 
         @BindView(R.id.text_title)
         AppCompatTextView textTitle;

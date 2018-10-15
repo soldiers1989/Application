@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/chad_10dp"
             android:layout_toStartOf="@id/image_preview"
-            android:maxLines="3"
-            android:padding="@dimen/chad_2dp" />
+            android:maxLines="3" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/image_preview"

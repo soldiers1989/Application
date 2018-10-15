@@ -114,7 +114,7 @@ public class RecipeDetailInfo implements Parcelable {
         private String ctgTitles;
         private String name;
         private String thumbnail;
-        private Recipe recipe;
+//        private Recipe recipe;
 
         public List<String> getCtgIds() {
             return ctgIds;
@@ -136,9 +136,9 @@ public class RecipeDetailInfo implements Parcelable {
             return thumbnail;
         }
 
-        public Recipe getRecipe() {
-            return recipe;
-        }
+//        public Recipe getRecipe() {
+//            return recipe;
+//        }
 
         protected Recipes(Parcel in) {
             ctgIds = new ArrayList<>();
@@ -147,7 +147,7 @@ public class RecipeDetailInfo implements Parcelable {
             ctgTitles = in.readString();
             name = in.readString();
             thumbnail = in.readString();
-            recipe = (Recipe) in.readValue(Recipe.class.getClassLoader());
+//            recipe = (Recipe) in.readValue(Recipe.class.getClassLoader());
         }
 
         @Override
@@ -162,7 +162,7 @@ public class RecipeDetailInfo implements Parcelable {
             parcel.writeString(ctgTitles);
             parcel.writeString(name);
             parcel.writeString(thumbnail);
-            parcel.writeValue(recipe);
+//            parcel.writeValue(recipe);
         }
 
         public static final Creator<Recipes> CREATOR = new Creator<Recipes>() {
@@ -183,8 +183,8 @@ public class RecipeDetailInfo implements Parcelable {
         private String title;
         private String sumary;
         private String img;
-        private List<String> ingredients;
-        private List<String> method;
+//        private List<String> ingredients;
+//        private Method method;
 
         public String getTitle() {
             return title;
@@ -198,22 +198,21 @@ public class RecipeDetailInfo implements Parcelable {
             return img;
         }
 
-        public List<String> getIngredients() {
-            return ingredients;
-        }
+//        public List<String> getIngredients() {
+//            return ingredients;
+//        }
 
-        public List<String> getMethod() {
-            return method;
-        }
+//        public Method getMethod() {
+//            return method;
+//        }
 
         protected Recipe(Parcel in) {
             title = in.readString();
             sumary = in.readString();
             img = in.readString();
-            ingredients = new ArrayList<>();
-            in.readList(ingredients, String.class.getClassLoader());
-            method = new ArrayList<>();
-            in.readList(method, String.class.getClassLoader());
+//            ingredients = new ArrayList<>();
+//            in.readList(ingredients, String.class.getClassLoader());
+//            method = (Method) in.readValue(Method.class.getClassLoader());
         }
 
         @Override
@@ -226,8 +225,8 @@ public class RecipeDetailInfo implements Parcelable {
             parcel.writeString(title);
             parcel.writeString(sumary);
             parcel.writeString(img);
-            parcel.writeList(ingredients);
-            parcel.writeList(method);
+//            parcel.writeList(ingredients);
+//            parcel.writeValue(method);
         }
 
         public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -239,6 +238,42 @@ public class RecipeDetailInfo implements Parcelable {
             @Override
             public Recipe[] newArray(int size) {
                 return new Recipe[size];
+            }
+        };
+    }
+
+    public static class Method implements Parcelable {
+
+        private List<String> methods;
+
+        public List<String> getMethods() {
+            return methods;
+        }
+
+        protected Method(Parcel in) {
+            methods = new ArrayList<>();
+            in.readList(methods, String.class.getClassLoader());
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeList(methods);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<Method> CREATOR = new Creator<Method>() {
+            @Override
+            public Method createFromParcel(Parcel in) {
+                return new Method(in);
+            }
+
+            @Override
+            public Method[] newArray(int size) {
+                return new Method[size];
             }
         };
     }
