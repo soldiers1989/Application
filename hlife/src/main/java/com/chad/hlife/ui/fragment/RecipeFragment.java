@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -46,6 +48,8 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
     @BindView(R.id.view_loading)
     DoubleCircleLoadingView mLoadingView;
 
+    private ProgressDialog mProgressDialog;
+
     private RecipeMainCategoryAdapter mRecipeMainCategoryAdapter;
     private RecipeSubCategoryAdapter mRecipeSubCategoryAdapter;
 
@@ -79,6 +83,7 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
         ((SearchView.SearchAutoComplete) mSearchView
                 .findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextSize(16);
         mSearchView.setOnQueryTextListener(this);
+        mSearchView.clearFocus();
     }
 
     private void initRecyclerView() {
@@ -135,7 +140,19 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
 
     @Override
     public void onRecipeDetailInfo(RecipeDetailInfo recipeDetailInfo) {
-
+        LogUtil.d(TAG, "onRecipeDetailInfo : recipeDetailInfo = " + recipeDetailInfo);
+        if (recipeDetailInfo == null) {
+            return;
+        }
+        if (isResumed() && mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            if (!recipeDetailInfo.getMsg().equals("success")) {
+                Toast.makeText(getContext(), recipeDetailInfo.getMsg(), Toast.LENGTH_SHORT).show();
+            } else {
+                ActivityHelper.startRecipeActivity(getActivity(), mSearchView.getQuery().toString(),
+                        AppConstant.TYPE_RECIPE_NAME, mSearchView.getQuery().toString());
+            }
+        }
     }
 
     @Override
@@ -154,6 +171,17 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
             }
             mSearchView.clearFocus();
         }
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setMessage("搜索中...");
+        }
+        mProgressDialog.show();
+        Observable.timer(1, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong ->
+                        presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, text, 1, 1));
         return true;
     }
 

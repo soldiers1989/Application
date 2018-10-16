@@ -84,7 +84,7 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
         // 设置Tab选中颜色e
         mAhBottomNavigation.setAccentColor(getResources().getColor(R.color.colorPrimaryRed));
         // 设置Tab未选中颜色
-        mAhBottomNavigation.setInactiveColor(Color.BLACK);
+        mAhBottomNavigation.setInactiveColor(Color.GRAY);
         // 设置默认的背景颜色
         mAhBottomNavigation.setDefaultBackgroundColor(Color.WHITE);
         // 设置当前选中Tab

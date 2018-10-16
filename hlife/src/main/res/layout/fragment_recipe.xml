@@ -19,8 +19,8 @@
                 android:id="@+id/view_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryBackground="@drawable/bg_search_shape"
                 android:imeOptions="actionSearch"
+                app:queryBackground="@drawable/bg_search_shape"
                 app:queryHint="@string/dish_name" />
 
         </android.support.constraint.ConstraintLayout>
@@ -38,6 +38,8 @@
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
                 android:scrollbars="none" />
+
+            <include layout="@layout/layout_divider_vertical" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/view_recycler_sub"

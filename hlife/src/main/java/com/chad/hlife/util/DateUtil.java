@@ -46,9 +46,9 @@ public class DateUtil {
         if (TextUtils.isEmpty(date)) {
             return null;
         }
-        String year = date.substring(0, 4);
-        String month = date.substring(4, 6);
-        String day = date.substring(6, 8);
+        String year = date.substring(0, date.length() - 4);
+        String month = date.substring(date.length() - 4, date.length() - 2);
+        String day = date.substring(date.length() - 2, date.length());
         return year + "-" + month + "-" + day;
     }
 
@@ -57,7 +57,7 @@ public class DateUtil {
             return null;
         }
         String month = date.substring(4, 6);
-        String day = date.substring(6, 8);
+        String day = date.substring(6, date.length());
         String monthUnit = context.getString(R.string.month);
         String dayUnit = context.getString(R.string.day);
         return month + monthUnit + day + dayUnit;

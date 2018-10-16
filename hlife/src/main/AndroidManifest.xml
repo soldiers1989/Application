@@ -17,15 +17,17 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/LoginTheme">
+
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/MainTheme" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/MainTheme" />
         <activity
             android:name=".ui.activity.NewsDetailActivity"
             android:theme="@style/DetailTheme" />
