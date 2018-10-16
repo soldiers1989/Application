@@ -1,17 +1,20 @@
 package com.chad.hlife.ui.zhihu.fragment;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.zhihu.ThemesDetailInfo;
 import com.chad.hlife.entity.zhihu.ThemesInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.themes.ThemesPresenter;
 import com.chad.hlife.mvp.view.zhihu.IThemesView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.zhihu.adapter.ThemesAdapter;
 import com.chad.hlife.util.LogUtil;
 
@@ -26,6 +29,8 @@ public class ThemesFragment extends BaseMvpFragment<IThemesView, ThemesPresenter
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private ThemesAdapter mThemesAdapter;
 
@@ -42,6 +47,7 @@ public class ThemesFragment extends BaseMvpFragment<IThemesView, ThemesPresenter
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initRecyclerView();
     }
 
@@ -50,6 +56,7 @@ public class ThemesFragment extends BaseMvpFragment<IThemesView, ThemesPresenter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mThemesAdapter = new ThemesAdapter(getContext());
         mThemesAdapter.setOnItemClickListener(position ->
                 ActivityHelper.startThemesDetailActivity(getActivity(),

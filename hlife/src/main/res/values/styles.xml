@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorTheme</item>
+        <item name="android:windowBackground">@color/colorWindowBackground</item>
     </style>
     <!-- 主界面Theme，主要是为了修改DrawerArrow颜色 -->
     <style name="MainTheme" parent="AppTheme">
@@ -14,8 +14,12 @@
     </style>
     <!-- 详情页Theme -->
     <style name="DetailTheme" parent="AppTheme">
-        <item name="colorPrimary">@color/colorTheme</item>
+        <item name="colorPrimary">@color/colorPrimaryDetail</item>
         <item name="android:windowBackground">@android:color/white</item>
+    </style>
+    <!-- 知乎日报Theme -->
+    <style name="RedTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimaryRed</item>
     </style>
     <!-- 定义DrawerArrow的颜色 -->
     <style name="DrawerArrowStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">

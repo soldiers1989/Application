@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.juhe.activity;
+package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

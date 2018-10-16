@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.adapter;
+package com.chad.hlife.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,26 +13,26 @@ import com.chad.hlife.ui.base.BaseRecyclerViewAdapter;
 
 import butterknife.BindView;
 
-public class RecipeMainCategoryAdapter extends BaseRecyclerViewAdapter<RecipeCategoryInfo.Child> {
+public class RecipeSubCategoryAdapter extends BaseRecyclerViewAdapter<RecipeCategoryInfo.ChildCategoryInfo> {
 
     private Context mContext;
 
-    public RecipeMainCategoryAdapter(Context context) {
+    public RecipeSubCategoryAdapter(Context context) {
         mContext = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_recipe_category_main, viewGroup, false);
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_recipe_category_sub, viewGroup, false);
         return new ItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        RecipeCategoryInfo.Child child = data.get(position);
-        itemViewHolder.textCategory.setText(child.getCategoryInfo().getName());
+        RecipeCategoryInfo.ChildCategoryInfo childCategoryInfo = data.get(position);
+        itemViewHolder.textCategory.setText(childCategoryInfo.getCategoryInfo().getName());
         super.onBindViewHolder(holder, position);
     }
 

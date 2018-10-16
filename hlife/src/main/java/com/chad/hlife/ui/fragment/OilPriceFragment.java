@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.fragment;
+package com.chad.hlife.ui.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -7,12 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.OilPriceInfo;
 import com.chad.hlife.mvp.presenter.mob.oilprice.OilPricePresenter;
 import com.chad.hlife.mvp.view.mob.IOilPriceView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.mob.adapter.OilPriceAdapter;
+import com.chad.hlife.ui.adapter.OilPriceAdapter;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 
 import butterknife.BindView;
@@ -26,6 +28,8 @@ public class OilPriceFragment extends BaseMvpFragment<IOilPriceView, OilPricePre
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private OilPriceAdapter mOilPriceAdapter;
 
@@ -42,6 +46,7 @@ public class OilPriceFragment extends BaseMvpFragment<IOilPriceView, OilPricePre
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initRecyclerView();
     }
 

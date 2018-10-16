@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.fragment;
+package com.chad.hlife.ui.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatTextView;
@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.eventbus.EventMessage;
@@ -15,7 +16,8 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.history.HistoryPresenter;
 import com.chad.hlife.mvp.view.mob.IHistoryView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.mob.adapter.HistoryAdapter;
+import com.chad.hlife.ui.adapter.HistoryAdapter;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.DateUtil;
 import com.chad.hlife.util.LogUtil;
 
@@ -34,6 +36,8 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private HistoryAdapter mHistoryAdapter;
 
@@ -52,6 +56,7 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initDate();
         initRecyclerView();
     }

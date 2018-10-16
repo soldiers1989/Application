@@ -42,7 +42,7 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initToolbar();
         initBottomNavigation();
     }
@@ -76,10 +76,10 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
         mAhBottomNavigation.setBehaviorTranslationEnabled(true);
         // 设置Tab上title状态
         mAhBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
-        // 设置Tab选中颜色
-        mAhBottomNavigation.setAccentColor(getResources().getColor(R.color.colorPrimary));
+        // 设置Tab选中颜色e
+        mAhBottomNavigation.setAccentColor(getResources().getColor(R.color.colorPrimaryRed));
         // 设置Tab未选中颜色
-        mAhBottomNavigation.setInactiveColor(getResources().getColor(R.color.colorText));
+        mAhBottomNavigation.setInactiveColor(Color.BLACK);
         // 设置默认的背景颜色
         mAhBottomNavigation.setDefaultBackgroundColor(Color.WHITE);
         // 设置当前选中Tab

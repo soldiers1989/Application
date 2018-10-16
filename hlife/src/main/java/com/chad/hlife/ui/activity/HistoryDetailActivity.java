@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.activity;
+package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
@@ -12,6 +12,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.eventbus.EventMessage;
 import com.chad.hlife.eventbus.EventType;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
@@ -31,6 +32,8 @@ public class HistoryDetailActivity extends BaseRxAppCompatActivity {
     AppCompatTextView mTextEvent;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     @Override
     protected int onGetLayoutId() {
@@ -41,6 +44,7 @@ public class HistoryDetailActivity extends BaseRxAppCompatActivity {
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initToolbar();
     }
 

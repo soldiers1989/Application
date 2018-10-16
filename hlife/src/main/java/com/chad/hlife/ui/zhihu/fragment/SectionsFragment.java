@@ -1,17 +1,20 @@
 package com.chad.hlife.ui.zhihu.fragment;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.zhihu.SectionsDetailInfo;
 import com.chad.hlife.entity.zhihu.SectionsInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.sections.SectionsPresenter;
 import com.chad.hlife.mvp.view.zhihu.ISectionsView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.zhihu.adapter.SectionsAdapter;
 import com.chad.hlife.util.LogUtil;
 
@@ -26,6 +29,8 @@ public class SectionsFragment extends BaseMvpFragment<ISectionsView, SectionsPre
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private SectionsAdapter mSectionsAdapter;
 
@@ -42,6 +47,7 @@ public class SectionsFragment extends BaseMvpFragment<ISectionsView, SectionsPre
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initRecyclerView();
     }
 
@@ -50,6 +56,7 @@ public class SectionsFragment extends BaseMvpFragment<ISectionsView, SectionsPre
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mSectionsAdapter = new SectionsAdapter(getContext());
         mSectionsAdapter.setOnItemClickListener(position ->
                 ActivityHelper.startSectionsDetailActivity(getActivity(),

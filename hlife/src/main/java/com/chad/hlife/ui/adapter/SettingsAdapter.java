@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.app.adapter;
+package com.chad.hlife.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

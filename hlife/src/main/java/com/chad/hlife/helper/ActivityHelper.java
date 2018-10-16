@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.ui.app.activity.MainActivity;
-import com.chad.hlife.ui.app.activity.TaoTicketActivity;
-import com.chad.hlife.ui.juhe.activity.NewsDetailActivity;
-import com.chad.hlife.ui.mob.activity.HistoryDetailActivity;
-import com.chad.hlife.ui.mob.activity.RecipeActivity;
+import com.chad.hlife.ui.activity.MainActivity;
+import com.chad.hlife.ui.activity.TaoTicketActivity;
+import com.chad.hlife.ui.activity.NewsDetailActivity;
+import com.chad.hlife.ui.activity.HistoryDetailActivity;
+import com.chad.hlife.ui.activity.RecipeActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;

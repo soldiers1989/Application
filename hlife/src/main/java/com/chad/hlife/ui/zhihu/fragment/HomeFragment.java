@@ -1,12 +1,14 @@
 package com.chad.hlife.ui.zhihu.fragment;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.entity.zhihu.HomeInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.home.HomePresenter;
@@ -14,6 +16,7 @@ import com.chad.hlife.mvp.view.zhihu.IHomeView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
 import com.chad.hlife.ui.view.banner.Banner;
 import com.chad.hlife.ui.view.banner.BannerView;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.view.recycler.HeaderViewAdapter;
 import com.chad.hlife.ui.view.recycler.OnLoadMoreScrollListener;
 import com.chad.hlife.ui.view.refresh.HeaderView;
@@ -39,6 +42,8 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private HeaderView mHeaderView;
     private LoadMoreScrollListener mLoadMoreScrollListener;
@@ -63,6 +68,7 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initSuperSwipeRefreshLayout();
         initRecyclerView();
     }
@@ -87,6 +93,7 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mLoadMoreScrollListener = new LoadMoreScrollListener();
         mLoadMoreScrollListener.setLinearLayoutManager(linearLayoutManager);
         mRecyclerView.addOnScrollListener(mLoadMoreScrollListener);

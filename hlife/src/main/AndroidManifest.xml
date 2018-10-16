@@ -14,28 +14,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.app.activity.LoginActivity">
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.app.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/MainTheme" />
-        <activity android:name=".ui.app.activity.TaoTicketActivity" />
         <activity
-            android:name=".ui.juhe.activity.NewsDetailActivity"
+            android:name=".ui.activity.NewsDetailActivity"
             android:theme="@style/DetailTheme" />
         <activity
-            android:name=".ui.mob.activity.HistoryDetailActivity"
+            android:name=".ui.activity.HistoryDetailActivity"
             android:theme="@style/DetailTheme" />
-        <activity android:name=".ui.mob.activity.RecipeActivity" />
-        <activity android:name=".ui.zhihu.activity.ZhiHuActivity" />
-        <activity android:name=".ui.zhihu.activity.DetailActivity" />
-        <activity android:name=".ui.zhihu.activity.CommentsActivity" />
-        <activity android:name=".ui.zhihu.activity.ThemesDetailActivity" />
-        <activity android:name=".ui.zhihu.activity.SectionsDetailActivity" />
+        <activity android:name=".ui.activity.RecipeActivity" />
+        <activity
+            android:name=".ui.zhihu.activity.ZhiHuActivity"
+            android:theme="@style/RedTheme" />
+        <activity
+            android:name=".ui.zhihu.activity.DetailActivity"
+            android:theme="@style/RedTheme" />
+        <activity
+            android:name=".ui.zhihu.activity.CommentsActivity"
+            android:theme="@style/RedTheme" />
+        <activity
+            android:name=".ui.zhihu.activity.ThemesDetailActivity"
+            android:theme="@style/RedTheme" />
+        <activity
+            android:name=".ui.zhihu.activity.SectionsDetailActivity"
+            android:theme="@style/RedTheme" />
+        <activity
+            android:name=".ui.activity.TaoTicketActivity"
+            android:theme="@style/RedTheme" />
     </application>
 </manifest>

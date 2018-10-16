@@ -4,13 +4,21 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <WebView
-        android:id="@+id/view_web"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:isScrollContainer="false"
-        android:overScrollMode="never"
-        android:scrollbars="vertical" />
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_toolbar" />
+
+        <WebView
+            android:id="@+id/view_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="false"
+            android:overScrollMode="never"
+            android:scrollbars="vertical" />
+    </LinearLayout>
 
     <include layout="@layout/layout_loading" />
 

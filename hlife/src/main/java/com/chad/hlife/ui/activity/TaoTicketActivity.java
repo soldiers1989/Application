@@ -1,7 +1,9 @@
-package com.chad.hlife.ui.app.activity;
+package com.chad.hlife.ui.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
@@ -23,6 +25,8 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
 
     private static final String TAG = TaoTicketActivity.class.getSimpleName();
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.view_web)
     WebView mWebView;
     @BindView(R.id.layout_loading)
@@ -40,7 +44,16 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initToolbar();
         initWebView();
+    }
+
+    private void initToolbar() {
+        LogUtil.d(TAG, "initToolbar");
+        mToolbar.setTitle(R.string.tao_ticket);
+        mToolbar.setTitleTextColor(Color.WHITE);
+        mToolbar.setNavigationIcon(R.drawable.ic_close_light);
+        mToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     private void initWebView() {

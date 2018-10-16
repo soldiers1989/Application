@@ -3,6 +3,7 @@ package com.chad.hlife.ui.zhihu.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.sections.SectionsPresenter;
 import com.chad.hlife.mvp.view.zhihu.ISectionsView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.view.recycler.OnLoadMoreScrollListener;
 import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.ui.zhihu.adapter.SectionsDetailAdapter;
@@ -44,6 +46,8 @@ public class SectionsDetailActivity extends BaseMvpAppCompatActivity<ISectionsVi
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private HeaderView mHeaderView;
     private LoadMoreScrollListener mLoadMoreScrollListener;
@@ -67,7 +71,8 @@ public class SectionsDetailActivity extends BaseMvpAppCompatActivity<ISectionsVi
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initToolbar();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
@@ -94,6 +99,7 @@ public class SectionsDetailActivity extends BaseMvpAppCompatActivity<ISectionsVi
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mLoadMoreScrollListener = new LoadMoreScrollListener();
         mLoadMoreScrollListener.setLinearLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         mRecyclerView.addOnScrollListener(mLoadMoreScrollListener);
         mSectionsDetailAdapter = new SectionsDetailAdapter(getApplicationContext());
         mSectionsDetailAdapter.setOnItemClickListener(position -> ActivityHelper.startDetailActivity(this, mStoryIds,

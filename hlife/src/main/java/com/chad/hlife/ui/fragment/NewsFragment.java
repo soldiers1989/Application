@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.juhe.fragment;
+package com.chad.hlife.ui.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
@@ -14,7 +14,8 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.juhe.NewsPresenter;
 import com.chad.hlife.mvp.view.juhe.INewsView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.juhe.adapter.NewsAdapter;
+import com.chad.hlife.ui.adapter.NewsAdapter;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.util.LogUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
@@ -41,6 +42,8 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private HeaderView mHeaderView;
 
@@ -61,6 +64,7 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "initViews");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initTabLayout();
         initSuperSwipeRefreshLayout();
         initRecyclerView();

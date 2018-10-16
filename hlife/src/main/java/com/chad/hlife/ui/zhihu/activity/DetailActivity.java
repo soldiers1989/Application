@@ -22,6 +22,7 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.detail.DetailPresenter;
 import com.chad.hlife.mvp.view.zhihu.IDetailView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.HtmlUtil;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -56,6 +57,8 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
     AppCompatImageButton mBtnNext;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private ArrayList<Integer> mStoryIds;
 
@@ -79,6 +82,7 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initWebView();
         initPageButton();
     }

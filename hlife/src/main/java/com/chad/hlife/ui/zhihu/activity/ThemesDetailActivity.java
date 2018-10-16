@@ -3,6 +3,7 @@ package com.chad.hlife.ui.zhihu.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.zhihu.themes.ThemesPresenter;
 import com.chad.hlife.mvp.view.zhihu.IThemesView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.view.recycler.HeaderViewAdapter;
 import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.ui.view.theme.ThemesDetailHeaderView;
@@ -45,6 +47,8 @@ public class ThemesDetailActivity extends BaseMvpAppCompatActivity<IThemesView, 
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private HeaderView mHeaderView;
     private ThemesDetailHeaderView mThemesDetailHeaderView;
@@ -68,7 +72,8 @@ public class ThemesDetailActivity extends BaseMvpAppCompatActivity<IThemesView, 
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
         initToolbar();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
@@ -93,6 +98,7 @@ public class ThemesDetailActivity extends BaseMvpAppCompatActivity<IThemesView, 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         mThemesDetailAdapter = new ThemesDetailAdapter(getApplicationContext());
         mThemesDetailAdapter.setOnItemClickListener(position ->
                 ActivityHelper.startDetailActivity(this, mStoryIds,

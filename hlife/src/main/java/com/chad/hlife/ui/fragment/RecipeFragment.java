@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.fragment;
+package com.chad.hlife.ui.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,8 +17,9 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
 import com.chad.hlife.ui.base.BaseMvpFragment;
-import com.chad.hlife.ui.mob.adapter.RecipeMainCategoryAdapter;
-import com.chad.hlife.ui.mob.adapter.RecipeSubCategoryAdapter;
+import com.chad.hlife.ui.adapter.RecipeMainCategoryAdapter;
+import com.chad.hlife.ui.adapter.RecipeSubCategoryAdapter;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -39,6 +40,8 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
     RecyclerView mSubRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private RecipeMainCategoryAdapter mRecipeMainCategoryAdapter;
     private RecipeSubCategoryAdapter mRecipeSubCategoryAdapter;
@@ -56,6 +59,7 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initSearchView();
         initRecyclerView();
     }

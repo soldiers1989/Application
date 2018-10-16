@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.app.activity;
+package com.chad.hlife.ui.activity;
 
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -21,11 +21,11 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.main.MainPresenter;
 import com.chad.hlife.mvp.view.IMainView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
-import com.chad.hlife.ui.mob.fragment.HistoryFragment;
-import com.chad.hlife.ui.juhe.fragment.NewsFragment;
-import com.chad.hlife.ui.app.fragment.SettingsFragment;
-import com.chad.hlife.ui.mob.fragment.OilPriceFragment;
-import com.chad.hlife.ui.mob.fragment.RecipeFragment;
+import com.chad.hlife.ui.fragment.HistoryFragment;
+import com.chad.hlife.ui.fragment.NewsFragment;
+import com.chad.hlife.ui.fragment.SettingsFragment;
+import com.chad.hlife.ui.fragment.OilPriceFragment;
+import com.chad.hlife.ui.fragment.RecipeFragment;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 import com.facebook.drawee.view.SimpleDraweeView;

@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.mob.activity;
+package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,9 +18,9 @@ import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
-import com.chad.hlife.ui.mob.adapter.RecipeAdapter;
+import com.chad.hlife.ui.adapter.RecipeAdapter;
+import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.ui.view.refresh.FooterView;
-import com.chad.hlife.ui.view.refresh.HeaderView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
@@ -40,6 +40,8 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     RecyclerView mRecyclerView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
+    @BindView(R.id.view_loading)
+    DoubleCircleLoadingView mLoadingView;
 
     private RecipeAdapter mRecipeAdapter;
 
@@ -61,6 +63,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
         initToolbar();
         initSuperSwipeRefreshLayout();
         initRecyclerView();

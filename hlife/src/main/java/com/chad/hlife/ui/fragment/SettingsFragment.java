@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.app.fragment;
+package com.chad.hlife.ui.fragment;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +10,7 @@ import com.chad.hlife.R;
 import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.ui.base.BaseRxFragment;
-import com.chad.hlife.ui.app.adapter.SettingsAdapter;
+import com.chad.hlife.ui.adapter.SettingsAdapter;
 import com.chad.hlife.util.CacheFileUtil;
 import com.chad.hlife.util.LogUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
