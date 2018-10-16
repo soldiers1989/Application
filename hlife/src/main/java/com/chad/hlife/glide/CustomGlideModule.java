@@ -31,13 +31,4 @@ public class CustomGlideModule extends AppGlideModule {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
-
-    public static void loadFitXY(Context context, String url, AppCompatImageView imageView) {
-        GlideApp.with(context)
-                .load(url)
-                .fitCenter()
-                .placeholder(R.drawable.pic_placeholder_image)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView);
-    }
 }

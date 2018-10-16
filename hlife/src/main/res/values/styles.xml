@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorWindowBackground</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
     <!-- 主界面Theme，主要是为了修改DrawerArrow颜色 -->
     <style name="MainTheme" parent="AppTheme">

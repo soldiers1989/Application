@@ -30,6 +30,11 @@
     <string name="gasoline93">93号汽油</string>
     <string name="gasoline97">97号汽油</string>
     <string name="today_prices">今日价格</string>
+    <string name="summary">简介</string>
+    <string name="ingredient">用料</string>
+    <string name="method">做法</string>
+    <string name="no_summary">暂无简介</string>
+    <string name="no_ingredient">暂无用料</string>
     <string name="drop_down_refresh">下拉刷新</string>
     <string name="release_update">释放更新</string>
     <string name="refreshing">刷新中...</string>

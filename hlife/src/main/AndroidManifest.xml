@@ -32,6 +32,9 @@
             android:theme="@style/DetailTheme" />
         <activity android:name=".ui.activity.RecipeActivity" />
         <activity
+            android:name=".ui.activity.RecipeDetailActivity"
+            android:theme="@style/DetailTheme" />
+        <activity
             android:name=".ui.zhihu.activity.ZhiHuActivity"
             android:theme="@style/RedTheme" />
         <activity

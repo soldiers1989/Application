@@ -15,6 +15,9 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
+import com.chad.hlife.eventbus.EventMessage;
+import com.chad.hlife.eventbus.EventType;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
@@ -24,6 +27,8 @@ import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 
@@ -44,6 +49,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     DoubleCircleLoadingView mLoadingView;
 
     private RecipeAdapter mRecipeAdapter;
+    private RecipeDetailInfo.Recipe mRecipe;
 
     private String mType;
     private String mParam;
@@ -96,6 +102,10 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         mRecipeAdapter = new RecipeAdapter(getApplicationContext());
+        mRecipeAdapter.setOnItemClickListener(position -> {
+            mRecipe = mRecipeAdapter.getData().get(position).getRecipe();
+            ActivityHelper.startRecipeDetailActivity(this, mRecipeAdapter.getData().get(position).getName());
+        });
         mRecyclerView.setAdapter(mRecipeAdapter);
     }
 
@@ -187,5 +197,12 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     @Override
     public void onPushEnable(boolean b) {
 
+    }
+
+    @Override
+    protected void onStop() {
+        LogUtil.d(TAG, "onStop");
+        EventBus.getDefault().post(new EventMessage(EventType.TYPE_RECIPE, mRecipe));
+        super.onStop();
     }
 }
