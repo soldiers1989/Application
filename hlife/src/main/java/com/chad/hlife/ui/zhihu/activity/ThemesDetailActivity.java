@@ -72,11 +72,16 @@ public class ThemesDetailActivity extends BaseMvpAppCompatActivity<IThemesView, 
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initColor();
         initToolbar();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
     }
 
     private void initToolbar() {

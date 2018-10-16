@@ -59,9 +59,14 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        initColor();
         initSearchView();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initSearchView() {

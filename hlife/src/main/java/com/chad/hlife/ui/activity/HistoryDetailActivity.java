@@ -43,9 +43,14 @@ public class HistoryDetailActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
+        initColor();
+        initToolbar();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
         mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
-        initToolbar();
     }
 
     private void initToolbar() {

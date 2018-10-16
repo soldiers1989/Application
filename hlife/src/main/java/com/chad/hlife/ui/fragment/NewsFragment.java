@@ -64,10 +64,15 @@ public class NewsFragment extends BaseMvpFragment<INewsView, NewsPresenter>
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "initViews");
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        initColor();
         initTabLayout();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initTabLayout() {

@@ -68,9 +68,14 @@ public class HomeFragment extends BaseMvpFragment<IHomeView, HomePresenter> impl
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initColor();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
     }
 
     @Override

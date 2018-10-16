@@ -62,11 +62,16 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        initColor();
         initToolbar();
         initSuperSwipeRefreshLayout();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initToolbar() {

@@ -42,9 +42,14 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initColor();
         initToolbar();
         initBottomNavigation();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
     }
 
     private void initToolbar() {

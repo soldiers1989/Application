@@ -67,10 +67,15 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "initViews");
-        StatusBarUtil.setStatusBarColor(this, AppConstant.COLOR_STATUS_BAR_BLUE);
+        initColor();
         initToolbar();
         initDrawerLayout();
         initNavigationView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initToolbar() {

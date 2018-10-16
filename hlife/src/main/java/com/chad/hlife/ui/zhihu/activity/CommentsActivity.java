@@ -40,8 +40,13 @@ public class CommentsActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initColor();
         initToolbar();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
     }
 
     private void initToolbar() {

@@ -56,9 +56,14 @@ public class HistoryFragment extends BaseMvpFragment<IHistoryView, HistoryPresen
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
+        initColor();
         initDate();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initDate() {

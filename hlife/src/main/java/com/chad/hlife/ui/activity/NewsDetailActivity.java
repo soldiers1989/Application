@@ -38,9 +38,14 @@ public class NewsDetailActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
+        initColor();
         initToolbar();
         initWebView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
     }
 
     private void initToolbar() {

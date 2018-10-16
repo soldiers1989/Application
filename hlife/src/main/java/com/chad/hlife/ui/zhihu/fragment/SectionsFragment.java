@@ -47,8 +47,13 @@ public class SectionsFragment extends BaseMvpFragment<ISectionsView, SectionsPre
     @Override
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+        initColor();
         initRecyclerView();
+    }
+
+    private void initColor() {
+        LogUtil.d(TAG, "initColor");
+        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
     }
 
     private void initRecyclerView() {
