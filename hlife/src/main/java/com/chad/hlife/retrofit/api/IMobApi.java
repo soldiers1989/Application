@@ -1,7 +1,6 @@
 package com.chad.hlife.retrofit.api;
 
 import com.chad.hlife.entity.mob.HistoryInfo;
-import com.chad.hlife.entity.mob.OilPriceInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
 
@@ -18,15 +17,6 @@ public interface IMobApi {
      */
     @GET("appstore/history/query")
     Observable<HistoryInfo> getHistoryInfo(@Query("key") String key, @Query("day") String day);
-
-    /**
-     * 全国今日油价
-     *
-     * @param key
-     * @return
-     */
-    @GET("oil/price/province/query")
-    Observable<OilPriceInfo> getOilPriceInfo(@Query("key") String key);
 
     /**
      * 菜谱分类

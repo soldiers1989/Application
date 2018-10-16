@@ -57,7 +57,7 @@ public class ZhiHuActivity extends BaseRxAppCompatActivity implements AHBottomNa
         mToolbar.setTitle(R.string.zhihu);
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setNavigationIcon(R.drawable.ic_close_light);
-        mToolbar.setNavigationOnClickListener(v -> onBackPressed());
+        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
     private void initBottomNavigation() {

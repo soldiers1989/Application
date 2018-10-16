@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.fragment;
 
+import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -28,7 +30,8 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter> implements IRecipeView {
+public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter>
+        implements IRecipeView, SearchView.OnQueryTextListener {
 
     private static final String TAG = RecipeFragment.class.getSimpleName();
 
@@ -71,9 +74,11 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
 
     private void initSearchView() {
         LogUtil.d(TAG, "initSearchView");
-        mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setIconified(false);
         mSearchView.onActionViewExpanded();
+        ((SearchView.SearchAutoComplete) mSearchView
+                .findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextSize(16);
+        mSearchView.setOnQueryTextListener(this);
     }
 
     private void initRecyclerView() {
@@ -91,7 +96,7 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
             mRecipeSubCategoryAdapter.setData(mRecipeMainCategoryAdapter.getData().get(position).getChilds());
         });
         mMainRecyclerView.setAdapter(mRecipeMainCategoryAdapter);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         mSubRecyclerView.setLayoutManager(gridLayoutManager);
         mRecipeSubCategoryAdapter = new RecipeSubCategoryAdapter(getContext());
         mRecipeSubCategoryAdapter.setOnItemClickListener(position ->
@@ -136,5 +141,24 @@ public class RecipeFragment extends BaseMvpFragment<IRecipeView, RecipePresenter
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String text) {
+        LogUtil.d(TAG, "onQueryTextSubmit : text = " + text);
+        if (mSearchView != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getContext()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null) {
+                inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+            }
+            mSearchView.clearFocus();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String text) {
+        return false;
     }
 }

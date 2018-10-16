@@ -24,7 +24,6 @@ import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.fragment.HistoryFragment;
 import com.chad.hlife.ui.fragment.NewsFragment;
 import com.chad.hlife.ui.fragment.SettingsFragment;
-import com.chad.hlife.ui.fragment.OilPriceFragment;
 import com.chad.hlife.ui.fragment.RecipeFragment;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -107,12 +106,8 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
                     switchFragment(1);
                     setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_oil_prices:
-                    switchFragment(2);
-                    setNavigationItemChecked(menuItem);
-                    break;
                 case R.id.item_recipe:
-                    switchFragment(3);
+                    switchFragment(2);
                     setNavigationItemChecked(menuItem);
                     break;
                 case R.id.item_zhihu:
@@ -124,7 +119,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
                     mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_settings:
-                    switchFragment(4);
+                    switchFragment(3);
                     setNavigationItemChecked(menuItem);
                     break;
                 default:
@@ -147,7 +142,6 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         mFragments = new ArrayList<>();
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
-        mFragments.add(new OilPriceFragment());
         mFragments.add(new RecipeFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()

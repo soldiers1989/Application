@@ -10,10 +10,6 @@
             android:icon="@drawable/ic_navigation_history"
             android:title="@string/history" />
         <item
-            android:id="@+id/item_oil_prices"
-            android:icon="@drawable/ic_navigation_oil_price"
-            android:title="@string/oil_price" />
-        <item
             android:id="@+id/item_recipe"
             android:icon="@drawable/ic_navigation_recipe"
             android:title="@string/recipe" />

@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#4E9AFB</color>
     <color name="colorAccent">#4E9AFB</color>
     <color name="colorPrimaryDetail">#EDEDED</color>
-    <color name="colorPrimaryRed">#FF0004</color>
+    <color name="colorPrimaryRed">#FF3535</color>
     <color name="colorWindowBackground">#EDEDED</color>
-    <color name="colorStatusBarBlue">#0854B6</color>
+    <color name="colorStatusBarBlue">#1F80FC</color>
     <color name="colorStatusBarRed">#D9062E</color>
     <color name="colorStatusBarBlack">#333333</color>
     <color name="colorText">#333333</color>

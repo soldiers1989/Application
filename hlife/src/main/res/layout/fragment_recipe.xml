@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,12 +9,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/view_search"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:imeOptions="actionDone" />
+            android:padding="@dimen/chad_10dp">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/view_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:queryBackground="@drawable/bg_search_shape"
+                android:imeOptions="actionSearch"
+                app:queryHint="@string/dish_name" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <include layout="@layout/layout_divider_horizontal" />
 
@@ -28,8 +38,6 @@
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
                 android:scrollbars="none" />
-
-            <include layout="@layout/layout_divider_vertical" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/view_recycler_sub"

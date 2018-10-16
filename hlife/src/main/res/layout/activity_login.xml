@@ -2,48 +2,110 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/pic_login">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_login"
-        style="@style/TextStyle"
-        android:layout_width="@dimen/chad_160dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/chad_15dp"
-        android:background="@drawable/btn_login"
-        android:padding="@dimen/chad_10dp"
-        android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@id/btn_tourists"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_tourists"
-        style="@style/TextStyle"
-        android:layout_width="@dimen/chad_160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/chad_15dp"
-        android:background="@drawable/btn_login"
-        android:padding="@dimen/chad_10dp"
-        android:text="@string/tourists"
-        app:layout_constraintBottom_toTopOf="@id/btn_close"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_close"
-        style="@style/TextStyle"
-        android:layout_width="@dimen/chad_160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/chad_50dp"
-        android:background="@drawable/btn_login"
-        android:padding="@dimen/chad_10dp"
-        android:text="@string/close"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <include layout="@layout/layout_loading" />
+        <LinearLayout
+            android:id="@+id/layout_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_user" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_user"
+                style="@style/TextStyle"
+                android:layout_width="@dimen/chad_200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_10dp"
+                android:background="@drawable/bg_search_shape"
+                android:hint="@string/user"
+                android:padding="@dimen/chad_5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chad_10dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_user">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_password" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_password"
+                style="@style/TextStyle"
+                android:layout_width="@dimen/chad_200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_10dp"
+                android:background="@drawable/bg_search_shape"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/chad_5dp" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_login_weibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chad_10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/login_using_weibo"
+            android:textColor="@color/color_text"
+            app:layout_constraintLeft_toLeftOf="@id/layout_password"
+            android:textSize="@dimen/chad_16sp"
+            app:layout_constraintTop_toBottomOf="@id/layout_password" />
+
+        <LinearLayout
+            android:id="@+id/layout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/chad_10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/btn_login_weibo">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/login"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/chad_18sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/chad_10dp"
+                android:background="@android:color/transparent"
+                android:text="@string/register"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/chad_18sp" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

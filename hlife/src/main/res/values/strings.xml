@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">小黑Life</string>
-    <string name="login">一键登录</string>
-    <string name="tourists">游客模式</string>
+    <string name="user">用户名</string>
+    <string name="password">密码</string>
     <string name="user_name">用户名称</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="login_using_weibo">使用新浪微博登录</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
     <string name="news">新闻头条</string>
     <string name="history">历史上的今天</string>
-    <string name="oil_price">今日油价</string>
     <string name="recipe">菜谱大全</string>
     <string name="zhihu">知乎日报</string>
     <string name="tao_ticket">淘票票</string>
@@ -25,14 +27,12 @@
     <string name="year">年</string>
     <string name="month">月</string>
     <string name="day">日</string>
-    <string name="dieselOil0">0号柴油</string>
-    <string name="gasoline90">90号汽油</string>
-    <string name="gasoline93">93号汽油</string>
-    <string name="gasoline97">97号汽油</string>
-    <string name="today_prices">今日价格</string>
+    <string name="dish_name">菜品名称</string>
+    <string name="search">搜索</string>
     <string name="summary">简介</string>
     <string name="ingredient">用料</string>
     <string name="method">做法</string>
+    <string name="resemble">相关推荐</string>
     <string name="no_summary">暂无简介</string>
     <string name="no_ingredient">暂无用料</string>
     <string name="drop_down_refresh">下拉刷新</string>
