@@ -131,7 +131,6 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     public void onWeiBoLoginCancel() {
         LogUtil.d(TAG, "onWeiBoLoginCancel");
         AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
-        finish();
     }
 
     @Override

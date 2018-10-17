@@ -34,7 +34,8 @@
                 android:layout_marginLeft="@dimen/chad_10dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/user_name"
-                android:padding="@dimen/chad_5dp" />
+                android:padding="@dimen/chad_5dp"
+                android:singleLine="true" />
 
         </LinearLayout>
 
@@ -65,8 +66,10 @@
                 android:layout_marginLeft="@dimen/chad_10dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/password"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:padding="@dimen/chad_5dp" />
+                android:padding="@dimen/chad_5dp"
+                android:singleLine="true" />
 
         </LinearLayout>
 
@@ -138,6 +141,6 @@
     <com.chad.hlife.ui.view.dialog.ProgressDialog
         android:id="@+id/dialog_progress"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
