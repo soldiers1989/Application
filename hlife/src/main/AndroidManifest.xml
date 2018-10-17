@@ -16,13 +16,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:theme="@style/LoginTheme">
-
-        </activity>
+            android:theme="@style/LoginTheme"></activity>
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/MainTheme" >
+            android:theme="@style/MainTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +33,7 @@
             android:name=".ui.activity.HistoryDetailActivity"
             android:theme="@style/DetailTheme" />
         <activity android:name=".ui.activity.RecipeActivity" />
+        <activity android:name=".ui.activity.RecipeSearchActivity" />
         <activity
             android:name=".ui.activity.RecipeDetailActivity"
             android:theme="@style/DetailTheme" />

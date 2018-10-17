@@ -2,11 +2,15 @@ package com.chad.hlife.ui.zhihu.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -39,6 +43,12 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
 
     private static final String TAG = DetailActivity.class.getSimpleName();
 
+    @BindView(R.id.layout_appbar)
+    AppBarLayout mAppBarLayout;
+    @BindView(R.id.layout_collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.image_preview)
     AppCompatImageView mImagePreview;
     @BindView(R.id.text_title)
@@ -82,6 +92,8 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         initColor();
+        initAppBarLayout();
+        initToolbar();
         initWebView();
         initPageButton();
     }
@@ -90,6 +102,27 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
         LogUtil.d(TAG, "initColor");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLACK));
         mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_RED));
+    }
+
+    private void initAppBarLayout() {
+        LogUtil.d(TAG, "initAppBarLayout");
+        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, i) -> {
+            if (Math.abs(i) == mAppBarLayout.getHeight() - mToolbar.getHeight()) {
+                mCollapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimaryDetail));
+                mToolbar.setNavigationIcon(R.drawable.ic_back_dark);
+                mToolbar.setTitle(mTextTitle.getText().toString());
+            } else {
+                mCollapsingToolbarLayout.setContentScrimColor(Color.TRANSPARENT);
+                mToolbar.setNavigationIcon(R.drawable.ic_back_light);
+                mToolbar.setTitle(null);
+            }
+        });
+    }
+
+    private void initToolbar() {
+        LogUtil.d(TAG, "initToolbar");
+        mToolbar.setNavigationIcon(R.drawable.ic_back_light);
+        mToolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
     private void initWebView() {

@@ -1,11 +1,12 @@
-package com.chad.hlife.ui.view.refresh;
+package com.chad.hlife.ui.view.dialog;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -15,48 +16,66 @@ import com.chad.hlife.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FooterView extends ConstraintLayout implements Animation.AnimationListener {
+public class ProgressDialog extends ConstraintLayout implements Animation.AnimationListener {
 
     @BindView(R.id.image_progress)
     AppCompatImageView mImageProgress;
+    @BindView(R.id.text_title)
+    AppCompatTextView mTextTitle;
 
     private Animation mAnimation;
 
-    public FooterView(Context context) {
+    public ProgressDialog(Context context) {
         this(context, null);
     }
 
-    public FooterView(Context context, AttributeSet attrs) {
+    public ProgressDialog(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FooterView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressDialog(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.layout_refresh_footer, this, true);
+        LayoutInflater.from(context).inflate(R.layout.layout_dialog_proress, this, true);
         ButterKnife.bind(this);
+        setVisibility(GONE);
     }
 
-    public void setLoading(boolean isLoading) {
-        if (isLoading) {
-            startProgressAnimation();
-        } else {
-            stopProgressAnimation();
+    public void setTitle(String title) {
+        mTextTitle.setText(title);
+    }
+
+    public boolean isShowing() {
+        return getVisibility() == VISIBLE;
+    }
+
+    public void show() {
+        if (isShowing()) {
+            return;
         }
+        setVisibility(VISIBLE);
+        startProgressAnimation();
+    }
+
+    public void dismiss() {
+        if (!isShowing()) {
+            return;
+        }
+        stopProgressAnimation();
+        setVisibility(GONE);
     }
 
     private void startProgressAnimation() {
-        mImageProgress.setVisibility(VISIBLE);
         if (mAnimation == null) {
             mAnimation = new RotateAnimation(0f, 360f,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
         }
         mAnimation.setRepeatCount(1);
-        mAnimation.setDuration(1000);
+        mAnimation.setDuration(2000);
         mAnimation.setInterpolator(new LinearInterpolator());
         mAnimation.setAnimationListener(this);
         mImageProgress.startAnimation(mAnimation);

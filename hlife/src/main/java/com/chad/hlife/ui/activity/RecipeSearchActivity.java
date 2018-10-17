@@ -1,14 +1,12 @@
 package com.chad.hlife.ui.activity;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.View;
+import android.widget.Toast;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -20,9 +18,9 @@ import com.chad.hlife.eventbus.EventType;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.mob.IRecipeView;
-import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.adapter.RecipeAdapter;
-import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
+import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.dialog.ProgressDialog;
 import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -30,12 +28,17 @@ import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, RecipePresenter>
-        implements IRecipeView, SuperSwipeRefreshLayout.OnPullRefreshListener, SuperSwipeRefreshLayout.OnPushLoadMoreListener {
+public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, RecipePresenter>
+        implements IRecipeView, SearchView.OnQueryTextListener,
+        SuperSwipeRefreshLayout.OnPullRefreshListener, SuperSwipeRefreshLayout.OnPushLoadMoreListener {
 
-    private static final String TAG = RecipeActivity.class.getSimpleName();
+    private static final String TAG = RecipeSearchActivity.class.getSimpleName();
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -43,17 +46,16 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
-    @BindView(R.id.layout_loading)
-    ConstraintLayout mLoading;
-    @BindView(R.id.view_loading)
-    DoubleCircleLoadingView mLoadingView;
+    @BindView(R.id.dialog_progress)
+    ProgressDialog mProgressDialog;
 
+    private SearchView mSearchView;
     private FooterView mFooterView;
 
     private RecipeAdapter mRecipeAdapter;
     private RecipeDetailInfo.Recipe mRecipe;
 
-    private String mCategoryId;
+    private String mRecipeName;
 
     private int mCurrentPage = 1;
 
@@ -64,7 +66,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
 
     @Override
     protected int onGetLayoutId() {
-        return R.layout.activity_recipe;
+        return R.layout.activity_recipe_search;
     }
 
     @Override
@@ -72,6 +74,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         LogUtil.d(TAG, "onInitView");
         initColor();
         initToolbar();
+        initSearchView(mToolbar.findViewById(R.id.item_search));
         initSuperSwipeRefreshLayout();
         initRecyclerView();
     }
@@ -79,14 +82,28 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     private void initColor() {
         LogUtil.d(TAG, "initColor");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
-        mLoadingView.setColor(getResources().getColor(AppConstant.COLOR_STATUS_BAR_BLUE));
     }
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        mToolbar.setTitleTextColor(Color.WHITE);
+        mToolbar.inflateMenu(R.menu.menu_recipe_search);
         mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
+
+    private void initSearchView(SearchView searchView) {
+        LogUtil.d(TAG, "initSearchView : searchView = " + searchView);
+        if (searchView == null) {
+            return;
+        }
+        mSearchView = searchView;
+        mSearchView.setQueryHint(getString(R.string.input_dish_name));
+        mSearchView.setBackgroundResource(R.drawable.bg_search_shape);
+        mSearchView.onActionViewExpanded();
+        mSearchView.setSubmitButtonEnabled(true);
+        ((SearchView.SearchAutoComplete) mSearchView
+                .findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextSize(16);
+        mSearchView.setOnQueryTextListener(this);
     }
 
     private void initSuperSwipeRefreshLayout() {
@@ -101,7 +118,6 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     private void initRecyclerView() {
         LogUtil.d(TAG, "initRecyclerView");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         mRecipeAdapter = new RecipeAdapter(getApplicationContext());
@@ -115,21 +131,22 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        handleIntent(getIntent());
     }
 
-    private void handleIntent(Intent intent) {
-        LogUtil.d(TAG, "handleIntent : intent = " + (intent == null ? "Null" : "Not Null"));
-        if (intent == null) {
-            return;
-        }
-        String title = intent.getStringExtra(AppConstant.EXTRA_TITLE);
-        if (!TextUtils.isEmpty(title)) {
-            mToolbar.setTitle(title);
-        }
-        mCategoryId = intent.getStringExtra(AppConstant.EXTRA_ID);
-        if (!TextUtils.isEmpty(mCategoryId)) {
-            presenter.getRecipeDetailInfoByCId(bindToLifecycle(), MobConfig.APP_KEY, mCategoryId, mCurrentPage, 20);
+    private void reset() {
+        LogUtil.d(TAG, "reset");
+        mRecipeAdapter.setData(null);
+        mRecipeName = null;
+        mCurrentPage = 1;
+    }
+
+    private void showProgressDialog(boolean isShow) {
+        LogUtil.d(TAG, "showProgressDialog : isShow = " + isShow);
+        if (isShow) {
+            mProgressDialog.setTitle(getString(R.string.querying));
+            mProgressDialog.show();
+        } else {
+            mProgressDialog.dismiss();
         }
     }
 
@@ -144,18 +161,42 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
         if (recipeDetailInfo == null) {
             return;
         }
-        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
-            mLoading.setVisibility(View.GONE);
-        }
         mSuperSwipeRefreshLayout.setLoadMore(false);
         mFooterView.setLoading(false);
-        mRecipeAdapter.addData(recipeDetailInfo.getResult().getList());
-        mCurrentPage ++;
+        if (recipeDetailInfo.getMsg().equals("success")) {
+            mRecipeAdapter.addData(recipeDetailInfo.getResult().getList());
+            mRecipeName = mSearchView.getQuery().toString();
+            mCurrentPage++;
+        } else {
+            reset();
+            Toast.makeText(getApplicationContext(), recipeDetailInfo.getMsg(), Toast.LENGTH_SHORT).show();
+        }
+        showProgressDialog(false);
     }
 
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String text) {
+        LogUtil.d(TAG, "onQueryTextSubmit : text = " + text);
+        mSearchView.clearFocus();
+        showProgressDialog(true);
+        Observable.timer(1, TimeUnit.SECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    reset();
+                    presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, text, mCurrentPage, 20);
+                });
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
     }
 
     @Override
@@ -177,7 +218,7 @@ public class RecipeActivity extends BaseMvpAppCompatActivity<IRecipeView, Recipe
     @Override
     public void onLoadMore() {
         LogUtil.d(TAG, "onLoadMore");
-        presenter.getRecipeDetailInfoByCId(bindToLifecycle(), MobConfig.APP_KEY, mCategoryId, mCurrentPage, 20);
+        presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, mRecipeName, mCurrentPage, 20);
     }
 
     @Override

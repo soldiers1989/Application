@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.activity.MainActivity;
 import com.chad.hlife.ui.activity.RecipeDetailActivity;
+import com.chad.hlife.ui.activity.RecipeSearchActivity;
 import com.chad.hlife.ui.activity.TaoTicketActivity;
 import com.chad.hlife.ui.activity.NewsDetailActivity;
 import com.chad.hlife.ui.activity.HistoryDetailActivity;
@@ -47,14 +48,21 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startRecipeActivity(Activity activity, String title, String type, String param) {
+    public static void startRecipeActivity(Activity activity, String title, String categoryId) {
         if (activity == null) {
             return;
         }
         Intent intent = new Intent(activity, RecipeActivity.class);
         intent.putExtra(AppConstant.EXTRA_TITLE, title);
-        intent.putExtra(AppConstant.EXTRA_TYPE, type);
-        intent.putExtra(AppConstant.EXTRA_PARAM, param);
+        intent.putExtra(AppConstant.EXTRA_ID, categoryId);
+        activity.startActivity(intent);
+    }
+
+    public static void startRecipeSearchActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, RecipeSearchActivity.class);
         activity.startActivity(intent);
     }
 
