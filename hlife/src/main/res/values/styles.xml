@@ -17,6 +17,10 @@
     <style name="LoginTheme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <!-- 注册界面Theme -->
+    <style name="RegisterTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
     <!-- 详情页Theme -->
     <style name="DetailTheme" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimaryDetail</item>

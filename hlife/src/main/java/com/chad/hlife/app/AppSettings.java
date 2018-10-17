@@ -7,8 +7,10 @@ import com.chad.hlife.HLifeApplication;
 
 public class AppSettings {
 
-    public static final String NAME_PREFERENCES = "Settings";
-    public static final String KEY_LOGIN_STATUS = "login_status";
+    public static final String NAME_PREFERENCES = "life_settings";
+    public static final String KEY_LOGIN_MODEL = "login_model";
+    public static final String KEY_USER_NAME = "user_name";
+    public static final String KEY_PASSWORD = "password";
 
     private SharedPreferences mSharedPreferences;
 
@@ -28,17 +30,45 @@ public class AppSettings {
                 .getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void setLoginStatus(boolean isLogin) {
+    public synchronized void putLoginModel(int model) {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putBoolean(KEY_LOGIN_STATUS, isLogin).commit();
+        mSharedPreferences.edit().putInt(KEY_LOGIN_MODEL, model).commit();
     }
 
-    public boolean getLoginStatus() {
+    public int getLoginModel() {
         if (mSharedPreferences == null) {
-            return false;
+            return AppConstant.LOGIN_MODEL_NULL;
         }
-        return mSharedPreferences.getBoolean(KEY_LOGIN_STATUS, false);
+        return mSharedPreferences.getInt(KEY_LOGIN_MODEL, AppConstant.LOGIN_MODEL_NULL);
+    }
+
+    public synchronized void putUserName(String userName) {
+        if (mSharedPreferences == null) {
+            return;
+        }
+        mSharedPreferences.edit().putString(KEY_USER_NAME, userName);
+    }
+
+    public String getUserName() {
+        if (mSharedPreferences == null) {
+            return null;
+        }
+        return mSharedPreferences.getString(KEY_USER_NAME, null);
+    }
+
+    public synchronized void putPassword(String password) {
+        if (mSharedPreferences == null) {
+            return;
+        }
+        mSharedPreferences.edit().putString(KEY_PASSWORD, password);
+    }
+
+    public String getPassword() {
+        if (mSharedPreferences == null) {
+            return null;
+        }
+        return mSharedPreferences.getString(KEY_PASSWORD, null);
     }
 }

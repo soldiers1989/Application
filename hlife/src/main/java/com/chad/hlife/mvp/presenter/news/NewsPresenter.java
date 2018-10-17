@@ -1,9 +1,9 @@
-package com.chad.hlife.mvp.presenter.juhe;
+package com.chad.hlife.mvp.presenter.news;
 
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
-import com.chad.hlife.mvp.model.juhe.NewsModel;
-import com.chad.hlife.mvp.view.juhe.INewsView;
+import com.chad.hlife.mvp.model.NewsModel;
+import com.chad.hlife.mvp.view.INewsView;
 
 import io.reactivex.ObservableTransformer;
 

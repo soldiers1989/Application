@@ -1,10 +1,10 @@
-package com.chad.hlife.mvp.presenter.mob.recipe;
+package com.chad.hlife.mvp.presenter.recipe;
 
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
-import com.chad.hlife.mvp.model.mob.RecipeModel;
-import com.chad.hlife.mvp.view.mob.IRecipeView;
+import com.chad.hlife.mvp.model.RecipeModel;
+import com.chad.hlife.mvp.view.IRecipeView;
 
 import io.reactivex.ObservableTransformer;
 

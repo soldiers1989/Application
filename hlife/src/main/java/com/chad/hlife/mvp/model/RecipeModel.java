@@ -1,8 +1,8 @@
-package com.chad.hlife.mvp.model.mob;
+package com.chad.hlife.mvp.model;
 
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
-import com.chad.hlife.mvp.presenter.mob.recipe.IRecipePresenter;
+import com.chad.hlife.mvp.presenter.recipe.IRecipePresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
 import com.chad.hlife.util.RxSchedulersUtil;
 

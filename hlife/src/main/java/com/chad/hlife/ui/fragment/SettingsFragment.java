@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.hlife.BuildConfig;
 import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.R;
+import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.ui.base.BaseRxFragment;
@@ -63,8 +64,18 @@ public class SettingsFragment extends BaseRxFragment
                     getSettingsData();
                     break;
                 case 3:
-                    WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication()).clearAccessToken();
-                    AppSettings.getInstance().setLoginStatus(false);
+                    switch (AppSettings.getInstance().getLoginModel()) {
+                        case AppConstant.LOGIN_MODEL_SELF:
+                            AppSettings.getInstance().putUserName(null);
+                            AppSettings.getInstance().putPassword(null);
+                            break;
+                        case AppConstant.LOGIN_MODEL_WEIBO:
+                            WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication()).clearAccessToken();
+                            break;
+                        default:
+                            break;
+                    }
+                    AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
                     getActivity().finish();
                     break;
                 default:

@@ -150,13 +150,20 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
 
     public void getUserInfo() {
         LogUtil.d(TAG, "getUserInfo");
-        if (AppSettings.getInstance().getLoginStatus()) {
-            Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
-            if (accessToken != null) {
-                String access_token = accessToken.getToken();
-                long uid = Long.parseLong(accessToken.getUid());
-                presenter.getWeiBoUserInfo(bindToLifecycle(), access_token, uid);
-            }
+        switch (AppSettings.getInstance().getLoginModel()) {
+            case AppConstant.LOGIN_MODEL_SELF:
+                // TODO: 2018/10/17
+                break;
+            case AppConstant.LOGIN_MODEL_WEIBO:
+                Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
+                if (accessToken != null) {
+                    String access_token = accessToken.getToken();
+                    long uid = Long.parseLong(accessToken.getUid());
+                    presenter.getWeiBoUserInfo(bindToLifecycle(), access_token, uid);
+                }
+                break;
+            default:
+                break;
         }
     }
 

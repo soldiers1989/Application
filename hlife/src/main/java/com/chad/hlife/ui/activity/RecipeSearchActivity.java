@@ -16,8 +16,8 @@ import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.eventbus.EventMessage;
 import com.chad.hlife.eventbus.EventType;
 import com.chad.hlife.helper.ActivityHelper;
-import com.chad.hlife.mvp.presenter.mob.recipe.RecipePresenter;
-import com.chad.hlife.mvp.view.mob.IRecipeView;
+import com.chad.hlife.mvp.presenter.recipe.RecipePresenter;
+import com.chad.hlife.mvp.view.IRecipeView;
 import com.chad.hlife.ui.adapter.RecipeAdapter;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.view.dialog.ProgressDialog;
@@ -133,23 +133,6 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
         LogUtil.d(TAG, "onInitData");
     }
 
-    private void reset() {
-        LogUtil.d(TAG, "reset");
-        mRecipeAdapter.setData(null);
-        mRecipeName = null;
-        mCurrentPage = 1;
-    }
-
-    private void showProgressDialog(boolean isShow) {
-        LogUtil.d(TAG, "showProgressDialog : isShow = " + isShow);
-        if (isShow) {
-            mProgressDialog.setTitle(getString(R.string.querying));
-            mProgressDialog.show();
-        } else {
-            mProgressDialog.dismiss();
-        }
-    }
-
     @Override
     public void onRecipeCategoryInfo(RecipeCategoryInfo recipeCategoryInfo) {
 
@@ -168,7 +151,7 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
             mRecipeName = mSearchView.getQuery().toString();
             mCurrentPage++;
         } else {
-            reset();
+            resetData();
             Toast.makeText(getApplicationContext(), recipeDetailInfo.getMsg(), Toast.LENGTH_SHORT).show();
         }
         showProgressDialog(false);
@@ -188,7 +171,7 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    reset();
+                    resetData();
                     presenter.getRecipeDetailInfoByName(bindToLifecycle(), MobConfig.APP_KEY, text, mCurrentPage, 20);
                 });
         return true;
@@ -231,6 +214,23 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
         LogUtil.d(TAG, "onPushEnable : enable = " + enable);
         if (!enable) {
             mFooterView.setLoading(true);
+        }
+    }
+
+    private void resetData() {
+        LogUtil.d(TAG, "resetData");
+        mRecipeAdapter.setData(null);
+        mRecipeName = null;
+        mCurrentPage = 1;
+    }
+
+    private void showProgressDialog(boolean isShow) {
+        LogUtil.d(TAG, "showProgressDialog : isShow = " + isShow);
+        if (isShow) {
+            mProgressDialog.setTitle(getString(R.string.querying));
+            mProgressDialog.show();
+        } else {
+            mProgressDialog.dismiss();
         }
     }
 

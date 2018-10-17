@@ -7,6 +7,7 @@ import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.activity.MainActivity;
 import com.chad.hlife.ui.activity.RecipeDetailActivity;
 import com.chad.hlife.ui.activity.RecipeSearchActivity;
+import com.chad.hlife.ui.activity.RegisterActivity;
 import com.chad.hlife.ui.activity.TaoTicketActivity;
 import com.chad.hlife.ui.activity.NewsDetailActivity;
 import com.chad.hlife.ui.activity.HistoryDetailActivity;
@@ -20,6 +21,14 @@ import com.chad.hlife.ui.zhihu.activity.ZhiHuActivity;
 import java.util.ArrayList;
 
 public class ActivityHelper {
+
+    public static void startRegisterActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, RegisterActivity.class);
+        activity.startActivity(intent);
+    }
 
     public static void startMainActivity(Activity activity) {
         if (activity == null) {

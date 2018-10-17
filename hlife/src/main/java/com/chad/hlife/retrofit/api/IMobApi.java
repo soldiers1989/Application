@@ -3,12 +3,24 @@ package com.chad.hlife.retrofit.api;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
+import com.chad.hlife.entity.mob.UserRegisterInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface IMobApi {
+
+    /**
+     * 用户注册
+     *
+     * @param key
+     * @param userName
+     * @param password
+     * @return
+     */
+    Observable<UserRegisterInfo> register(@Query("key") String key, @Query("username") String userName,
+                                          @Query("password") String password);
 
     /**
      * 历史上的今天

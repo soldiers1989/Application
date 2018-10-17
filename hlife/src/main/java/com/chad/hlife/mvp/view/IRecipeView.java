@@ -1,4 +1,4 @@
-package com.chad.hlife.mvp.view.mob;
+package com.chad.hlife.mvp.view;
 
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;

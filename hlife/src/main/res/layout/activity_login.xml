@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/layout_user"
+            android:id="@+id/layout_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/chad_10dp"
@@ -22,19 +22,18 @@
             android:padding="@dimen/chad_10dp">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/image_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_user" />
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edit_user"
+                android:id="@+id/edit_user_name"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/chad_10dp"
                 android:background="@android:color/transparent"
-                android:hint="@string/user"
+                android:hint="@string/user_name"
                 android:padding="@dimen/chad_5dp" />
 
         </LinearLayout>
@@ -51,10 +50,9 @@
             android:padding="@dimen/chad_10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_user">
+            app:layout_constraintTop_toBottomOf="@id/layout_user_name">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/image_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_password" />
@@ -79,7 +77,7 @@
             android:layout_marginLeft="@dimen/chad_60dp"
             android:layout_marginRight="@dimen/chad_60dp"
             android:layout_marginTop="@dimen/chad_20dp"
-            android:background="@drawable/btn_login"
+            android:background="@drawable/btn_blue"
             android:text="@string/login"
             android:textColor="@color/color_login_text"
             android:textSize="@dimen/chad_18sp"
@@ -136,5 +134,10 @@
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
+
+    <com.chad.hlife.ui.view.dialog.ProgressDialog
+        android:id="@+id/dialog_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

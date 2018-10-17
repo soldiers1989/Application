@@ -1,9 +1,9 @@
-package com.chad.hlife.mvp.presenter.mob.history;
+package com.chad.hlife.mvp.presenter.history;
 
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
-import com.chad.hlife.mvp.model.mob.HistoryModel;
-import com.chad.hlife.mvp.view.mob.IHistoryView;
+import com.chad.hlife.mvp.model.HistoryModel;
+import com.chad.hlife.mvp.view.IHistoryView;
 
 import io.reactivex.ObservableTransformer;
 

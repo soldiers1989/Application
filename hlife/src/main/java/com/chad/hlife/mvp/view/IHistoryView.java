@@ -1,4 +1,4 @@
-package com.chad.hlife.mvp.view.mob;
+package com.chad.hlife.mvp.view;
 
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.mvp.base.IBaseView;

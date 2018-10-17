@@ -1,7 +1,7 @@
-package com.chad.hlife.mvp.model.mob;
+package com.chad.hlife.mvp.model;
 
 import com.chad.hlife.entity.mob.HistoryInfo;
-import com.chad.hlife.mvp.presenter.mob.history.IHistoryPresenter;
+import com.chad.hlife.mvp.presenter.history.IHistoryPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
 import com.chad.hlife.util.RxSchedulersUtil;
 

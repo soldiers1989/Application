@@ -1,4 +1,4 @@
-package com.chad.hlife.mvp.view.juhe;
+package com.chad.hlife.mvp.view;
 
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.mvp.base.IBaseView;
