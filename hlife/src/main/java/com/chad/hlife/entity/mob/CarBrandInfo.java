@@ -62,6 +62,7 @@ public class CarBrandInfo implements Parcelable {
 
         private String name;
         private List<CarType> son;
+        private String nameLetter;
 
         public String getName() {
             return name;
@@ -69,6 +70,14 @@ public class CarBrandInfo implements Parcelable {
 
         public List<CarType> getSon() {
             return son;
+        }
+
+        public void setNameLetter(String letter) {
+            this.nameLetter = letter;
+        }
+
+        public String getNameLetter() {
+            return nameLetter;
         }
 
         protected Result(Parcel in) {

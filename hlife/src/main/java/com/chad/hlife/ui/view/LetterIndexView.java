@@ -16,7 +16,6 @@ import com.chad.hlife.R;
 public class LetterIndexView extends View {
 
     private Paint letterPaint;
-    private Paint colorPaint;
     private OnLetterChangedListener onLetterChangedListener;
 
     private String[] letters;
@@ -44,10 +43,8 @@ public class LetterIndexView extends View {
 
     private void init(Context context) {
         letterPaint = new Paint();
-        letterPaint.setTextSize(16);
+        letterPaint.setTextSize(40);
         letterPaint.setAntiAlias(true);
-        colorPaint = new Paint();
-        colorPaint.setColor(getResources().getColor(R.color.colorPrimary));
         letters = context.getResources().getStringArray(R.array.letters);
     }
 
@@ -62,8 +59,7 @@ public class LetterIndexView extends View {
     protected void onDraw(Canvas canvas) {
         for (int i = 0; i < letters.length; i++) {
             if (i == currentIndex) {
-                canvas.drawCircle(itemWidth / 2, itemHeight / 2 + i * itemHeight, 23, colorPaint);
-                letterPaint.setColor(Color.WHITE);
+                letterPaint.setColor(getResources().getColor(R.color.colorPrimary));
             } else {
                 letterPaint.setColor(getResources().getColor(R.color.colorText));
             }
