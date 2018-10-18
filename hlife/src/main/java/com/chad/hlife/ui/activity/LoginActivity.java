@@ -16,7 +16,7 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.login.LoginPresenter;
 import com.chad.hlife.mvp.view.ILoginView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
-import com.chad.hlife.ui.view.dialog.ProgressDialog;
+import com.chad.hlife.ui.view.ProgressDialog;
 import com.chad.hlife.util.InputFilterUtil;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -175,6 +175,7 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+        showProgressDialog(false);
         AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
         Toast.makeText(getApplicationContext(), R.string.login_fail, Toast.LENGTH_SHORT).show();
     }

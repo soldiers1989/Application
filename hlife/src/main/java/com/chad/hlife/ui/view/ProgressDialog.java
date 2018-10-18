@@ -1,4 +1,4 @@
-package com.chad.hlife.ui.view.dialog;
+package com.chad.hlife.ui.view;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

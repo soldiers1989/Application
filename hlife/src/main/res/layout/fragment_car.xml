@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_list" />
+
+        <com.chad.hlife.ui.view.LetterIndexView
+            android:id="@+id/view_letter_index"
+            android:layout_width="@dimen/chad_30dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <include layout="@layout/layout_loading" />
+
+</android.support.constraint.ConstraintLayout>

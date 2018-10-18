@@ -1,5 +1,6 @@
 package com.chad.hlife.retrofit.api;
 
+import com.chad.hlife.entity.mob.CarBrandInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
@@ -42,6 +43,14 @@ public interface IMobApi {
      */
     @GET("appstore/history/query")
     Observable<HistoryInfo> getHistoryInfo(@Query("key") String key, @Query("day") String day);
+
+    /**
+     * 所有汽车品牌
+     * @param key
+     * @return
+     */
+    @GET("car/brand/query")
+    Observable<CarBrandInfo> getCarBrandInfo(@Query("key") String key);
 
     /**
      * 菜谱分类

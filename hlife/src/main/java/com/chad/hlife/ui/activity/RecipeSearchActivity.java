@@ -20,7 +20,7 @@ import com.chad.hlife.mvp.presenter.recipe.RecipePresenter;
 import com.chad.hlife.mvp.view.IRecipeView;
 import com.chad.hlife.ui.adapter.RecipeAdapter;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
-import com.chad.hlife.ui.view.dialog.ProgressDialog;
+import com.chad.hlife.ui.view.ProgressDialog;
 import com.chad.hlife.ui.view.refresh.FooterView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;

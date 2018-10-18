@@ -21,6 +21,7 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.main.MainPresenter;
 import com.chad.hlife.mvp.view.IMainView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.fragment.CarFragment;
 import com.chad.hlife.ui.fragment.HistoryFragment;
 import com.chad.hlife.ui.fragment.NewsFragment;
 import com.chad.hlife.ui.fragment.SettingsFragment;
@@ -106,8 +107,12 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
                     switchFragment(1);
                     setNavigationItemChecked(menuItem);
                     break;
-                case R.id.item_recipe:
+                case R.id.item_car:
                     switchFragment(2);
+                    setNavigationItemChecked(menuItem);
+                    break;
+                case R.id.item_recipe:
+                    switchFragment(3);
                     setNavigationItemChecked(menuItem);
                     break;
                 case R.id.item_zhihu:
@@ -142,6 +147,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         mFragments = new ArrayList<>();
         mFragments.add(new NewsFragment());
         mFragments.add(new HistoryFragment());
+        mFragments.add(new CarFragment());
         mFragments.add(new RecipeFragment());
         mFragments.add(new SettingsFragment());
         getSupportFragmentManager().beginTransaction()

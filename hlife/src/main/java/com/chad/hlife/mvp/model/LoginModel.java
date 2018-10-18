@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.entity.mob.UserLoginInfo;
+import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.mvp.presenter.login.ILoginPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
@@ -38,7 +39,12 @@ public class LoginModel {
         HLifeRetrofit.login(key, userName, password)
                 .compose(transformer)
                 .compose(RxSchedulersUtil.workThread())
-                .subscribe(o -> loginPresenter.onMobLogin((UserLoginInfo) o),
+                .subscribe(o -> {
+                            UserLoginInfo userLoginInfo = (UserLoginInfo) o;
+                            loginPresenter.onMobLogin(userLoginInfo);
+                            MobAuthHelper.getInstance(HLifeApplication.getHLifeApplication())
+                                    .writeAccessToken(userLoginInfo.getMobAccessToken());
+                        },
                         throwable -> loginPresenter.onError(throwable));
     }
 

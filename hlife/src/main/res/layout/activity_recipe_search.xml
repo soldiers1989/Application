@@ -14,7 +14,7 @@
 
     </LinearLayout>
 
-    <com.chad.hlife.ui.view.dialog.ProgressDialog
+    <com.chad.hlife.ui.view.ProgressDialog
         android:id="@+id/dialog_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
