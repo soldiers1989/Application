@@ -14,7 +14,7 @@ public class AppConstant {
     public static final int COLOR_STATUS_BAR_BLACK = R.color.colorStatusBarBlack;
 
     public static final int LOGIN_MODEL_NULL = -1;
-    public static final int LOGIN_MODEL_SELF = 0;
+    public static final int LOGIN_MODEL_MOB = 0;
     public static final int LOGIN_MODEL_WEIBO = 1;
 
     public static final String URL_TAO_TICKET = "https://www.taopiaopiao.com/";

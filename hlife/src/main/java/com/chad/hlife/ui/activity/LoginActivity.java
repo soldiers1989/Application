@@ -3,17 +3,21 @@ package com.chad.hlife.ui.activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.AppSettings;
+import com.chad.hlife.app.config.MobConfig;
+import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.login.LoginPresenter;
 import com.chad.hlife.mvp.view.ILoginView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.view.dialog.ProgressDialog;
+import com.chad.hlife.util.InputFilterUtil;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
@@ -52,6 +56,12 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     protected void onInitView() {
         LogUtil.d(TAG, "onInitView");
         initColor();
+        initEditText();
+    }
+
+    private void initEditText() {
+        LogUtil.d(TAG, "initEditText");
+        mEditUserName.setFilters(new InputFilter[]{new InputFilterUtil.SpaceFilter()});
     }
 
     private void initColor() {
@@ -68,7 +78,7 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     private void initLoginStatus() {
         LogUtil.d(TAG, "initLoginStatus");
         switch (AppSettings.getInstance().getLoginModel()) {
-            case AppConstant.LOGIN_MODEL_SELF:
+            case AppConstant.LOGIN_MODEL_MOB:
                 startMainActivity();
                 break;
             case AppConstant.LOGIN_MODEL_WEIBO:
@@ -92,7 +102,13 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
             Toast.makeText(getApplicationContext(), R.string.user_or_password_cannot_be_empty,
                     Toast.LENGTH_SHORT).show();
         } else {
-            // TODO: 2018/10/17  
+            showProgressDialog(true);
+            Observable.timer(2, TimeUnit.SECONDS)
+                    .compose(bindToLifecycle())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(aLong ->
+                            presenter.login(bindToLifecycle(), MobConfig.APP_KEY, userName, password)
+                    );
         }
     }
 
@@ -111,6 +127,23 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     public void onWeiBoLogonClick() {
         LogUtil.d(TAG, "onWeiBoLogonClick");
         presenter.weiBoLogin(this);
+    }
+
+    @Override
+    public void onMobLogin(UserLoginInfo userLoginInfo) {
+        LogUtil.d(TAG, "onMobLogin : userLoginInfo = " + userLoginInfo);
+        if (userLoginInfo == null) {
+            return;
+        }
+        showProgressDialog(false);
+        if (userLoginInfo.getMsg().equals("success")) {
+            AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_MOB);
+            AppSettings.getInstance().putUserName(mEditUserName.getText().toString());
+            AppSettings.getInstance().putPassword(mEditPassword.getText().toString());
+            startMainActivity();
+        } else {
+            Toast.makeText(getApplicationContext(), userLoginInfo.getMsg(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -143,6 +176,7 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
         AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
+        Toast.makeText(getApplicationContext(), R.string.login_fail, Toast.LENGTH_SHORT).show();
     }
 
     private void showProgressDialog(boolean isShow) {

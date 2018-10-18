@@ -9,6 +9,7 @@ import com.chad.hlife.HLifeApplication;
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.AppSettings;
+import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.ui.base.BaseRxFragment;
 import com.chad.hlife.ui.adapter.SettingsAdapter;
@@ -65,7 +66,8 @@ public class SettingsFragment extends BaseRxFragment
                     break;
                 case 3:
                     switch (AppSettings.getInstance().getLoginModel()) {
-                        case AppConstant.LOGIN_MODEL_SELF:
+                        case AppConstant.LOGIN_MODEL_MOB:
+                            MobAuthHelper.getInstance(HLifeApplication.getHLifeApplication()).clearAccessToken();
                             AppSettings.getInstance().putUserName(null);
                             AppSettings.getInstance().putPassword(null);
                             break;

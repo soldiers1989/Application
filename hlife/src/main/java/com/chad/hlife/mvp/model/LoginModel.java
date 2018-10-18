@@ -3,12 +3,17 @@ package com.chad.hlife.mvp.model;
 import android.app.Activity;
 
 import com.chad.hlife.HLifeApplication;
+import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.mvp.presenter.login.ILoginPresenter;
+import com.chad.hlife.retrofit.HLifeRetrofit;
+import com.chad.hlife.util.RxSchedulersUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+
+import io.reactivex.ObservableTransformer;
 
 public class LoginModel {
 
@@ -26,6 +31,15 @@ public class LoginModel {
     }
 
     private LoginModel() {
+    }
+
+    public void login(ObservableTransformer transformer, String key, String userName, String password,
+                      ILoginPresenter loginPresenter) {
+        HLifeRetrofit.login(key, userName, password)
+                .compose(transformer)
+                .compose(RxSchedulersUtil.workThread())
+                .subscribe(o -> loginPresenter.onMobLogin((UserLoginInfo) o),
+                        throwable -> loginPresenter.onError(throwable));
     }
 
     public void weiBoAuth(Activity activity, ILoginPresenter loginPresenter) {

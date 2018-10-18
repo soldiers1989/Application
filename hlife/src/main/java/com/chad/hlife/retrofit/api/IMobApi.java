@@ -3,6 +3,7 @@ package com.chad.hlife.retrofit.api;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
+import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
 
 import io.reactivex.Observable;
@@ -19,8 +20,20 @@ public interface IMobApi {
      * @param password
      * @return
      */
+    @GET("user/rigister")
     Observable<UserRegisterInfo> register(@Query("key") String key, @Query("username") String userName,
                                           @Query("password") String password);
+
+    /**
+     * 用户登录
+     * @param key
+     * @param userName
+     * @param password
+     * @return
+     */
+    @GET("user/login")
+    Observable<UserLoginInfo> login(@Query("key") String key, @Query("username") String userName,
+                                    @Query("password") String password);
 
     /**
      * 历史上的今天

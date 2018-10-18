@@ -13,6 +13,7 @@
         android:layout_marginLeft="@dimen/chad_10dp"
         android:layout_marginTop="@dimen/chad_70dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="@dimen/chad_10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,15 +22,14 @@
             android:id="@+id/image_tips_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_pass" />
+            android:visibility="gone" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_tips_user_name"
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/chad_10dp"
-            android:text="不可以包含空格" />
+            android:layout_marginLeft="@dimen/chad_10dp" />
 
     </LinearLayout>
 
@@ -58,6 +58,7 @@
             android:layout_marginLeft="@dimen/chad_10dp"
             android:background="@android:color/transparent"
             android:hint="@string/user_name"
+            android:maxLength="16"
             android:padding="@dimen/chad_5dp"
             android:singleLine="true" />
 
@@ -70,6 +71,7 @@
         android:layout_marginLeft="@dimen/chad_10dp"
         android:layout_marginTop="@dimen/chad_10dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="@dimen/chad_10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_user_name">
@@ -78,15 +80,14 @@
             android:id="@+id/image_tips_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_blocking" />
+            android:visibility="gone" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/text_tips_password"
             style="@style/SubTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/chad_10dp"
-            android:text="不可以包含空格" />
+            android:layout_marginLeft="@dimen/chad_10dp" />
 
     </LinearLayout>
 
@@ -115,8 +116,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/chad_10dp"
             android:background="@android:color/transparent"
+            android:digits="@string/password_digits"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:maxLength="16"
             android:padding="@dimen/chad_5dp"
             android:singleLine="true" />
 
@@ -148,9 +151,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/chad_10dp"
             android:background="@android:color/transparent"
-            android:hint="@string/password_again"
+            android:digits="@string/password_digits"
+            android:hint="@string/again_password"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
+            android:maxLength="16"
             android:padding="@dimen/chad_5dp"
             android:singleLine="true" />
 

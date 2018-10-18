@@ -11,6 +11,8 @@ public class AppSettings {
     public static final String KEY_LOGIN_MODEL = "login_model";
     public static final String KEY_USER_NAME = "user_name";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_TOKEN = "token";
+    public static final String KEY_UID = "uid";
 
     private SharedPreferences mSharedPreferences;
 
@@ -70,5 +72,33 @@ public class AppSettings {
             return null;
         }
         return mSharedPreferences.getString(KEY_PASSWORD, null);
+    }
+
+    public synchronized void putToken(String token) {
+        if (mSharedPreferences == null) {
+            return;
+        }
+        mSharedPreferences.edit().putString(KEY_TOKEN, token);
+    }
+
+    public String getToken() {
+        if (mSharedPreferences == null) {
+            return null;
+        }
+        return mSharedPreferences.getString(KEY_TOKEN, null);
+    }
+
+    public synchronized void putUid(String uid) {
+        if (mSharedPreferences == null) {
+            return;
+        }
+        mSharedPreferences.edit().putString(KEY_UID, uid);
+    }
+
+    public String getUid() {
+        if (mSharedPreferences == null) {
+            return null;
+        }
+        return mSharedPreferences.getString(KEY_UID, null);
     }
 }

@@ -9,6 +9,7 @@ import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
+import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.entity.zhihu.CommentsInfo;
@@ -70,6 +71,10 @@ public class HLifeRetrofit {
 
     public static Observable<UserRegisterInfo> register(String key, String userName, String password) {
         return mIMobApi.register(key, userName, password);
+    }
+
+    public static Observable<UserLoginInfo> login(String key, String userName, String password) {
+        return mIMobApi.login(key, userName, password);
     }
 
     public static Observable<HistoryInfo> getHistoryInfo(String key, String day) {

@@ -144,6 +144,7 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
         if (recipeDetailInfo == null) {
             return;
         }
+        showProgressDialog(false);
         mSuperSwipeRefreshLayout.setLoadMore(false);
         mFooterView.setLoading(false);
         if (recipeDetailInfo.getMsg().equals("success")) {
@@ -154,7 +155,6 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
             resetData();
             Toast.makeText(getApplicationContext(), recipeDetailInfo.getMsg(), Toast.LENGTH_SHORT).show();
         }
-        showProgressDialog(false);
     }
 
     @Override

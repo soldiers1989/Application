@@ -151,7 +151,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
     public void getUserInfo() {
         LogUtil.d(TAG, "getUserInfo");
         switch (AppSettings.getInstance().getLoginModel()) {
-            case AppConstant.LOGIN_MODEL_SELF:
+            case AppConstant.LOGIN_MODEL_MOB:
                 // TODO: 2018/10/17
                 break;
             case AppConstant.LOGIN_MODEL_WEIBO:
