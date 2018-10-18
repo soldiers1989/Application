@@ -124,7 +124,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
                     mDrawerLayout.closeDrawers();
                     break;
                 case R.id.item_settings:
-                    switchFragment(3);
+                    switchFragment(4);
                     setNavigationItemChecked(menuItem);
                     break;
                 default:
