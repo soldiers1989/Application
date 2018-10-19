@@ -32,8 +32,8 @@ public class RecipeAdapter extends BaseRecyclerViewAdapter<RecipeDetailInfo.Reci
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         RecipeDetailInfo.Recipes recipes = data.get(position);
+        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         CustomGlideModule.loadCenterCrop(mContext, recipes.getThumbnail(), itemViewHolder.imagePreview);
         itemViewHolder.textName.setText(recipes.getName());
         itemViewHolder.textCtgTitle.setText(recipes.getCtgTitles());

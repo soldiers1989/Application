@@ -62,7 +62,7 @@ public class CarBrandInfo implements Parcelable {
 
         private String name;
         private List<CarType> son;
-        private String nameLetter;
+        private String firstLetter;
 
         public String getName() {
             return name;
@@ -72,12 +72,12 @@ public class CarBrandInfo implements Parcelable {
             return son;
         }
 
-        public void setNameLetter(String letter) {
-            this.nameLetter = letter;
+        public void setFirstLetter(String firstLetter) {
+            this.firstLetter = firstLetter;
         }
 
-        public String getNameLetter() {
-            return nameLetter;
+        public String getFirstLetter() {
+            return firstLetter;
         }
 
         protected Result(Parcel in) {

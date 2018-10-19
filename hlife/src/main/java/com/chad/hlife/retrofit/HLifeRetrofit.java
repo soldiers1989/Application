@@ -7,6 +7,7 @@ import com.chad.hlife.app.config.WeiBoConfig;
 import com.chad.hlife.app.config.ZhiHuConfig;
 import com.chad.hlife.entity.juhe.NewsInfo;
 import com.chad.hlife.entity.mob.CarBrandInfo;
+import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
@@ -84,6 +85,10 @@ public class HLifeRetrofit {
 
     public static Observable<CarBrandInfo> getCarBrandInfo(String key) {
         return mIMobApi.getCarBrandInfo(key);
+    }
+
+    public static Observable<CarTypeInfo> getCarTypeInfo(String key, String name) {
+        return mIMobApi.getCarTypeInfo(key, name);
     }
 
     public static Observable<RecipeCategoryInfo> getRecipeCategoryInfo(String key) {

@@ -6,18 +6,18 @@ import net.sourceforge.pinyin4j.PinyinHelper;
 
 public class PinYinUtil {
 
-    public static String getPinYinHeader(String chinese) {
+    public static String getPinYinFirstLetter(String chinese) {
         if (TextUtils.isEmpty(chinese)) {
             return null;
         }
-        String letter = null;
-        char first = chinese.charAt(0);
-        String[] letters = PinyinHelper.toHanyuPinyinStringArray(first);
+        char firstLetter;
+        char firstChinese = chinese.charAt(0);
+        String[] letters = PinyinHelper.toHanyuPinyinStringArray(firstChinese);
         if (letters != null) {
-            letter += letters[0].charAt(0);
+            firstLetter = letters[0].charAt(0);
         } else {
-            letter += first;
+            firstLetter = firstChinese;
         }
-        return letter.toUpperCase();
+        return String.valueOf(firstLetter).toUpperCase();
     }
 }

@@ -32,8 +32,8 @@ public class NewsAdapter extends BaseRecyclerViewAdapter<NewsInfo.Data> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         NewsInfo.Data newsData = data.get(position);
+        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         itemViewHolder.textTitle.setText(newsData.getTitle());
         CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS(), itemViewHolder.imageOne);
         CustomGlideModule.loadCenterCrop(mContext, newsData.getThumbnailPicS02(), itemViewHolder.imageTwo);

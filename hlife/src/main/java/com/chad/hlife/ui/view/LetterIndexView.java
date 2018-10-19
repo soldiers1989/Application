@@ -33,7 +33,7 @@ public class LetterIndexView extends View {
     }
 
     public LetterIndexView(Context context, @Nullable AttributeSet attrs) {
-        this(context, null, 0);
+        this(context, attrs, 0);
     }
 
     public LetterIndexView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

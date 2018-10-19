@@ -30,8 +30,8 @@ public class RecipeSubCategoryAdapter extends BaseRecyclerViewAdapter<RecipeCate
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         RecipeCategoryInfo.ChildCategoryInfo childCategoryInfo = data.get(position);
+        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         itemViewHolder.textCategory.setText(childCategoryInfo.getCategoryInfo().getName());
         super.onBindViewHolder(holder, position);
     }

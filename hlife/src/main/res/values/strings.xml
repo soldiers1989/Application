@@ -36,6 +36,8 @@
     <string name="year">年</string>
     <string name="month">月</string>
     <string name="day">日</string>
+    <string name="type">型号</string>
+    <string name="guide_price">指导价</string>
     <string name="input_dish_name">输入菜品名称</string>
     <string name="search">搜索</string>
     <string name="summary">简介</string>

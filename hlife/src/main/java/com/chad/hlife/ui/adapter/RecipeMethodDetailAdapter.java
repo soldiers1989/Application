@@ -33,8 +33,8 @@ public class RecipeMethodDetailAdapter extends BaseRecyclerViewAdapter<RecipeDet
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         RecipeDetailInfo.Method method = data.get(position);
+        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         if (TextUtils.isEmpty(method.getImg())) {
             itemViewHolder.mImagePreview.setVisibility(View.GONE);
         } else {

@@ -22,6 +22,7 @@ public class AppConstant {
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_URL = "url";
+    public static final String EXTRA_NAME = "name";
     public static final String EXTRA_LIST_ID = "list_id";
     public static final String EXTRA_COMMENTS_COUNT = "comments";
     public static final String EXTRA_COMMENTS_COUNT_LONG = "long_comments";

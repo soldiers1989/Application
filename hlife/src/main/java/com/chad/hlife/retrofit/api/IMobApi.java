@@ -1,6 +1,7 @@
 package com.chad.hlife.retrofit.api;
 
 import com.chad.hlife.entity.mob.CarBrandInfo;
+import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
@@ -8,7 +9,11 @@ import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface IMobApi {
@@ -27,6 +32,7 @@ public interface IMobApi {
 
     /**
      * 用户登录
+     *
      * @param key
      * @param userName
      * @param password
@@ -46,11 +52,22 @@ public interface IMobApi {
 
     /**
      * 所有汽车品牌
+     *
      * @param key
      * @return
      */
     @GET("car/brand/query")
     Observable<CarBrandInfo> getCarBrandInfo(@Query("key") String key);
+
+    /**
+     * 某品牌全部车型
+     *
+     * @param key
+     * @param name
+     * @return
+     */
+    @GET("car/seriesname/query")
+    Observable<CarTypeInfo> getCarTypeInfo(@Query("key") String key, @Query("name") String name);
 
     /**
      * 菜谱分类
