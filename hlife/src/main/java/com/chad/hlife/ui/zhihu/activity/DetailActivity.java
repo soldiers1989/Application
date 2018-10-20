@@ -204,6 +204,12 @@ public class DetailActivity extends BaseMvpAppCompatActivity<IDetailView, Detail
         }
     }
 
+    @OnClick(R.id.btn_share)
+    public void onShareClick() {
+        LogUtil.d(TAG, "onShareClick");
+        ActivityHelper.startShareActivity(this, mDetailInfo.getTitle(), mDetailInfo.getId());
+    }
+
     @OnClick(R.id.btn_comment)
     public void onCommentClick() {
         LogUtil.d(TAG, "onCommentClick");

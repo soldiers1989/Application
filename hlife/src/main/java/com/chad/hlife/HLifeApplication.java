@@ -5,6 +5,7 @@ import android.app.Application;
 import com.chad.hlife.app.config.WeiBoConfig;
 import com.chad.hlife.util.LogUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.mob.MobSDK;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.auth.AuthInfo;
 
@@ -18,9 +19,15 @@ public class HLifeApplication extends Application {
     public void onCreate() {
         LogUtil.d(TAG, "onCreate");
         mHLifeApplication = this;
+        initMob();
         initWeiBoSdk();
         initFresco();
         super.onCreate();
+    }
+
+    private void initMob() {
+        LogUtil.d(TAG, "initMob");
+        MobSDK.init(this);
     }
 
     private void initWeiBoSdk() {

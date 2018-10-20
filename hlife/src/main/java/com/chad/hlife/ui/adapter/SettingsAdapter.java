@@ -1,6 +1,7 @@
 package com.chad.hlife.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
@@ -57,6 +58,7 @@ public class SettingsAdapter extends BaseRecyclerViewAdapter<String> {
                     itemViewHolder.textTitle.setText(R.string.developer);
                     break;
                 case 1:
+                    itemViewHolder.itemView.setBackgroundColor(Color.WHITE);
                     itemViewHolder.textTitle.setText(R.string.version);
                     break;
                 case 2:

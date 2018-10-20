@@ -42,7 +42,7 @@ public class LoginModel {
                 .subscribe(o -> {
                             UserLoginInfo userLoginInfo = (UserLoginInfo) o;
                             loginPresenter.onMobLogin(userLoginInfo);
-                            MobAuthHelper.getInstance(HLifeApplication.getHLifeApplication())
+                            MobAuthHelper.getInstance()
                                     .writeAccessToken(userLoginInfo.getMobAccessToken());
                         },
                         throwable -> loginPresenter.onError(throwable));

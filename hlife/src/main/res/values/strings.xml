@@ -75,4 +75,6 @@
     <string name="comment">条评论</string>
     <string name="long_comment">长评论</string>
     <string name="short_comment">短评论</string>
+    <string name="share_subject">分享</string>
+    <string name="share_from_zhihu">来自「阅知乎」的分享:</string>
 </resources>

@@ -1,7 +1,5 @@
 package com.chad.hlife.helper;
 
-import android.content.Context;
-
 import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.entity.mob.MobAccessToken;
 
@@ -9,16 +7,16 @@ public class MobAuthHelper {
 
     private static volatile MobAuthHelper mMobAuthHelper = null;
 
-    public static MobAuthHelper getInstance(Context context) {
+    public static MobAuthHelper getInstance() {
         synchronized (MobAuthHelper.class) {
             if (mMobAuthHelper == null) {
-                mMobAuthHelper = new MobAuthHelper(context);
+                mMobAuthHelper = new MobAuthHelper();
             }
         }
         return mMobAuthHelper;
     }
 
-    private MobAuthHelper(Context context) {
+    private MobAuthHelper() {
     }
 
     public void writeAccessToken(MobAccessToken mobAccessToken) {

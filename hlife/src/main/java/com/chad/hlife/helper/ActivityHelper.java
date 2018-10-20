@@ -3,7 +3,9 @@ package com.chad.hlife.helper;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.app.config.ZhiHuConfig;
 import com.chad.hlife.ui.activity.CarActivity;
 import com.chad.hlife.ui.activity.CarDetailActivity;
 import com.chad.hlife.ui.activity.MainActivity;
@@ -130,6 +132,18 @@ public class ActivityHelper {
         intent.putIntegerArrayListExtra(AppConstant.EXTRA_LIST_ID, storyIds);
         intent.putExtra(AppConstant.EXTRA_ID, id);
         activity.startActivity(intent);
+    }
+
+    public static void startShareActivity(Activity activity, String title, int id) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.share_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, activity.getString(R.string.share_from_zhihu) + title
+                + " , " + ZhiHuConfig.URL_SHARE + id);
+        activity.startActivity(Intent.createChooser(intent, title));
     }
 
     public static void startCommentsActivity(Activity activity, int commentsCount, int longCommentsCount,
