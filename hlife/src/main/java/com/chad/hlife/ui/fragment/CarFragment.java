@@ -11,6 +11,7 @@ import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.CarBrandInfo;
+import com.chad.hlife.entity.mob.CarDetailInfo;
 import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.mvp.presenter.car.CarPresenter;
@@ -131,6 +132,11 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
 
     @Override
     public void onCarTypeInfo(CarTypeInfo carTypeInfo) {
+
+    }
+
+    @Override
+    public void onCarDetailInfo(CarDetailInfo carDetailInfo) {
 
     }
 

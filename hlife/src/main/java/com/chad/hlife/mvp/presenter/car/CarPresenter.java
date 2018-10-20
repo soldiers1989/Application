@@ -1,6 +1,7 @@
 package com.chad.hlife.mvp.presenter.car;
 
 import com.chad.hlife.entity.mob.CarBrandInfo;
+import com.chad.hlife.entity.mob.CarDetailInfo;
 import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.mvp.base.BasePresenter;
 import com.chad.hlife.mvp.model.CarModel;
@@ -18,6 +19,10 @@ public class CarPresenter extends BasePresenter<ICarView> implements ICarPresent
         CarModel.getInstance().getCarTypeInfo(transformer, key, name, this);
     }
 
+    public void getCarDetailInfo(ObservableTransformer transformer, String key, String carId) {
+        CarModel.getInstance().getCarDetailInfo(transformer, key, carId, this);
+    }
+
     @Override
     public void onCarBrandInfo(CarBrandInfo carBrandInfo) {
         getView().onCarBrandInfo(carBrandInfo);
@@ -26,6 +31,11 @@ public class CarPresenter extends BasePresenter<ICarView> implements ICarPresent
     @Override
     public void onCarTypeInfo(CarTypeInfo carTypeInfo) {
         getView().onCarTypeInfo(carTypeInfo);
+    }
+
+    @Override
+    public void onCarDetailInfo(CarDetailInfo carDetailInfo) {
+        getView().onCarDetailInfo(carDetailInfo);
     }
 
     @Override

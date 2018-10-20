@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.activity.CarActivity;
+import com.chad.hlife.ui.activity.CarDetailActivity;
 import com.chad.hlife.ui.activity.MainActivity;
 import com.chad.hlife.ui.activity.RecipeDetailActivity;
 import com.chad.hlife.ui.activity.RecipeSearchActivity;
@@ -65,6 +66,16 @@ public class ActivityHelper {
         Intent intent = new Intent(activity, CarActivity.class);
         intent.putExtra(AppConstant.EXTRA_TITLE, title);
         intent.putExtra(AppConstant.EXTRA_NAME, name);
+        activity.startActivity(intent);
+    }
+
+    public static void startCarDetailActivity(Activity activity, String title, String carId) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, CarDetailActivity.class);
+        intent.putExtra(AppConstant.EXTRA_TITLE, title);
+        intent.putExtra(AppConstant.EXTRA_ID, carId);
         activity.startActivity(intent);
     }
 

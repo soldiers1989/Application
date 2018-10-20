@@ -1,6 +1,7 @@
 package com.chad.hlife.mvp.model;
 
 import com.chad.hlife.entity.mob.CarBrandInfo;
+import com.chad.hlife.entity.mob.CarDetailInfo;
 import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.mvp.presenter.car.ICarPresenter;
 import com.chad.hlife.retrofit.HLifeRetrofit;
@@ -42,6 +43,15 @@ public class CarModel {
                 .compose(transformer)
                 .compose(RxSchedulersUtil.workThread())
                 .subscribe(o -> carPresenter.onCarTypeInfo((CarTypeInfo) o),
+                        throwable -> carPresenter.onError(throwable));
+    }
+
+    public void getCarDetailInfo(ObservableTransformer transformer, String key, String carId,
+                                 ICarPresenter carPresenter) {
+        HLifeRetrofit.getCarDetailInfo(key, carId)
+                .compose(transformer)
+                .compose(RxSchedulersUtil.workThread())
+                .subscribe(o -> carPresenter.onCarDetailInfo((CarDetailInfo) o),
                         throwable -> carPresenter.onError(throwable));
     }
 
