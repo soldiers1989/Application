@@ -2,7 +2,6 @@ package com.chad.hlife.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
@@ -78,7 +77,13 @@ public class LetterIndexView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
+                setBackgroundColor(getResources().getColor(R.color.colorPressed));
                 int index = (int) (event.getY() / itemHeight);
+                if (index < 0) {
+                    index = 0;
+                } else if (index >= letters.length) {
+                    index = letters.length - 1;
+                }
                 if (index != currentIndex) {
                     currentIndex = index;
                 }
@@ -88,6 +93,10 @@ public class LetterIndexView extends View {
                     onLetterChangedListener.onLetterChanged(letters[currentIndex]);
                 }
                 invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                setBackground(null);
                 break;
             default:
                 break;

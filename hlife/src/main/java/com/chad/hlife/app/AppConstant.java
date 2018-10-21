@@ -21,6 +21,8 @@ public class AppConstant {
     public static final int PAY_MODEL_WX = 1;
     public static final int PAY_MODEL_UNION = 2;
 
+    public static final int PERMISSION_REQUEST_CODE = 100;
+
     public static final String URL_TAO_TICKET = "https://www.taopiaopiao.com/";
 
     public static final String EXTRA_ID = "id";

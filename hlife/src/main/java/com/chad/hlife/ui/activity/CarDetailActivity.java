@@ -6,7 +6,6 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ExpandableListView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -19,6 +18,7 @@ import com.chad.hlife.mvp.presenter.car.CarPresenter;
 import com.chad.hlife.mvp.view.ICarView;
 import com.chad.hlife.ui.adapter.CarDetailAdapter;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.NestedExpandableListView;
 import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
@@ -37,7 +37,7 @@ public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPre
     @BindView(R.id.image_preview)
     AppCompatImageView mImagePreview;
     @BindView(R.id.view_expandable_list)
-    ExpandableListView mExpandableListView;
+    NestedExpandableListView mExpandableListView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
     @BindView(R.id.view_loading)

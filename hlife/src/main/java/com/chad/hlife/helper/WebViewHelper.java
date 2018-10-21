@@ -25,7 +25,7 @@ public class WebViewHelper {
         webSettings.setDisplayZoomControls(true);
         webSettings.setLoadWithOverviewMode(true);
         // 多窗口
-        webSettings.supportMultipleWindows();
+        webSettings.setSupportMultipleWindows(true);
         // 自适应屏幕
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -35,18 +35,18 @@ public class WebViewHelper {
         webSettings.setDisplayZoomControls(false);
         // 支持内容重新布局
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webSettings.supportMultipleWindows();
-        webSettings.setSupportMultipleWindows(true);
         // 设置缓存模式
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
-        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setAppCacheEnabled(true);
         webSettings.setAppCachePath(AppConstant.FILE_DIR_CACHE.getAbsolutePath());
         // 设置可访问文件
         webSettings.setAllowFileAccess(true);
         webSettings.setNeedInitialFocus(true);
         webSettings.setNeedInitialFocus(true);
+        // 启动地理信息
+        webSettings.setGeolocationEnabled(true);
         // 自动加载图片
         webSettings.setLoadsImagesAutomatically(true);
         // 设定编码格式

@@ -27,10 +27,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_FLING;
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
-
 public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> implements ICarView {
 
     private static final String TAG = CarFragment.class.getSimpleName();
@@ -93,7 +89,18 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
         LogUtil.d(TAG, "initLetterIndexView");
         mLetterIndexView.setOnLetterChangedListener(letter -> {
             if (mLetterIndexMap.containsKey(letter)) {
-                mRecyclerView.scrollToPosition(mLetterIndexMap.get(letter));
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+                int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                int currentIndex = mLetterIndexMap.get(letter);
+                if (currentIndex <= firstVisibleItem) {
+                    mRecyclerView.scrollToPosition(currentIndex);
+                } else if (currentIndex <= lastVisibleItem) {
+                    int top = mRecyclerView.getChildAt(currentIndex - firstVisibleItem).getTop();
+                    mRecyclerView.scrollBy(0, top);
+                } else {
+                    mRecyclerView.scrollToPosition(currentIndex);
+                }
             }
         });
     }
@@ -146,22 +153,6 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
     }
 
     private class OnScrollListener extends RecyclerView.OnScrollListener {
-
-        @Override
-        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            switch (newState) {
-                case SCROLL_STATE_IDLE:
-                    String letter = mCarBrandAdapter.getData()
-                            .get(((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                                    .findFirstVisibleItemPosition())
-                            .getFirstLetter();
-                    mLetterIndexView.setLetterIndex(letter);
-                    break;
-                default:
-                    break;
-            }
-        }
 
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

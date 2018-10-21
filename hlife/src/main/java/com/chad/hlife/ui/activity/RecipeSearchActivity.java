@@ -86,6 +86,8 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
+        mToolbar.setPadding(0, 0, 20, 0);
+        mToolbar.setContentInsetStartWithNavigation(0);
         mToolbar.inflateMenu(R.menu.menu_recipe_search);
         mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
@@ -100,7 +102,6 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
         mSearchView.setQueryHint(getString(R.string.input_dish_name));
         mSearchView.setBackgroundResource(R.drawable.bg_search_shape);
         mSearchView.onActionViewExpanded();
-        mSearchView.setSubmitButtonEnabled(true);
         ((SearchView.SearchAutoComplete) mSearchView
                 .findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextSize(16);
         mSearchView.setOnQueryTextListener(this);

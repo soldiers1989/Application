@@ -1,8 +1,11 @@
 package com.chad.hlife.ui.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
@@ -97,7 +100,24 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
+        checkLocationPermissions();
         mWebView.loadUrl(AppConstant.URL_TAO_TICKET);
+    }
+
+    private void checkLocationPermissions() {
+        LogUtil.d(TAG, "checkLocationPermissions");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+        int accessCoarseLocationPermission = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+        int accessFineLocationPermission = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        if (accessCoarseLocationPermission != PackageManager.PERMISSION_GRANTED
+                || accessFineLocationPermission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION}, AppConstant.PERMISSION_REQUEST_CODE);
+        }
     }
 
     @Override

@@ -18,6 +18,9 @@ public class PinYinUtil {
         } else {
             firstLetter = firstChinese;
         }
+        if (firstChinese == '长') {
+            firstLetter = 'c';
+        }
         return String.valueOf(firstLetter).toUpperCase();
     }
 }
