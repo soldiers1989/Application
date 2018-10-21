@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ExpandableListView;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -16,10 +17,14 @@ import com.chad.hlife.entity.mob.CarTypeInfo;
 import com.chad.hlife.glide.CustomGlideModule;
 import com.chad.hlife.mvp.presenter.car.CarPresenter;
 import com.chad.hlife.mvp.view.ICarView;
+import com.chad.hlife.ui.adapter.CarDetailAdapter;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -31,10 +36,14 @@ public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPre
     Toolbar mToolbar;
     @BindView(R.id.image_preview)
     AppCompatImageView mImagePreview;
+    @BindView(R.id.view_expandable_list)
+    ExpandableListView mExpandableListView;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
     @BindView(R.id.view_loading)
     DoubleCircleLoadingView mLoadingView;
+
+    private CarDetailAdapter mCarDetailAdapter;
 
     @Override
     protected CarPresenter onGetPresenter() {
@@ -51,6 +60,7 @@ public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPre
         LogUtil.d(TAG, "onInitView");
         initColor();
         initToolbar();
+        initExpandableListView();
     }
 
     private void initColor() {
@@ -63,6 +73,14 @@ public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPre
         LogUtil.d(TAG, "initToolbar");
         mToolbar.setNavigationIcon(R.drawable.ic_close_dark);
         mToolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
+
+    private void initExpandableListView() {
+        LogUtil.d(TAG, "initExpandableListView");
+        mExpandableListView.setOnGroupClickListener((parent, v, groupPosition, id) -> false);
+        mCarDetailAdapter = new CarDetailAdapter(getApplicationContext());
+        mCarDetailAdapter.setGroupData(getResources().getStringArray(R.array.car));
+        mExpandableListView.setAdapter(mCarDetailAdapter);
     }
 
     @Override
@@ -107,6 +125,25 @@ public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPre
         }
         CustomGlideModule.loadCenterCrop(getApplicationContext(),
                 carDetailInfo.getResult().get(0).getCarImage(), mImagePreview);
+        CarDetailInfo.Result result = carDetailInfo.getResult().get(0);
+        List<List<CarDetailInfo.Config>> lists = new ArrayList<>();
+        lists.add(result.getBaseInfo());
+        lists.add(result.getCarbody());
+        lists.add(result.getEngine());
+        lists.add(result.getChassis());
+        lists.add(result.getWheelInfo());
+        lists.add(result.getTransmission());
+        lists.add(result.getSafetyDevice());
+        lists.add(result.getControlConfig());
+        lists.add(result.getTechConfig());
+        lists.add(result.getExterConfig());
+        lists.add(result.getInterConfig());
+        lists.add(result.getSeatConfig());
+        lists.add(result.getMediaConfig());
+        lists.add(result.getLightConfig());
+        lists.add(result.getGlassConfig());
+        lists.add(result.getAirConfig());
+        mCarDetailAdapter.setChildData(lists);
     }
 
     @Override

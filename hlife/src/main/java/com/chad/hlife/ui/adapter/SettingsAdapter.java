@@ -3,6 +3,7 @@ package com.chad.hlife.ui.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,13 +57,19 @@ public class SettingsAdapter extends BaseRecyclerViewAdapter<String> {
             switch (position) {
                 case 0:
                     itemViewHolder.textTitle.setText(R.string.developer);
+                    itemViewHolder.textContent.setVisibility(View.GONE);
+                    itemViewHolder.imageArrow.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     itemViewHolder.itemView.setBackgroundColor(Color.WHITE);
                     itemViewHolder.textTitle.setText(R.string.version);
+                    itemViewHolder.textContent.setVisibility(View.VISIBLE);
+                    itemViewHolder.imageArrow.setVisibility(View.GONE);
                     break;
                 case 2:
                     itemViewHolder.textTitle.setText(R.string.cache);
+                    itemViewHolder.textContent.setVisibility(View.VISIBLE);
+                    itemViewHolder.imageArrow.setVisibility(View.GONE);
                     break;
                 default:
                     break;
@@ -78,6 +85,8 @@ public class SettingsAdapter extends BaseRecyclerViewAdapter<String> {
         AppCompatTextView textTitle;
         @BindView(R.id.text_content)
         AppCompatTextView textContent;
+        @BindView(R.id.image_arrow)
+        AppCompatImageView imageArrow;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);

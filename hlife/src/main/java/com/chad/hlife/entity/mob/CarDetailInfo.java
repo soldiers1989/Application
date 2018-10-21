@@ -68,20 +68,19 @@ public class CarDetailInfo implements Parcelable {
         private List<Config> baseInfo; // 车型基本配置信息
         private List<Config> carbody; // 车身配置信息
         private List<Config> engine; // 发动机配置信息
-        private List<Config> motorList; // 电动机配置信息
         private List<Config> chassis;  // 底盘配置信息
-        private List<Config> controlConfig; // 操控配置信息
-        private List<Config> transmission; // 变速箱信息
         private List<Config> wheelInfo; // 车轮制动信息
+        private List<Config> transmission; // 变速箱信息
         private List<Config> safetyDevice; // 安全装置信息
+        private List<Config> controlConfig; // 操控配置信息
+        private List<Config> techConfig; // 高科技配置信息
         private List<Config> exterConfig; // 外部配置信息
-        private List<Config> lightConfig; // 灯光配置信息
-        private List<Config> glassConfig; // 玻璃/后视镜配置信息
         private List<Config> interConfig; // 内部配置信息
         private List<Config> seatConfig; // 座椅配置信息
-        private List<Config> airConfig; // 空调/冰箱配置信息
         private List<Config> mediaConfig; // 多媒体配置信息
-        private List<Config> techConfig; // 高科技配置信息
+        private List<Config> lightConfig; // 灯光配置信息
+        private List<Config> glassConfig; // 玻璃/后视镜配置信息
+        private List<Config> airConfig; // 空调/冰箱配置信息
 
         public String getBrand() {
             return brand;
@@ -113,10 +112,6 @@ public class CarDetailInfo implements Parcelable {
 
         public List<Config> getEngine() {
             return engine;
-        }
-
-        public List<Config> getMotorList() {
-            return motorList;
         }
 
         public List<Config> getChassis() {
@@ -183,8 +178,6 @@ public class CarDetailInfo implements Parcelable {
             in.readList(carbody, Config.class.getClassLoader());
             engine = new ArrayList<>();
             in.readList(engine, Config.class.getClassLoader());
-            motorList = new ArrayList<>();
-            in.readList(motorList, Config.class.getClassLoader());
             chassis = new ArrayList<>();
             in.readList(chassis, Config.class.getClassLoader());
             controlConfig = new ArrayList<>();
@@ -228,7 +221,6 @@ public class CarDetailInfo implements Parcelable {
             parcel.writeList(baseInfo);
             parcel.writeList(carbody);
             parcel.writeList(engine);
-            parcel.writeList(motorList);
             parcel.writeList(chassis);
             parcel.writeList(controlConfig);
             parcel.writeList(transmission);

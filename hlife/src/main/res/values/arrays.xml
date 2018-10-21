@@ -28,4 +28,22 @@
         <item>Y</item>
         <item>Z</item>
     </string-array>
+    <string-array name="car">
+        <item>基本参数</item>
+        <item>车身</item>
+        <item>发动机</item>
+        <item>底盘转向</item>
+        <item>车轮制动</item>
+        <item>变速箱</item>
+        <item>主/被动安全装备</item>
+        <item>辅助/操控配置</item>
+        <item>高科技配置</item>
+        <item>外部配置</item>
+        <item>内部配置</item>
+        <item>座椅配置</item>
+        <item>多媒体配置</item>
+        <item>灯光配置</item>
+        <item>玻璃/后视镜</item>
+        <item>空调/冰箱</item>
+    </string-array>
 </resources>
