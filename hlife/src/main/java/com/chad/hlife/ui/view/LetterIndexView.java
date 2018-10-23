@@ -24,6 +24,11 @@ public class LetterIndexView extends View {
     private int currentIndex;
 
     public interface OnLetterChangedListener {
+
+        void onTouchDown();
+
+        void onTouchUp();
+
         void onLetterChanged(String letter);
     }
 
@@ -78,6 +83,9 @@ public class LetterIndexView extends View {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 setBackgroundColor(getResources().getColor(R.color.colorPressed));
+                if (onLetterChangedListener != null) {
+                    onLetterChangedListener.onTouchDown();
+                }
                 int index = (int) (event.getY() / itemHeight);
                 if (index < 0) {
                     index = 0;
@@ -97,6 +105,9 @@ public class LetterIndexView extends View {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 setBackground(null);
+                if (onLetterChangedListener != null) {
+                    onLetterChangedListener.onTouchUp();
+                }
                 break;
             default:
                 break;

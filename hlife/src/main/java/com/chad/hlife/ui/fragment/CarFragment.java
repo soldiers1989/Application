@@ -2,6 +2,7 @@ package com.chad.hlife.ui.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,8 +25,12 @@ import com.chad.hlife.util.LogUtil;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> implements ICarView {
 
@@ -35,6 +40,8 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
     RecyclerView mRecyclerView;
     @BindView(R.id.view_letter_index)
     LetterIndexView mLetterIndexView;
+    @BindView(R.id.text_letter)
+    AppCompatTextView mTextLetter;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
     @BindView(R.id.view_loading)
@@ -42,6 +49,7 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
 
     private OnScrollListener mOnScrollListener;
     private CarBrandAdapter mCarBrandAdapter;
+    private Disposable mDisposable = null;
 
     private Map<String, Integer> mLetterIndexMap;
 
@@ -87,19 +95,40 @@ public class CarFragment extends BaseMvpFragment<ICarView, CarPresenter> impleme
 
     private void initLetterIndexView() {
         LogUtil.d(TAG, "initLetterIndexView");
-        mLetterIndexView.setOnLetterChangedListener(letter -> {
-            if (mLetterIndexMap.containsKey(letter)) {
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-                int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-                int currentIndex = mLetterIndexMap.get(letter);
-                if (currentIndex <= firstVisibleItem) {
-                    mRecyclerView.scrollToPosition(currentIndex);
-                } else if (currentIndex <= lastVisibleItem) {
-                    int top = mRecyclerView.getChildAt(currentIndex - firstVisibleItem).getTop();
-                    mRecyclerView.scrollBy(0, top);
-                } else {
-                    mRecyclerView.scrollToPosition(currentIndex);
+        mLetterIndexView.setOnLetterChangedListener(new LetterIndexView.OnLetterChangedListener() {
+            @Override
+            public void onTouchDown() {
+                LogUtil.d(TAG, "onTouchDown");
+                if (mTextLetter.getVisibility() != View.VISIBLE) {
+                    mTextLetter.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onTouchUp() {
+                LogUtil.d(TAG, "onTouchUp");
+                if (mTextLetter.getVisibility() == View.VISIBLE) {
+                    mTextLetter.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onLetterChanged(String letter) {
+                LogUtil.d(TAG, "onLetterChanged : letter = " + letter);
+                if (mLetterIndexMap.containsKey(letter)) {
+                    mTextLetter.setText(letter);
+                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                    int firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+                    int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                    int currentIndex = mLetterIndexMap.get(letter);
+                    if (currentIndex <= firstVisibleItem) {
+                        mRecyclerView.scrollToPosition(currentIndex);
+                    } else if (currentIndex <= lastVisibleItem) {
+                        int top = mRecyclerView.getChildAt(currentIndex - firstVisibleItem).getTop();
+                        mRecyclerView.scrollBy(0, top);
+                    } else {
+                        mRecyclerView.scrollToPosition(currentIndex);
+                    }
                 }
             }
         });
