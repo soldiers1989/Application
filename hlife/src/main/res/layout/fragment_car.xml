@@ -24,7 +24,6 @@
         android:layout_height="@dimen/chad_60dp"
         android:background="@drawable/bg_dialog_shape"
         android:gravity="center"
-        android:text="A"
         android:textColor="@android:color/white"
         android:textSize="@dimen/chad_20sp"
         android:visibility="gone"
