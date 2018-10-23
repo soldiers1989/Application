@@ -12,6 +12,7 @@ import com.chad.learning.eventbus.EventBusActivity;
 import com.chad.learning.icepick.activity.IcepickActivity;
 import com.chad.learning.lambda.activity.LambdaActivity;
 import com.chad.learning.mvp.activity.MvpActivity;
+import com.chad.learning.paging.PagingActivity;
 import com.chad.learning.parent.base.BaseAppCompatActivity;
 import com.chad.learning.realm.activity.RealmActivity;
 import com.chad.learning.retrofit.activity.RetrofitActivity;
@@ -160,6 +161,12 @@ public class MainActivity extends BaseAppCompatActivity implements View.OnClickL
     @OnClick(R.id.btn_event_bus)
     public void onEventBusClick() {
         Intent intent = new Intent(MainActivity.this, EventBusActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_paging)
+    public void onPagingClick() {
+        Intent intent = new Intent(MainActivity.this, PagingActivity.class);
         startActivity(intent);
     }
 }

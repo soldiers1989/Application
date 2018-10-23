@@ -48,5 +48,6 @@
         <activity android:name=".rxbinding.activity.RxBindingActivity" />
         <activity android:name=".eventbus.EventBusActivity" />
         <activity android:name=".eventbus.EventBusOtherActivity" />
+        <activity android:name=".paging.PagingActivity" />
     </application>
 </manifest>
