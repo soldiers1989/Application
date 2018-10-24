@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.chad.hlife.R;
@@ -179,6 +180,15 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
         showProgressDialog(false);
         AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
         Toast.makeText(getApplicationContext(), R.string.login_fail, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ActivityHelper.startLauncherActivity(this);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void showProgressDialog(boolean isShow) {

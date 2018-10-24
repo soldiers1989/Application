@@ -1,5 +1,6 @@
 package com.chad.hlife.ui.activity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -216,6 +218,15 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ActivityHelper.startLauncherActivity(this);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void setHeaderView(String wall, String avatar, String name) {

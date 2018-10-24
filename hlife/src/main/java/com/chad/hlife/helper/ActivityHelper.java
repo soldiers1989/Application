@@ -205,4 +205,11 @@ public class ActivityHelper {
         Intent intent = new Intent(activity, AboutSoftActivity.class);
         activity.startActivity(intent);
     }
+
+    public static void startLauncherActivity(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        activity.startActivity(intent);
+    }
 }
