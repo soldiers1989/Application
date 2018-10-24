@@ -1,31 +1,34 @@
 package com.chad.hlife.ui.activity;
 
 import android.graphics.Color;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 
-import com.chad.hlife.BuildConfig;
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
-import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.mvp.presenter.user.UserDataPresenter;
+import com.chad.hlife.mvp.view.IUserDataView;
+import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class AboutSoftActivity extends BaseRxAppCompatActivity {
+public class UserDataActivity extends BaseMvpAppCompatActivity<IUserDataView, UserDataPresenter>
+        implements IUserDataView {
 
-    private static final String TAG = AboutSoftActivity.class.getSimpleName();
+    private static final String TAG = UserDataActivity.class.getSimpleName();
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.text_soft_version)
-    AppCompatTextView mTextSoftVersion;
+
+    @Override
+    protected UserDataPresenter onGetPresenter() {
+        return new UserDataPresenter();
+    }
 
     @Override
     protected int onGetLayoutId() {
-        return R.layout.activity_about_soft;
+        return R.layout.activity_user_data;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class AboutSoftActivity extends BaseRxAppCompatActivity {
 
     private void initToolbar() {
         LogUtil.d(TAG, "initToolbar");
-        mToolbar.setTitle(R.string.about_soft);
+        mToolbar.setTitle(R.string.user_data);
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setNavigationIcon(R.drawable.ic_back_light);
         mToolbar.setNavigationOnClickListener(view -> finish());
@@ -50,12 +53,11 @@ public class AboutSoftActivity extends BaseRxAppCompatActivity {
 
     @Override
     protected void onInitData() {
-        LogUtil.d(TAG, "onInitData");
-        mTextSoftVersion.setText(getString(R.string.soft_version) + "：" + BuildConfig.VERSION_NAME);
+
     }
 
-    @OnClick(R.id.btn_reward_developer)
-    public void onRewardDeveloperClick() {
-        LogUtil.d(TAG, "onRewardDeveloperClick");
+    @Override
+    public void onError(Object object) {
+        LogUtil.d(TAG, "onError");
     }
 }

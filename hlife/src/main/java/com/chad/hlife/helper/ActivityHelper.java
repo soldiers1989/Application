@@ -19,11 +19,13 @@ import com.chad.hlife.ui.activity.NewsDetailActivity;
 import com.chad.hlife.ui.activity.HistoryDetailActivity;
 import com.chad.hlife.ui.activity.RecipeActivity;
 import com.chad.hlife.ui.activity.UpdatePasswordActivity;
+import com.chad.hlife.ui.activity.UserDataActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.ThemesDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.ZhiHuActivity;
+import com.mob.wrappers.UMSSDKWrapper;
 
 import java.util.ArrayList;
 
@@ -187,6 +189,14 @@ public class ActivityHelper {
         Intent intent = new Intent(activity, SectionsDetailActivity.class);
         intent.putExtra(AppConstant.EXTRA_TITLE, title);
         intent.putExtra(AppConstant.EXTRA_ID, id);
+        activity.startActivity(intent);
+    }
+
+    public static void startUserDataActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, UserDataActivity.class);
         activity.startActivity(intent);
     }
 

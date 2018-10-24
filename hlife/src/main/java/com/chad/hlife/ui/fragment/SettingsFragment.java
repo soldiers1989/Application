@@ -38,9 +38,10 @@ public class SettingsFragment extends BaseRxFragment {
         LogUtil.d(TAG, "onInitData");
     }
 
-    @OnClick(R.id.layout_user_info)
-    public void onUserInfoClick() {
-        LogUtil.d(TAG, "onUserInfoClick");
+    @OnClick(R.id.layout_user_data)
+    public void onUserDataClick() {
+        LogUtil.d(TAG, "onUserDataClick");
+        ActivityHelper.startUserDataActivity(getActivity());
     }
 
     @OnClick(R.id.layout_update_password)
