@@ -66,6 +66,11 @@
     <string name="logout">退出登录</string>
     <string name="soft_version">软件版本</string>
     <string name="reward_developer">打赏开发者</string>
+    <string name="choose_mode_pay">请选择支付方式</string>
+    <string name="ali_pay">支付宝</string>
+    <string name="wx_pay">微信支付</string>
+    <string name="union_pay">银联支付</string>
+    <string name="confirmation_of_pay">确认支付</string>
     <string name="home">首页</string>
     <string name="themes">专题</string>
     <string name="sections">专栏</string>

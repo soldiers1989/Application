@@ -59,6 +59,9 @@ public class AboutSoftActivity extends BaseRxAppCompatActivity {
     public void onRewardDeveloperClick() {
         LogUtil.d(TAG, "onRewardDeveloperClick");
         PayDialog payDialog = new PayDialog(this);
+        payDialog.setOnPayClickListener(payModel -> {
+            // TODO: 2018/10/24  
+        });
         payDialog.show();
     }
 }
