@@ -6,8 +6,10 @@ import android.content.Intent;
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.app.config.ZhiHuConfig;
+import com.chad.hlife.ui.activity.AboutSoftActivity;
 import com.chad.hlife.ui.activity.CarActivity;
 import com.chad.hlife.ui.activity.CarDetailActivity;
+import com.chad.hlife.ui.activity.LoginActivity;
 import com.chad.hlife.ui.activity.MainActivity;
 import com.chad.hlife.ui.activity.RecipeDetailActivity;
 import com.chad.hlife.ui.activity.RecipeSearchActivity;
@@ -16,6 +18,7 @@ import com.chad.hlife.ui.activity.TaoTicketActivity;
 import com.chad.hlife.ui.activity.NewsDetailActivity;
 import com.chad.hlife.ui.activity.HistoryDetailActivity;
 import com.chad.hlife.ui.activity.RecipeActivity;
+import com.chad.hlife.ui.activity.UpdatePasswordActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
@@ -25,6 +28,14 @@ import com.chad.hlife.ui.zhihu.activity.ZhiHuActivity;
 import java.util.ArrayList;
 
 public class ActivityHelper {
+
+    public static void startLoginActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+    }
 
     public static void startRegisterActivity(Activity activity) {
         if (activity == null) {
@@ -176,6 +187,22 @@ public class ActivityHelper {
         Intent intent = new Intent(activity, SectionsDetailActivity.class);
         intent.putExtra(AppConstant.EXTRA_TITLE, title);
         intent.putExtra(AppConstant.EXTRA_ID, id);
+        activity.startActivity(intent);
+    }
+
+    public static void startUpdatePasswordActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, UpdatePasswordActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void startAboutSoftActivity(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(activity, AboutSoftActivity.class);
         activity.startActivity(intent);
     }
 }

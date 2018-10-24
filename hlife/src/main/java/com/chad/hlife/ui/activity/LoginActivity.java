@@ -13,6 +13,7 @@ import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.app.config.MobConfig;
 import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.helper.ActivityHelper;
+import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.mvp.presenter.login.LoginPresenter;
 import com.chad.hlife.mvp.view.ILoginView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
@@ -138,8 +139,8 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
         showProgressDialog(false);
         if (userLoginInfo.getMsg().equals("success")) {
             AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_MOB);
-            AppSettings.getInstance().putUserName(mEditUserName.getText().toString());
-            AppSettings.getInstance().putPassword(mEditPassword.getText().toString());
+            MobAuthHelper.getInstance().writeUserConfig(mEditUserName.getText().toString(),
+                    mEditPassword.getText().toString());
             startMainActivity();
         } else {
             Toast.makeText(getApplicationContext(), userLoginInfo.getMsg(), Toast.LENGTH_SHORT).show();

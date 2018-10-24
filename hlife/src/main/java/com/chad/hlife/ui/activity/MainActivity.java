@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -18,6 +19,7 @@ import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
 import com.chad.hlife.glide.CustomGlideModule;
 import com.chad.hlife.helper.ActivityHelper;
+import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.mvp.presenter.main.MainPresenter;
 import com.chad.hlife.mvp.view.IMainView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
@@ -158,7 +160,7 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         LogUtil.d(TAG, "getUserInfo");
         switch (AppSettings.getInstance().getLoginModel()) {
             case AppConstant.LOGIN_MODEL_MOB:
-                // TODO: 2018/10/17
+                setHeaderView(null, null, AppSettings.getInstance().getUserName());
                 break;
             case AppConstant.LOGIN_MODEL_WEIBO:
                 Oauth2AccessToken accessToken = presenter.getOauth2AccessToken();
@@ -208,17 +210,28 @@ public class MainActivity extends BaseMvpAppCompatActivity<IMainView, MainPresen
         if (weiBoUserInfo == null) {
             return;
         }
-        View view = mNavigationView.getHeaderView(0);
-        AppCompatImageView userWall = view.findViewById(R.id.image_user_wall);
-        SimpleDraweeView userAvatar = view.findViewById(R.id.drawee_user_avatar);
-        AppCompatTextView userName = view.findViewById(R.id.text_user_name);
-        CustomGlideModule.loadCenterCrop(this, weiBoUserInfo.getCover_image_phone(), userWall);
-        userAvatar.setImageURI(weiBoUserInfo.getAvatar_large());
-        userName.setText(weiBoUserInfo.getName());
+        setHeaderView(weiBoUserInfo.getCover_image_phone(), weiBoUserInfo.getAvatar_large(), weiBoUserInfo.getName());
     }
 
     @Override
     public void onError(Object object) {
         LogUtil.d(TAG, "onError");
+    }
+
+    private void setHeaderView(String wall, String avatar, String name) {
+        LogUtil.d(TAG, "setHeaderView : name = " + name);
+        View view = mNavigationView.getHeaderView(0);
+        AppCompatImageView userWall = view.findViewById(R.id.image_user_wall);
+        SimpleDraweeView userAvatar = view.findViewById(R.id.drawee_user_avatar);
+        AppCompatTextView userName = view.findViewById(R.id.text_user_name);
+        if (!TextUtils.isEmpty(wall)) {
+            CustomGlideModule.loadCenterCrop(this, wall, userWall);
+        }
+        if (!TextUtils.isEmpty(avatar)) {
+            userAvatar.setImageURI(avatar);
+        }
+        if (!TextUtils.isEmpty(name)) {
+            userName.setText(name);
+        }
     }
 }

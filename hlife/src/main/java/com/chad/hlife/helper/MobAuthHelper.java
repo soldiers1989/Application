@@ -37,4 +37,14 @@ public class MobAuthHelper {
         AppSettings.getInstance().putToken(null);
         AppSettings.getInstance().putUid(null);
     }
+
+    public void writeUserConfig(String userName, String password) {
+        AppSettings.getInstance().putUserName(userName);
+        AppSettings.getInstance().putPassword(password);
+    }
+
+    public void clearUserConfig() {
+        AppSettings.getInstance().putUserName(null);
+        AppSettings.getInstance().putPassword(null);
+    }
 }

@@ -50,7 +50,7 @@ public class AppSettings {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putString(KEY_USER_NAME, userName);
+        mSharedPreferences.edit().putString(KEY_USER_NAME, userName).commit();
     }
 
     public String getUserName() {
@@ -64,7 +64,7 @@ public class AppSettings {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putString(KEY_PASSWORD, password);
+        mSharedPreferences.edit().putString(KEY_PASSWORD, password).commit();
     }
 
     public String getPassword() {
@@ -78,7 +78,7 @@ public class AppSettings {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putString(KEY_TOKEN, token);
+        mSharedPreferences.edit().putString(KEY_TOKEN, token).commit();
     }
 
     public String getToken() {
@@ -92,7 +92,7 @@ public class AppSettings {
         if (mSharedPreferences == null) {
             return;
         }
-        mSharedPreferences.edit().putString(KEY_UID, uid);
+        mSharedPreferences.edit().putString(KEY_UID, uid).commit();
     }
 
     public String getUid() {

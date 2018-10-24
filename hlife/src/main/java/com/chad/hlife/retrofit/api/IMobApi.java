@@ -8,13 +8,10 @@ import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.entity.mob.UserLoginInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
+import com.chad.hlife.entity.mob.UserPasswordInfo;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface IMobApi {
@@ -42,6 +39,19 @@ public interface IMobApi {
     @GET("user/login")
     Observable<UserLoginInfo> login(@Query("key") String key, @Query("username") String userName,
                                     @Query("password") String password);
+
+    /**
+     * 用户密码修改
+     *
+     * @param key
+     * @param userName
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @GET("user/password/change")
+    Observable<UserPasswordInfo> updatePassword(@Query("key") String key, @Query("username") String userName,
+                                                @Query("oldPassword") String oldPassword, @Query("newPassword") String newPassword);
 
     /**
      * 历史上的今天
@@ -72,6 +82,7 @@ public interface IMobApi {
 
     /**
      * 汽车详情
+     *
      * @param key
      * @param carId
      * @return
