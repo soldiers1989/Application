@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_title"
+        style="@style/TextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:padding="@dimen/chad_10dp"
+        android:text="请选择支付方式" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_ali"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chad_1dp"
+        android:background="@android:color/white"
+        android:padding="@dimen/chad_10dp"
+        app:layout_constraintTop_toBottomOf="@id/text_title">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_ali"
+            style="@style/SubTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_wx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chad_1dp"
+        android:background="@android:color/white"
+        android:padding="@dimen/chad_10dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_ali">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_wx"
+            style="@style/SubTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信支付" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_union"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chad_1dp"
+        android:background="@android:color/white"
+        android:padding="@dimen/chad_10dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_wx">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_union"
+            style="@style/SubTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银联支付" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_money"
+        style="@style/TextStyle"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chad_1dp"
+        android:background="@android:color/white"
+        android:gravity="right"
+        android:padding="@dimen/chad_20dp"
+        android:text="需付款 ￥2.00"
+        app:layout_constraintTop_toBottomOf="@id/layout_union" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_pay"
+        style="@style/TextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_pay"
+        android:text="确认支付"
+        android:textColor="@color/color_login_text"
+        app:layout_constraintTop_toBottomOf="@id/text_money" />
+
+</android.support.constraint.ConstraintLayout>

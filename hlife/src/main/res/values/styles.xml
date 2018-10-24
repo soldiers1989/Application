@@ -57,4 +57,20 @@
     <style name="TabTextStyle">
         <item name="android:textSize">@dimen/chad_16sp</item>
     </style>
+    <!-- 支付Dialog风格 -->
+    <style name="PayDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/AnimationDialog</item>
+    </style>
+    <!-- 支付Dialog动画 -->
+    <style name="AnimationDialog" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/enter_dialog_pay</item>
+        <item name="android:windowExitAnimation">@anim/exit_dialog_pay</item>
+    </style>
 </resources>

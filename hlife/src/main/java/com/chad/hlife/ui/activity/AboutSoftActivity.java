@@ -8,6 +8,7 @@ import com.chad.hlife.BuildConfig;
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
+import com.chad.hlife.ui.view.PayDialog;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
@@ -57,5 +58,7 @@ public class AboutSoftActivity extends BaseRxAppCompatActivity {
     @OnClick(R.id.btn_reward_developer)
     public void onRewardDeveloperClick() {
         LogUtil.d(TAG, "onRewardDeveloperClick");
+        PayDialog payDialog = new PayDialog(this);
+        payDialog.show();
     }
 }
