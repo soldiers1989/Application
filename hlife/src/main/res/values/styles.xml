@@ -20,6 +20,10 @@
     <style name="RegisterTheme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <!-- 修改密码界面Theme -->
+    <style name="UpdatePasswordTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
     <!-- 详情页Theme -->
     <style name="DetailTheme" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimaryDetail</item>

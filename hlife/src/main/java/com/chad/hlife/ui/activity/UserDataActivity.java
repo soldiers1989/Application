@@ -1,10 +1,12 @@
 package com.chad.hlife.ui.activity;
 
 import android.graphics.Color;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.app.AppSettings;
 import com.chad.hlife.mvp.presenter.user.UserDataPresenter;
 import com.chad.hlife.mvp.view.IUserDataView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
@@ -20,6 +22,10 @@ public class UserDataActivity extends BaseMvpAppCompatActivity<IUserDataView, Us
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.text_user_name)
+    AppCompatTextView mTextUserName;
+    @BindView(R.id.text_birthday)
+    AppCompatTextView mTextBirthday;
 
     @Override
     protected UserDataPresenter onGetPresenter() {
@@ -53,7 +59,9 @@ public class UserDataActivity extends BaseMvpAppCompatActivity<IUserDataView, Us
 
     @Override
     protected void onInitData() {
-
+        LogUtil.d(TAG, "onInitData");
+        mTextUserName.setText(AppSettings.getInstance().getUserName());
+        mTextBirthday.setText("1995-01-08");
     }
 
     @Override

@@ -28,7 +28,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPresenter> implements ICarView {
+public class CarDetailActivity extends BaseMvpAppCompatActivity<ICarView, CarPresenter>
+        implements ICarView {
 
     private static final String TAG = CarDetailActivity.class.getSimpleName();
 

@@ -64,7 +64,9 @@
             android:hardwareAccelerated="true"
             android:theme="@style/RedTheme" />
         <activity android:name=".ui.activity.UserDataActivity" />
-        <activity android:name=".ui.activity.UpdatePasswordActivity" />
+        <activity
+            android:name=".ui.activity.UpdatePasswordActivity"
+            android:theme="@style/UpdatePasswordTheme" />
         <activity android:name=".ui.activity.AboutSoftActivity" />
     </application>
 </manifest>
