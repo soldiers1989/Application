@@ -41,8 +41,8 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     AppCompatEditText mEditUserName;
     @BindView(R.id.edit_password)
     AppCompatEditText mEditPassword;
-    @BindView(R.id.dialog_progress)
-    ProgressDialog mProgressDialog;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected LoginPresenter onGetPresenter() {
@@ -61,14 +61,14 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
         initEditText();
     }
 
-    private void initEditText() {
-        LogUtil.d(TAG, "initEditText");
-        mEditUserName.setFilters(new InputFilter[]{new InputFilterUtil.SpaceFilter()});
-    }
-
     private void initColor() {
         LogUtil.d(TAG, "initColor");
         StatusBarUtil.setFullScreenStatusBar(this);
+    }
+
+    private void initEditText() {
+        LogUtil.d(TAG, "initEditText");
+        mEditUserName.setFilters(new InputFilter[]{new InputFilterUtil.SpaceFilter()});
     }
 
     @Override
@@ -186,6 +186,7 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             ActivityHelper.startLauncherActivity(this);
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -193,10 +194,13 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
 
     private void showProgressDialog(boolean isShow) {
         LogUtil.d(TAG, "showProgressDialog : isShow = " + isShow);
-        if (isShow) {
-            mProgressDialog.setTitle(getString(R.string.logining));
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setTitle(R.string.logining);
+        }
+        if (isShow && !mProgressDialog.isShowing()) {
             mProgressDialog.show();
-        } else {
+        } else if (mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
     }

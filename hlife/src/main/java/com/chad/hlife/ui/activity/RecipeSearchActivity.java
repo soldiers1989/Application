@@ -1,12 +1,13 @@
 package com.chad.hlife.ui.activity;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+import android.view.View;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -46,8 +47,10 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
     SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     @BindView(R.id.view_recycler)
     RecyclerView mRecyclerView;
-    @BindView(R.id.dialog_progress)
-    ProgressDialog mProgressDialog;
+    @BindView(R.id.text_tips)
+    AppCompatTextView mTextTips;
+
+    private ProgressDialog mProgressDialog;
 
     private SearchView mSearchView;
     private FooterView mFooterView;
@@ -154,7 +157,8 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
             mCurrentPage++;
         } else {
             resetData();
-            Toast.makeText(getApplicationContext(), recipeDetailInfo.getMsg(), Toast.LENGTH_SHORT).show();
+            mTextTips.setVisibility(View.VISIBLE);
+            mTextTips.setText(recipeDetailInfo.getMsg());
         }
     }
 
@@ -167,6 +171,7 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
     public boolean onQueryTextSubmit(String text) {
         LogUtil.d(TAG, "onQueryTextSubmit : text = " + text);
         mSearchView.clearFocus();
+        mTextTips.setVisibility(View.GONE);
         showProgressDialog(true);
         Observable.timer(1, TimeUnit.SECONDS)
                 .compose(bindToLifecycle())
@@ -227,10 +232,13 @@ public class RecipeSearchActivity extends BaseMvpAppCompatActivity<IRecipeView, 
 
     private void showProgressDialog(boolean isShow) {
         LogUtil.d(TAG, "showProgressDialog : isShow = " + isShow);
-        if (isShow) {
-            mProgressDialog.setTitle(getString(R.string.querying));
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setTitle(R.string.querying);
+        }
+        if (isShow && !mProgressDialog.isShowing()) {
             mProgressDialog.show();
-        } else {
+        } else if (mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
     }

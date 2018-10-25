@@ -1,22 +1,25 @@
 package com.chad.hlife.ui.view;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.Gravity;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
 import com.chad.hlife.R;
+import com.chad.hlife.util.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProgressDialog extends ConstraintLayout implements Animation.AnimationListener {
+public class ProgressDialog extends Dialog implements Animation.AnimationListener {
+
+    private static final String TAG = ProgressDialog.class.getSimpleName();
 
     @BindView(R.id.image_progress)
     AppCompatImageView mImageProgress;
@@ -25,50 +28,52 @@ public class ProgressDialog extends ConstraintLayout implements Animation.Animat
 
     private Animation mAnimation;
 
+    private int mTitleResId;
+
     public ProgressDialog(Context context) {
-        this(context, null);
+        super(context, R.style.ProgressDialog);
     }
 
-    public ProgressDialog(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public ProgressDialog(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context);
-    }
-
-    private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.layout_dialog_proress, this, true);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_dialog_proress);
         ButterKnife.bind(this);
-        setVisibility(GONE);
+        initWindow();
+        initView();
     }
 
-    public void setTitle(String title) {
-        mTextTitle.setText(title);
+    private void initWindow() {
+        LogUtil.d(TAG, "initWindow");
+        Window window = getWindow();
+        window.setGravity(Gravity.CENTER);
     }
 
-    public boolean isShowing() {
-        return getVisibility() == VISIBLE;
+    private void initView() {
+        LogUtil.d(TAG, "initView");
+        mTextTitle.setText(mTitleResId);
     }
 
+    public void setTitle(int resId) {
+        mTitleResId = resId;
+    }
+
+    @Override
     public void show() {
-        if (isShowing()) {
-            return;
-        }
-        setVisibility(VISIBLE);
+        super.show();
         startProgressAnimation();
     }
 
+    @Override
     public void dismiss() {
-        if (!isShowing()) {
-            return;
-        }
+        super.dismiss();
         stopProgressAnimation();
-        setVisibility(GONE);
     }
 
     private void startProgressAnimation() {
+        if (mImageProgress == null) {
+            return;
+        }
         if (mAnimation == null) {
             mAnimation = new RotateAnimation(0f, 360f,
                     Animation.RELATIVE_TO_SELF, 0.5f,
@@ -82,6 +87,9 @@ public class ProgressDialog extends ConstraintLayout implements Animation.Animat
     }
 
     private void stopProgressAnimation() {
+        if (mImageProgress == null) {
+            return;
+        }
         if (mAnimation != null) {
             mAnimation.cancel();
             mAnimation.setAnimationListener(null);

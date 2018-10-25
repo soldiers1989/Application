@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:gravity="center"
-        android:padding="@dimen/chad_20dp"
+        android:padding="@dimen/chad_10dp"
         android:text="@string/choose_mode_pay" />
 
     <android.support.constraint.ConstraintLayout
@@ -139,7 +139,7 @@
         android:layout_marginTop="@dimen/chad_1dp"
         android:background="@android:color/white"
         android:gravity="right"
-        android:padding="@dimen/chad_20dp"
+        android:padding="@dimen/chad_10dp"
         android:text="打赏金额 ￥2.00"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/chad_18sp"
@@ -151,7 +151,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_pay"
-        android:padding="@dimen/chad_20dp"
         android:text="@string/confirmation_of_pay"
         android:textColor="@color/color_button_text"
         app:layout_constraintTop_toBottomOf="@id/text_money" />
