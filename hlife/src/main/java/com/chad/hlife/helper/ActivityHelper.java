@@ -25,7 +25,6 @@ import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.ThemesDetailActivity;
 import com.chad.hlife.ui.zhihu.activity.ZhiHuActivity;
-import com.mob.wrappers.UMSSDKWrapper;
 
 import java.util.ArrayList;
 

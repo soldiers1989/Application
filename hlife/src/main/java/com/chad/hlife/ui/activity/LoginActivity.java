@@ -2,6 +2,7 @@ package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -81,7 +82,12 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
         LogUtil.d(TAG, "initLoginStatus");
         switch (AppSettings.getInstance().getLoginModel()) {
             case AppConstant.LOGIN_MODEL_MOB:
-                startMainActivity();
+                showProgressDialog(true);
+                String userName = AppSettings.getInstance().getUserName();
+                String password = AppSettings.getInstance().getPassword();
+                mEditUserName.setText(userName);
+                mEditPassword.setText(password);
+                presenter.login(bindToLifecycle(), MobConfig.APP_KEY, userName, password);
                 break;
             case AppConstant.LOGIN_MODEL_WEIBO:
                 if (presenter.isWeiBoSessionValid()) {
@@ -132,34 +138,34 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     }
 
     @Override
-    public void onMobLogin(UserLoginInfo userLoginInfo) {
-        LogUtil.d(TAG, "onMobLogin : userLoginInfo = " + userLoginInfo);
+    public void onMobLoginSuccess() {
+        LogUtil.d(TAG, "onMobLoginSuccess");
+        showProgressDialog(false);
+        if (AppSettings.getInstance().getLoginModel() != AppConstant.LOGIN_MODEL_MOB) {
+            AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_MOB);
+            MobAuthHelper.getInstance().writeUserConfig(mEditUserName.getText().toString(),
+                    mEditPassword.getText().toString());
+        }
+        startMainActivity();
+    }
+
+    @Override
+    public void onMobLoginFail(UserLoginInfo userLoginInfo) {
+        LogUtil.d(TAG, "onMobLoginFail : userLoginInfo = " + userLoginInfo);
         if (userLoginInfo == null) {
             return;
         }
         showProgressDialog(false);
-        if (userLoginInfo.getMsg().equals("success")) {
-            AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_MOB);
-            MobAuthHelper.getInstance().writeUserConfig(mEditUserName.getText().toString(),
-                    mEditPassword.getText().toString());
-            startMainActivity();
-        } else {
-            Toast.makeText(getApplicationContext(), userLoginInfo.getMsg(), Toast.LENGTH_SHORT).show();
-        }
+        AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_NULL);
+        MobAuthHelper.getInstance().clearAccessToken();
+        Toast.makeText(getApplicationContext(), userLoginInfo.getMsg(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onWeiBoLoginSuccess() {
         LogUtil.d(TAG, "onWeiBoLoginSuccess");
         AppSettings.getInstance().putLoginModel(AppConstant.LOGIN_MODEL_WEIBO);
-        showProgressDialog(true);
-        Observable.timer(2, TimeUnit.SECONDS)
-                .compose(bindToLifecycle())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    showProgressDialog(false);
-                    startMainActivity();
-                });
+        startMainActivity();
     }
 
     @Override

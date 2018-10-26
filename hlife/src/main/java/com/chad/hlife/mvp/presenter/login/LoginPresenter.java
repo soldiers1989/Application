@@ -35,8 +35,13 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
     }
 
     @Override
-    public void onMobLogin(UserLoginInfo userLoginInfo) {
-        getView().onMobLogin(userLoginInfo);
+    public void onMobLoginSuccess() {
+        getView().onMobLoginSuccess();
+    }
+
+    @Override
+    public void onMobLoginFail(UserLoginInfo userLoginInfo) {
+        getView().onMobLoginFail(userLoginInfo);
     }
 
     @Override

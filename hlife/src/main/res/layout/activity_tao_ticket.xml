@@ -17,7 +17,14 @@
             android:isScrollContainer="false"
             android:overScrollMode="never"
             android:scrollbars="vertical" />
+
     </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <include layout="@layout/layout_loading" />
 

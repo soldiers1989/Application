@@ -1,6 +1,7 @@
 package com.chad.hlife.ui.activity;
 
 import android.Manifest;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -32,6 +34,8 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.view_web)
     WebView mWebView;
+    @BindView(R.id.layout_video)
+    ConstraintLayout mVideoLayout;
     @BindView(R.id.layout_loading)
     ConstraintLayout mLoading;
     @BindView(R.id.view_loading)
@@ -91,8 +95,32 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-                callback.invoke(origin, true, true);
+                callback.invoke(origin, true, false);
                 super.onGeolocationPermissionsShowPrompt(origin, callback);
+            }
+
+            @Override
+            public void onShowCustomView(View view, CustomViewCallback callback) {
+                if (mVideoLayout.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setStatusBarVisibility(false);
+                mVideoLayout.setVisibility(View.VISIBLE);
+                mVideoLayout.addView(view);
+                super.onShowCustomView(view, callback);
+            }
+
+            @Override
+            public void onHideCustomView() {
+                if (mVideoLayout.getVisibility() == View.GONE) {
+                    return;
+                }
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                setStatusBarVisibility(true);
+                mVideoLayout.removeAllViews();
+                mVideoLayout.setVisibility(View.GONE);
+                super.onHideCustomView();
             }
         });
     }
@@ -100,12 +128,12 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        checkLocationPermissions();
+        checkPermissions();
         mWebView.loadUrl(AppConstant.URL_TAO_TICKET);
     }
 
-    private void checkLocationPermissions() {
-        LogUtil.d(TAG, "checkLocationPermissions");
+    private void checkPermissions() {
+        LogUtil.d(TAG, "checkPermissions");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return;
         }
@@ -118,6 +146,12 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION}, AppConstant.PERMISSION_REQUEST_CODE);
         }
+        int writeExternalStoragePermission = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, AppConstant.PERMISSION_REQUEST_CODE);
+        }
     }
 
     @Override
@@ -127,5 +161,10 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void setStatusBarVisibility(boolean visible) {
+        int flag = visible ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getWindow().setFlags(flag, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }

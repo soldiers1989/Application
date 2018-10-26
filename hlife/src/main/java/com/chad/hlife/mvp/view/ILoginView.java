@@ -6,7 +6,9 @@ import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 
 public interface ILoginView extends IBaseView {
 
-    void onMobLogin(UserLoginInfo userLoginInfo);
+    void onMobLoginSuccess();
+
+    void onMobLoginFail(UserLoginInfo userLoginInfo);
 
     void onWeiBoLoginSuccess();
 

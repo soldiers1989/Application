@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
@@ -28,19 +27,6 @@ android {
         sourceCompatibility 1.8
     }
 
-}
-
-MobSDK {
-    appKey "283b4a86286b0"
-    appSecret "1ec6f78e26dccff5b2542768ff762543"
-
-    PaySDK {
-        info {
-            AliPay {}
-            Wechat {}
-            UnionPay {}
-        }
-    }
 }
 
 dependencies {

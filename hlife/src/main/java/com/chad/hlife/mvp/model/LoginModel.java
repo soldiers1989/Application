@@ -41,9 +41,13 @@ public class LoginModel {
                 .compose(RxSchedulersUtil.workThread())
                 .subscribe(o -> {
                             UserLoginInfo userLoginInfo = (UserLoginInfo) o;
-                            loginPresenter.onMobLogin(userLoginInfo);
-                            MobAuthHelper.getInstance()
-                                    .writeAccessToken(userLoginInfo.getMobAccessToken());
+                            if (userLoginInfo.getMsg().equals("success")) {
+                                loginPresenter.onMobLoginSuccess();
+                                MobAuthHelper.getInstance()
+                                        .writeAccessToken(userLoginInfo.getMobAccessToken());
+                            } else {
+                                loginPresenter.onMobLoginFail(userLoginInfo);
+                            }
                         },
                         throwable -> loginPresenter.onError(throwable));
     }

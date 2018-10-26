@@ -47,6 +47,7 @@ public class WebViewHelper {
         webSettings.setNeedInitialFocus(true);
         // 启动地理信息
         webSettings.setGeolocationEnabled(true);
+        webSettings.setGeolocationDatabasePath(AppConstant.FILE_DIR_CACHE.getAbsolutePath());
         // 自动加载图片
         webSettings.setLoadsImagesAutomatically(true);
         // 设定编码格式
