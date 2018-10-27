@@ -18,6 +18,7 @@ import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileView, UserProfilePresenter>
         implements IUserProfileView {
@@ -34,6 +35,12 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
     AppCompatTextView mTextBirthday;
     @BindView(R.id.text_mobile_phone)
     AppCompatTextView mTextMobilePhone;
+    @BindView(R.id.btn_gender)
+    AppCompatTextView mBtnGender;
+    @BindView(R.id.btn_birthday)
+    AppCompatTextView mBtnBirthday;
+    @BindView(R.id.btn_mobile_phone)
+    AppCompatTextView mBtnMobilePhone;
 
     @Override
     protected UserProfilePresenter onGetPresenter() {
@@ -84,6 +91,21 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
                 AppConstant.USER_PROFILE_PHONE);
     }
 
+    @OnClick(R.id.btn_gender)
+    public void onGenderClick() {
+        LogUtil.d(TAG, "onGenderClick");
+    }
+
+    @OnClick(R.id.btn_birthday)
+    public void onBirthdayClick() {
+        LogUtil.d(TAG, "onBirthdayClick");
+    }
+
+    @OnClick(R.id.btn_mobile_phone)
+    public void onMobilePhoneClick() {
+        LogUtil.d(TAG, "onMobilePhoneClick");
+    }
+
     @Override
     public void onPutGender(UserProfileInfo userProfileInfo) {
         LogUtil.d(TAG, "onPutGender : userProfileInfo = " + userProfileInfo);
@@ -105,6 +127,10 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         }
         if (userProfileInfo.getMsg().equals("success")) {
             mTextGender.setText(userProfileInfo.getResult());
+            mBtnGender.setText(R.string.update);
+        } else {
+            mTextGender.setText(R.string.please_put_profile);
+            mBtnGender.setText(R.string.add);
         }
     }
 
@@ -129,6 +155,10 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         }
         if (userProfileInfo.getMsg().equals("success")) {
             mTextBirthday.setText(userProfileInfo.getResult());
+            mBtnBirthday.setText(R.string.update);
+        } else {
+            mTextBirthday.setText(R.string.please_put_profile);
+            mBtnBirthday.setText(R.string.add);
         }
     }
 
@@ -153,6 +183,10 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         }
         if (userProfileInfo.getMsg().equals("success")) {
             mTextMobilePhone.setText(userProfileInfo.getResult());
+            mBtnMobilePhone.setText(R.string.update);
+        } else {
+            mTextMobilePhone.setText(R.string.please_put_profile);
+            mBtnMobilePhone.setText(R.string.add);
         }
     }
 
