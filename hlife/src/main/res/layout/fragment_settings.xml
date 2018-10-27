@@ -21,7 +21,6 @@
             android:text="@string/user_profile" />
 
         <android.support.v7.widget.AppCompatImageView
-            style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_right_arrow"
@@ -48,7 +47,6 @@
             android:text="@string/update_password" />
 
         <android.support.v7.widget.AppCompatImageView
-            style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_right_arrow"
@@ -75,7 +73,6 @@
             android:text="@string/about_soft" />
 
         <android.support.v7.widget.AppCompatImageView
-            style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_right_arrow"

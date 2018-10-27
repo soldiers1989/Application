@@ -31,7 +31,7 @@ public class ProgressDialog extends Dialog implements Animation.AnimationListene
     private int mTitleResId;
 
     public ProgressDialog(Context context) {
-        super(context, R.style.ProgressDialog);
+        super(context, R.style.GeneralDialog);
     }
 
     @Override

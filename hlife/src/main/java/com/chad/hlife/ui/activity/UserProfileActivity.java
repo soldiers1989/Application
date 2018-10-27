@@ -3,6 +3,7 @@ package com.chad.hlife.ui.activity;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -14,6 +15,8 @@ import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.mvp.presenter.user.UserProfilePresenter;
 import com.chad.hlife.mvp.view.IUserProfileView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.GenderDialog;
+import com.chad.hlife.util.Base64Util;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
 
@@ -35,12 +38,6 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
     AppCompatTextView mTextBirthday;
     @BindView(R.id.text_mobile_phone)
     AppCompatTextView mTextMobilePhone;
-    @BindView(R.id.btn_gender)
-    AppCompatTextView mBtnGender;
-    @BindView(R.id.btn_birthday)
-    AppCompatTextView mBtnBirthday;
-    @BindView(R.id.btn_mobile_phone)
-    AppCompatTextView mBtnMobilePhone;
 
     @Override
     protected UserProfilePresenter onGetPresenter() {
@@ -91,17 +88,26 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
                 AppConstant.USER_PROFILE_PHONE);
     }
 
-    @OnClick(R.id.btn_gender)
+    @OnClick(R.id.layout_gender)
     public void onGenderClick() {
         LogUtil.d(TAG, "onGenderClick");
+        GenderDialog genderDialog = new GenderDialog(this);
+        genderDialog.setOnSubmitClickListener(gender -> {
+            if (!TextUtils.isEmpty(gender)) {
+                MobAccessToken mobAccessToken = MobAuthHelper.getInstance().readAccessToken();
+                presenter.putGender(bindToLifecycle(), MobConfig.APP_KEY, mobAccessToken.getToken(),
+                        mobAccessToken.getUid(), AppConstant.USER_PROFILE_GENDER, Base64Util.coding(gender));
+            }
+        });
+        genderDialog.show();
     }
 
-    @OnClick(R.id.btn_birthday)
+    @OnClick(R.id.layout_birthday)
     public void onBirthdayClick() {
         LogUtil.d(TAG, "onBirthdayClick");
     }
 
-    @OnClick(R.id.btn_mobile_phone)
+    @OnClick(R.id.layout_mobile_phone)
     public void onMobilePhoneClick() {
         LogUtil.d(TAG, "onMobilePhoneClick");
     }
@@ -126,11 +132,9 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
             return;
         }
         if (userProfileInfo.getMsg().equals("success")) {
-            mTextGender.setText(userProfileInfo.getResult());
-            mBtnGender.setText(R.string.update);
+            mTextGender.setText(Base64Util.deCoding(userProfileInfo.getResult()));
         } else {
             mTextGender.setText(R.string.please_put_profile);
-            mBtnGender.setText(R.string.add);
         }
     }
 
@@ -155,10 +159,8 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         }
         if (userProfileInfo.getMsg().equals("success")) {
             mTextBirthday.setText(userProfileInfo.getResult());
-            mBtnBirthday.setText(R.string.update);
         } else {
             mTextBirthday.setText(R.string.please_put_profile);
-            mBtnBirthday.setText(R.string.add);
         }
     }
 
@@ -183,10 +185,8 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         }
         if (userProfileInfo.getMsg().equals("success")) {
             mTextMobilePhone.setText(userProfileInfo.getResult());
-            mBtnMobilePhone.setText(R.string.update);
         } else {
             mTextMobilePhone.setText(R.string.please_put_profile);
-            mBtnMobilePhone.setText(R.string.add);
         }
     }
 

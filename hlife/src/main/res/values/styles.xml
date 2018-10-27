@@ -60,8 +60,8 @@
     <style name="TabTextStyle">
         <item name="android:textSize">@dimen/chad_16sp</item>
     </style>
-    <!-- 进度Dialog风格 -->
-    <style name="ProgressDialog" parent="Theme.AppCompat.Dialog">
+    <!-- 通用Dialog风格 -->
+    <style name="GeneralDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsFloating">true</item>
