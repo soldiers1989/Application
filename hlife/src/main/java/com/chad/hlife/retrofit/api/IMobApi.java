@@ -7,6 +7,7 @@ import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.entity.mob.UserLoginInfo;
+import com.chad.hlife.entity.mob.UserProfileInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
 import com.chad.hlife.entity.mob.UserPasswordInfo;
 
@@ -52,6 +53,29 @@ public interface IMobApi {
     @GET("user/password/change")
     Observable<UserPasswordInfo> updatePassword(@Query("key") String key, @Query("username") String userName,
                                                 @Query("oldPassword") String oldPassword, @Query("newPassword") String newPassword);
+
+    /**
+     * 增加或更新用户资料
+     *
+     * @return
+     */
+    @GET("user/profile/put")
+    Observable<UserProfileInfo> putUserProfile(@Query("key") String key, @Query("token") String token,
+                                               @Query("uid") String uid, @Query("item") String item,
+                                               @Query("value") String value);
+
+    /**
+     * 查询用户资料
+     *
+     * @param key
+     * @param token
+     * @param uid
+     * @param item
+     * @return
+     */
+    @GET("user/profile/query")
+    Observable<UserProfileInfo> queryUserProfile(@Query("key") String key, @Query("token") String token,
+                                                 @Query("uid") String uid, @Query("item") String item);
 
     /**
      * 历史上的今天

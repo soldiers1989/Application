@@ -13,6 +13,7 @@ import com.chad.hlife.entity.mob.HistoryInfo;
 import com.chad.hlife.entity.mob.RecipeCategoryInfo;
 import com.chad.hlife.entity.mob.RecipeDetailInfo;
 import com.chad.hlife.entity.mob.UserLoginInfo;
+import com.chad.hlife.entity.mob.UserProfileInfo;
 import com.chad.hlife.entity.mob.UserRegisterInfo;
 import com.chad.hlife.entity.mob.UserPasswordInfo;
 import com.chad.hlife.entity.weibo.WeiBoUserInfo;
@@ -84,6 +85,16 @@ public class HLifeRetrofit {
     public static Observable<UserPasswordInfo> updatePassword(String key, String userName,
                                                               String oldPassword, String newPassword) {
         return mIMobApi.updatePassword(key, userName, oldPassword, newPassword);
+    }
+
+    public static Observable<UserProfileInfo> putUserProfile(String key, String token, String uid,
+                                                             String item, String value) {
+        return mIMobApi.putUserProfile(key, token, uid, item, value);
+    }
+
+    public static Observable<UserProfileInfo> queryUserProfile(String key, String token, String uid,
+                                                               String item) {
+        return mIMobApi.queryUserProfile(key, token, uid, item);
     }
 
     public static Observable<HistoryInfo> getHistoryInfo(String key, String day) {

@@ -22,8 +22,8 @@ public class SettingsFragment extends BaseRxFragment {
 
     private static final String TAG = SettingsFragment.class.getSimpleName();
 
-    @BindView(R.id.layout_user_data)
-    ConstraintLayout mUserDataLayout;
+    @BindView(R.id.layout_user_profile)
+    ConstraintLayout mUserProfileLayout;
     @BindView(R.id.layout_update_password)
     ConstraintLayout mUpdatePassword;
     @BindView(R.id.text_cache)
@@ -43,15 +43,15 @@ public class SettingsFragment extends BaseRxFragment {
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
         if (AppSettings.getInstance().getLoginModel() == AppConstant.LOGIN_MODEL_WEIBO) {
-            mUserDataLayout.setVisibility(View.GONE);
+            mUserProfileLayout.setVisibility(View.GONE);
             mUpdatePassword.setVisibility(View.GONE);
         }
     }
 
-    @OnClick(R.id.layout_user_data)
-    public void onUserDataClick() {
-        LogUtil.d(TAG, "onUserDataClick");
-        ActivityHelper.startUserDataActivity(getActivity());
+    @OnClick(R.id.layout_user_profile)
+    public void onUserProfileClick() {
+        LogUtil.d(TAG, "onUserProfileClick");
+        ActivityHelper.startUserProfileActivity(getActivity());
     }
 
     @OnClick(R.id.layout_update_password)

@@ -44,4 +44,8 @@ public class AppConstant {
     public static final String TYPE_NEWS_KEJI = "keji";
     public static final String TYPE_NEWS_CAIJING = "caijing";
     public static final String TYPE_NEWS_SHISHANG = "shishang";
+
+    public static final String USER_PROFILE_GENDER = "gender";
+    public static final String USER_PROFILE_BIRTHDAY = "birthday";
+    public static final String USER_PROFILE_PHONE = "phone";
 }

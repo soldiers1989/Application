@@ -59,13 +59,14 @@
     <string name="loading">加载中...</string>
     <string name="querying">查询中...</string>
     <string name="logining">登录中</string>
-    <string name="user_data">用户资料</string>
+    <string name="user_profile">用户资料</string>
     <string name="update_password">修改密码</string>
     <string name="about_soft">关于软件</string>
     <string name="clear_cache">清除缓存</string>
     <string name="logout">退出登录</string>
+    <string name="gender">性&#8194;&#8194;别</string>
     <string name="birthday">生&#8194;&#8194;日</string>
-    <string name="mobile_phone">手机号码</string>
+    <string name="mobile_phone">手机号</string>
     <string name="soft_version">软件版本</string>
     <string name="reward_developer">打赏开发者</string>
     <string name="choose_mode_pay">请选择支付方式</string>

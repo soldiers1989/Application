@@ -19,7 +19,7 @@ import com.chad.hlife.ui.activity.NewsDetailActivity;
 import com.chad.hlife.ui.activity.HistoryDetailActivity;
 import com.chad.hlife.ui.activity.RecipeActivity;
 import com.chad.hlife.ui.activity.UpdatePasswordActivity;
-import com.chad.hlife.ui.activity.UserDataActivity;
+import com.chad.hlife.ui.activity.UserProfileActivity;
 import com.chad.hlife.ui.zhihu.activity.CommentsActivity;
 import com.chad.hlife.ui.zhihu.activity.DetailActivity;
 import com.chad.hlife.ui.zhihu.activity.SectionsDetailActivity;
@@ -191,11 +191,11 @@ public class ActivityHelper {
         activity.startActivity(intent);
     }
 
-    public static void startUserDataActivity(Activity activity) {
+    public static void startUserProfileActivity(Activity activity) {
         if (activity == null) {
             return;
         }
-        Intent intent = new Intent(activity, UserDataActivity.class);
+        Intent intent = new Intent(activity, UserProfileActivity.class);
         activity.startActivity(intent);
     }
 
