@@ -1,9 +1,11 @@
 package com.chad.hlife.ui.activity;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.widget.DatePicker;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -94,6 +96,7 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
         GenderDialog genderDialog = new GenderDialog(this);
         genderDialog.setOnSubmitClickListener(gender -> {
             if (!TextUtils.isEmpty(gender)) {
+                mTextGender.setText(gender);
                 MobAccessToken mobAccessToken = MobAuthHelper.getInstance().readAccessToken();
                 presenter.putGender(bindToLifecycle(), MobConfig.APP_KEY, mobAccessToken.getToken(),
                         mobAccessToken.getUid(), AppConstant.USER_PROFILE_GENDER, Base64Util.coding(gender));
@@ -105,6 +108,17 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
     @OnClick(R.id.layout_birthday)
     public void onBirthdayClick() {
         LogUtil.d(TAG, "onBirthdayClick");
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.GeneralDialog,
+                (view, year, month, dayOfMonth) -> {
+                    LogUtil.d(TAG, "onDateSet : year = " + year + " , month = " + month
+                            + " , dayOfMonth = " + dayOfMonth);
+                    String birthday = year + "-" + (++month) + "-" + dayOfMonth;
+                    mTextBirthday.setText(birthday);
+                    MobAccessToken mobAccessToken = MobAuthHelper.getInstance().readAccessToken();
+                    presenter.putBirthday(bindToLifecycle(), MobConfig.APP_KEY, mobAccessToken.getToken(),
+                            mobAccessToken.getUid(), AppConstant.USER_PROFILE_BIRTHDAY, Base64Util.coding(birthday));
+                }, 1995, 0, 01);
+        datePickerDialog.show();
     }
 
     @OnClick(R.id.layout_mobile_phone)
@@ -158,7 +172,7 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
             return;
         }
         if (userProfileInfo.getMsg().equals("success")) {
-            mTextBirthday.setText(userProfileInfo.getResult());
+            mTextBirthday.setText(Base64Util.deCoding(userProfileInfo.getResult()));
         } else {
             mTextBirthday.setText(R.string.please_put_profile);
         }
@@ -184,7 +198,7 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
             return;
         }
         if (userProfileInfo.getMsg().equals("success")) {
-            mTextMobilePhone.setText(userProfileInfo.getResult());
+            mTextMobilePhone.setText(Base64Util.deCoding(userProfileInfo.getResult()));
         } else {
             mTextMobilePhone.setText(R.string.please_put_profile);
         }

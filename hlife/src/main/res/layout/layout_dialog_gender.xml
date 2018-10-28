@@ -30,7 +30,6 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_submit"
-        style="@style/TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/chad_5dp"
@@ -38,13 +37,13 @@
         android:background="@drawable/btn_pay"
         android:text="@string/submit"
         android:textColor="@color/color_button_text"
+        android:textSize="@dimen/chad_16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/group_radio" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_cancel"
-        style="@style/TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/chad_5dp"
@@ -53,6 +52,7 @@
         android:background="@drawable/btn_pay"
         android:text="@string/cancel"
         android:textColor="@color/color_button_text"
+        android:textSize="@dimen/chad_16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btn_submit"
         app:layout_constraintRight_toRightOf="parent"
