@@ -30,7 +30,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/chad_100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/chad_5dp"
         android:layout_marginLeft="@dimen/chad_5dp"
@@ -44,7 +44,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_cancel"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/chad_100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/chad_5dp"
         android:layout_marginLeft="@dimen/chad_10dp"
