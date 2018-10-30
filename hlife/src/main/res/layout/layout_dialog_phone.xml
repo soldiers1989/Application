@@ -6,7 +6,7 @@
     android:background="@android:color/white">
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edit_mobile_phone"
+        android:id="@+id/edit_phone"
         style="@style/TextStyle"
         android:layout_width="@dimen/chad_210dp"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:textSize="@dimen/chad_16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_mobile_phone" />
+        app:layout_constraintTop_toBottomOf="@id/edit_phone" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_cancel"
@@ -46,6 +46,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btn_submit"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_mobile_phone" />
+        app:layout_constraintTop_toBottomOf="@id/edit_phone" />
 
 </android.support.constraint.ConstraintLayout>

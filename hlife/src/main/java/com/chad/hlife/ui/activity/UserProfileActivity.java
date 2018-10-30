@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.widget.DatePicker;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -17,7 +16,7 @@ import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.mvp.presenter.user.UserProfilePresenter;
 import com.chad.hlife.mvp.view.IUserProfileView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
-import com.chad.hlife.ui.view.EditDialog;
+import com.chad.hlife.ui.view.PhoneDialog;
 import com.chad.hlife.ui.view.GenderDialog;
 import com.chad.hlife.util.Base64Util;
 import com.chad.hlife.util.LogUtil;
@@ -125,8 +124,8 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
     @OnClick(R.id.layout_mobile_phone)
     public void onMobilePhoneClick() {
         LogUtil.d(TAG, "onMobilePhoneClick");
-        EditDialog editDialog = new EditDialog(this);
-        editDialog.setOnSubmitClickListener(phone -> {
+        PhoneDialog phoneDialog = new PhoneDialog(this);
+        phoneDialog.setOnSubmitClickListener(phone -> {
             if (!TextUtils.isEmpty(phone)) {
                 mTextMobilePhone.setText(phone);
                 MobAccessToken mobAccessToken = MobAuthHelper.getInstance().readAccessToken();
@@ -134,7 +133,7 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
                         mobAccessToken.getUid(), AppConstant.USER_PROFILE_PHONE, Base64Util.coding(phone));
             }
         });
-        editDialog.show();
+        phoneDialog.show();
     }
 
     @Override
