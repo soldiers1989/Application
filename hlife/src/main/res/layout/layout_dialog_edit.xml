@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_mobile_phone"
+        style="@style/TextStyle"
+        android:layout_width="@dimen/chad_210dp"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:singleLine="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:layout_width="@dimen/chad_100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/chad_5dp"
+        android:layout_marginLeft="@dimen/chad_5dp"
+        android:layout_marginTop="@dimen/chad_10dp"
+        android:background="@drawable/btn_pay"
+        android:text="@string/submit"
+        android:textColor="@color/color_button_text"
+        android:textSize="@dimen/chad_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_mobile_phone" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_cancel"
+        android:layout_width="@dimen/chad_100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/chad_5dp"
+        android:layout_marginLeft="@dimen/chad_10dp"
+        android:layout_marginRight="@dimen/chad_5dp"
+        android:layout_marginTop="@dimen/chad_10dp"
+        android:background="@drawable/btn_pay"
+        android:text="@string/cancel"
+        android:textColor="@color/color_button_text"
+        android:textSize="@dimen/chad_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btn_submit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_mobile_phone" />
+
+</android.support.constraint.ConstraintLayout>

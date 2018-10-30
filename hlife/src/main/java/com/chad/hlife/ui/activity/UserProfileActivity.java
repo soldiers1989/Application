@@ -17,6 +17,7 @@ import com.chad.hlife.helper.MobAuthHelper;
 import com.chad.hlife.mvp.presenter.user.UserProfilePresenter;
 import com.chad.hlife.mvp.view.IUserProfileView;
 import com.chad.hlife.ui.base.BaseMvpAppCompatActivity;
+import com.chad.hlife.ui.view.EditDialog;
 import com.chad.hlife.ui.view.GenderDialog;
 import com.chad.hlife.util.Base64Util;
 import com.chad.hlife.util.LogUtil;
@@ -124,6 +125,16 @@ public class UserProfileActivity extends BaseMvpAppCompatActivity<IUserProfileVi
     @OnClick(R.id.layout_mobile_phone)
     public void onMobilePhoneClick() {
         LogUtil.d(TAG, "onMobilePhoneClick");
+        EditDialog editDialog = new EditDialog(this);
+        editDialog.setOnSubmitClickListener(phone -> {
+            if (!TextUtils.isEmpty(phone)) {
+                mTextMobilePhone.setText(phone);
+                MobAccessToken mobAccessToken = MobAuthHelper.getInstance().readAccessToken();
+                presenter.putMobilePhone(bindToLifecycle(), MobConfig.APP_KEY, mobAccessToken.getToken(),
+                        mobAccessToken.getUid(), AppConstant.USER_PROFILE_PHONE, Base64Util.coding(phone));
+            }
+        });
+        editDialog.show();
     }
 
     @Override
