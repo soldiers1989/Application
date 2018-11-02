@@ -99,7 +99,7 @@ public class SplashActivity extends BaseRxAppCompatActivity implements SplashADL
 
     @Override
     public void onADTick(long l) {
-        LogUtil.d(TAG, "onADTick");
+        LogUtil.d(TAG, "onADTick : l = " + l);
         mTextSkip.setText(getString(R.string.skip) + " " + (l / 1000f));
     }
 
