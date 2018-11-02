@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">小黑Life</string>
-    <string name="skip">点击跳过</string>
+    <string name="skip">跳过</string>
     <string name="user_name">用户名</string>
     <string name="password">密码</string>
     <string name="again_password">确认密码</string>

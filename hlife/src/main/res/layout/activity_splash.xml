@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pic_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layout_content"
         android:layout_width="match_parent"
@@ -11,7 +21,7 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/text_skip"
-        android:layout_width="@dimen/chad_100dp"
+        android:layout_width="@dimen/chad_80dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/chad_20dp"
         android:background="@drawable/bg_skip_shape"
@@ -19,7 +29,6 @@
         android:text="@string/skip"
         android:textColor="@android:color/white"
         android:textSize="@dimen/chad_16sp"
-        android:visibility="invisible"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,12 +1,12 @@
 package com.chad.hlife.ui.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +21,6 @@ import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.helper.WeiBoAuthHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.util.LogUtil;
-import com.chad.hlife.util.RxSchedulersUtil;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 import com.qq.e.comm.util.AdError;
@@ -31,6 +30,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -38,6 +38,8 @@ public class SplashActivity extends BaseRxAppCompatActivity implements SplashADL
 
     private static final String TAG = SplashActivity.class.getSimpleName();
 
+    @BindView(R.id.image_logo)
+    AppCompatImageView mImageLogo;
     @BindView(R.id.layout_content)
     ConstraintLayout mContentLayout;
     @BindView(R.id.text_skip)
@@ -87,7 +89,7 @@ public class SplashActivity extends BaseRxAppCompatActivity implements SplashADL
     @Override
     public void onADPresent() {
         LogUtil.d(TAG, "onADPresent");
-        mTextSkip.setVisibility(View.VISIBLE);
+        mImageLogo.setVisibility(View.GONE);
     }
 
     @Override
@@ -104,6 +106,12 @@ public class SplashActivity extends BaseRxAppCompatActivity implements SplashADL
     @Override
     public void onADExposure() {
         LogUtil.d(TAG, "onADExposure");
+    }
+
+    @OnClick(R.id.text_skip)
+    public void onSkipClick() {
+        LogUtil.d(TAG, "onSkipClick");
+        checkLoginStatus();
     }
 
     @Override
