@@ -25,10 +25,6 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginP
         return LoginModel.getInstance().getWeiBoSsoHandler();
     }
 
-    public boolean isWeiBoSessionValid() {
-        return LoginModel.getInstance().isWeiBoSessionValid();
-    }
-
     @Override
     public void onError(Object object) {
         getView().onError(object);

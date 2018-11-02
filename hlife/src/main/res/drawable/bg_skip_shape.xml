@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#80000000" />
+
+    <padding
+        android:bottom="@dimen/chad_3dp"
+        android:left="@dimen/chad_8dp"
+        android:right="@dimen/chad_8dp"
+        android:top="@dimen/chad_3dp" />
+
+    <corners
+        android:bottomLeftRadius="@dimen/chad_45dp"
+        android:bottomRightRadius="@dimen/chad_45dp"
+        android:topLeftRadius="@dimen/chad_45dp"
+        android:topRightRadius="@dimen/chad_45dp" />
+
+</shape>

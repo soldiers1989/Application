@@ -2,6 +2,8 @@ package com.chad.hlife.helper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
@@ -219,6 +221,15 @@ public class ActivityHelper {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addCategory(Intent.CATEGORY_HOME);
+        activity.startActivity(intent);
+    }
+
+    public static void startDetailSettingsActivity(Activity activity, String packageName) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.parse("package:" + packageName));
         activity.startActivity(intent);
     }
 }

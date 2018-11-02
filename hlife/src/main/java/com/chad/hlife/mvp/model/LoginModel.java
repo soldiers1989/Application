@@ -82,11 +82,6 @@ public class LoginModel {
         return mWeiBoAuthHelper.getSsoHandler();
     }
 
-    public boolean isWeiBoSessionValid() {
-        initWeiBoAuthHelper();
-        return mWeiBoAuthHelper.isSessionValid();
-    }
-
     private void initWeiBoAuthHelper() {
         if (mWeiBoAuthHelper == null) {
             mWeiBoAuthHelper = WeiBoAuthHelper.getInstance(HLifeApplication.getHLifeApplication());

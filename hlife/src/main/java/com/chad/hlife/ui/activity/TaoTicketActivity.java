@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
@@ -18,11 +19,15 @@ import android.webkit.WebViewClient;
 
 import com.chad.hlife.R;
 import com.chad.hlife.app.AppConstant;
+import com.chad.hlife.helper.ActivityHelper;
 import com.chad.hlife.helper.WebViewHelper;
 import com.chad.hlife.ui.base.BaseRxAppCompatActivity;
 import com.chad.hlife.ui.view.loading.DoubleCircleLoadingView;
 import com.chad.hlife.util.LogUtil;
 import com.chad.hlife.util.StatusBarUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -137,21 +142,39 @@ public class TaoTicketActivity extends BaseRxAppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return;
         }
-        int accessCoarseLocationPermission = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION);
-        int accessFineLocationPermission = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
-        if (accessCoarseLocationPermission != PackageManager.PERMISSION_GRANTED
-                || accessFineLocationPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION}, AppConstant.PERMISSION_REQUEST_CODE);
+        List<String> permissions = new ArrayList<>();
+        if (!(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        int writeExternalStoragePermission = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, AppConstant.PERMISSION_REQUEST_CODE);
+        if (!(checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+            permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         }
+        if (!(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (permissions.size() > 0) {
+            String[] requestPermissions = new String[permissions.size()];
+            permissions.toArray(requestPermissions);
+            requestPermissions(requestPermissions, AppConstant.PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == AppConstant.PERMISSION_REQUEST_CODE && !hasAllPermissionsGranted(grantResults)) {
+            ActivityHelper.startDetailSettingsActivity(this, getPackageName());
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private boolean hasAllPermissionsGranted(int[] grantResults) {
+        LogUtil.d(TAG, "hasAllPermissionsGranted");
+        for (int grantResult : grantResults) {
+            if (grantResult == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

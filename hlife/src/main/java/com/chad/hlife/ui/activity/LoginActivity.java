@@ -2,7 +2,6 @@ package com.chad.hlife.ui.activity;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -75,30 +74,6 @@ public class LoginActivity extends BaseMvpAppCompatActivity<ILoginView, LoginPre
     @Override
     protected void onInitData() {
         LogUtil.d(TAG, "onInitData");
-        initLoginStatus();
-    }
-
-    private void initLoginStatus() {
-        LogUtil.d(TAG, "initLoginStatus");
-        switch (AppSettings.getInstance().getLoginModel()) {
-            case AppConstant.LOGIN_MODEL_MOB:
-                showProgressDialog(true);
-                String userName = AppSettings.getInstance().getUserName();
-                String password = AppSettings.getInstance().getPassword();
-                mEditUserName.setText(userName);
-                mEditPassword.setText(password);
-                presenter.login(bindToLifecycle(), MobConfig.APP_KEY, userName, password);
-                break;
-            case AppConstant.LOGIN_MODEL_WEIBO:
-                if (presenter.isWeiBoSessionValid()) {
-                    startMainActivity();
-                } else {
-                    presenter.weiBoLogin(this);
-                }
-                break;
-            default:
-                break;
-        }
     }
 
     @OnClick(R.id.btn_login)
