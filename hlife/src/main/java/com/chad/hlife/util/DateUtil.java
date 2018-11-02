@@ -1,17 +1,11 @@
 package com.chad.hlife.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
 
 import com.chad.hlife.R;
-
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class DateUtil {
 
@@ -36,7 +30,7 @@ public class DateUtil {
             monthStr = "0" + monthStr;
         }
         String dayStr = Integer.toString(day);
-        if (month < 10) {
+        if (day < 10) {
             dayStr = "0" + dayStr;
         }
         return monthStr + dayStr;

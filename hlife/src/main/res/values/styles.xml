@@ -10,6 +10,7 @@
     </style>
     <!-- 主界面Theme，主要是为了修改DrawerArrow颜色 -->
     <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
     <!-- 登录界面Theme -->
