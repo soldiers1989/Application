@@ -16,10 +16,10 @@ import java.io.File
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class PlayerService : Service() {
 
-    private val tag = PlayerService::class.simpleName.toString()
+    private val TAG = PlayerService::class.simpleName.toString()
     private val mLogUtil = LogUtil()
 
-    private val mMediaSession = MediaSession(applicationContext, tag)
+    private val mMediaSession = MediaSession(applicationContext, TAG)
     private val mMediaSessionCallBack = MediaSessionCallBack()
     private val mMediaPlayer = MediaPlayer()
     private val mMediaCompletionListener = MediaCompletionListener()
@@ -28,25 +28,25 @@ class PlayerService : Service() {
     private var isPlayed = false
 
     override fun onCreate() {
-        mLogUtil.d(tag, "onCreate")
+        mLogUtil.d(TAG, "onCreate")
         initData()
         super.onCreate()
     }
 
     private fun initData() {
-        mLogUtil.d(tag, "initData")
+        mLogUtil.d(TAG, "initData")
         mMediaSession.setCallback(mMediaSessionCallBack)
         mMediaPlayer.setOnCompletionListener(mMediaCompletionListener)
         mMediaPlayer.setOnErrorListener(mMediaErrorListener)
     }
 
     override fun onBind(intent: Intent?): IBinder {
-        mLogUtil.d(tag, "onBind")
+        mLogUtil.d(TAG, "onBind")
         return MediaBinder()
     }
 
     private fun playTrack(path: String) {
-        mLogUtil.d(tag, "playTrack : path = $path")
+        mLogUtil.d(TAG, "playTrack : path = $path")
         val file = File(path)
         if (TextUtils.isEmpty(path) || !file.exists())
             return
@@ -59,15 +59,15 @@ class PlayerService : Service() {
     }
 
     private fun previous() {
-        mLogUtil.d(tag, "previous")
+        mLogUtil.d(TAG, "previous")
     }
 
     private fun next() {
-        mLogUtil.d(tag, "next")
+        mLogUtil.d(TAG, "next")
     }
 
     private fun play() {
-        mLogUtil.d(tag, "play")
+        mLogUtil.d(TAG, "play")
         if (!isPlayed)
             return
         if (!mMediaPlayer.isPlaying)
@@ -75,7 +75,7 @@ class PlayerService : Service() {
     }
 
     private fun pause() {
-        mLogUtil.d(tag, "pause")
+        mLogUtil.d(TAG, "pause")
         if (!isPlayed)
             return
         if (mMediaPlayer.isPlaying)
@@ -83,7 +83,7 @@ class PlayerService : Service() {
     }
 
     private fun stop() {
-        mLogUtil.d(tag, "stop")
+        mLogUtil.d(TAG, "stop")
         if (!isPlayed)
             return
         mMediaPlayer.stop()
@@ -92,7 +92,7 @@ class PlayerService : Service() {
     }
 
     private fun seekTo(pos: Long) {
-        mLogUtil.d(tag, "seekTo : pos = $pos")
+        mLogUtil.d(TAG, "seekTo : pos = $pos")
         if (!isPlayed)
             return
         mMediaPlayer.seekTo(pos.toInt())
@@ -101,42 +101,42 @@ class PlayerService : Service() {
     private inner class MediaSessionCallBack : MediaSession.Callback() {
 
         override fun onCustomAction(action: String?, extras: Bundle?) {
-            mLogUtil.d(tag, "onCustomAction")
+            mLogUtil.d(TAG, "onCustomAction")
             super.onCustomAction(action, extras)
         }
 
         override fun onSkipToPrevious() {
-            mLogUtil.d(tag, "onSkipToPrevious")
+            mLogUtil.d(TAG, "onSkipToPrevious")
             previous()
             super.onSkipToPrevious()
         }
 
         override fun onSkipToNext() {
-            mLogUtil.d(tag, "onSkipToNext")
+            mLogUtil.d(TAG, "onSkipToNext")
             next()
             super.onSkipToNext()
         }
 
         override fun onPlay() {
-            mLogUtil.d(tag, "onPlay")
+            mLogUtil.d(TAG, "onPlay")
             play()
             super.onPlay()
         }
 
         override fun onPause() {
-            mLogUtil.d(tag, "onPause")
+            mLogUtil.d(TAG, "onPause")
             pause()
             super.onPause()
         }
 
         override fun onStop() {
-            mLogUtil.d(tag, "onPause")
+            mLogUtil.d(TAG, "onPause")
             stop()
             super.onStop()
         }
 
         override fun onSeekTo(pos: Long) {
-            mLogUtil.d(tag, "onSeekTo : pos = $pos")
+            mLogUtil.d(TAG, "onSeekTo : pos = $pos")
             seekTo(pos)
             super.onSeekTo(pos)
         }
@@ -159,7 +159,7 @@ class PlayerService : Service() {
     inner class MediaBinder : Binder() {
 
         fun getToken(): MediaSession.Token? {
-            mLogUtil.d(tag, "getToken")
+            mLogUtil.d(TAG, "getToken")
             return mMediaSession?.sessionToken
         }
     }
